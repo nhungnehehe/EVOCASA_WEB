@@ -23,9 +23,7 @@ body {
     font-family: Inter;
     font-size: 16px;
     padding: 10px 20px;
-    /* Giảm padding để navbar nhỏ gọn hơn */
     flex-wrap: nowrap;
-    /* Ngăn nội dung xuống dòng */
 }
 
 /* Logo */
@@ -34,16 +32,13 @@ body {
 }
 
 /* Menu chính */
+/* Rút ngắn khoảng cách giữa các mục trên navbar */
 .menu {
     display: flex;
-    overflow: visible;
     list-style: none;
-    gap: 15px;
-    /* Giảm khoảng cách giữa các mục để tiết kiệm không gian */
+    gap: 10px; /* Giảm khoảng cách giữa các mục */
     flex-wrap: nowrap;
-    /* Ngăn menu xuống dòng */
     white-space: nowrap;
-    /* Đảm bảo chữ không bị xuống dòng */
 }
 
 .menu li {
@@ -130,8 +125,9 @@ body {
     display: flex;
     align-items: center;
     background: #F5EEDA;
-    padding: 5px 10px;
+    padding: 5px 8px; /* Giảm padding để tiết kiệm không gian */
     border-radius: 20px;
+    margin-left: 0px; /* Giảm khoảng cách với CONTACT */
 }
 
 .search input {
@@ -154,10 +150,8 @@ body {
 .user-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
-    /* Giảm khoảng cách để tránh tràn */
+    gap: 5px; /* Giảm khoảng cách */
     white-space: nowrap;
-    /* Ngăn chữ bị xuống dòng */
 }
 
 /* Biểu tượng */
