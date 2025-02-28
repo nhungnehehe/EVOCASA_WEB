@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body {
+    background: #FFFCF3;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 530px;
+    height: 100%;
+    background-color:#FFFCF3;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .drawer__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .drawer__header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .drawer__close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .line-item {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .line-item__image-wrapper {
+    margin-right: 15px;
+  }
+  
+  .line-item__image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .line-item__info {
+    flex: 1;
+  }
+  
+  .line-item__name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .line-item__price {
+    font-size: 16px;
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .quantity-selector__button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .quantity-selector__input {
+    width: 40px;
+    padding: 5px;
+    text-align: center;
+    margin: 0 5px;
+  }
+  
+  .cart-total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .mini-cart__footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .cart__checkout-button {
+    background-color: #5E4C3E;
+    color: white;
+    padding: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 25px;
+    font-weight: 550; /* Semibold */
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .cart__checkout-button:hover {
+    background-color: #2c3545;
+  }
+  
+  .cart-total-price {
+    font-size: 18px;
+    color: #fff;
+  }
+  
