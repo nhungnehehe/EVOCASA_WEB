@@ -125,10 +125,11 @@ body {
     display: flex;
     align-items: center;
     background: #F5EEDA;
-    padding: 5px 8px; /* Giảm padding để tiết kiệm không gian */
+    padding: 5px 12px; /* Tăng padding để thanh search lớn hơn */
     border-radius: 20px;
-    margin-left: 0px; /* Giảm khoảng cách với CONTACT */
+    margin-left: 40px; /* Tạo khoảng cách giống với khoảng cách giữa CONTACT và ABOUT US */
 }
+
 
 .search input {
     border: none;
@@ -150,9 +151,10 @@ body {
 .user-actions {
     display: flex;
     align-items: center;
-    gap: 5px; /* Giảm khoảng cách */
+    gap: 15px; /* Tăng khoảng cách giữa Search và Sign In */
     white-space: nowrap;
 }
+
 
 /* Biểu tượng */
 .icon {
