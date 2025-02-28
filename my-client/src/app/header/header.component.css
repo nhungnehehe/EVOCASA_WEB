@@ -1,0 +1,172 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cấu trúc menu */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #FAF8F4;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    position: relative;
+    overflow: visible;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2EAD3;
+    border-bottom: 1px solid #ddd;
+    font-family: Inter;
+    font-size: 16px;
+    padding: 10px 20px;
+    /* Giảm padding để navbar nhỏ gọn hơn */
+    flex-wrap: nowrap;
+    /* Ngăn nội dung xuống dòng */
+}
+
+/* Logo */
+.logo img {
+    height: 60px;
+}
+
+/* Menu chính */
+.menu {
+    display: flex;
+    overflow: visible;
+    list-style: none;
+    gap: 15px;
+    /* Giảm khoảng cách giữa các mục để tiết kiệm không gian */
+    flex-wrap: nowrap;
+    /* Ngăn menu xuống dòng */
+    white-space: nowrap;
+    /* Đảm bảo chữ không bị xuống dòng */
+}
+
+.menu li {
+    position: relative;
+}
+
+/* Link menu */
+.menu li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    font-weight: 500;
+}
+
+/* Hiệu ứng hover */
+.menu li a:hover,
+.menu li a.active {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Định dạng dropdown menu theo dạng ngang */
+.dropdown-menu {
+    /* width: 100%; */
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: white;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    flex-direction: row;
+    /* Hiển thị các danh mục theo chiều ngang */
+    gap: 30px;
+    /* Tăng khoảng cách giữa các danh mục */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2000;
+    display: flex;
+    /* Sử dụng flexbox */
+}
+
+/* Khi hover, dropdown hiển thị đầy đủ */
+.dropdown:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Danh mục con */
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Các tiêu đề danh mục */
+.dropdown-menu ul li strong {
+    display: block;
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* Các mục con trong dropdown */
+.dropdown-menu ul li a {
+    color: black;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+}
+
+.dropdown-menu ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Search box */
+.search {
+    display: flex;
+    align-items: center;
+    background: #F5EEDA;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+    width: 80px;
+    /* Giảm kích thước input tìm kiếm để tiết kiệm không gian */
+}
+
+.search button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* User actions */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Giảm khoảng cách để tránh tràn */
+    white-space: nowrap;
+    /* Ngăn chữ bị xuống dòng */
+}
+
+/* Biểu tượng */
+.icon {
+    text-decoration: none;
+    color: #5C4433;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
