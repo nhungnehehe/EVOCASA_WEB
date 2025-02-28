@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BlogComponent } from './blog/blog.component';
 import { CollectionComponent } from './collection/collection.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CollectionComponent } from './collection/collection.component';
     HeaderComponent,
     SidebarComponent,
     BlogComponent,
-    CollectionComponent
+    CollectionComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

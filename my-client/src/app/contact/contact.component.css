@@ -1,0 +1,142 @@
+/* Banner Styles */
+.banner {
+    width: 100%;
+    height: 422px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFCF3;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(94, 76, 62, 0.50);
+}
+
+.banner-text {
+    position: absolute;
+    text-align: center;
+    color: white;
+}
+
+.banner-title {
+    font-size: 60px;
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 700;
+    line-height: 50px;
+    margin-bottom: 50px;
+    margin-top: -100px;
+}
+
+.banner-description {
+    max-width: 600px;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    line-height: 22.4px;
+}
+
+/* Contact Section Styles */
+.contact-container {
+    background-color: #FFFCF3;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-table {
+    width: 100%;
+    max-width: 1525px;
+    margin: 0 auto;
+    table-layout: fixed;
+    padding: 50px 20px;
+}
+
+.google-map {
+    width: 50%;
+    padding-right: 30px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.contact-info-form {
+    width: 50%;
+    vertical-align: top;
+    text-align: center;
+}
+
+/* Contact Info Styles */
+.contact-info {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-info h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #5E4C3E;
+}
+
+.contact-info p {
+    font-family: 'Zin Old Mincho';
+    font-size: 20px;
+    margin: 10px 0;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* Contact Form Styles */
+.contact-form {
+    background-color: rgba(94, 76, 62, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-form h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #5E4C3E;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #D8D4C9;
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
+    width: 100%;
+}
+
+.contact-form button {
+    padding: 12px 20px;
+    background-color: #525B4A;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    width: auto;
+    text-align: center;
+}
