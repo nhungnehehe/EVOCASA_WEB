@@ -8,7 +8,7 @@
 /* Cấu trúc menu */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #FAF8F4;
+    background-color: #FFFCF3;
 }
 
 /* Navbar */
@@ -18,7 +18,7 @@ body {
     overflow: visible;
     justify-content: space-between;
     align-items: center;
-    background-color: #F2EAD3;
+    background-color: #FFFCF3;
     border-bottom: 1px solid #ddd;
     font-family: Inter;
     font-size: 16px;
@@ -128,7 +128,9 @@ body {
     padding: 5px 12px; /* Tăng padding để thanh search lớn hơn */
     border-radius: 20px;
     margin-left: 40px; /* Tạo khoảng cách giống với khoảng cách giữa CONTACT và ABOUT US */
+    height: 40px;
 }
+
 
 
 .search input {
@@ -136,9 +138,14 @@ body {
     background: transparent;
     outline: none;
     padding: 5px;
-    width: 80px;
-    /* Giảm kích thước input tìm kiếm để tiết kiệm không gian */
+    width: 200px; /* Tăng độ dài của ô tìm kiếm */
+    transition: width 0.3s ease; /* Hiệu ứng mở rộng khi nhập */
 }
+
+.search input:focus {
+    width: 220px; /* Khi click vào sẽ mở rộng hơn */
+}
+
 
 .search button {
     border: none;
@@ -154,6 +161,12 @@ body {
     gap: 15px; /* Tăng khoảng cách giữa Search và Sign In */
     white-space: nowrap;
 }
+.user-actions div {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Để icon và text gần nhau hơn */
+}
+
 
 
 /* Biểu tượng */
