@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BlogComponent } from './blog/blog.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ContactComponent } from './contact/contact.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,13 @@ import { ContactComponent } from './contact/contact.component';
     SidebarComponent,
     BlogComponent,
     CollectionComponent,
-    ContactComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    ContactComponent,
+],
+imports: [
+  BrowserModule,
+  AppRoutingModule,
+  FooterComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })
