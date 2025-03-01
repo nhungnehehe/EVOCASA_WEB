@@ -10,10 +10,18 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #FFFCF3;
 }
-
+.brown-banner {
+    background-color: #5E4C3E; /* Màu nâu */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Zen Old Mincho', serif;
+    font-size: 16px;
+}
 /* Navbar */
 .navbar {
     display: flex;
+    width: 100%;
     position: relative;
     overflow: visible;
     justify-content: space-between;
@@ -23,7 +31,7 @@ body {
     font-family: Inter;
     font-size: 16px;
     padding: 10px 20px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Cho phép các phần tử xuống dòng khi không đủ chỗ */
 }
 
 /* Logo */
@@ -32,25 +40,24 @@ body {
 }
 
 /* Menu chính */
-/* Rút ngắn khoảng cách giữa các mục trên navbar */
 .menu {
     display: flex;
     list-style: none;
-    gap: 10px; /* Giảm khoảng cách giữa các mục */
-    flex-wrap: nowrap;
+    gap: 8px; /* Giảm khoảng cách giữa các mục */
+    flex-wrap: nowrap; 
     white-space: nowrap;
 }
+
 
 .menu li {
     position: relative;
 }
 
-/* Link menu */
 .menu li a {
     text-decoration: none;
     color: black;
     font-size: 16px;
-    padding: 10px;
+    padding: 8px; 
     display: block;
     font-weight: 500;
 }
@@ -62,30 +69,25 @@ body {
     font-weight: bold;
 }
 
-/* Định dạng dropdown menu theo dạng ngang */
+/* Dropdown menu */
 .dropdown-menu {
-    /* width: 100%; */
     display: none;
     position: absolute;
     left: 0;
     top: 100%;
-    background-color: white;
-    padding: 15px;
+    background-color: #FFFCF3;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     white-space: nowrap;
     flex-direction: row;
-    /* Hiển thị các danh mục theo chiều ngang */
-    gap: 30px;
-    /* Tăng khoảng cách giữa các danh mục */
+    gap: 20px; /* Giảm khoảng cách giữa các danh mục con */
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 2000;
     display: flex;
-    /* Sử dụng flexbox */
 }
 
-/* Khi hover, dropdown hiển thị đầy đủ */
 .dropdown:hover .dropdown-menu {
     visibility: visible;
     opacity: 1;
@@ -125,27 +127,25 @@ body {
     display: flex;
     align-items: center;
     background: #F5EEDA;
-    padding: 5px 12px; /* Tăng padding để thanh search lớn hơn */
+    padding: 5px 10px;
     border-radius: 20px;
-    margin-left: 40px; /* Tạo khoảng cách giống với khoảng cách giữa CONTACT và ABOUT US */
+    margin-left: 20px; /* Tạo khoảng cách giữa search và các mục khác */
     height: 40px;
 }
 
-
-
+/* Tối ưu chiều rộng cho ô tìm kiếm */
 .search input {
     border: none;
     background: transparent;
     outline: none;
     padding: 5px;
-    width: 200px; /* Tăng độ dài của ô tìm kiếm */
+    width: 120px; /* Giảm chiều rộng để tiết kiệm không gian */
     transition: width 0.3s ease; /* Hiệu ứng mở rộng khi nhập */
 }
 
 .search input:focus {
-    width: 220px; /* Khi click vào sẽ mở rộng hơn */
+    width: 150px; /* Khi focus vào ô tìm kiếm */
 }
-
 
 .search button {
     border: none;
@@ -158,16 +158,9 @@ body {
 .user-actions {
     display: flex;
     align-items: center;
-    gap: 15px; /* Tăng khoảng cách giữa Search và Sign In */
+    gap: 15px; /* Tăng khoảng cách giữa các mục */
     white-space: nowrap;
 }
-.user-actions div {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Để icon và text gần nhau hơn */
-}
-
-
 
 /* Biểu tượng */
 .icon {
@@ -178,4 +171,46 @@ body {
     align-items: center;
     gap: 5px;
     font-weight: bold;
+}
+.signcart {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.signcart img{
+    padding: 5px;
+}
+.signcart button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+
+
+/* Media Query cho các màn hình nhỏ */
+@media (max-width: 1024px) {
+    /* Navbar và các phần tử giảm khoảng cách */
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .menu {
+        flex-wrap: wrap; /* Khi không đủ diện tích, menu sẽ xuống dòng */
+        gap: 5px; /* Giảm khoảng cách giữa các mục */
+        width: 100%; /* Đảm bảo menu chiếm hết chiều ngang */
+    }
+
+    .search {
+        margin-left: 0px; 
+        max-width: 120px;
+    }
+
+    .user-actions {
+        gap: 5px; 
+    }
+    .user-actions {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }
