@@ -10,6 +10,7 @@ import { CollectionComponent } from './collection/collection.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FormsModule } from '@angular/forms';  // Thêm dòng này
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PaymentComponent } from './payment/payment.component';
 imports: [
   BrowserModule,
   AppRoutingModule,
-  FooterComponent
+  FooterComponent,
+  FormsModule,
 ],
   providers: [],
   bootstrap: [AppComponent]
