@@ -11,7 +11,8 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FormsModule } from '@angular/forms';
-import { CartComponent } from './cart/cart.component';  // Thêm dòng này
+import { CartComponent } from './cart/cart.component';
+import { AboutUsComponent } from './about-us/about-us.component';  // Thêm dòng này
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CartComponent } from './cart/cart.component';  // Thêm dòng này
     ContactComponent,
     PaymentComponent,
     CartComponent,
+    AboutUsComponent,
 ],
 imports: [
   BrowserModule,
