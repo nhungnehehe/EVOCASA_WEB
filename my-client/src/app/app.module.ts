@@ -10,6 +10,7 @@ import { CollectionComponent } from './collection/collection.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { PaymentComponent } from './payment/payment.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PaymentComponent } from './payment/payment.component';
     CollectionComponent,
     ContactComponent,
     PaymentComponent,
+    HomepageComponent,
 ],
 imports: [
   BrowserModule,
