@@ -85,10 +85,11 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 2000;
-    display: flex;
+    
 }
 
 .dropdown:hover .dropdown-menu {
+    display: flex;
     visibility: visible;
     opacity: 1;
 }
@@ -198,7 +199,7 @@ body {
     .menu {
         flex-wrap: wrap; /* Khi không đủ diện tích, menu sẽ xuống dòng */
         gap: 5px; /* Giảm khoảng cách giữa các mục */
-        width: 100%; /* Đảm bảo menu chiếm hết chiều ngang */
+        width: 100vw; /* Đảm bảo menu chiếm hết chiều ngang */
     }
 
     .search {
