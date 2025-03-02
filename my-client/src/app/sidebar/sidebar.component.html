@@ -7,45 +7,53 @@
 </head>
 
 <body>
-  <span class="drawer__overlay" *ngIf="isCartVisible" (click)="closeCart()"></span>
-    <div class="drawer" id="mini-cart" *ngIf="isCartVisible">  
+  <div class="drawer__overlay"  (click)="closeCart()"></div>
+    <div class="drawer" id="mini-cart" [ngClass]="{ 'open': isCartVisible, 'slide-out': !isCartVisible }">  
       
       <div class="drawer__content">
-        <form id="mini-cart-form" action="/cart" novalidate method="post">
-          
-          <div *ngFor="let product of products" class="line-item" [attr.data-product-id]="product.id">            <!-- Phần 1: Hình ảnh sản phẩm -->
+        <form id="mini-cart-form" novalidate method="post">
+
+          <div *ngFor="let product of products" class="line-item" [attr.data-product-id]="product.id">
+            <!-- Phần 1: Hình ảnh sản phẩm -->
             <div class="line-item__content-wrapper">
-                <a href="#" class="line-item__image-wrapper">
-                    <img [src]="product.image" alt="{{ product.name }}" class="line-item__image" />
-                </a>
+              <a href="#" class="line-item__image-wrapper">
+                <img [src]="product.image" alt="{{product.name}}" class="line-item__image">
+              </a>
             </div>
+    
             <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
             <div class="line-item__info">
-              <p class="line-item__name">{{ product.name }}</p>
+              <p class="line-item__name">{{product.name}}</p>
               <div class="quantity-selector">
-                <button type="button" class="quantity-selector__button" (click)="changeQuantity('decrease', product.id)">-</button>
-                <input type="number" class="quantity-selector__input" [(ngModel)]="product.quantity" [min]="1" />
-                <button type="button" class="quantity-selector__button" (click)="changeQuantity('increase', product.id)">+</button>
+                <button class="quantity-selector__button" type="button" (click)="changeQuantity('decrease', product.id)">-</button>
+                <input type="text" class="quantity-selector__input" [value]="product.quantity" aria-label="Change quantity" readonly>
+                <button class="quantity-selector__button" type="button" (click)="changeQuantity('increase', product.id)">+</button>
               </div>
-          </div>
+            </div>
+    
             <!-- Phần 3: Giá sản phẩm -->
             <div class="line-item__price-wrapper">
-              <p class="line-item__price">{{ product.price | currency }}</p>
+              <p class="line-item__price">${{product.price | number:'1.0-0'}}</p>
             </div>
           </div>
         </form>
       </div>
       
-      <footer class="mini-cart__footer">
-        <div *ngIf="!isEmpty" class="cart-total">
-          <p><span id="total">{{ total | currency }}</span></p>
-        </div>
-        <div *ngIf="isEmpty" id="no-products-message">
-          Your cart is empty!
-        </div>
-        <p *ngIf="!isEmpty" class="shipping-info">Shipping & taxes calculated at checkout</p>
-        <button *ngIf="!isEmpty" type="submit" class="cart__checkout-button">COMPLETE YOUR ORDER</button>
-      </footer>
+       <!-- Footer giỏ hàng -->
+  <footer class="mini-cart__footer" *ngIf="!isEmpty">
+    <div class="cart-total">
+      <p><span id="total">${{total | number:'1.0-0'}}</span></p>
     </div>
+    <p class="shipping-info">Shipping & taxes calculated at checkout</p>
+    <button type="button" class="cart__checkout-button" [routerLink]="'/cart-page'">
+      COMPLETE YOUR ORDER
+    </button>
+  </footer>
+
+  <!-- Thông báo giỏ hàng trống -->
+  <div *ngIf="isEmpty" class="empty-cart-message">
+    <p>Your cart is empty!</p>
+  </div>
+</div>
 </body>
 </html>

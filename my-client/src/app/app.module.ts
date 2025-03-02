@@ -10,7 +10,8 @@ import { CollectionComponent } from './collection/collection.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { PaymentComponent } from './payment/payment.component';
-import { FormsModule } from '@angular/forms';  // Thêm dòng này
+import { FormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';  // Thêm dòng này
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';  // Thêm dòng này
     CollectionComponent,
     ContactComponent,
     PaymentComponent,
+    CartComponent,
 ],
 imports: [
   BrowserModule,
