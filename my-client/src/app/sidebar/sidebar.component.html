@@ -5,67 +5,157 @@
     <title>Sidebar</title>
     <link rel="stylesheet" href="sidebar.component.css">
 </head>
+
 <body>
-<div id="shopify-section-mini-cart" class="shopify-section shopify-section--mini-cart">
-    <span class="drawer__overlay"></span>
+  <span class="drawer__overlay"></span> 
+
+  <div id="shopify-section-mini-cart" class="shopify-section shopify-section--mini-cart">
     <div class="drawer" id="mini-cart">  
-      <header class="drawer__header">
-        <button type="button" class="drawer__close-button" data-action="close" title="Close">
-          <svg width="14" height="14" class="icon icon--close">
-            <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="1" fill="none"></path>
-          </svg>
-        </button>
-      </header>
-  
       <div class="drawer__content">
         <form id="mini-cart-form" action="/cart" novalidate method="post">
-          
-          <!-- Line Item 1 -->
           <div class="line-item">
             <div class="line-item__content-wrapper">
-              <a href="/products/product-1" class="line-item__image-wrapper">
-                <img src="https://via.placeholder.com/100" alt="Product 1" class="line-item__image">
-              </a>
+                <!-- Phần 1: Hình ảnh sản phẩm -->
+                <a href="#" class="line-item__image-wrapper">
+                    <img src="https://via.placeholder.com/100" alt="Product 1" class="line-item__image">
+                </a>
+            </div>
               <div class="line-item__info">
-                <p class="line-item__name">Product 1</p>
+                    <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
+                    <p class="line-item__name">Product 1</p>
+                    <div class="quantity-selector">
+                        <button class="quantity-selector__button" type="button" onclick="changeQuantity('decrease', 'quantity-1')">-</button>
+                        <input type="number" class="quantity-selector__input" value="1" min="1" id="quantity-1" aria-label="Change quantity">
+                        <button class="quantity-selector__button" type="button" onclick="changeQuantity('increase', 'quantity-1')">+</button>
+                    </div>
+              </div>
+            <!-- Phần 3: Giá sản phẩm -->
+            <div class="line-item__price-wrapper">
                 <p class="line-item__price">$6,500</p>
-                <div class="quantity-selector">
-                  <button class="quantity-selector__button" aria-label="Decrease quantity">-</button>
-                  <input type="number" class="quantity-selector__input" value="1" min="1">
-                  <button class="quantity-selector__button" aria-label="Increase quantity">+</button>
-                </div>
-              </div>
             </div>
-          </div>
-  
-          <!-- Line Item 2 -->
-          <div class="line-item">
-            <div class="line-item__content-wrapper">
-              <a href="/products/product-2" class="line-item__image-wrapper">
-                <img src="https://via.placeholder.com/100" alt="Product 2" class="line-item__image">
+        </div>
+        
+        <div class="line-item">
+          <div class="line-item__content-wrapper">
+              <!-- Phần 1: Hình ảnh sản phẩm -->
+              <a href="#" class="line-item__image-wrapper">
+                  <img src="https://via.placeholder.com/100" alt="Product 1" class="line-item__image">
               </a>
-              <div class="line-item__info">
-                <p class="line-item__name">Product 2</p>
-                <p class="line-item__price">$9,950</p>
-                <div class="quantity-selector">
-                  <button class="quantity-selector__button" aria-label="Decrease quantity">-</button>
-                  <input type="number" class="quantity-selector__input" value="1" min="1">
-                  <button class="quantity-selector__button" aria-label="Increase quantity">+</button>
-                </div>
-              </div>
+          </div>
+            <div class="line-item__info">
+                  <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
+                  <p class="line-item__name">Product 1</p>
+                  <div class="quantity-selector">
+                      <button class="quantity-selector__button" type="button" onclick="changeQuantity('decrease', 'quantity-1')">-</button>
+                      <input type="number" class="quantity-selector__input" value="1" min="1" id="quantity-1" aria-label="Change quantity">
+                      <button class="quantity-selector__button" type="button" onclick="changeQuantity('increase', 'quantity-1')">+</button>
+                  </div>
             </div>
+          <!-- Phần 3: Giá sản phẩm -->
+          <div class="line-item__price-wrapper">
+              <p class="line-item__price">$6,500</p>
           </div>
-  
-          <div class="cart-total">
-            <p>Total: <span>$16,450</span></p>
+      </div>
+      <div class="line-item">
+        <div class="line-item__content-wrapper">
+            <!-- Phần 1: Hình ảnh sản phẩm -->
+            <a href="#" class="line-item__image-wrapper">
+                <img src="https://via.placeholder.com/100" alt="Product 1" class="line-item__image">
+            </a>
+        </div>
+          <div class="line-item__info">
+                <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
+                <p class="line-item__name">Product 1</p>
+                <div class="quantity-selector">
+                    <button class="quantity-selector__button" type="button" onclick="changeQuantity('decrease', 'quantity-1')">-</button>
+                    <input type="number" class="quantity-selector__input" value="1" min="1" id="quantity-1" aria-label="Change quantity">
+                    <button class="quantity-selector__button" type="button" onclick="changeQuantity('increase', 'quantity-1')">+</button>
+                </div>
           </div>
-          
-          <footer class="mini-cart__footer">
-            <button type="submit" class="cart__checkout-button"> COMPLETE YOUR ORDER</button>
-          </footer>
+        <!-- Phần 3: Giá sản phẩm -->
+        <div class="line-item__price-wrapper">
+            <p class="line-item__price">$6,500</p>
+        </div>
+    </div>
+    <div class="line-item">
+      <div class="line-item__content-wrapper">
+          <!-- Phần 1: Hình ảnh sản phẩm -->
+          <a href="#" class="line-item__image-wrapper">
+              <img src="https://via.placeholder.com/100" alt="Product 1" class="line-item__image">
+          </a>
+      </div>
+        <div class="line-item__info">
+              <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
+              <p class="line-item__name">Product 1</p>
+              <div class="quantity-selector">
+                  <button class="quantity-selector__button" type="button" onclick="changeQuantity('decrease', 'quantity-1')">-</button>
+                  <input type="number" class="quantity-selector__input" value="1" min="1" id="quantity-1" aria-label="Change quantity">
+                  <button class="quantity-selector__button" type="button" onclick="changeQuantity('increase', 'quantity-1')">+</button>
+              </div>
+        </div>
+      <!-- Phần 3: Giá sản phẩm -->
+      <div class="line-item__price-wrapper">
+          <p class="line-item__price">$6,500</p>
+      </div>
+  </div>
+  <div class="line-item">
+    <div class="line-item__content-wrapper">
+        <!-- Phần 1: Hình ảnh sản phẩm -->
+        <a href="#" class="line-item__image-wrapper">
+            <img src="https://via.placeholder.com/100" alt="Product 1" class="line-item__image">
+        </a>
+    </div>
+      <div class="line-item__info">
+            <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
+            <p class="line-item__name">Product 1</p>
+            <div class="quantity-selector">
+                <button class="quantity-selector__button" type="button" onclick="changeQuantity('decrease', 'quantity-1')">-</button>
+                <input type="number" class="quantity-selector__input" value="1" min="1" id="quantity-1" aria-label="Change quantity">
+                <button class="quantity-selector__button" type="button" onclick="changeQuantity('increase', 'quantity-1')">+</button>
+            </div>
+      </div>
+    <!-- Phần 3: Giá sản phẩm -->
+    <div class="line-item__price-wrapper">
+        <p class="line-item__price">$6,500</p>
+    </div>
+</div>
+
         </form>
       </div>
+      
+      <footer class="mini-cart__footer">
+        <div class="cart-total">
+          <p><span id="total"> $16,450</span></p>
+        </div>
+        <p class="shipping-info">Shipping & taxes calculated at checkout</p>
+        <button type="submit" class="cart__checkout-button">COMPLETE YOUR ORDER</button>
+    </footer>
     </div>
   </div>
+
+  <script>
+    // Hàm thay đổi số lượng sản phẩm khi nhấn các nút
+    function changeQuantity(action) {
+      const inputField = document.querySelector('.quantity-selector__input');
+      let currentQuantity = parseInt(inputField.value);
+  
+      if (action === 'increase') {
+        currentQuantity++;
+      } else if (action === 'decrease' && currentQuantity > 1) {
+        currentQuantity--;
+      }
+  
+      inputField.value = currentQuantity;
+      updateTotal(); // Cập nhật tổng giá trị khi số lượng thay đổi
+    }
+  
+    // Cập nhật tổng giá trị giỏ hàng khi thay đổi số lượng
+    function updateTotal() {
+      const quantity1 = parseInt(document.getElementById('quantity-1').value);
+      const price1 = 6500;
+      const total = quantity1 * price1;
+      document.getElementById('total').innerText = `$${total}`;
+    }
+  </script>  
 </body>
 </html>
