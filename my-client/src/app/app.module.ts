@@ -15,6 +15,7 @@ import { PaymentShippingComponent } from './payment-shipping/payment-shipping.co
 import { RouterModule } from '@angular/router';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { ProductComponent } from './product/product.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { ProductComponent } from './product/product.component';
     PaymentShippingComponent,
     PaymentMethodComponent,
     ProductComponent,
+    ProductDetailComponent,
 ],
 imports: [
   BrowserModule,
