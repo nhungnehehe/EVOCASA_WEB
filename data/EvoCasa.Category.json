@@ -1,0 +1,263 @@
+[{
+  "_id": {
+    "$oid": "507f191e810c19729de860eb"
+  },
+  "Name": "Furniture",
+  "Description": "All kinds of furniture products.",
+  "Slug": "furniture",
+  "ParentCategory": null
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860ec"
+  },
+  "Name": "Tables",
+  "Description": "Furniture products for tables.",
+  "Slug": "tables",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860eb"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860ed"
+  },
+  "Name": "Seating",
+  "Description": "Furniture products for seating.",
+  "Slug": "seating",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860eb"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860ee"
+  },
+  "Name": "Casegoods",
+  "Description": "Furniture products like cabinets, bookshelves, etc.",
+  "Slug": "casegoods",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860eb"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f0"
+  },
+  "Name": "Decor",
+  "Description": "Decorative items for homes and offices.",
+  "Slug": "decor",
+  "ParentCategory": null
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f1"
+  },
+  "Name": "Vases & Vessels",
+  "Description": "Various types of vases and vessels for decoration.",
+  "Slug": "vases-vessels",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f0"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f2"
+  },
+  "Name": "Decorative Objects",
+  "Description": "Objects used for home decoration.",
+  "Slug": "decorative-objects",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f0"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f3"
+  },
+  "Name": "Bowls & Dishes",
+  "Description": "Bowls and dishes for decorative purposes.",
+  "Slug": "bowls-dishes",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f0"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f4"
+  },
+  "Name": "Mirrors",
+  "Description": "Decorative mirrors for homes.",
+  "Slug": "mirrors",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f0"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f5"
+  },
+  "Name": "Utility",
+  "Description": "Practical and functional decor items.",
+  "Slug": "utility",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f0"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f6"
+  },
+  "Name": "Bath Accessories",
+  "Description": "Decorative and functional items for bathrooms.",
+  "Slug": "bath-accessories",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f0"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f7"
+  },
+  "Name": "Dining & Entertaining",
+  "Description": "Furniture and accessories for dining and entertaining.",
+  "Slug": "dining-entertaining",
+  "ParentCategory": null
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f8"
+  },
+  "Name": "Kitchen Accessories",
+  "Description": "Accessories for kitchens.",
+  "Slug": "kitchen-accessories",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f7"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860f9"
+  },
+  "Name": "Serving Dishes",
+  "Description": "Dishes used for serving food.",
+  "Slug": "serving-dishes",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f7"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860fa"
+  },
+  "Name": "Barware",
+  "Description": "Accessories for serving drinks.",
+  "Slug": "barware",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f7"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860fb"
+  },
+  "Name": "Utensils",
+  "Description": "Utensils for dining and cooking.",
+  "Slug": "utensils",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f7"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860fc"
+  },
+  "Name": "Candleholders",
+  "Description": "Candleholders for decoration.",
+  "Slug": "candleholders",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f7"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860fd"
+  },
+  "Name": "Glassware",
+  "Description": "Glassware for dining and entertaining.",
+  "Slug": "glassware",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860f7"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860fe"
+  },
+  "Name": "Soft Goods",
+  "Description": "Soft products like cushions, rugs, bedding, etc.",
+  "Slug": "soft-goods",
+  "ParentCategory": null
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860ff"
+  },
+  "Name": "Pillows",
+  "Description": "Soft pillows for decoration and comfort.",
+  "Slug": "pillows",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de860fe"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de86100"
+  },
+  "Name": "Lighting",
+  "Description": "Lighting solutions for home and office.",
+  "Slug": "lighting",
+  "ParentCategory": null
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de86101"
+  },
+  "Name": "Lamps",
+  "Description": "Various types of lamps for lighting.",
+  "Slug": "lamps",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de86100"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de86102"
+  },
+  "Name": "Art",
+  "Description": "Artworks and decorative pieces.",
+  "Slug": "art",
+  "ParentCategory": null
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de86103"
+  },
+  "Name": "Vintage",
+  "Description": "Vintage artworks and decor.",
+  "Slug": "vintage",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de86102"
+  }
+},
+{
+  "_id": {
+    "$oid": "507f191e810c19729de86104"
+  },
+  "Name": "Artisan",
+  "Description": "Handmade and artisan artworks.",
+  "Slug": "artisan",
+  "ParentCategory": {
+    "$oid": "507f191e810c19729de86102"
+  }
+}]
