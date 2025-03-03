@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-cart',
   standalone: false,
-  template: './cart.component.html',
-  styles: './cart.component.css',
+  templateUrl: './cart.component.html',
+  styleUrl: './cart.component.css',
 })
 
 export class CartComponent implements OnInit {
