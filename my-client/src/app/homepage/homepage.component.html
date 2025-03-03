@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HOMEPAGE</title>
+    <!-- <link rel="stylesheet" href="/DoAnCK/Homepage/homepage.css"> -->
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <div class="banner-slider">
+            <img src="/DoAnCK/images/Banner2.jpg" class="banner-image" alt="Banner 1">
+            <img src="/DoAnCK/images/banner4.jpg" class="banner-image" alt="Banner 2">
+            <img src="/DoAnCK/images/3.jpg" class="banner-image" alt="Banner 3">
+        </div>
+        <div class="banner-text">
+            <h1>EVOCASA</h1>
+            <p>Craft Your Space, Elevate Your Life</p>
+            <button class="shop-now">SHOP NOW</button>
+        </div>
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </div>
+
+    <!-- Feels Found Section -->
+    <div class="feels-found">
+        <h2>FEELS FOUND</h2>
+        <p>You can explore all the product categories EvoCasa offers</p>
+        <div class="category-container">
+            <div class="category-item">
+                <img src="/DoAnCK/images/Furniture_3.jpg" alt="Furniture">
+                <span>Furniture</span>
+            </div>
+            <div class="category-item">
+                <img src="/DoAnCK/images/Decor_3.jpg" alt="Decor">
+                <span>Decor</span>
+            </div>
+            <div class="category-item">
+                <img src="/DoAnCK/images/Dining_1.jpg" alt="Dining & Entertaining">
+                <span>Dining & Entertaining</span>
+            </div>
+            <div class="category-item">
+                <img src="/DoAnCK/images/Soft Goods/1a.jpg" alt="Soft Goods">
+                <span>Soft Goods</span>
+            </div>
+            <div class="category-item">
+                <img src="/DoAnCK/images/Lighting/Grapevine Leaf Table Lamp (1).jpg" alt="Lighting">
+                <span>Lighting</span>
+            </div>
+            <div class="category-item">
+                <img src="/DoAnCK/images/Art_1.jpg" alt="Art">
+                <span>Art</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Soul -->
+    <div class="soul-container">
+        <h2>THE SOUL OF EVOCASA</h2>
+        <p>The story of how EvoCasa was born, shaped by the passion for crafting living spaces.</p>
+        <div class="soul-content">
+            <div class="soul-image">
+                <img src="/DoAnCK/images/2.jpg" alt="EvoCasa Interior">
+            </div>
+            <div class="soul-text">
+                <p class="soul-description">
+                    Every space tells a unique story, and EvoCasa brings those stories to life. 
+                    Inspired by the blend of classic elegance and modern charm, we craft pieces embody 
+                    art, comfort, and the warmth of home.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Hot collection -->
+    <div class="hot-collection">
+        <h2>HOT COLLECTION</h2>
+        <p>Timeless elegance, crafted to transform your space with sophistication and warmth.</p>
+        <div class="collection-content">
+            <div class="collection-text">
+                <p class="collection-name">
+                    Sabi Collection
+                </p>
+                <p class="collection-description">
+                    Each contour is thoughtfully crafted to reflect the fluid elegance of a woman's shoulder and neckline, inviting admiration and allure with every glance.
+                </p>
+                <button class="explore-button">Explore more</button>
+            </div>
+            <div class="collection-image">
+                <img src="/DoAnCK/images/Sabi_2.jpg" alt="Sabi Collection Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Our values -->
+    <div class="values-container">
+        <h2>OUR VALUES</h2>
+        <div class="values-content">
+            <div class="values-image">
+                <img src="/DoAnCK/images/ourvalues.jpg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Our services -->
+    <div class="services-container">
+        <h2 >OUR SERVICES</h2>
+        <div class="services-content">
+            <div class="services-image">
+                <img src="/DoAnCK/images/ourservices.jpg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-container">
+        <h2 class="contact-title">CONTACT US</h2>
+        <div class="email-form-container">
+            <div class="form-background"></div>
+            <textarea class="email-textarea" placeholder="Your email"></textarea>
+            <div class="email-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25.3333 16L6.66667 16M25.3333 16L17.3333 24M25.3333 16L17.3333 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+        <p class="email-info">
+            Fill in your email to receive 10% off your first purchase and you'll hear<br/>
+            about our new product collections, antiquities, and more before<br/>
+            anyone else!
+        </p>
+    </div>
+    
+    <script>
+        let currentIndex = 0;
+        const totalSlides = 3;
+        const slideWidth = 1525;
+        const slider = document.querySelector(".banner-slider");
+        const dots = document.querySelectorAll(".dot");
+
+        function showSlide(index) {
+            if (index >= totalSlides) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = totalSlides - 1;
+            } else {
+                currentIndex = index;
+            }
+            slider.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[currentIndex].classList.add("active");
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        setInterval(nextSlide, 4000);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => showSlide(index));
+        });
+
+        showSlide(currentIndex);
+    </script>
+
+</body>
+</html>

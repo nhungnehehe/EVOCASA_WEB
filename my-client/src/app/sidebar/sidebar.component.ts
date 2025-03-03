@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-sidebar',
   standalone: false,
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit {
   // Danh sách sản phẩm trong giỏ hàng
@@ -87,5 +87,4 @@ export class SidebarComponent implements OnInit {
     });
   }
 }
-
 
