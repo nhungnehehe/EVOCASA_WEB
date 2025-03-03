@@ -12,6 +12,9 @@ import { PaymentComponent } from './payment/payment.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ContactComponent,
     PaymentComponent,
     HomepageComponent,
+    PaymentShippingComponent,
 ],
 imports: [
   BrowserModule,

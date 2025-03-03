@@ -4,8 +4,8 @@ import { ContactComponent } from './contact/contact.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CartComponent } from './cart/cart.component';
 import { BlogComponent } from './blog/blog.component';
-import { PaymentComponent } from './payment/payment.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
 
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:"sidebar-page",component:SidebarComponent},
   {path:"cart-page",component:CartComponent},
   {path:"blog-page",component:BlogComponent},
-  {path:"about-page",component:PaymentComponent},
+  {path:"about-page",component: PaymentShippingComponent},
   {path:"homepage",component:HomepageComponent}
 ];
 

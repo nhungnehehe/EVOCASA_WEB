@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 
-
 /* Cấu trúc menu */
 body {
     font-family: 'Inter', sans-serif;
@@ -49,11 +48,11 @@ body {
     white-space: nowrap;
 }
 
-
 .menu li {
     position: relative;
 }
 
+/* Các mục menu */
 .menu li a {
     text-decoration: none;
     color: black;
@@ -61,12 +60,30 @@ body {
     padding: 8px; 
     display: block;
     font-weight: 500;
+    position: relative;    /* Đã thêm: cần cho pseudo-element định vị */
+    overflow: hidden;      /* Đã thêm: ẩn phần pseudo-element khi chưa được hiển thị */
 }
 
-/* Hiệu ứng hover */
-.menu li a:hover,
+/* Hiệu ứng hover với đường gạch dưới động */
+.menu li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0.5px;               /* Đã giảm độ dày từ 2px xuống 1px */
+    background-color: currentColor;
+    transition: width 0.5s ease; /* Đã tăng thời gian hiệu ứng từ 0.3s lên 0.5s */
+}
+
+
+.menu li a:hover::after,
+.menu li a.active::after {
+    width: 100%;
+}
+
+/* Giữ lại font-weight bold khi hover hoặc active */
 .menu li a.active {
-    text-decoration: underline;
     font-weight: bold;
 }
 
@@ -86,7 +103,6 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 2000;
-    
 }
 
 .dropdown:hover .dropdown-menu {
@@ -187,8 +203,6 @@ body {
     background: transparent;
     cursor: pointer;
 }
-
-
 
 /* Media Query cho các màn hình nhỏ */
 @media (max-width: 1024px) {
