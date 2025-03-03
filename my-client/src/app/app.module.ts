@@ -15,8 +15,9 @@ import { PaymentShippingComponent } from './payment-shipping/payment-shipping.co
 import { RouterModule } from '@angular/router';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { ProductComponent } from './product/product.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CommonModule } from '@angular/common';
 import { CartComponent } from './cart/cart.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { CartComponent } from './cart/cart.component';
     PaymentShippingComponent,
     PaymentMethodComponent,
     ProductComponent,
+    ProductDetailComponent,
     CartComponent
 ],
 imports: [
@@ -36,7 +38,8 @@ imports: [
   AppRoutingModule,
   FooterComponent,
   FormsModule,
-  HttpClientModule
+  HttpClientModule,
+  CommonModule
 ],
   providers: [],
   bootstrap: [AppComponent]
