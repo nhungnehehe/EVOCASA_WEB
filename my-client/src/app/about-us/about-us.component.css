@@ -1,6 +1,7 @@
-body {
-  width: 1525px;
+.about {
   background: #fffcf3;
+  width: 1525px;
+  justify-content: center;
 }
 .banner {
   width: 1525px;
