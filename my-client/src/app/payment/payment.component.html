@@ -1,1 +1,71 @@
-<p>payment works!</p>
+<div class="progress-container">
+    <div class="progress">
+        <div class="step active">
+            <div class="step-number">1</div>
+            <div class="step-title">Shipping</div>
+        </div>
+        <div class="line-inactive"></div>
+        <div class="step inactive">
+            <div class="step-number">2</div>
+            <div class="step-title">Payment Method</div>
+        </div>
+        <div class="line-inactive"></div>
+        <div class="step inactive">
+            <div class="step-number">3</div>
+            <div class="step-title">Confirmation</div>
+        </div>
+    </div>
+</div>
+
+<h1>Shipping details</h1>
+
+<div class="container">
+    <div class="shipping-section">
+        <form>
+            <div>
+                <h2>CONTACT</h2>
+                <input type="email" [(ngModel)]="email" name="email" placeholder="example@gmail.com">
+            </div>
+
+            <div>
+                <h2>ADDRESS</h2>
+                <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Full name">
+                <input type="text" [(ngModel)]="street" name="street" placeholder="Street number">
+
+                <div class="inline-inputs">
+                    <select [(ngModel)]="selectedCity" name="city">
+                        <option value="" disabled selected>City</option>
+                        <option *ngFor="let city of cities" [value]="city.code">{{ city.name }}</option>
+                    </select>
+                    <input type="text" [(ngModel)]="district" name="district" placeholder="District">
+                </div>
+
+                <input type="tel" [(ngModel)]="phone" name="phone" placeholder="Phone number">
+            </div>
+        </form>
+    </div>
+
+    <div class="order-summary">
+        <div class="order-header">
+            <h2>Your Order</h2>
+            <a href="#" class="edit-order">Edit</a>
+        </div>
+        <div class="order-header">
+            <p>1 item</p>
+            <p class="total-price">$3,982</p>
+        </div>
+        <div *ngFor="let item of orderItems" class="order-item">
+            <img src="{{ item.image }}" alt="{{ item.name }}" class="order-image">
+            <div class="order-details">
+                <p class="product-name">{{ item.name }}</p>
+                <p class="product-price">{{ item.price }}</p>
+                <p class="product-quantity">Quantity: {{ item.quantity }}</p>
+                <p class="product-color">Color: {{ item.color }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="action">
+    <button type="submit">NEXT STEP</button>
+</div>
