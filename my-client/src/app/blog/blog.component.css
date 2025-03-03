@@ -1,0 +1,9 @@
+.blog {
+  color: #5e4c3e;
+  text-align: center;
+  font-feature-settings: "liga" off, "clig" off;
+  font-family: "Zen Old Mincho";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+}
