@@ -18,7 +18,8 @@ const routes: Routes = [
   {path:"about-page",component: PaymentShippingComponent},
   {path:"homepage",component:HomepageComponent},
   {path:"payment-method",component:PaymentMethodComponent},
-  {path:"product-page",component:ProductComponent}
+  {path:"product-page",component:ProductComponent},
+  {path:"",component:HomepageComponent}
 ];
 
 @NgModule({
