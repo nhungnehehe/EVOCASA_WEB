@@ -348,3 +348,60 @@ app.post("/upload", (req, res) => {
 });
 
 // ===== CATEGORY APIS =====
+// Lấy thông tin Category
+app.get("/categories", cors(), async (req, res) => {
+    const result = await categoryCollection.find({}).toArray();
+    res.send(result);
+  })
+  
+  app.get("/categories/:id", cors(), async (req, res) => {
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await categoryCollection.find({ _id: o_id }).toArray();
+    res.send(result[0]);
+  });
+  
+  // Get categories by name
+  app.get("/categories/category/:name", cors(), async (req, res) => {
+    try {
+      const result = await categoryCollection.find({ Name: { $regex: new RegExp(req.params["name"], "i") } }).toArray();
+      res.send(result);
+    } catch (err) {
+      res.status(500).json({ error: "Internal Server Error", message: err.message });
+    }
+  });
+  
+  app.put("/categories", cors(), async (req, res) => {
+    //update json products into database
+    await categoryCollection.updateOne(
+      { _id: new ObjectId(req.body._id) }, //condition for update
+      {
+        $set: {
+          //Field for updating  
+          Name: req.body.Name,
+          Description: req.body.Description,
+        },
+      }
+    );
+    //send Category after updating
+    var o_id = new ObjectId(req.body._id);
+    const result = await categoryCollection.find({ _id: o_id }).toArray();
+    res.send(result[0]);
+  });
+  
+  app.post("/categories", cors(), async (req, res) => {
+    //put json into database
+    await categoryCollection.insertOne(req.body);
+    //send message to client(send all database to client)
+    res.send(req.body);
+  });
+  
+  app.delete("/categories/:id", cors(), async (req, res) => {
+    //find detail Category with id
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await categoryCollection.find({ _id: o_id }).toArray();
+    //update json Category into database
+    await categoryCollection.deleteOne({ _id: o_id });
+    //send Category after remove
+    res.send(result[0]);
+  });
+0  

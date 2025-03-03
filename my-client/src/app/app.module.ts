@@ -17,7 +17,6 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
 import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CommonModule } from '@angular/common';
-import { CartComponent } from './cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +30,6 @@ import { CartComponent } from './cart/cart.component';
     PaymentMethodComponent,
     ProductComponent,
     ProductDetailComponent,
-    CartComponent
 ],
 imports: [
   BrowserModule,
