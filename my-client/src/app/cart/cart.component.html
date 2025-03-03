@@ -1,1 +1,37 @@
-hihi
+<!-- cart.component.html -->
+ 
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  
+  <!-- Kiểm tra giỏ hàng có trống không -->
+  <div *ngIf="isEmpty" class="empty-cart-message">
+    <p>Your cart is empty!</p>
+  </div>
+
+  <!-- Hiển thị danh sách sản phẩm -->
+  <div *ngIf="!isEmpty">
+    <div *ngFor="let product of products" class="cart-item">
+      <div class="product-image">
+        <img [src]="product.image" alt="{{ product.name }}">
+      </div>
+      <div class="product-details">
+        <p class="product-name">{{ product.name }}</p>
+        <div class="quantity-selector">
+          <button type="button" (click)="changeQuantity('decrease', product.id)">-</button>
+          <input type="number" [value]="product.quantity" min="1" (input)="updateQuantity($event, product.id)" />
+          <button type="button" (click)="changeQuantity('increase', product.id)">+</button>
+        </div>
+        <p class="product-price">${{ product.price * product.quantity | number: '1.0-0' }}</p>
+      </div>
+      <button type="button" (click)="removeProduct(product.id)" class="remove-btn">Remove</button>
+    </div>
+    <div class="cart-summary">
+      <p>Total: ${{ total | number: '1.0-0' }}</p>
+    </div>
+  </div>
+
+  <!-- Kiểm tra giỏ hàng không trống thì hiển thị nút Checkout -->
+  <div *ngIf="!isEmpty">
+    <button class="checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
