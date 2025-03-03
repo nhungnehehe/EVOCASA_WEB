@@ -5,7 +5,7 @@
 </p>
 <div align="center">
 
-# EVOCASE WEBSITE
+# EVOCASA WEBSITE
 
 ## ĐỒ ÁN CUỐI KỲ MÔN PHÁT TRIỂN WEB KINH DOANH
 </div>
