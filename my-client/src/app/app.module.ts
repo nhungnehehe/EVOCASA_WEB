@@ -17,6 +17,7 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
 import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { CommonModule } from '@angular/common';
     PaymentMethodComponent,
     ProductComponent,
     ProductDetailComponent,
+
 ],
 imports: [
   BrowserModule,
