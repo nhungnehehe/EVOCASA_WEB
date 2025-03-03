@@ -14,7 +14,7 @@ body {
     background-color: #5E4C3E; /* Màu nâu */
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     font-family: 'Zen Old Mincho', serif;
     font-size: 16px;
 }
@@ -36,7 +36,7 @@ body {
 
 /* Logo */
 .logo img {
-    height: 60px;
+    height: 40px;
 }
 
 /* Menu chính */
@@ -119,12 +119,13 @@ body {
 }
 
 /* Các tiêu đề danh mục */
-.dropdown-menu ul li strong {
+.dropdown-menu ul li strong a {
     display: block;
     font-size: 14px;
-    color: gray;
+    color: #3F2305;
     margin-bottom: 5px;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 /* Các mục con trong dropdown */
@@ -134,10 +135,6 @@ body {
     text-decoration: none;
     display: block;
     padding: 5px 0;
-}
-
-.dropdown-menu ul li a:hover {
-    text-decoration: underline;
 }
 
 /* Search box */
