@@ -34,6 +34,7 @@ h2 {
     font-size: 16px;
     color: #5E4C3E;
     margin-bottom: 10px;
+    font-family: Inter;
 }
 
 form {
@@ -191,11 +192,13 @@ input[type="radio"]:checked+label {
 
 .action {
     display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    width: 100%; /* Đảm bảo nó chiếm toàn bộ chiều rộng */
+    justify-content: center; /* Căn giữa */
+    align-items: center;
+    width: 100%;
     margin-top: 20px;
+    margin-bottom: 80px; /* Tạo khoảng cách với footer */
 }
+
 
 @media (max-width: 768px) {
     .container {
@@ -301,7 +304,7 @@ input[type="radio"]:checked+label {
     padding: 20px;
     width: 45%;
     height: auto; 
-    margin-top: 20px; /* Đẩy xuống ngang với CONTACT */
+    margin-top: 70px; /* Đẩy xuống ngang với CONTACT */
     display: inline-block;
     max-height: fit-content;
 }

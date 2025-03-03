@@ -16,22 +16,24 @@
         </div>
     </div>
 </div>
-
-<h1>Shipping details</h1>
-
 <div class="container">
     <div class="shipping-section">
-        <form>
+        <h1>Shipping details</h1>
+        <!-- Form starts here -->
+        <form action="your-backend-endpoint" method="POST">
+            <!-- CONTACT SECTION -->
             <div>
                 <h2>CONTACT</h2>
-                <input type="email" [(ngModel)]="email" name="email" placeholder="example@gmail.com">
+                <input type="email" id="email" name="email" placeholder="example@gmail.com">
             </div>
 
+            <!-- ADDRESS SECTION -->
             <div>
                 <h2>ADDRESS</h2>
-                <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Full name">
-                <input type="text" [(ngModel)]="street" name="street" placeholder="Street number">
+                <input type="text" id="full-name" name="full-name" placeholder="Full name">
+                <input type="text" id="street" name="street" placeholder="Street number">
 
+                <!-- City and District inline -->
                 <div class="inline-inputs">
                     <select [(ngModel)]="selectedCity" name="city">
                         <option value="" disabled selected>City</option>
@@ -39,12 +41,60 @@
                     </select>
                     <input type="text" [(ngModel)]="district" name="district" placeholder="District">
                 </div>
-
-                <input type="tel" [(ngModel)]="phone" name="phone" placeholder="Phone number">
+                
+                <input type="tel" id="phone" name="phone" placeholder="Phone number">
             </div>
+
+            <!-- CHECKBOXES -->
+            <div class="checkboxes">
+                <label>
+                    <input type="checkbox" name="save-time" id="save-time">
+                    Save time at checkout – create an account to store your address
+                </label>
+                <label>
+                    <input type="checkbox" name="same-address" id="same-address">
+                    Billing and delivery address are the same
+                </label>
+            </div>
+
+            <h2>DELIVERY OPTION</h2>
+            <div class="delivery-option">
+                <div class="delivery-choice">
+                    <input type="radio" id="express" name="delivery" value="express" checked>
+                    <label for="express" class="delivery-card">
+                        <div class="delivery-title">Express Delivery</div>
+                        <div class="delivery-price">$50.25</div>
+                        <div class="delivery-date">Thu Feb 29</div>
+                    </label>
+                </div>
+                <div class="delivery-choice">
+                    <input type="radio" id="standard" name="delivery" value="standard">
+                    <label for="standard" class="delivery-card">
+                        <div class="delivery-title">Standard Delivery</div>
+                        <div class="delivery-price">$30.95</div>
+                        <div class="delivery-date">Fri Mar 1</div>
+                    </label>
+                </div>
+            </div>
+            <h2><i>Or Collect your order at a pickup point instead</i></h2>
+            <div>
+                <div class="pickup-option">
+                    <input type="radio" id="pickup" name="delivery" value="pickup">
+                    <label for="pickup" class="delivery-card">
+                        <div class="delivery-title">Wednesday, February 28</div>
+                        <div class="delivery-price">Free</div>
+                        <div class="pickup-address">
+                            <p>69 Do Muoi, Linh Xuan, Thu Duc District, HCM City</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTON -->
+
         </form>
     </div>
-
+    <!-- Order Summary Section -->
     <div class="order-summary">
         <div class="order-header">
             <h2>Your Order</h2>
@@ -54,18 +104,26 @@
             <p>1 item</p>
             <p class="total-price">$3,982</p>
         </div>
-        <div *ngFor="let item of orderItems" class="order-item">
-            <img src="{{ item.image }}" alt="{{ item.name }}" class="order-image">
+        <div class="order-item">
+            <img src="image.png" alt="Cement Coffee Table" class="order-image">
             <div class="order-details">
-                <p class="product-name">{{ item.name }}</p>
-                <p class="product-price">{{ item.price }}</p>
-                <p class="product-quantity">Quantity: {{ item.quantity }}</p>
-                <p class="product-color">Color: {{ item.color }}</p>
+                <p class="product-name">Cement Coffee Table</p>
+                <p class="product-price">$3,982</p>
+                <p class="product-quantity">Quantity: 1</p>
+                <p class="product-color">Color: Light Beige</p>
+            </div>
+        </div>
+        <div class="order-item">
+            <img src="image.png" alt="Cement Coffee Table" class="order-image">
+            <div class="order-details">
+                <p class="product-name">Cement Coffee Table</p>
+                <p class="product-price">$3,982</p>
+                <p class="product-quantity">Quantity: 1</p>
+                <p class="product-color">Color: Light Beige</p>
             </div>
         </div>
     </div>
 </div>
-
 <div class="action">
     <button type="submit">NEXT STEP</button>
 </div>
