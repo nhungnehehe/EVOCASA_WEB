@@ -8,13 +8,13 @@ import { BlogComponent } from './blog/blog.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
-import { PaymentComponent } from './payment/payment.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
 import { RouterModule } from '@angular/router';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { ProductComponent } from './product/product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,10 +23,10 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
     BlogComponent,
     CollectionComponent,
     ContactComponent,
-    PaymentComponent,
     HomepageComponent,
     PaymentShippingComponent,
     PaymentMethodComponent,
+    ProductComponent,
 ],
 imports: [
   BrowserModule,
