@@ -71,11 +71,10 @@ body {
     left: 0;
     bottom: 0;
     width: 0;
-    height: 0.5px;               /* Đã giảm độ dày từ 2px xuống 1px */
-    background-color: currentColor;
-    transition: width 0.5s ease; /* Đã tăng thời gian hiệu ứng từ 0.3s lên 0.5s */
+    height: 1px;               /* Độ dày của đường gạch dưới */
+    background-color: currentColor; /* Sử dụng màu chữ hiện tại */
+    transition: width 0.3s ease; /* Hiệu ứng chuyển động: từ 0 đến 100% */
 }
-
 
 .menu li a:hover::after,
 .menu li a.active::after {
@@ -83,6 +82,7 @@ body {
 }
 
 /* Giữ lại font-weight bold khi hover hoặc active */
+
 .menu li a.active {
     font-weight: bold;
 }

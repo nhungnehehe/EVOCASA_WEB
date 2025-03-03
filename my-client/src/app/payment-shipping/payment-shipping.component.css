@@ -10,13 +10,14 @@ body {
     padding: 40px;
 }
 .back-arrow {
-    /* width: 30px;
-    height: 30px; */
-    /* position: absolute; */
-    left: 20px;
+    position: absolute; /* Use absolute positioning */
+    left: 0; /* Align to the left */
+    margin-left: 20px; /* Add some space from the left */
+    top: 3px;
     cursor: pointer;
     opacity: 0.8;
 }
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -232,6 +233,7 @@ input[type="radio"]:checked+label {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .progress {
