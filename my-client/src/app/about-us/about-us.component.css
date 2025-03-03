@@ -5,9 +5,10 @@ body {
 .banner {
   width: 1525px;
   height: 667px;
-  flex-shrink: 0;
+  justify-content: center;
   aspect-ratio: 1440/667;
   margin: auto;
+  flex-wrap: wrap;
 }
 .container {
   background: #fffcf3;
@@ -15,6 +16,7 @@ body {
   flex-direction: row;
   justify-content: center;
   padding: 10px 47px;
+  align-items: center;
 }
 .text1 {
   color: rgba(0, 0, 0, 0.5);
