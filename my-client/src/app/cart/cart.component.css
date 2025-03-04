@@ -48,7 +48,7 @@ h2 {
 
 .cart-item {
   display: grid;
-  grid-template-columns: 0.2fr 1fr 2fr 1.17fr 0.8fr; /* Chia 4 cột đều */
+  grid-template-columns: 0.2fr 1fr 2fr 1.22fr 0.85fr; /* Chia 4 cột đều */
   margin-bottom: 15px;
   gap: 20px;
   align-items: center;
