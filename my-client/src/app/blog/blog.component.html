@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BLOG</title>
-  </head>
-  <body>
-    <div class="blog">BLOG</div>
-  </body>
-</html>
+<div class="blog-container">
+  <h1>BLOG</h1>
+
+  <div class="blog-grid">
+    <div class="blog-post" *ngFor="let post of blogPosts">
+      <div class="post-image">
+        <img [src]="post.thumbnail" [alt]="post.title" />
+        <!-- Không có category trong JSON, nên bỏ phần này -->
+      </div>
+      <div class="post-content">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content | slice : 0 : 150 }}...</p>
+        <!-- Cắt ngắn content làm mô tả -->
+        <a [routerLink]="['/blog', post.id]">Read more →</a>
+        <!-- Sử dụng id làm link -->
+      </div>
+    </div>
+  </div>
+</div>

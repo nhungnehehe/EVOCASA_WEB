@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CartComponent } from './cart/cart.component';
-import { BlogComponent } from './blog/blog.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
@@ -14,27 +13,25 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 
-
 const routes: Routes = [
-  {path:"",component:HomepageComponent},
-  {path:"contact-page",component:ContactComponent},
-  {path:"sidebar-page",component:SidebarComponent},
-  {path:"cart-page",component:CartComponent},
-  {path:"blog-page",component:BlogComponent},
-  {path:"about-page",component: AboutUsComponent},
-  {path:"homepage",component:HomepageComponent},
-  
-  {path:"product-page",component:ProductComponent},
-  {path:"login-page",component:LoginComponent},
-  {path:"forgot-page",component:ForgotComponent},
-  {path:"signup-page",component:SignupComponent},
-  {path:"payment-shipping",component:PaymentShippingComponent},
-  {path:"payment-method",component:PaymentMethodComponent},
-  {path:"payment-confirm",component:PaymentConfirmComponent},
+  { path: '', component: HomepageComponent },
+  { path: 'contact-page', component: ContactComponent },
+  { path: 'sidebar-page', component: SidebarComponent },
+  { path: 'cart-page', component: CartComponent },
+  { path: 'about-page', component: AboutUsComponent },
+  { path: 'homepage', component: HomepageComponent },
+
+  { path: 'product-page', component: ProductComponent },
+  { path: 'login-page', component: LoginComponent },
+  { path: 'forgot-page', component: ForgotComponent },
+  { path: 'signup-page', component: SignupComponent },
+  { path: 'payment-shipping', component: PaymentShippingComponent },
+  { path: 'payment-method', component: PaymentMethodComponent },
+  { path: 'payment-confirm', component: PaymentConfirmComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
