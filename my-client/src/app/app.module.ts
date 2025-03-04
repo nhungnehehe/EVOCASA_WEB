@@ -20,7 +20,6 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
-import { BlogListComponent, BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { BlogListComponent, BlogComponent } from './blog/blog.component';
     ProductDetailComponent,
     HeaderComponent,
     SidebarComponent,
-    BlogListComponent,
 
     CollectionComponent,
     ContactComponent,
@@ -41,7 +39,6 @@ import { BlogListComponent, BlogComponent } from './blog/blog.component';
     SignupComponent,
     PaymentMethodComponent,
     PaymentConfirmComponent,
-    BlogComponent,
   ],
   imports: [
     BrowserModule,

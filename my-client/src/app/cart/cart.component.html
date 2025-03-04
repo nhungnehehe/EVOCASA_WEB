@@ -1,4 +1,7 @@
-<div class="total_body">
+<head>
+  <!-- Thêm Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
 <h2>Your Cart</h2>
 <div class="cart-container">
   <!-- Kiểm tra giỏ hàng có trống không -->
@@ -10,15 +13,19 @@
   <div *ngIf="!isEmpty" class="cart-items">
     <!-- Tiêu đề các cột -->
     <div class="cart-header">
-      <div class="header-item" style="text-align: left;">PRODUCT</div>
+      <div class="header-item"></div>
+      <div style="text-align: left;">PRODUCT</div>
       <div class="header-item">QUANTITY</div>
       <div class="header-item">TOTAL</div>
     </div>
     <hr/>
     <!-- Các sản phẩm trong giỏ hàng -->
     <div *ngFor="let product of products" class="cart-item">
+      <button type="button" (click)="removeProduct(product.id)" class="remove-btn" title="Remove">
+        <i class="fas fa-trash"></i>
+      </button>
       <div class="product-image">
-        <img [src]="product.image" alt="{{ product.name }}">
+        <img [src]="product.image" alt="404">
       </div>
       <div class="product-details">
         <p class="product-name">{{ product.name }}</p>
@@ -32,21 +39,30 @@
       <div class="product-total">
         <p>${{ product.price * product.quantity | number: '1.0-0' }}</p>
       </div>
-      <button type="button" (click)="removeProduct(product.id)" class="remove-btn">X</button>
     </div>
   </div>
 
   <!-- Thông tin tổng và nút Checkout -->
   <div class="cart-summary">
     <div *ngIf="!isEmpty">
-      <div class="cart-header">
+      <div class="cart-header-total">
         <div class="header-item">TOTAL</div>
       </div>
+
       <hr/>
-      <p>${{ total | number: '1.0-0' }}</p>
-      <p class="shipping-info">Shipping & taxes calculated at checkout</p>
-      <a routerLink="/payment-shipping"><button class="checkout-btn">CHECKOUT</button></a>
+
+      <div class="summary-details">
+        <p class="total_quantity">{{ totalQuantity }} items</p>
+        <p class="total_cart">${{ total | number: '1.0-0' }}</p>
+      </div>
+
+      <hr/>
+
+      <div class="checkout-info">
+        <p class="shipping-info">Shipping & taxes calculated at checkout</p>
+        <a routerLink="/payment-shipping"><button class="checkout-btn">CHECKOUT</button></a>
+      </div>
+
     </div>
   </div>
-</div>
 </div>

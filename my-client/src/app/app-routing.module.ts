@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
+import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
