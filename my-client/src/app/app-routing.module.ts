@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
+import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,6 @@ const routes: Routes = [
   {path:"blog-page",component:BlogComponent},
   {path:"about-page",component: AboutUsComponent},
   {path:"homepage",component:HomepageComponent},
-  
   {path:"product-page",component:ProductComponent},
   {path:"login-page",component:LoginComponent},
   {path:"forgot-page",component:ForgotComponent},
@@ -31,6 +31,7 @@ const routes: Routes = [
   {path:"payment-shipping",component:PaymentShippingComponent},
   {path:"payment-method",component:PaymentMethodComponent},
   {path:"payment-confirm",component:PaymentConfirmComponent},
+  {path:"payment-notice",component:PaymentNoticeComponent}
 ];
 
 @NgModule({
