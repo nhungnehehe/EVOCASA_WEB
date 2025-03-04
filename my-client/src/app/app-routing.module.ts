@@ -20,7 +20,9 @@ const routes: Routes = [
   {path:"homepage",component:HomepageComponent},
   {path:"payment-method",component:PaymentMethodComponent},
   {path:"product-page",component:ProductComponent},
-  {path:"",component:HomepageComponent}
+  {path:"",component:HomepageComponent},
+  {path:"payment-shipping",component:PaymentShippingComponent},
+
 ];
 
 @NgModule({

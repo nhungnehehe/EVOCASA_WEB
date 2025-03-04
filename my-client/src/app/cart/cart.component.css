@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #FFFCF3;
 }
 
 body {
@@ -63,8 +64,8 @@ hr {
 
 /* Tổng giỏ hàng và nút Checkout (phần bên phải) */
 .cart-summary {
-  padding: 20px;
   margin-right: 50px;
+  align-items: center;
   flex: 1;
 }
 
@@ -136,4 +137,8 @@ hr {
 
 .checkout-btn:hover {
   background-color: #7e8a73;
+}
+
+.total_body {
+  background-color: #FFFCF3;
 }
