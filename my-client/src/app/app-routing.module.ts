@@ -22,12 +22,13 @@ const routes: Routes = [
   {path:"blog-page",component:BlogComponent},
   {path:"about-page",component: AboutUsComponent},
   {path:"homepage",component:HomepageComponent},
-  {path:"payment-method",component:PaymentMethodComponent},
+  
   {path:"product-page",component:ProductComponent},
   {path:"login-page",component:LoginComponent},
   {path:"forgot-page",component:ForgotComponent},
   {path:"signup-page",component:SignupComponent},
-  {path:"payment-shipping",component:PaymentShippingComponent}
+  {path:"payment-shipping",component:PaymentShippingComponent},
+  {path:"payment-method",component:PaymentMethodComponent},
 ];
 
 @NgModule({

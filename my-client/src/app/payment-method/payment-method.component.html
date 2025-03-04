@@ -1,19 +1,95 @@
-<div class="progress-container">
-    <a routerLink="/cart-page"><img src="images/payment/arrow.svg" alt="Back Arrow" class="back-arrow"></a>
-    <div class="progress">
-        <div class="step active">
-            <div class="step-number">1</div>
-            <div class="step-title">Shipping</div>
-        </div>
-        <div class="line-inactive"></div>
-        <div class="step inactive">
-            <div class="step-number">2</div>
-            <div class="step-title">Payment Method</div>
-        </div>
-        <div class="line-inactive"></div>
-        <div class="step inactive">
-            <div class="step-number">3</div>
-            <div class="step-title">Confirmation</div>
+<body>
+    <div class="progress-container">
+        <a routerLink="/payment-shipping"><img src="images/payment/arrow.svg" alt="Back Arrow" class="back-arrow"></a>
+        <div class="progress">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-title">Shipping</div>
+            </div>
+            <div class="line-active"></div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <div class="step-title">Payment Method</div>
+            </div>
+            <div class="line-inactive"></div>
+            <div class="step inactive">
+                <div class="step-number">3</div>
+                <div class="step-title">Confirmation</div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="container">
+        <div class="payment-section">
+            <h1>Payment</h1>
+            <p><i>Payments are SSL encrypted so that your credit card and payment details stay safe.</i></p>
+            <form action="#">
+                <div>
+                    <h2>Credit/Debit Card</h2>
+                </div>
+                <div class="payment-card-wrapper">
+                    <input type="text" placeholder="Card Number" required>
+                    <input type="text" placeholder="Name On Card" required>
+                    <div class="inline-inputs">
+                        <input type="text" placeholder="MM/YY" required>
+                        <input type="text" placeholder="CVV" required>
+                    </div>
+                </div>
+                    <div class="delivery-choice">
+                        <input type="radio" id="express" name="delivery" value="express" checked>
+                        <label for="express" class="payment-card">
+                            <div>Momo</div>
+                        </label>
+                    </div>  
+                    <div class="delivery-choice">
+                        <input type="radio" id="express" name="delivery" value="express" checked>
+                        <label for="express" class="payment-card">
+                            <div>Internet Banking</div>
+                        </label>
+                    </div>
+                    <div class="delivery-choice">
+                        <input type="radio" id="express" name="delivery" value="express" checked>
+                        <label for="express" class="payment-card">
+                            <div>COD</div>
+                        </label>
+                    </div>
+            </form>
+        </div>
+        <div class="order-summary">
+            <div class="order-header">
+                <h2>Your Order</h2>
+                <a href="#" class="edit-order">Edit</a>
+            </div>
+            <div class="order-header">
+                <p>1 item</p>
+                <p class="total">$3,982</p>
+            </div>
+            <div class="order-header">
+                <p>Sales Tax</p>
+                <p class="total">$318,56</p>
+            </div>
+            <div class="order-header">
+                <p>Delivery</p>
+                <p class="total">$50,25</p>
+            </div>
+            <hr style="margin-bottom: 15px;">
+            <div class="order-header">
+                <p>Total</p>
+                <p class="total">$4,350.81</p>
+            </div>
+            <a href="#">USE VOUCHER CODE</a>
+            <div class="order-item">
+                <img src="image.png" alt="Cement Coffee Table" class="order-image">
+                <div class="order-details">
+                    <p class="product-name">Cement Coffee Table</p>
+                    <p class="product-price">$3,982</p>
+                    <p class="product-quantity">Quantity: 1</p>
+                    <p class="product-color">Color: Light Beige</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action">
+        <a href="/confirmation"><button type="submit">CHECK OUT</button></a>
+    </div>
+</body>
