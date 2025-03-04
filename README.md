@@ -25,8 +25,6 @@
 
 ## CÔNG NGHỆ SỬ DỤNG
 
-## Công nghệ sử dụng
-
 - Server: NodeJS
 - Dependencies:
   - Frontend
