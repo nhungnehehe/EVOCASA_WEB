@@ -10,37 +10,36 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CartComponent } from './cart/cart.component';
+import { AboutUsComponent } from './about-us/about-us.component'; 
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
-import { RouterModule } from '@angular/router';
-import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { CommonModule } from '@angular/common';
-import { CartComponent } from './cart/cart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    ProductComponent,
+    ProductDetailComponent,
     HeaderComponent,
     SidebarComponent,
     BlogComponent,
     CollectionComponent,
     ContactComponent,
-    HomepageComponent,
     PaymentShippingComponent,
-    PaymentMethodComponent,
-    ProductComponent,
-    ProductDetailComponent,
-    CartComponent
-],
-imports: [
-  BrowserModule,
-  AppRoutingModule,
-  FooterComponent,
-  FormsModule,
-  HttpClientModule,
-  CommonModule
-],
+    CartComponent,
+    AboutUsComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FooterComponent,
+    FormsModule,
+    HttpClientModule,
+    CommonModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
