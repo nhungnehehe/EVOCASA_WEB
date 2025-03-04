@@ -12,6 +12,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
+import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path:"signup-page",component:SignupComponent},
   {path:"payment-shipping",component:PaymentShippingComponent},
   {path:"payment-method",component:PaymentMethodComponent},
+  {path:"payment-confirm",component:PaymentConfirmComponent},
 ];
 
 @NgModule({
