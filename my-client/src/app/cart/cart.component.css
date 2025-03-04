@@ -1,15 +1,9 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   background-color: #FFFCF3;
 }
 
-body {
-  font-family: Inter, sans-serif;
-  background-color: #FFFCF3;
-  padding: 40px;
-}
 
 .cart-container {
   display: flex;
@@ -17,9 +11,9 @@ body {
 }
 
 h2 {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-left: 50px;  
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-size: 36px;
   font-weight: bold;
   color: #5E4C3E;
@@ -45,10 +39,23 @@ h2 {
 
 .cart-header {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;  /* 3 cột: 2 phần cho sản phẩm và 1 phần cho số lượng/tổng */
+  grid-template-columns: 0.3fr 2.5fr 1fr 1fr;  /* 3 cột: 2 phần cho sản phẩm và 1 phần cho số lượng/tổng */
   font-weight: bold;
   color: rgb(81, 90, 73, 0.6);
   font-size: 20px;
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 2fr 1.17fr 0.8fr; /* Chia 4 cột đều */
+  margin-bottom: 15px;
+  gap: 20px;
+  align-items: center;
+  border-bottom: 1px solid #ddd; /* Thêm đường phân cách giữa các sản phẩm */
+  padding-bottom: 15px;
+  font-size: 18px;
+  color: rgb(0, 0, 0,0.5);
   font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
 }
 
@@ -62,25 +69,11 @@ hr {
   text-align: center;
 }
 
-/* Tổng giỏ hàng và nút Checkout (phần bên phải) */
-.cart-summary {
-  margin-right: 50px;
-  align-items: center;
-  flex: 1;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-
 .product-image img {
   width: 100px;
   height: 100px;
   object-fit: cover;
+  margin-right: 10px;
 }
 
 .quantity-selector {
@@ -92,22 +85,23 @@ hr {
 .quantity-selector button {
   background-color: #F2EAD3; /* Màu nền mặc định */
   border: none;
-  padding: 5px 10px;
-  font-size: 18px;
+  padding: 8px;
   cursor: pointer;
   border-radius: 5px;
   width: 30px; /* Đảm bảo nút có kích thước phù hợp */
   text-align: center;
-  color: #333; /* Màu chữ của nút */
+  color: rgb(0, 0, 0,0.5);
 }
 
 .quantity-selector input {
-  width: 40px;
+  width: 30px;
   padding: 5px;
   text-align: center;
-  font-size: 14px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 14px;
+  color: rgb(0, 0, 0,0.5);
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
 }
 
 .quantity-selector button:hover {
@@ -116,12 +110,52 @@ hr {
 }
 
 .remove-btn {
-  background-color: rgb(45, 12, 12);
-  color: white;
-  padding: 5px 15px;
+  color: #5E4C3E;
+  font-size: smaller;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.remove-btn:hover {
+  color: #a41313;
+
+}
+
+/* Tổng giỏ hàng và nút Checkout (phần bên phải) */
+.cart-summary {
+  margin-right: 50px;
+  margin-left: 150px;
+  align-items: center;
+  flex: 1;
+}
+
+.cart-header-total {
+  display: grid;
+  font-weight: bold;
+  color: rgb(81, 90, 73, 0.6);
+  font-size: 20px;
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.summary-details {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex; /* Hiển thị trên cùng một hàng */
+  justify-content: space-between; /* Căn giữa hai phần tử */
+  align-items: center;
+  font-size: 24px;
+  color: rgb(0, 0, 0,0.5);
+}
+
+.shipping-info {
+  font-size: 20px;
+  color: rgb(0, 0, 0,0.5);
+  align-content: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .checkout-btn {
@@ -129,16 +163,23 @@ hr {
   color: white;
   cursor: pointer;
   padding: 5px;
-  width: 40%;
+  width: 100%;
   font-size: 20px;
   font-family: 'Inter', sans-serif;
   border-radius: 10px;
 }
 
 .checkout-btn:hover {
-  background-color: #7e8a73;
+  background-color: #5E4C3E;
 }
 
 .total_body {
   background-color: #FFFCF3;
+}
+
+.checkout-info {
+  display: flex;
+  flex-direction: column;  /* Đặt theo chiều dọc */
+  align-items: center;     /* Căn giữa theo chiều ngang */
+  justify-content: center; /* Căn giữa theo chiều dọc */
 }
