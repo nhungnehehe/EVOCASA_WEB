@@ -8,7 +8,6 @@ import { BlogComponent } from './blog/blog.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { AboutUsComponent } from './about-us/about-us.component'; 
@@ -21,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.compo
     LoginComponent,
     ForgotComponent,
     SignupComponent,
+    PaymentMethodComponent,
     PaymentConfirmComponent,
   ],
   imports: [
