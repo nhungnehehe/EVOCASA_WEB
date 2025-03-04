@@ -10,6 +10,8 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
 import { ProductComponent } from './product/product.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { LoginComponent } from './login/login.component';
+import { ForgotComponent } from './forgot/forgot.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path:"payment-method",component:PaymentMethodComponent},
   {path:"product-page",component:ProductComponent},
   {path:"login-page",component:LoginComponent},
+  {path:"forgot-page",component:ForgotComponent},
+  {path:"signup-page",component:SignupComponent},
 ];
 
 @NgModule({

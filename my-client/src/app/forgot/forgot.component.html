@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="forgot-container">
+        <div class="forgot-box">
+            <div class="forgot-image">
+                <img src="/images/forgot/forgot.jpg" alt="Forgot Password Image">
+            </div>
+            <div class="forgot-content">
+                <h1>Forgot password?</h1>
+                <p class="sub-text">No worries, we'll send you reset instructions.</p>
+
+                <input type="email" placeholder="Email or phone">
+
+                <button class="forgot-btn">RESET PASSWORD</button>
+
+                <a [routerLink]="['/login-page']"    class="back-link">
+                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Back to sign in
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

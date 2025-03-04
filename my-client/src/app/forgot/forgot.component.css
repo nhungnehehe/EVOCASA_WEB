@@ -13,7 +13,7 @@ body {
     align-items: center;
 }
 
-.signin-container {
+.forgot-container {
     width: 1200px;
     height: 709px;
     background: #FFFCF3;
@@ -24,13 +24,13 @@ body {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.signin-box {
+.forgot-box {
     display: flex;
     width: 100%;
     gap: 20px;
 }
 
-.signin-content {
+.forgot-content {
     width: 50%;
     padding: 40px;
     text-align: center;
@@ -119,16 +119,8 @@ input:focus {
     box-shadow: 0 5px 20px rgba(180, 158, 121, 0.4);
 }
 
-.forgot-password {
-    display: block;
-    text-align: left;
-    color: #5E4C3E;
-    font-size: 14px;
-    margin-bottom: 10px;
-    text-decoration: none;
-}
 
-button.signin-btn {
+button.forgot-btn {
     width: 100%;
     padding: 12px;
     background: #525B4A;
@@ -147,44 +139,36 @@ button.signin-btn {
     color: #5E4C3E;
 }
 
-.social-icons {
+.back-link {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-}
-
-.icon {
-    background: white;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-}
-
-.social-icons .icon img {
-    width: 30px;
-    height: 30px;
-}
-
-.sign-up {
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #6A6A6A;
+    text-decoration: none;
     margin-top: 20px;
-    font-size: 14px;
-    color: #5E4C3E;
-}
+    transition: color 0.3s ease;
+  }
+  
+  .back-link:hover {
+    color: #4B4B4B;
+  }
+  
+  .arrow-icon {
+    margin-right: 8px;
+    color: inherit;
+  }
 
-.signin-image {
+
+.forgot-image {
     width: 50%;
     height: auto;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.signin-image img {
+.forgot-image img {
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -192,24 +176,24 @@ button.signin-btn {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .signin-container {
+    .forgot-container {
         flex-direction: column;
         text-align: center;
         width: 95%;
         padding: 15px;
     }
     
-    .signin-box {
+    .forgot-box {
         flex-direction: column;
         gap: 10px;
     }
     
-    .signin-content {
+    .forgot-content {
         width: 100%;
         padding: 20px;
     }
     
-    .signin-image {
+    .forgot-image {
         width: 100%;
     }
 }
