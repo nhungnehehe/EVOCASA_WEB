@@ -44,10 +44,10 @@
   - 
 ## THÀNH VIÊN NHÓM 3 
 
-| STT | MSSV       | Họ và Tên                      | GitHub                            | Email                  |
-| :-- | :--------- | :----------------------------- | :-------------------------------- | :--------------------- |
-| 1   | K224111460 | Phạm Tuyết Nhung (Nhóm trưởng) |                                   |  |
-| 2   | K224111450 | Nguyễn Trần Thanh Huyền        |       |  |
-| 3   | K224111461 | Vũ Quỳnh Như                   |           | |
-| 4   | K224111462 | Lê Nguyễn Minh Thảo            |  |  |
-| 5   | K224111470 | Phan Thị Thùy Trang            |  | |
+| STT | MSSV       | Họ và Tên                      | GitHub                            | Email                        |
+| :-- | :--------- | :----------------------------- | :-------------------------------- | :---------------------       |
+| 1   | K224111460 | Phạm Tuyết Nhung (Nhóm trưởng) | https://github.com/nhungnehehe    | nhungpt22411c@st.uel.edu.vn  |
+| 2   | K224111450 | Nguyễn Trần Thanh Huyền        | https://github.com/thhuyenn19     | huyenntt22411c@st.uel.edu.vn |
+| 3   | K224111461 | Vũ Quỳnh Như                   | https://github.com/qnhu11         | nhuvq22411c@st.uel.edu.vn    |
+| 4   | K224111462 | Lê Nguyễn Minh Thảo            | https://github.com/lnmthao        | thaolnm22411c@st.uel.edu.vn  |
+| 5   | K224111470 | Phan Thị Thùy Trang            | https://github.com/ThuyTrang1604  | trangptt22411c@st.uel.edu.vn |
