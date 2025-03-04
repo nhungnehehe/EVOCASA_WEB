@@ -1,37 +1,50 @@
-<!-- cart.component.html -->
- 
+<h2>Your Cart</h2>
 <div class="cart-container">
-  <h2>Your Cart</h2>
-  
   <!-- Kiểm tra giỏ hàng có trống không -->
   <div *ngIf="isEmpty" class="empty-cart-message">
     <p>Your cart is empty!</p>
   </div>
 
-  <!-- Hiển thị danh sách sản phẩm -->
-  <div *ngIf="!isEmpty">
+  <!-- Giỏ hàng với sản phẩm -->
+  <div *ngIf="!isEmpty" class="cart-items">
+    <!-- Tiêu đề các cột -->
+    <div class="cart-header">
+      <div class="header-item" style="text-align: left;">PRODUCT</div>
+      <div class="header-item">QUANTITY</div>
+      <div class="header-item">TOTAL</div>
+    </div>
+    <hr/>
+    <!-- Các sản phẩm trong giỏ hàng -->
     <div *ngFor="let product of products" class="cart-item">
       <div class="product-image">
         <img [src]="product.image" alt="{{ product.name }}">
       </div>
       <div class="product-details">
         <p class="product-name">{{ product.name }}</p>
-        <div class="quantity-selector">
-          <button type="button" (click)="changeQuantity('decrease', product.id)">-</button>
-          <input type="number" [value]="product.quantity" min="1" (input)="updateQuantity($event, product.id)" />
-          <button type="button" (click)="changeQuantity('increase', product.id)">+</button>
-        </div>
-        <p class="product-price">${{ product.price * product.quantity | number: '1.0-0' }}</p>
+        <p class="product-price">${{ product.price | number: '1.0-0' }}</p>
       </div>
-      <button type="button" (click)="removeProduct(product.id)" class="remove-btn">Remove</button>
-    </div>
-    <div class="cart-summary">
-      <p>Total: ${{ total | number: '1.0-0' }}</p>
+      <div class="quantity-selector">
+        <button type="button" (click)="changeQuantity('decrease', product.id)">-</button>
+        <input type="text" [value]="product.quantity" min="1" (input)="updateQuantity($event, product.id)" />
+        <button type="button" (click)="changeQuantity('increase', product.id)">+</button>
+      </div>
+      <div class="product-total">
+        <p>${{ product.price * product.quantity | number: '1.0-0' }}</p>
+      </div>
+      <button type="button" (click)="removeProduct(product.id)" class="remove-btn">X</button>
     </div>
   </div>
 
-  <!-- Kiểm tra giỏ hàng không trống thì hiển thị nút Checkout -->
-  <div *ngIf="!isEmpty">
-    <button class="checkout-btn">Proceed to Checkout</button>
+  <!-- Thông tin tổng và nút Checkout -->
+  <div class="cart-summary">
+    <div *ngIf="!isEmpty">
+      <div class="cart-header">
+        <div class="header-item">TOTAL</div>
+      </div>
+      <hr/>
+      <p>${{ total | number: '1.0-0' }}</p>
+      <p class="shipping-info">Shipping & taxes calculated at checkout</p>
+      <a routerLink="/payment-shipping"><button class="checkout-btn">CHECKOUT</button></a>
+    </div>
   </div>
 </div>
