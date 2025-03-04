@@ -28,7 +28,6 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
     ProductDetailComponent,
     HeaderComponent,
     SidebarComponent,
-
     CollectionComponent,
     ContactComponent,
     PaymentShippingComponent,
