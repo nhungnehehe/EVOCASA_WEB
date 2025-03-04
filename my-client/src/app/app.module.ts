@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotComponent } from './forgot/forgot.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     PaymentShippingComponent,
     CartComponent,
     AboutUsComponent,
+    LoginComponent,
+    ForgotComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
