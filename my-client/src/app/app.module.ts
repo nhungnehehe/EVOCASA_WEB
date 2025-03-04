@@ -21,6 +21,7 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
     SignupComponent,
     PaymentMethodComponent,
     PaymentConfirmComponent,
+    PaymentNoticeComponent,
   ],
   imports: [
     BrowserModule,

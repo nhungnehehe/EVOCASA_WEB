@@ -98,16 +98,18 @@ body {
     background-color: #525B4A;
     color: #FFFFFF;
 }
-h1,
-h3 {
+h1 {
     font-size: 28px;
     color: #5E4C3E;
     margin-top: 20px;
     margin-bottom: 10px;
     font-family: Zen Old Mincho;
 }
-
-h2,p {
+h2{
+    color: #5E4C3E;
+    font-size: 18px;
+}
+h3,p {
     font-size: 16px;
     color: #5E4C3E;
     margin-bottom: 10px;
@@ -125,4 +127,72 @@ button {
 
 button:hover {
     background-color: #e3a900;
+}
+.info-container {
+    background-color: #F2EAD3;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+}
+.info-header {
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px dashed #3F2305;
+}
+.edit-order {
+    font-size: 14px;
+    color: #3F2305;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.top-row,
+.bottom-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.info-section {
+    padding: 20px;
+    width: 48%;
+    border-radius: 8px;
+}
+
+
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+a {
+    font-size: 14px;
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #e3a900;
+}
+
+.payment-icon {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .top-row,
+    .bottom-row {
+        flex-direction: column;
+    }
+
+    .info-section {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
