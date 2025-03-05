@@ -365,6 +365,12 @@ body {
     padding-right: 40px; /* Khoảng cách để biểu tượng mũi tên không bị chồng lên văn bản */
 }
 
+.email-textarea::placeholder {
+    text-align: left;
+    line-height: 60px; /* Đặt bằng chiều cao của textarea */
+    vertical-align: left;
+}
+
 /* Icon mũi tên nằm trong textarea */
 .email-icon {
     position: absolute;
