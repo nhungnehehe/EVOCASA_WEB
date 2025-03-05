@@ -1,7 +1,7 @@
+
 <div class="brown-banner">
-  Wishing you a joyous 2025 - Beautify your home with great deals!
+  <marquee direction="right" behavior="scroll" loop=-1 scrollamount=10> Wishing you a joyous 2025 - Beautify your home with great deals! </marquee>
 </div>
-<<<<<<< HEAD
 <header>
   <div class="navbar">
     <!-- Logo -->
@@ -11,18 +11,18 @@
 
     <!-- Menu Chính -->
     <ul class="menu">
-      <li><a href="#">HOMEPAGE</a></li>
+      <li><a routerLink="homepage">HOMEPAGE</a></li>
       <li class="dropdown">
-        <a href="#">PRODUCTS</a>
+        <a routerLink="products">PRODUCTS</a>
         <div class="dropdown-menu">
           <ul>
-            <li><strong>FURNITURE</strong></li>
+            <li><strong><a href="#">FURNITURE</a></strong></li>
             <li><a href="#">Tables</a></li>
             <li><a href="#">Seating</a></li>
             <li><a href="#">Casegoods</a></li>
           </ul>
           <ul>
-            <li><strong>DECOR</strong></li>
+            <li><strong><a href="#">DECOR</a></strong></li>
             <li><a href="#">Vases & Vessels</a></li>
             <li><a href="#">Decorative Objects</a></li>
             <li><a href="#">Bowls & Dishes</a></li>
@@ -31,7 +31,7 @@
             <li><a href="#">Bath Accessories</a></li>
           </ul>
           <ul>
-            <li><strong>DINING & ENTERTAINING</strong></li>
+            <li><strong><a href="#">DINING & ENTERTAINING</a></strong></li>
             <li><a href="#">Kitchen Accessories</a></li>
             <li><a href="#">Serving Dishes</a></li>
             <li><a href="#">Barware</a></li>
@@ -40,22 +40,22 @@
             <li><a href="#">Glassware</a></li>
           </ul>
           <ul>
-            <li><strong>SOFT GOODS</strong></li>
+            <li><strong><a href="#">SOFT GOODS</a></strong></li>
             <li><a href="#">Pillows</a></li>
           </ul>
           <ul>
-            <li><strong>LIGHTING</strong></li>
+            <li><strong><a href="#">LIGHTING</a></strong></li>
             <li><a href="#">Table Lamps</a></li>
           </ul>
           <ul>
-            <li><strong>ART</strong></li>
+            <li><strong><a>ART</a></strong></li>
             <li><a href="#">Vintage</a></li>
             <li><a href="#">Artisan</a></li>
           </ul>
         </div>
       </li>
       <li class="dropdown">
-        <a href="#">COLLECTIONS</a>
+        <a routerLink="collections">COLLECTIONS</a>
         <div class="dropdown-menu">
           <ul>
             <li><a href="#">The Anniversary Collection</a></li>
@@ -65,9 +65,9 @@
           </ul>
         </div>
       </li>
-      <li><a href="#">IN SITU</a></li>
+      <li><a routerLink="/in-situ">IN SITU</a></li>
       <li><a routerLink="/blog-page">BLOG</a></li>
-      <li><a routerLink="/about-us">ABOUT US</a></li>
+      <li><a routerLink="/about-page">ABOUT US</a></li>
       <li><a routerLink="/contact-page">CONTACT</a></li>
     </ul>
 
@@ -81,7 +81,7 @@
       </div>
       <div class="signcart">
         <img src="images/header/Sign-in-icon.svg" />
-        <a href="#" class="icon">SIGN IN</a>
+        <a routerLink="/login-page" class="icon">SIGN IN</a>
       </div>
       <div class="signcart">
         <button>
@@ -92,95 +92,3 @@
     </div>
   </div>
 </header>
-=======
-<!-- <header> -->
-    <div class="navbar">
-        <!-- Logo -->
-        <div class="logo">
-            <img src="images/header/LogoHasName.png" alt="EVOCASA">
-        </div>
-
-        <!-- Menu Chính -->
-        <ul class="menu">
-            <li><a routerLink="/homepage">HOMEPAGE</a></li>
-            <li class="dropdown">
-                <a href="#">PRODUCTS</a>
-                <div class="dropdown-menu">
-                    <ul>
-                        <li><strong>FURNITURE</strong></li>
-                        <li><a href="#">Tables</a></li>
-                        <li><a href="#">Seating</a></li>
-                        <li><a href="#">Casegoods</a></li>
-                    </ul>
-                    <ul>
-                        <li><strong>DECOR</strong></li>
-                        <li><a href="#">Vases & Vessels</a></li>
-                        <li><a href="#">Decorative Objects</a></li>
-                        <li><a href="#">Bowls & Dishes</a></li>
-                        <li><a href="#">Mirrors</a></li>
-                        <li><a href="#">Utility</a></li>
-                        <li><a href="#">Bath Accessories</a></li>
-                    </ul>
-                    <ul>
-                        <li><strong>DINING & ENTERTAINING</strong></li>
-                        <li><a href="#">Kitchen Accessories</a></li>
-                        <li><a href="#">Serving Dishes</a></li>
-                        <li><a href="#">Barware</a></li>
-                        <li><a href="#">Utensils</a></li>
-                        <li><a href="#">Candleholders</a></li>
-                        <li><a href="#">Glassware</a></li>
-                    </ul>
-                    <ul>
-                        <li><strong>SOFT GOODS</strong></li>
-                        <li><a href="#">Pillows</a></li>
-                    </ul>
-                    <ul>
-                        <li><strong>LIGHTING</strong></li>
-                        <li><a href="#">Table Lamps</a></li>
-                    </ul>
-                    <ul>
-                        <li><strong>ART</strong></li>
-                        <li><a href="#">Vintage</a></li>
-                        <li><a href="#">Artisan</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#">COLLECTIONS</a>
-                <div class="dropdown-menu">
-                    <ul>
-                        <li><a href="#">The Anniversary Collection</a></li>
-                        <li><a href="#">Sabi Collection</a></li>
-                        <li><a href="#">The Disc Collection</a></li>
-                        <li><a href="#">The Pavilion Collection</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a routerLink="/product-page">IN SITU</a></li>
-            <li><a routerLink="/blog-page">BLOG</a></li>
-            <li><a routerLink="/about-page">ABOUT US</a></li>
-            <li><a routerLink="/contact-page">CONTACT</a></li>
-        </ul>
-
-        <!-- User Actions -->
-        <div class="user-actions">
-            <div class="search">
-                <button>
-                    <img src="images/header/Search-icon.svg" alt="Search">
-                </button>
-                <input type="text" placeholder="Search">
-            </div>
-            <div class="signcart">
-                <img src="images/header/Sign-in-icon.svg">
-                <a href="#" class="icon">SIGN IN</a>
-            </div>
-            <div class="signcart">
-                <button>
-                    <img src="images/header/Cart-icon.svg">
-                </button>
-                <a routerLink="/sidebar-page" class="icon">CART</a>
-            </div>
-        </div>
-    </div>
-<!-- </header> -->
->>>>>>> a73c8dc0c7b81ed033bbb420519b0adab52c2f55

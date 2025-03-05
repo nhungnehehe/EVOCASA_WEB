@@ -10,12 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class CartComponent implements OnInit {
   // Danh sách sản phẩm trong giỏ hàng
   products = [
-    { id: 'product-1', name: 'Adjustable Drafting Table', price: 6450, quantity: 1, image: 'https://via.placeholder.com/100' },
+    { id: 'product-1', name: 'Adjustable Drafting Table', price: 64504, quantity: 1, image: 'https://via.placeholder.com/100' },
     { id: 'product-2', name: 'Adjustable Drafting Table', price: 120, quantity: 2, image: 'https://via.placeholder.com/100' },
-    { id: 'product-3', name: 'Adjustable Drafting Table', price: 20, quantity: 1, image: 'https://via.placeholder.com/100' }
+    { id: 'product-3', name: 'Adjustable Drafting Table', price: 204, quantity: 1, image: 'https://via.placeholder.com/100' }
   ];
 
   total: number = 0; // Tổng giỏ hàng
+  totalQuantity: number = 0; // Tổng số lượng sản phẩm trong giỏ hàng
 
   // Kiểm tra giỏ hàng có trống hay không
   get isEmpty(): boolean {
@@ -23,7 +24,8 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updateTotal(); // Cập nhật tổng giỏ hàng khi trang tải
+    this.updateTotal(); // Cập nhật tổng tiền khi trang tải
+    this.updateTotalQuantity(); // Cập nhật tổng số lượng sản phẩm khi trang tải
   }
 
   // Thay đổi số lượng sản phẩm khi nhấn các nút
@@ -41,6 +43,7 @@ export class CartComponent implements OnInit {
     }
 
     this.updateTotal();
+    this.updateTotalQuantity();
   }
 
   // Cập nhật số lượng sản phẩm từ input
@@ -51,6 +54,7 @@ export class CartComponent implements OnInit {
       product.quantity = parseInt(newQuantity, 10);
     }
     this.updateTotal();
+    this.updateTotalQuantity();
   }
 
   // Xóa sản phẩm khi nhấn "Remove"
@@ -60,8 +64,12 @@ export class CartComponent implements OnInit {
       this.products.splice(index, 1); // Xóa sản phẩm khỏi giỏ hàng
     }
     this.updateTotal();
+    this.updateTotalQuantity();
   }
-
+ // Cập nhật tổng số lượng sản phẩm
+ updateTotalQuantity(): void {
+  this.totalQuantity = this.products.reduce((sum, product) => sum + product.quantity, 0);
+}
   // Cập nhật tổng giỏ hàng
   updateTotal(): void {
     this.total = this.products.reduce((acc, product) => acc + (product.quantity * product.price), 0);

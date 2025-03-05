@@ -1,0 +1,43 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin Page</title>
+</head>
+<body>
+    <div class="signin-container">
+        <div class="signin-box">
+            <div class="signin-content">
+                <h1>Welcome back</h1>
+                <p class="sub-text">Hey! Enter your details to get sign in to your account!</p>
+
+                <div class="input-container">
+                    <input type="email" placeholder="Email Address">
+                </div>
+                <div class="input-container">
+                    <input type="password" placeholder="Password">
+                </div>
+                
+                <a [routerLink]="['/forgot-page']" class="forgot-password">Forgot password?</a>
+
+                <button class="signin-btn">SIGN IN</button>
+
+                <p class="or">—— or Sign in with ——</p>
+                
+                <div class="social-icons">
+                    <div class="icon"><img src="/images/iconmxh/google.png" alt="Google"></div>
+                    <div class="icon"><img src="/images/iconmxh/twitter.png" alt="X"></div>
+                    <div class="icon"><img src="/images/iconmxh/facebook.png" alt="Facebook"></div>
+                </div>
+
+                <p class="sign-up">Don’t have an account? <strong><a [routerLink]="['/signup-page']">Sign up</a></strong></p>
+            </div>
+            <div class="signin-image">
+                <img src="/images/signin/signin.png" alt="Signin Image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
