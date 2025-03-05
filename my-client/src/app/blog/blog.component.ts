@@ -1,33 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-interface BlogPost {
-  _id: { $oid: string };
-  id: string;
-  title: string;
-  content: string;
-  thumbnail: string;
-  images: string[];
-}
-
+import { Component } from '@angular/core';
+import jsonData from '../../assets/blog.json';
 @Component({
   selector: 'app-blog',
+  standalone: false,
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css'],
+  styleUrl: './blog.component.css',
 })
-export class BlogComponent implements OnInit {
-  blogPosts: BlogPost[] = [];
+export class BlogComponent {
+  blogs: any[] = jsonData.map((blog) => ({
+    id: blog._id.$oid,
+    title: blog.title,
+    content: blog.content,
+    thumbnail: blog.thumbnail,
+    images: blog.images,
+  }));
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.http.get<BlogPost[]>('assets/blog-data.json').subscribe(
-      (data) => {
-        this.blogPosts = data;
-      },
-      (error) => {
-        console.error('Lỗi khi lấy dữ liệu blog:', error);
-      }
-    );
+  truncateContent(content: string): string {
+    return content.slice(0, 150) + '...';
   }
 }

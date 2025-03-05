@@ -20,6 +20,7 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
     SignupComponent,
     PaymentMethodComponent,
     PaymentConfirmComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,
