@@ -16,6 +16,6 @@ export class BlogComponent {
   }));
 
   truncateContent(content: string): string {
-    return content.slice(0, 150) + '...';
+    return content.slice(0, 200) + '...';
   }
 }

@@ -5,10 +5,8 @@
     <div class="blog-card">
       <img [src]="blog.thumbnail" alt="{{ blog.title }}" class="blog-image" />
       <div class="blog-content">
-        <h2 class="blog-year">2024</h2>
-        <h3 class="blog-heading">
-          <p>{{ blog.title }}{{ blog.title.length > 30 ? "..." : "" }}</p>
-        </h3>
+        <!-- <h2 class="blog-year">2024</h2> -->
+        <h3 class="blog-heading">{{ blog.title }}</h3>
         <p class="blog-description">
           {{ truncateContent(blog?.content) }}
         </p>
