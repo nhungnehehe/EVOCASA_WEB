@@ -21,6 +21,10 @@ import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { BlogComponent } from './blog/blog.component';
+import { TheAnniversaryCollectionComponent } from './collection-detail/the-anniversary-collection/the-anniversary-collection.component';
+import { SabiCollectionComponent } from './collection-detail/sabi-collection/sabi-collection.component';
+import { ThePavilionCollectionComponent } from './collection-detail/the-pavilion-collection/the-pavilion-collection.component';
+import { TheDiscCollectionComponent } from './collection-detail/the-disc-collection/the-disc-collection.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { BlogComponent } from './blog/blog.component';
     PaymentMethodComponent,
     PaymentConfirmComponent,
     BlogComponent,
+    TheAnniversaryCollectionComponent,
+    SabiCollectionComponent,
+    ThePavilionCollectionComponent,
+    TheDiscCollectionComponent,
   ],
   imports: [
     BrowserModule,

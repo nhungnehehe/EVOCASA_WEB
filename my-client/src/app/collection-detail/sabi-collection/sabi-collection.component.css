@@ -1,0 +1,198 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F4E8D9;
+}
+
+.main-container {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.text-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.title {
+    color: #3F2305;
+    font-size: 40px;
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 700px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.subtitle {
+    color: rgba(0, 0, 0, 0.40);
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.image-container img {
+    width: 50%;
+    height: auto;
+    margin-top: 10px;
+    align-items: center;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    align-items: flex-start;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.left-section {
+    width: 45%;
+}
+
+.left-section img {
+    width: 75%;
+    height: auto;
+}
+
+.featured {
+    font-size: 18px;
+    font-family: 'Zen Old Mincho', serif;
+    color: #5E4C3E;
+}
+
+.product-name {
+    font-size: 18px;
+    font-family: 'Zen Old Mincho', serif;
+    color: #3F2305;
+}
+
+.right-section {
+    width: 55%;
+}
+
+.conception {
+    font-size: 28px;
+    font-family: 'Zen Old Mincho', serif;
+    color: #5E4C3E;
+}
+
+.description {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.60);
+    line-height: 1.6;
+}
+
+.quote {
+    font-size: 22px;
+    font-family: 'Zen Old Mincho', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: #3F2305;
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px solid #3F2305;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.inspiration {
+    width: 100%;
+    margin-bottom: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: left;
+    position: relative;
+}
+
+.inspiration-title {
+    color: #5E4C3E;
+    font-size: 28px;
+    font-family: 'Zen Old Mincho', serif;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.inspiration-description {
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.dual-images-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.dual-image-container {
+    display: flex;
+    gap: 10px;
+}
+
+.dual-image-container img {
+    width: 50%;
+}
+
+.dual-image-items {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.item-1, .item-2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #3F2305;
+    font-style: italic;
+    line-height: 38px;
+}
+
+.item-1 {
+    margin-right: 170px;
+}
+
+.item-2 {
+    margin-left: 10px;
+    margin-right: 80px;
+}
+
+.process, .why-you {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.process-title, .why-you-title {
+    color: #5E4C3E;
+    font-size: 28px;
+    font-family: 'Zen Old Mincho', serif;
+    line-height: 22px;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+.process-description, .why-you-description {
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
