@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BLOG</title>
-  </head>
-  <body>
-    <div class="blog">BLOG</div>
-  </body>
-</html>
+<div class="blog-container">
+  <h1 class="blog-title">BLOG</h1>
+  <div class="blog-grid">
+    @for(blog of blogs; track blog.id) {
+    <div class="blog-card">
+      <img [src]="blog.thumbnail" alt="{{ blog.title }}" class="blog-image" />
+      <div class="blog-content">
+        <!-- <h2 class="blog-year">2024</h2> -->
+        <h3 class="blog-heading">{{ blog.title }}</h3>
+        <p class="blog-description">
+          {{ truncateContent(blog?.content) }}
+        </p>
+        <a href="#" class="read-more">Read more →</a>
+      </div>
+    </div>
+    }
+  </div>
+</div>

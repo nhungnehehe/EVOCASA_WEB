@@ -1,96 +1,185 @@
-/* cart.component.css */
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #FFFCF3;
+}
+
+
 .cart-container {
   display: flex;
-  flex-direction: column;
-  padding: 20px;
-  background-color: #FFFCF3;
-  border-radius: 8px;
+  justify-content: space-between;
 }
 
 h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-left: 50px;  
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #5E4C3E;
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
 }
 
+/* Thông báo khi giỏ hàng trống */
 .empty-cart-message {
   font-size: 18px;
-  color: #888;
+  color: #999;
+  text-align: center;
+  width: 100%;
+}
+
+/* Sản phẩm trong giỏ hàng (phần bên trái) */
+.cart-items {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 2;
+}
+
+.cart-header {
+  display: grid;
+  grid-template-columns: 0.3fr 2.5fr 1fr 1fr;  /* 3 cột: 2 phần cho sản phẩm và 1 phần cho số lượng/tổng */
+  font-weight: bold;
+  color: rgb(81, 90, 73, 0.6);
+  font-size: 20px;
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
 }
 
 .cart-item {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 2fr 1.22fr 0.85fr; /* Chia 4 cột đều */
   margin-bottom: 15px;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+  align-items: center;
+  border-bottom: 1px solid #ddd; /* Thêm đường phân cách giữa các sản phẩm */
+  padding-bottom: 15px;
+  font-size: 18px;
+  color: rgb(0, 0, 0,0.5);
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
+}
+
+hr {
+  border: none; /* Loại bỏ đường viền mặc định */
+  height: 1px; /* Chiều cao của đường kẻ */
+  background-color: rgb(94, 76, 62,0.5); /* Màu sắc của đường kẻ */
+}
+
+.header-item {
+  text-align: center;
 }
 
 .product-image img {
   width: 100px;
   height: 100px;
   object-fit: cover;
-}
-
-.product-details {
-  flex: 1;
-  padding: 0 15px;
-}
-
-.product-name {
-  font-size: 18px;
-  font-weight: bold;
+  margin-right: 10px;
 }
 
 .quantity-selector {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 10px 0;
+  gap: 5px;  /* Khoảng cách giữa các nút */
+}
+
+.quantity-selector button {
+  background-color: #F2EAD3; /* Màu nền mặc định */
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 30px; /* Đảm bảo nút có kích thước phù hợp */
+  text-align: center;
+  color: rgb(0, 0, 0,0.5);
 }
 
 .quantity-selector input {
-  width: 40px;
+  width: 30px;
+  padding: 5px;
   text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: rgb(0, 0, 0,0.5);
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
 }
 
-.product-price {
-  font-size: 16px;
-  color: #333;
-  margin-top: 5px;
+.quantity-selector button:hover {
+  background-color: #5E4C3E; /* Màu nền khi hover */
+  color:#F2EAD3;
 }
 
 .remove-btn {
-  background-color: #ff0000;
-  color: white;
-  padding: 8px;
+  color: #5E4C3E;
+  font-size: smaller;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .remove-btn:hover {
-  background-color: #e60000;
+  color: #a41313;
+
 }
 
+/* Tổng giỏ hàng và nút Checkout (phần bên phải) */
 .cart-summary {
-  font-size: 18px;
+  margin-right: 50px;
+  margin-left: 150px;
+  align-items: center;
+  flex: 1;
+}
+
+.cart-header-total {
+  display: grid;
   font-weight: bold;
-  margin-top: 20px;
+  color: rgb(81, 90, 73, 0.6);
+  font-size: 20px;
+  font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.summary-details {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex; /* Hiển thị trên cùng một hàng */
+  justify-content: space-between; /* Căn giữa hai phần tử */
+  align-items: center;
+  font-size: 24px;
+  color: rgb(0, 0, 0,0.5);
+}
+
+.shipping-info {
+  font-size: 20px;
+  color: rgb(0, 0, 0,0.5);
+  align-content: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .checkout-btn {
-  background-color: #2c3e50;
+  background-color: #525B4A;
   color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
+  padding: 5px;
   width: 100%;
-  font-size: 18px;
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  border-radius: 10px;
 }
 
 .checkout-btn:hover {
-  background-color: #34495e;
+  background-color: #5E4C3E;
+}
+
+.total_body {
+  background-color: #FFFCF3;
+}
+
+.checkout-info {
+  display: flex;
+  flex-direction: column;  /* Đặt theo chiều dọc */
+  align-items: center;     /* Căn giữa theo chiều ngang */
+  justify-content: center; /* Căn giữa theo chiều dọc */
 }
