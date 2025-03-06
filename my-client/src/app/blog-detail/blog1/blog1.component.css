@@ -1,0 +1,143 @@
+body {
+  max-width: 1525px;
+  padding: 47px;
+  background-color: #fffcf3;
+  line-height: 1.4;
+  margin: 0 80px;
+}
+.header {
+  color: #5e4c3e;
+  text-align: center;
+  font-family: "Zen Old Mincho";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 22px;
+  letter-spacing: -0.43px;
+  margin: 60px 87px;
+  justify-content: center;
+}
+.title {
+  color: #5e4c3e;
+  font-family: "Zen Old Mincho";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 40px;
+  letter-spacing: -0.43px;
+  text-transform: uppercase;
+  justify-content: center;
+}
+.description {
+  text-align: justify;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+h2 {
+  color: #5e4c3e;
+  font-family: "Zen Old Mincho";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: -0.43px;
+}
+p {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: justify;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: -0.1px;
+}
+.imgcenter {
+  display: block;
+  width: 450px;
+  height: auto;
+  margin: 5px auto;
+  border-radius: 4px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#muc3 {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: justify;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 50px;
+  letter-spacing: -0.1px;
+  margin-right: 50px;
+}
+
+.imgright {
+  width: 550px;
+  height: auto;
+  border-radius: 4px;
+  margin-left: 50px;
+}
+div::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin: 20px;
+  }
+  #muc3,
+  .imgright {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .imgcenter {
+    width: 100%;
+    margin: 20px auto;
+  }
+}
+.minimalist-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.imgleft {
+  width: 450px;
+  height: auto;
+  border-radius: 4px;
+  margin: 5px 47px;
+}
+#muc5 {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: justify;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 50px;
+  letter-spacing: -0.43px;
+  width: 650px;
+  height: auto;
+  margin: 100px 20px;
+  float: right;
+}
+.final-note {
+  background-color: #f2ead3;
+  text-align: center;
+  padding: 20px;
+  margin: 10px 150px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: -0.05px;
+  border-radius: 5px;
+}
