@@ -1,4 +1,53 @@
 <div class="container">
+  <div class="title">
+      <h1 id="all-title">Shop All</h1>
+  </div>
+  <!-- Menu Section (right side) -->
+  <div class="menu">
+      <div id="menu-list">
+          <div class="level1">
+              <div class="category" (click)="toggleSubMenu('all')">All</div>
+              <div class="category" (click)="toggleSubMenu('furniture')">Furniture</div>
+              <div class="category" (click)="toggleSubMenu('decor')">Decor</div>
+              <div class="category" (click)="toggleSubMenu('dining-entertaining')">Dining & Entertaining</div>
+              <div class="category" (click)="toggleSubMenu('soft-goods')">Soft Goods</div>
+              <div class="category" (click)="toggleSubMenu('lighting')">Lighting</div>
+              <div class="category" (click)="toggleSubMenu('art')">Art</div>
+          </div>
+          <div id="furniture" class="level2">
+              <div class="subcategory" (click)="toggleSubMenu('tables')">Tables</div>
+              <div class="subcategory" (click)="toggleSubMenu('seating')">Seating</div>
+              <div class="subcategory" (click)="toggleSubMenu('casegoods')">Casegoods</div>
+          </div>
+          <div id="decor" class="level2">
+              <div class="subcategory" (click)="toggleSubMenu('vases-vessels')">Vases & Vessels</div>
+              <div class="subcategory" (click)="toggleSubMenu('decorative-objects')">Decorative Objects</div>
+              <div class="subcategory" (click)="toggleSubMenu('bowls-dishes')">Bowls & Dishes</div>
+              <div class="subcategory" (click)="toggleSubMenu('mirrors')">Mirrors</div>
+              <div class="subcategory" (click)="toggleSubMenu('utility')">Utility</div>
+              <div class="subcategory" (click)="toggleSubMenu('bath-accessories')">Bath Accessories</div>
+          </div>
+          <div id="dining-entertaining" class="level2">
+              <div class="subcategory" (click)="toggleSubMenu('kitchen-accessories')">Kitchen Accessories</div>
+              <div class="subcategory" (click)="toggleSubMenu('serving-dishes')">Serving Dishes</div>
+              <div class="subcategory" (click)="toggleSubMenu('barware')">Barware</div>
+              <div class="subcategory" (click)="toggleSubMenu('utensils')">Utensils</div>
+              <div class="subcategory" (click)="toggleSubMenu('candleholders')">Candleholders</div>
+              <div class="subcategory" (click)="toggleSubMenu('glassware')">Glassware</div>
+          </div>
+          <div id="soft-goods" class="level2">
+              <div class="subcategory" (click)="toggleSubMenu('pillows')">Pillows</div>
+          </div>
+          <div id="lighting" class="level2">
+              <div class="subcategory" (click)="toggleSubMenu('table-lamps')">Table Lamps</div>
+          </div>
+          <div id="art" class="level2">
+              <div class="subcategory" (click)="toggleSubMenu('vintage')">Vintage</div>
+              <div class="subcategory" (click)="toggleSubMenu('artisan')">Artisan</div>
+          </div>
+      </div>
+  </div>
+</div>
 <div class="row">
   <ng-container *ngFor="let product of products; let i = index">
     <!-- <div class="col-md-4 mb-4"> -->
@@ -34,4 +83,4 @@
     <p>No products found.</p>
   </div>
 </div>
-</div>
+

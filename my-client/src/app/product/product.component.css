@@ -1,5 +1,7 @@
 /* Product card styling */
-
+*{
+  background-color: #FFFCF3;
+}
 /* Image container */
 .image-container {
   position: relative;
@@ -98,4 +100,80 @@
   .product-card {
     flex: 1 1 calc(100% - 20px); /* 1 item per row */
   }
+}
+
+/* Reset body and html to take full width */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Container for layout */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  height: 150px;
+}
+
+/* CASE GOODS section */
+.title {
+  flex: 0 0 auto;
+  margin-right: 20px;
+  align-self: flex-start;
+}
+
+/* Main menu styling */
+.menu {
+  padding: 10px;
+  text-align: center;
+  width: 72%;
+  align-self: flex-end;
+}
+
+/* First-level categories (top row) */
+.level1 {
+  display: flex;
+  justify-content: left;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+.category {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.category:hover {
+  color: #007bff;
+}
+
+.category.active, .subcategory.active {
+  opacity: 1 !important;
+}
+
+/* Second-level categories (hidden by default, aligned horizontally) */
+.level2 {
+  display: none;
+  text-align: center;
+  margin-top: 10px;
+  justify-content: left;
+  gap: 20px;
+  display: flex;
+  cursor: pointer;
+  margin-left: 20px;
+  border-top: 1px solid #3F2305;
+}
+
+.subcategory {
+  padding: 10px;
+  font-size: 18px;
+}
+
+.subcategory:hover {
+  color: #007bff;
 }
