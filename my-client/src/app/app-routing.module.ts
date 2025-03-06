@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 import { BlogComponent } from './blog/blog.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'payment-shipping', component: PaymentShippingComponent },
   { path: 'payment-method', component: PaymentMethodComponent },
   { path: 'payment-confirm', component: PaymentConfirmComponent },
+  {path: 'product/:name', component: ProductDetailComponent},
 ];
 
 @NgModule({

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service'; 
+import { IProduct } from '../interfaces/product';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,7 +16,8 @@ export class ProductComponent implements OnInit {
   lastCategory: string | null = null;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -201,4 +204,14 @@ toggleSubMenu(category: string): void {
     }
   }
 }
+  viewProductDetails(product: IProduct): void {
+    if (product.Name) {
+      const productName=encodeURIComponent(product.Name.trim());
+      this.router.navigate(['/product', productName]);
+    } else {
+      console.error('Error: Product name is missing');
+
+    }
+  }
+
 }
