@@ -1,10 +1,12 @@
 /* Product card styling */
 .product-card {
   height: 100%;
-  border-radius: 8px;
+  border-radius: 7px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure product card content is spaced evenly */
 }
 
 .product-card:hover {
@@ -27,107 +29,73 @@
   margin: 0 auto;
 }
 
-/* Thumbnails */
-.image-thumbnails {
+/* Title and price container */
+.product-header {
+  display: flex;
+  justify-content: space-between; /* Align title left and price right */
+  align-items: center;
+  margin-top: 10px; /* Space between image and text */
+  padding: 0 15px;
+}
+
+/* Product title */
+.product-title {
+  font-size: 16px; /* Reduced font size */
+  /* font-weight: 600; */
+  margin-bottom: 5px;
+  text-align: left;
+  flex-grow: 1; /* Make sure it takes up remaining space */
+}
+
+/* Product price */
+.product-price {
+  font-size: 16px; /* Reduced font size */
+  /* font-weight: 600; */
+  /* color: #e63946; */
+  margin: 0;
+  text-align: right;
+}
+
+/* General layout of the row */
+.row {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 10px;
-  justify-content: center;
+  gap: 20px; /* Adjust the gap between products */
+  justify-content: flex-start; /* Align products to the left */
 }
 
-.thumbnail {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: border 0.2s;
-}
-
-.thumbnail:hover {
-  border: 1px solid #007bff;
-}
-
-/* Product header */
-.product-header {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-}
-
-.product-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.product-store {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.product-price {
-  font-size: 20px;
-  font-weight: 700;
-  color: #e63946;
-  margin: 5px 0;
-}
-
-/* Product details table */
-.product-details h5 {
-  font-size: 16px;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.attribute-table {
-  font-size: 14px;
-}
-
-.attribute-table th {
-  width: 30%;
-  font-weight: 600;
-  color: #555;
-}
-
-.attribute-table td {
-  width: 70%;
-}
-
-/* Status colors */
-.text-danger {
-  color: #e63946 !important;
-}
-
-.text-success {
-  color: #2a9d8f !important;
+/* Product card styling */
+.product-card {
+  flex: 1 1 calc(25% - 20px); /* Default: 4 items per row */
+  margin-bottom: 30px; /* Space between rows */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align the content from the top */
+  height: auto; /* Allow card height to adjust based on content */
 }
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .col {
-    flex: 0 0 25%;
-    max-width: 25%;
+  .product-card {
+    flex: 1 1 calc(25% - 20px); /* 4 items per row */
   }
 }
 
 @media (max-width: 992px) {
-  .col {
-    flex: 0 0 50%;
-    max-width: 50%;
+  .product-card {
+    flex: 1 1 calc(33.333% - 20px); /* 3 items per row */
   }
 }
 
 @media (max-width: 768px) {
-  .col {
-    flex: 0 0 100%;
-    max-width: 100%;
+  .product-card {
+    flex: 1 1 calc(50% - 20px); /* 2 items per row */
   }
-  
-  .main-image {
-    height: 200px;
+}
+
+@media (max-width: 576px) {
+  .product-card {
+    flex: 1 1 calc(100% - 20px); /* 1 item per row */
   }
 }
