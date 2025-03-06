@@ -25,6 +25,7 @@ import { TheAnniversaryCollectionComponent } from './collection-detail/the-anniv
 import { SabiCollectionComponent } from './collection-detail/sabi-collection/sabi-collection.component';
 import { ThePavilionCollectionComponent } from './collection-detail/the-pavilion-collection/the-pavilion-collection.component';
 import { TheDiscCollectionComponent } from './collection-detail/the-disc-collection/the-disc-collection.component';
+import { Blog1Component } from './blog-detail/blog1/blog1.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { TheDiscCollectionComponent } from './collection-detail/the-disc-collect
     SabiCollectionComponent,
     ThePavilionCollectionComponent,
     TheDiscCollectionComponent,
+    Blog1Component,
   ],
   imports: [
     BrowserModule,
