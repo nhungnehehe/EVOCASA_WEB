@@ -1,109 +1,46 @@
 <div class="container">
-    <h2 class="text-center my-4">Product List</h2>
-    
-    <!-- Show error message if any -->
-    <div *ngIf="errMessage" class="alert alert-danger">
-      {{ errMessage }}
-    </div>
-    
-    <div class="row">
-      <ng-container *ngFor="let product of products; let i = index">
-        <!-- Card for each product -->
-        <div class="col-md-4 mb-4">
-          <div class="card product-card">
-            <!-- Product Images Section -->
-            <div class="card-header p-0">
-              <!-- Main image carousel -->
-              <div class="image-container">
-                <ng-container *ngIf="product.Image && product.Image.length > 0">
-                  <img
-                    [src]="product.Image[0]"
-                    [alt]="product.Name"
-                    class="img-fluid main-image"
-                  >
-                  <!-- All product images as thumbnails -->
-                  <div class="image-thumbnails">
-                    <ng-container *ngFor="let img of product.Image; let idx = index">
-                      <img 
-                        [src]="img" 
-                        [alt]="product.Name + ' image ' + (idx + 1)"
-                        class="thumbnail"
-                      >
-                    </ng-container>
-                  </div>
-                </ng-container>
-                
-                <img *ngIf="!product.Image || product.Image.length === 0"
-                  src="assets/images/placeholder.jpg"
+  <h2 class="text-center my-4">Product List</h2>
+  
+  <!-- Show error message if any -->
+  <div *ngIf="errMessage" class="alert alert-danger">
+    {{ errMessage }}
+  </div>
+  
+  <div class="row">
+    <ng-container *ngFor="let product of products; let i = index">
+      <!-- Card for each product -->
+      <div class="col-md-4 mb-4">
+        <div class="card product-card">
+          <!-- Product Images Section -->
+          <div class="card-header p-0">
+            <div class="image-container">
+              <ng-container *ngIf="product.Image && product.Image.length > 0">
+                <img
+                  [src]="product.Image[0]"
                   [alt]="product.Name"
                   class="img-fluid main-image"
                 >
-              </div>
-            </div>
-            
-            <div class="card-body">
-              <!-- Product Title and Basic Info -->
-              <div class="product-header">
-                <h4 class="product-title">{{ product.Name }}</h4>
-                <p class="product-store">Store: {{ product.Store }}</p>
-                <p class="product-price">${{ product.Price.toFixed(2) }}</p>
-              </div>
-              
-              <!-- Product Details -->
-              <div class="product-details">
-                <h5>Product Details</h5>
-                <table class="table table-sm attribute-table">
-                  <tbody>
-                    <tr>
-                      <th>Description:</th>
-                      <td>{{ product.Description }}</td>
-                    </tr>
-                    <tr>
-                      <th>Origin:</th>
-                      <td>{{ product.Origin }}</td>
-                    </tr>
-                    <tr>
-                      <th>Uses:</th>
-                      <td>{{ product.Uses }}</td>
-                    </tr>
-                    <!-- Change this part in your product.component.html -->
-                        <tr *ngIf="product.Dimension">
-                        <th>Dimensions:</th>
-                        <td>{{ formatDimension(product.Dimension) }}</td>
-                        </tr>
-                    <tr>
-                      <th>Quantity:</th>
-                      <td [ngClass]="{'text-danger': product.Quantity <= 5, 'text-success': product.Quantity > 20}">
-                        {{ product.Quantity > 0 ? product.Quantity + ' available' : 'Out of stock' }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Added:</th>
-                      <td>{{ product.Create_date | date:'mediumDate' }}</td>
-                    </tr>
-                    <tr *ngIf="product.Story">
-                      <th>Story:</th>
-                      <td>{{ product.Story }}</td>
-                    </tr>
-                    <tr *ngIf="product.ProductCare">
-                      <th>Care:</th>
-                      <td>{{ product.ProductCare }}</td>
-                    </tr>
-                    <tr *ngIf="product.ShippingReturn">
-                      <th>Shipping:</th>
-                      <td>{{ product.ShippingReturn }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              </ng-container>
+              <img *ngIf="!product.Image || product.Image.length === 0"
+                src="assets/images/placeholder.jpg"
+                [alt]="product.Name"
+                class="img-fluid main-image"
+              >
             </div>
           </div>
+          
+          <div class="card-body">
+            <!-- Product Title and Price -->
+            <h4 class="product-title">{{ product.Name }}</h4>
+            <p class="product-price">${{ product.Price.toFixed(2) }}</p>
+          </div>
         </div>
-      </ng-container>
-      
-      <!-- No products message -->
-      <div *ngIf="products.length === 0 && !errMessage" class="col-12 text-center">
-        <p>No products found.</p>
       </div>
+    </ng-container>
+    
+    <!-- No products message -->
+    <div *ngIf="products.length === 0 && !errMessage" class="col-12 text-center">
+      <p>No products found.</p>
     </div>
   </div>
+</div>
