@@ -1,9 +1,9 @@
-body {
-  max-width: 1525px;
-  padding: 47px;
+* {
   background-color: #fffcf3;
+}
+.whole {
+  padding: 0px 80px;
   line-height: 1.4;
-  margin: 0 80px;
 }
 .header {
   color: #5e4c3e;
@@ -14,7 +14,7 @@ body {
   font-weight: 900;
   line-height: 22px;
   letter-spacing: -0.43px;
-  margin: 60px 87px;
+  padding: 60px 87px;
   justify-content: center;
 }
 .title {
@@ -123,16 +123,16 @@ div::after {
   font-weight: 300;
   line-height: 50px;
   letter-spacing: -0.43px;
-  width: 650px;
+  width: 700px;
   height: auto;
-  margin: 100px 20px;
+  margin: 60px 50px;
   float: right;
 }
 .final-note {
   background-color: #f2ead3;
   text-align: center;
-  padding: 20px;
-  margin: 10px 150px;
+  padding: 40px;
+  margin: 50px 150px;
   color: rgba(0, 0, 0, 0.7);
   font-family: Inter;
   font-size: 24px;
