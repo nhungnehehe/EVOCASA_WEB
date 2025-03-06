@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service'; 
+import { IProduct } from '../interfaces/product';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,9 +13,11 @@ import { ProductService } from '../services/product.service';
 export class ProductComponent implements OnInit {
   products: any[] = []; // Danh sách sản phẩm
   errMessage: string = ''; // Biến để lưu thông báo lỗi
+  lastCategory: string | null = null;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +32,7 @@ export class ProductComponent implements OnInit {
         console.error('Error:', err);
       }
     });
+    this.initializeMenu()
   }
   loadProducts(): void {
     this.productService.getProducts().subscribe({
@@ -70,4 +75,143 @@ formatDimension(dimension: any): string {
   // Default case - return as is
   return dimension;
 }
+// Initialize the menu, hiding second-level categories
+initializeMenu(): void {
+  const level2s = document.querySelectorAll('.level2');
+  level2s.forEach((submenu: any) => submenu.style.display = 'none');
+}
+
+// Toggle opacity and active class for categories and subcategories
+toggleOpacity(category: string): void {
+  const allCategories = document.querySelectorAll('.category, .subcategory');
+  allCategories.forEach((item: any) => item.classList.remove('active'));
+
+  const firstLevelCategory = this.getFirstLevelCategory(category);
+  if (firstLevelCategory) {
+    firstLevelCategory.classList.add('active');
+  }
+
+  const subCategory = document.querySelector(`.subcategory[onclick="toggleSubMenu('${category}')"]`);
+  if (subCategory) {
+    subCategory.classList.add('active');
+  }
+}
+
+// Find the first-level category based on the selected subcategory
+getFirstLevelCategory(category: string): any {
+  if (category === 'kitchen-accessories' || category === 'serving-dishes' || category === 'barware' || category === 'utensils' || category === 'candleholders' || category === 'glassware') {
+    return document.querySelector('.category[onclick="toggleSubMenu(\'dining-entertaining\')"]');
+  }
+  if (category === 'tables' || category === 'seating' || category === 'casegoods') {
+    return document.querySelector('.category[onclick="toggleSubMenu(\'furniture\')"]');
+  }
+  if (category === 'vases-vessels' || category === 'decorative-objects' || category === 'bowls-dishes' || category === 'mirrors' || category === 'utility' || category === 'bath-accessories') {
+    return document.querySelector('.category[onclick="toggleSubMenu(\'decor\')"]');
+  }
+  if (category === 'pillows') {
+    return document.querySelector('.category[onclick="toggleSubMenu(\'soft-goods\')"]');
+  }
+  if (category === 'table-lamps') {
+    return document.querySelector('.category[onclick="toggleSubMenu(\'lighting\')"]');
+  }
+  if (category === 'vintage' || category === 'artisan') {
+    return document.querySelector('.category[onclick="toggleSubMenu(\'art\')"]');
+  }
+  return null;
+}
+
+// Toggle submenus and update the category display
+toggleSubMenu(category: string): void {
+  this.toggleOpacity(category);
+
+  const allCategories = document.querySelectorAll('.category, .subcategory');
+  allCategories.forEach((item: any) => item.classList.remove('active'));
+
+  if (category === 'all') {
+    const level2s = document.querySelectorAll('.level2');
+    level2s.forEach((submenu: any) => submenu.style.display = 'none');
+    this.lastCategory = null;
+    return;
+  }
+
+  const casegoodsTitle = document.getElementById('all-title');
+  const categories: any = {
+    'all': 'All',
+    'furniture': 'Furniture',
+    'decor': 'Decor',
+    'dining-entertaining': 'Dining & Entertaining',
+    'soft-goods': 'Soft Goods',
+    'lighting': 'Lighting',
+    'art': 'Art'
+  };
+
+  const subcategories: any = {
+    'tables': 'Tables',
+    'seating': 'Seating',
+    'casegoods': 'Casegoods',
+    'vases-vessels': 'Vases & Vessels',
+    'decorative-objects': 'Decorative Objects',
+    'bowls-dishes': 'Bowls & Dishes',
+    'mirrors': 'Mirrors',
+    'utility': 'Utility',
+    'bath-accessories': 'Bath Accessories',
+    'kitchen-accessories': 'Kitchen Accessories',
+    'serving-dishes': 'Serving Dishes',
+    'barware': 'Barware',
+    'utensils': 'Utensils',
+    'candleholders': 'Candleholders',
+    'glassware': 'Glassware',
+    'pillows': 'Pillows',
+    'table-lamps': 'Table Lamps',
+    'vintage': 'Vintage',
+    'artisan': 'Artisan'
+  };
+
+  // Check if casegoodsTitle is not null
+  if (casegoodsTitle) {
+    if (categories[category]) {
+      casegoodsTitle.textContent = categories[category];
+
+      if (this.lastCategory && this.lastCategory !== category) {
+        const prevMenu = document.getElementById(this.lastCategory);
+        if (prevMenu) {
+          prevMenu.style.display = 'none';
+        }
+      }
+
+      const menu = document.getElementById(category);
+      if (menu) {
+        menu.style.display = 'flex';
+      }
+
+      this.lastCategory = category;
+
+      const firstLevelCategory = document.querySelector(`.category[onclick="toggleSubMenu('${category}')"]`);
+      if (firstLevelCategory) {
+        firstLevelCategory.classList.add('active');
+      }
+    } else if (subcategories[category]) {
+      casegoodsTitle.textContent = subcategories[category];
+      const subCategory = document.querySelector(`.subcategory[onclick="toggleSubMenu('${category}')"]`);
+      if (subCategory) {
+        subCategory.classList.add('active');
+      }
+
+      const firstLevelCategory = this.getFirstLevelCategory(category);
+      if (firstLevelCategory) {
+        firstLevelCategory.classList.add('active');
+      }
+    }
+  }
+}
+  viewProductDetails(product: IProduct): void {
+    if (product.Name) {
+      const productName=encodeURIComponent(product.Name.trim());
+      this.router.navigate(['/product', productName]);
+    } else {
+      console.error('Error: Product name is missing');
+
+    }
+  }
+
 }
