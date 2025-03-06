@@ -1,29 +1,15 @@
 /* Product card styling */
-.product-card {
-  height: 100%;
-  border-radius: 7px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Ensure product card content is spaced evenly */
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
 
 /* Image container */
 .image-container {
   position: relative;
   background-color: #f9f9f9;
-  padding: 15px;
+  /* padding: 15px; */
 }
 
 .main-image {
   width: 100%;
-  height: 250px;
+  /* height: 250px; */
   object-fit: contain;
   display: block;
   margin: 0 auto;
@@ -35,12 +21,12 @@
   justify-content: space-between; /* Align title left and price right */
   align-items: center;
   margin-top: 10px; /* Space between image and text */
-  padding: 0 15px;
+  /* padding: 0 15px; */
 }
 
 /* Product title */
 .product-title {
-  font-size: 16px; /* Reduced font size */
+  font-size: 15px; /* Reduced font size */
   /* font-weight: 600; */
   margin-bottom: 5px;
   text-align: left;
@@ -49,7 +35,7 @@
 
 /* Product price */
 .product-price {
-  font-size: 16px; /* Reduced font size */
+  font-size: 15px; /* Reduced font size */
   /* font-weight: 600; */
   /* color: #e63946; */
   margin: 0;
@@ -61,18 +47,32 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px; /* Adjust the gap between products */
-  justify-content: flex-start; /* Align products to the left */
+  justify-content: center; /* Ensure all items are centered horizontally */
+  margin: 0 auto; /* Center the row horizontally */
+  padding: 0 15px; /* Optional: adds padding on the left and right */
+  max-width: 1500px; /* Optional: ensures the content doesn't stretch too wide on large screens */
 }
 
 /* Product card styling */
 .product-card {
-  flex: 1 1 calc(25% - 20px); /* Default: 4 items per row */
-  margin-bottom: 30px; /* Space between rows */
-  box-sizing: border-box;
+  font-family: Zen Old Mincho;
+  height: 100%;
+  border-radius: 7px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align the content from the top */
-  height: auto; /* Allow card height to adjust based on content */
+  justify-content: space-between;
+  width: 300px; /* Set the width of each product card */
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  flex: 0 0 auto; /* Prevents products from shrinking */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
 /* Responsive adjustments */
