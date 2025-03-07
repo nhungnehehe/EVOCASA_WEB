@@ -1,62 +1,86 @@
-<div *ngIf="product; else loading">
-    <h1>{{ product.Name }}</h1>
-    <p>
-      <strong>Price:</strong>
-      {{ product.Price | currency }}
-    </p>
-    <p>
-      <strong>Description:</strong>
-      {{ product.Description }}
-    </p>
-    <p>
-      <strong>Origin:</strong>
-      {{ product.Origin }}
-    </p>
-    <p>
-      <strong>Uses:</strong>
-      {{ product.Uses }}
-    </p>
-    <p>
-      <strong>Store:</strong>
-      {{ product.Store }}
-    </p>
-    <p>
-      <strong>Quantity:</strong>
-      {{ product.Quantity }}
-    </p>
-    <p>
-      <strong>Create Date:</strong>
-      {{ product.Create_date | date:'medium' }}
-    </p>
-    
-    <div *ngIf="product.Dimension">
-      <p>
-        <strong>Dimension:</strong>
-        {{ formatDimension(product.Dimension) }}
-      </p>
+<div class="product-detail-container" *ngIf="product; else loading">
+  <div class="product-main">
+    <!-- Product Images -->
+    <div class="product-images">
+      <div class="main-image">
+        <img [src]="selectedImage || product.Image[0]" [alt]="product.Name">
+        <div class="arrow-right" (click)="nextImage()">
+          <div class="arrow-icon">→</div>
+        </div>
+      </div>
+
+      <div class="thumbnail-row">
+        <img *ngFor="let img of product.Image" [src]="img" [alt]="product.Name" 
+             (click)="selectImage(img)" [class.selected]="img === selectedImage">
+      </div>
     </div>
-    
-    <p *ngIf="product.Story">
-      <strong>Story:</strong>
-      {{ product.Story }}
-    </p>
-    <p *ngIf="product.ProductCare">
-      <strong>Product Care:</strong>
-      {{ product.ProductCare }}
-    </p>
-    <p *ngIf="product.ShippingReturn">
-      <strong>Shipping & Return:</strong>
-      {{ product.ShippingReturn }}
-    </p>
-    
-    <div *ngIf="product.Image && product.Image.length">
-      <h2>Images</h2>
-      <div *ngFor="let img of product.Image">
-        <img [src]="img" [alt]="product.Name" style="max-width:200px; margin-right:10px;" />
+
+    <!-- Product Info -->
+    <div class="product-info">
+      <h1 class="product-title">{{ product.Name }}</h1>
+
+      <div class="product-rating">
+        <div class="stars">
+          <span class="star" *ngFor="let star of starsArray">★</span>
+        </div>
+      </div>
+
+      <div class="product-price">
+        <h3>Price</h3>
+        <div class="price">{{ product.Price | currency }}</div>
+      </div>
+
+      <div class="add-to-cart">
+        <div class="quantity-selector">
+          <button class="decrease" (click)="updateQuantity(-1)">-</button>
+          <span class="quantity">{{ quantity }}</span>
+          <button class="increase" (click)="updateQuantity(1)">+</button>
+        </div>
+        <button class="add-cart-btn" (click)="addToCart()">ADD TO CART</button>
+      </div>
+      <button class="buy-now-btn" (click)="buyNow()">BUY NOW</button>
+
+      <div class="product-description">
+        <div class="description-header" (click)="toggleDescription()">
+          <h3>Description</h3>
+          <span class="expand-icon">{{ isDescriptionExpanded ? '-' : '+' }}</span>
+        </div>
+        <p *ngIf="isDescriptionExpanded">{{ product.Description }}</p>
+      </div>
+
+      <div class="description-header">
+        <h3>Dimensions</h3>
+        <p *ngIf="product.Dimension as dim">
+          {{ formatDimension(dim) }}
+        </p>
+      </div>
+
+      <div class="description-header">
+        <h3>Origin</h3>
+        <p>{{ product.Origin }}</p>
       </div>
     </div>
   </div>
-  
-  <ng-template #loading>
-    <p>Loading product details...</p>
-  </ng-template>
+
+  <!-- More About This Item -->
+  <div class="more-section">
+    <h2 class="section-title">MORE ABOUT THIS ITEM</h2>
+
+    <div class="tabs">
+      <div class="tabs-header">
+        <div class="tab" [class.active]="selectedTab === 'Story'" (click)="selectTab('Story')">Story</div>
+        <div class="tab" [class.active]="selectedTab === 'ProductCare'" (click)="selectTab('ProductCare')">Product Care</div>
+        <div class="tab" [class.active]="selectedTab === 'ShippingReturn'" (click)="selectTab('ShippingReturn')">Shipping & Return</div>
+      </div>
+
+      <div class="tab-content">
+        <h3 class="content-title">{{ selectedTab }}</h3>
+        <p class="content-text">{{ getTabContent() }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading product details...</p>
+</ng-template>
