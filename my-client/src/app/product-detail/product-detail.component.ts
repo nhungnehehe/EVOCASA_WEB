@@ -16,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   selectedImage: string | null = null;
   isDescriptionExpanded: boolean = false;
   isDimensionsExpanded: boolean = false;
+  errMessage: string = '';
 
   selectedTab: string = 'Story';
   starsArray: number[] = [];
@@ -23,6 +24,10 @@ export class ProductDetailComponent implements OnInit {
   reviewCount: number = 0;
   pairWithProducts: IProduct[] = [];
   allProducts: IProduct[] = [];
+  hoveredIndex: number = -1;
+  hoveredPairProductIndex: number = -1;
+  storyRandomImage: string = '';
+
   private routeSubscription!: Subscription;
 
 
@@ -39,6 +44,7 @@ export class ProductDetailComponent implements OnInit {
       
       // Đặt lại trạng thái component
       this.resetComponentState();
+      this.initializeRandomStoryImage();
       
       // Tải dữ liệu mới
       if (identifier) {
@@ -86,26 +92,38 @@ getProductDetail(identifier: string): void {
             this.product = res;
             this.selectedImage = this.product.Image?.[0] || null;
             this.generateRandomRating();
+
             
             // Khi đã có sản phẩm hiện tại, lấy các sản phẩm ngẫu nhiên để "Pair with"
             this.generatePairWithProducts();
+            this.initializeRandomStoryImage();
         },
         error => {
             console.error('Error fetching product details', error);
         }
     );
 }
+// Thêm phương thức mới để khởi tạo ảnh ngẫu nhiên cho tab Story
+initializeRandomStoryImage(): void {
+  if (this.product && this.product.Image && this.product.Image.length > 0) {
+    const randomIndex = Math.floor(Math.random() * this.product.Image.length);
+    this.storyRandomImage = this.product.Image[randomIndex];
+    console.log('Story random image initialized:', this.storyRandomImage);
+  }
+}
 generatePairWithProducts(): void {
-    if (!this.allProducts || !this.product) return;
-    
-    // Lọc ra các sản phẩm khác với sản phẩm hiện tại
-    const otherProducts = this.allProducts.filter(p => p._id !== this.product?._id);
-    
-    // Trộn ngẫu nhiên danh sách sản phẩm
-    const shuffled = [...otherProducts].sort(() => 0.5 - Math.random());
-    
-    // Lấy 4 sản phẩm đầu tiên sau khi trộn
-    this.pairWithProducts = shuffled.slice(0, 4);
+  if (!this.allProducts || !this.product) return;
+  
+  // Lọc ra các sản phẩm khác với sản phẩm hiện tại
+  const otherProducts = this.allProducts.filter(p => p._id !== this.product?._id);
+  
+  // Trộn ngẫu nhiên danh sách sản phẩm
+  const shuffled = [...otherProducts].sort(() => 0.5 - Math.random());
+  
+  // Lấy 5 sản phẩm đầu tiên sau khi trộn (thay đổi từ 4 lên 5)
+  this.pairWithProducts = shuffled.slice(0, 5);
+  
+  console.log("Pair with products count:", this.pairWithProducts.length);
 }
 /// Chỉnh sửa phương thức điều hướng để xử lý việc chuyển trang đến cùng một component
 viewProductDetails(product: IProduct): void {
@@ -218,12 +236,15 @@ toggleDimensions(): void {
   this.isDimensionsExpanded = !this.isDimensionsExpanded;
 }
 getRandomProductImage(): string {
-    if (!this.product || !this.product.Image || this.product.Image.length === 0) {
-      return '';
-    }
-    
-    const randomIndex = Math.floor(Math.random() * this.product.Image.length);
-    return this.product.Image[randomIndex];
-  }
-  
+  return this.storyRandomImage || (this.product?.Image?.[0] || '');
+}
+
+// Cập nhật các phương thức xử lý hover cho phần Pair with
+onHoverPairProduct(index: number): void {
+  this.hoveredPairProductIndex = index;
+}
+
+onHoverOutPairProduct(): void {
+  this.hoveredPairProductIndex = -1;
+}
 }

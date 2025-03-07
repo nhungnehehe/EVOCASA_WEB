@@ -120,9 +120,10 @@
         </div>
         
         <!-- Nếu tab hiện tại là Story thì hiển thị ảnh sản phẩm ngẫu nhiên -->
-        <div class="content-right" *ngIf="selectedTab === 'Story'">
-          <img [src]="getRandomProductImage()" [alt]="product.Name" class="tab-image" />
-        </div>
+        <!-- Nếu tab hiện tại là Story thì hiển thị ảnh sản phẩm ngẫu nhiên -->
+  <div class="content-right" *ngIf="selectedTab === 'Story'">
+    <img [src]="storyRandomImage || product.Image[0]" [alt]="product.Name" class="tab-image" />
+  </div>
         
         <!-- Nếu tab hiện tại là ProductCare thì hiển thị ảnh -->
         <div class="content-right" *ngIf="selectedTab === 'ProductCare'">
@@ -144,13 +145,24 @@
   
   <div class="related-products-container">
     <div class="related-products">
-      <div class="related-product" *ngFor="let product of pairWithProducts">
+      <div class="related-product" *ngFor="let product of pairWithProducts; let i = index" (click)="viewProductDetails(product)">
         <div class="related-product-image">
-          <img [src]="product.Image[0]" [alt]="product.Name" (click)="viewProductDetails(product)">
+          <div class="pair-image-container" (mouseover)="onHoverPairProduct(i)" (mouseleave)="onHoverOutPairProduct()">
+            <!-- Main image (first image) -->
+            <img [src]="product.Image[0]" [alt]="product.Name" class="pair-main-image">
+            
+            <!-- Hover image (second or next image) -->
+            <img *ngIf="hoveredPairProductIndex === i && product.Image.length > 1" 
+                 [src]="product.Image[1] || product.Image[0]" 
+                 [alt]="product.Name"  
+                 class="pair-hover-image">
+          </div>
         </div>
         <div class="related-product-info">
-          <h3 class="related-product-title" (click)="viewProductDetails(product)">{{ product.Name }}</h3>
-          <div class="related-product-price">{{ product.Price | currency }}</div>
+          <div class="product-info-row">
+            <h3 class="related-product-title">{{ product.Name }}</h3>
+            <div class="related-product-price">{{ product.Price | currency }}</div>
+          </div>
         </div>
       </div>
     </div>
