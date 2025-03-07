@@ -21,7 +21,7 @@ body {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 .progress-container {
     display: flex;
@@ -109,10 +109,15 @@ h2{
     color: #5E4C3E;
     font-size: 18px;
 }
-h3,p {
+h3{
+    margin-bottom: 10px;
     font-size: 16px;
     color: #5E4C3E;
-    margin-bottom: 10px;
+    font-family: Inter;
+}
+p,span {
+    font-size: 16px;
+    color: #5E4C3E;
     font-family: Inter;
 }
 button {
@@ -161,12 +166,11 @@ button:hover {
     border-radius: 8px;
 }
 
-
-
-p {
-    font-size: 16px;
-    margin-bottom: 10px;
+.info-section img{
+    width: 35px;
 }
+
+
 
 a {
     font-size: 14px;
@@ -195,4 +199,136 @@ a:hover {
         width: 100%;
         margin-bottom: 10px;
     }
+}
+.payment-info {
+    display: flex;
+    align-items: center;
+}
+
+.payment-icon {
+    width: 20px;
+    height: auto;
+    margin-right: 10px; /* Tạo khoảng cách giữa logo và chữ */
+}
+
+.payment-text {
+    font-style: italic;
+}
+.item-table-section {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.item-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.item-table th {
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #5E4C3E;
+    color: #5E4C3E;
+}
+.item-table td {
+    padding: 15px;
+    vertical-align: middle; 
+    color: #5E4C3E;
+}
+/* Căn giữa nội dung trong 3 cột cuối */
+.item-table td:nth-child(3), /* Quantity */
+.item-table td:nth-child(4), /* Shipping */
+.item-table td:nth-child(5)  /* Price */ {
+    text-align: center; /* Căn giữa theo chiều ngang */
+}
+.item-table th:nth-child(3), /* Quantity */
+.item-table th:nth-child(4), /* Shipping */
+.item-table th:nth-child(5)  /* Price */ {
+    text-align: center; /* Căn giữa theo chiều ngang */
+}
+
+.item-image {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item-image img {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-details div {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.item-details i {
+    font-size: 14px;
+    color: #7D6B5A;
+}
+
+.item-attributes p {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #5E4C3E;
+}
+.bottom-line td {
+    border-top: 1px solid #5E4C3E; /* Đường kẻ ngang màu nâu */
+    height: 10px; /* Điều chỉnh độ dày nếu cần */
+}
+.total-section {
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.total-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #5E4C3E;
+    font-size: 16px;
+}
+
+.total-table td {
+    padding: 8px 0;
+    text-align: right;
+}
+
+.total-table td:first-child {
+    text-align: left;
+}
+
+.total-row td {
+    border-top: 2px solid #5E4C3E;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+.action {
+    text-align: center;
+    margin-top: 20px;
+
+}
+.action button {
+    padding: 12px 25px;
+    background-color: #525B4A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.action button:hover {
+    background-color: #3F3F32;
 }

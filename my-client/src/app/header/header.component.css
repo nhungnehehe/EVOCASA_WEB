@@ -36,7 +36,7 @@ body {
 
 /* Logo */
 .logo img {
-    height: 40px;
+    height: 35px;
 }
 
 /* Menu chính */
@@ -71,7 +71,7 @@ body {
     left: 0;
     bottom: 0;
     width: 0;
-    height: 1px;               /* Độ dày của đường gạch dưới */
+    height: 0.5px;               /* Độ dày của đường gạch dưới */
     background-color: currentColor; /* Sử dụng màu chữ hiện tại */
     transition: width 0.3s ease; /* Hiệu ứng chuyển động: từ 0 đến 100% */
 }
