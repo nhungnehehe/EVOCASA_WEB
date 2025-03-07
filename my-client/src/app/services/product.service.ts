@@ -19,8 +19,8 @@ export class ProductService {
     );
   }
 
-  getProductById(id: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.apiUrl}/${id}`).pipe(
+  getProductByIdentifier(identifier: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.apiUrl}/${encodeURIComponent(identifier)}`).pipe(
       map(product => this.processProductImage(product)),
       catchError(this.handleError)
     );
