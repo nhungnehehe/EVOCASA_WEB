@@ -26,6 +26,11 @@ import { SabiCollectionComponent } from './collection-detail/sabi-collection/sab
 import { ThePavilionCollectionComponent } from './collection-detail/the-pavilion-collection/the-pavilion-collection.component';
 import { TheDiscCollectionComponent } from './collection-detail/the-disc-collection/the-disc-collection.component';
 import { Blog1Component } from './blog-detail/blog1/blog1.component';
+import { Blog2Component } from './blog-detail/blog2/blog2.component';
+import { Blog3Component } from './blog-detail/blog3/blog3.component';
+import { Blog4Component } from './blog-detail/blog4/blog4.component';
+import { Blog5Component } from './blog-detail/blog5/blog5.component';
+import { Blog6Component } from './blog-detail/blog6/blog6.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +55,11 @@ import { Blog1Component } from './blog-detail/blog1/blog1.component';
     ThePavilionCollectionComponent,
     TheDiscCollectionComponent,
     Blog1Component,
+    Blog2Component,
+    Blog3Component,
+    Blog4Component,
+    Blog5Component,
+    Blog6Component,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,86 @@
+* {
+  background-color: #fffcf3;
+}
+.whole {
+  padding: 0px 80px;
+  line-height: 1.4;
+  padding-bottom: 50px;
+}
+
+.header {
+  color: #5e4c3e;
+  text-align: center;
+  font-family: "Zen Old Mincho";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 22px;
+  letter-spacing: -0.43px;
+  padding: 50px 87px;
+  justify-content: center;
+}
+
+.title {
+  color: #5e4c3e;
+  font-family: "Zen Old Mincho";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 40px;
+  letter-spacing: -0.43px;
+  text-transform: uppercase;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.description {
+  text-align: justify;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+p,
+ul,
+li {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: justify;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: -0.1px;
+}
+img {
+  margin: auto;
+  display: block;
+  width: 50%;
+  height: auto;
+}
+
+h3 {
+  color: #5e4c3e;
+  font-family: "Zen Old Mincho";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: -0.43px;
+}
+.last {
+  margin: 0px;
+  padding: 40px 0px;
+}
+.final {
+  background-color: #f2ead3;
+  text-align: center;
+  padding: 40px;
+  margin: 50px 150px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: -0.05px;
+  border-radius: 5px;
+}
