@@ -1,0 +1,126 @@
+/* Container */
+.customer-management-container {
+    padding: 20px;
+    background-color: #f9f6f2;
+  }
+  
+  /* Header */
+  .header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #5E4C3E;
+  }
+  
+  .summary {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .summary-item {
+    margin: 0 15px;
+    text-align: center;
+  }
+  
+  .summary-item h2 {
+    font-size: 1.5em;
+    color: #5E4C3E;
+  }
+  
+  .summary-item p {
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .percent {
+    font-size: 1.1em;
+    color: green;
+  }
+  
+  .actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .filter-btn, .export-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #C5B6A7;
+    color: #5E4C3E;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .filter-btn:hover, .export-btn:hover {
+    background-color: #5E4C3E;
+    color: #fff;
+  }
+  
+  /* Table */
+  .customer-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customer-table th, .customer-table td {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .customer-table th {
+    background-color: #5E4C3E;
+    color: #fff;
+  }
+  
+  .customer-table td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .customer-table .edit-btn, .customer-table .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  
+  .customer-table .edit-btn {
+    color: #4CAF50;
+  }
+  
+  .customer-table .delete-btn {
+    color: #F44336;
+  }
+  
+  /* Pagination */
+  .pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    padding: 10px;
+    background-color: #5E4C3E;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pagination button:hover {
+    background-color: #C5B6A7;
+  }
+  
+  .page-number {
+    margin: 0 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
