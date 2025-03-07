@@ -21,6 +21,7 @@ import { Blog4Component } from './blog-detail/blog4/blog4.component';
 import { Blog3Component } from './blog-detail/blog3/blog3.component';
 import { Blog2Component } from './blog-detail/blog2/blog2.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { InsituComponent } from './insitu/insitu.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -43,7 +44,8 @@ const routes: Routes = [
   { path: 'blog4', component: Blog4Component },
   { path: 'blog5', component: Blog5Component },
   { path: 'blog6', component: Blog6Component },
-  {path: 'product/:name', component: ProductDetailComponent}
+  { path: 'product/:identifier', component: ProductDetailComponent },
+  {path: 'insitu-page', component: InsituComponent}
 ];
 
 @NgModule({
