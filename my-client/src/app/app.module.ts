@@ -31,6 +31,7 @@ import { Blog3Component } from './blog-detail/blog3/blog3.component';
 import { Blog4Component } from './blog-detail/blog4/blog4.component';
 import { Blog5Component } from './blog-detail/blog5/blog5.component';
 import { Blog6Component } from './blog-detail/blog6/blog6.component';
+import { InsituComponent } from './insitu/insitu.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { Blog6Component } from './blog-detail/blog6/blog6.component';
     Blog4Component,
     Blog5Component,
     Blog6Component,
+    InsituComponent,
   ],
   imports: [
     BrowserModule,
