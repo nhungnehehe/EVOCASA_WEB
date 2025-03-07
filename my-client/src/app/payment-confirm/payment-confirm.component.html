@@ -50,7 +50,10 @@
                         <h2>Payment</h2>
                         <a href="#" class="edit-order">Edit</a>
                     </div>
-                    <p><img src="visa-icon.png" alt="Visa Icon" class="payment-icon"><i>Visa card ending in 2030</i></p>
+                    <div class="payment-info">
+                        <img src="images/payment/Logo_Visa.png" alt="Visa Icon" class="payment-icon">
+                        <span class="payment-text">Visa card ending in 2030</span>
+                    </div>                    
                 </div>
 
                 <!-- Billing Address -->
@@ -70,7 +73,6 @@
         
     </div>
     <div class="item-table-section">
-        <h2>Items</h2>
         <table class="item-table">
             <thead>
                 <tr>
@@ -82,13 +84,16 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Sản phẩm 1 -->
                 <tr>
                     <td class="item-image">
-                        <img src="image.png" alt="Cement Coffee Table">
-                        <div>Cement Coffee Table</div>
-                        <div>True vintage</div>
+                        <img src="image1.png" alt="Cement Coffee Table">
+                        <div class="item-details">
+                            <div>Cement Coffee Table</div>
+                            <i>True vintage</i>
+                        </div>
                     </td>
-                    <td>
+                    <td class="item-attributes">
                         <p><strong>Color:</strong> Light Beige</p>
                         <p><strong>Width:</strong> 35 in</p>
                         <p><strong>Depth:</strong> 46 in</p>
@@ -98,12 +103,56 @@
                     <td>$50.25</td>
                     <td>$3,982</td>
                 </tr>
-                <!-- Add more products as needed -->
+    
+                <!-- Sản phẩm 2 -->
+                <tr>
+                    <td class="item-image">
+                        <img src="image2.png" alt="Wooden Dining Chair">
+                        <div class="item-details">
+                            <div>Wooden Dining Chair</div>
+                            <i>Classic design</i>
+                        </div>
+                    </td>
+                    <td class="item-attributes">
+                        <p><strong>Color:</strong> Dark Walnut</p>
+                        <p><strong>Height:</strong> 40 in</p>
+                        <p><strong>Seat Depth:</strong> 18 in</p>
+                    </td>
+                    <td>2</td>
+                    <td>$30.00</td>
+                    <td>$450</td>
+                </tr>
+                <tr class="bottom-line">
+                    <td colspan="5"></td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <!-- Action Button -->
+    <div class="total-section">
+        <h2 class="total-title">Total</h2>
+        <table class="total-table">
+            <tbody>
+                <tr>
+                    <td>1 Item</td>
+                    <td>$3,982</td>
+                </tr>
+                <tr>
+                    <td>Sales Tax</td>
+                    <td>$318.56</td>
+                </tr>
+                <tr>
+                    <td>Delivery</td>
+                    <td>$50.25</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>Total</strong></td>
+                    <td><strong>$4,350.81</strong></td>
+                </tr>
+            </tbody>
+        </table>
+            <!-- Action Button -->
     <div class="action">
-        <a href="/payment-notice"><button type="submit">PLACE ORDER</button></a>
+        <a routerLink="/payment-notice"><button type="submit">PLACE ORDER</button></a>
+    </div>
     </div>
 </body>

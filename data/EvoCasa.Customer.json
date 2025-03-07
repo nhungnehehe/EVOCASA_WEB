@@ -1,0 +1,135 @@
+[{
+  "_id": {
+    "$oid": "65c0b01cc5fec55b70d0fa01"
+  },
+  "Name": "Huyền",
+  "Phone": "0987654321",
+  "Mail": "huyen@example.com",
+  "DOB": {
+    "$date": "1995-05-12T00:00:00.000Z"
+  },
+  "Address": "Hà Nội, Việt Nam",
+  "Password": "hashedpassword1",
+  "Gender": "Female",
+  "Image": "/images/profile/huyen.jpg",
+  "CreatedAt": {
+    "$date": "2024-02-28T00:00:00.000Z"
+  },
+  "Cart": [
+    {
+      "ProductId": {
+        "$oid": "67c0b01cc5fec55b70d0fc9b"
+      },
+      "Quantity": 1
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65c0b01cc5fec55b70d0fa02"
+  },
+  "Name": "Nhung",
+  "Phone": "0978123456",
+  "Mail": "nhung@example.com",
+  "DOB": {
+    "$date": "1993-08-22T00:00:00.000Z"
+  },
+  "Address": "Hồ Chí Minh, Việt Nam",
+  "Password": "hashedpassword2",
+  "Gender": "Female",
+  "Image": "/images/profile/nhung.jpg",
+  "CreatedAt": {
+    "$date": "2024-02-28T00:00:00.000Z"
+  },
+  "Cart": []
+},
+{
+  "_id": {
+    "$oid": "65c0b01cc5fec55b70d0fa03"
+  },
+  "Name": "Như",
+  "Phone": "0965234789",
+  "Mail": "nhu@example.com",
+  "DOB": {
+    "$date": "1997-02-10T00:00:00.000Z"
+  },
+  "Address": "Đà Nẵng, Việt Nam",
+  "Password": "hashedpassword3",
+  "Gender": "Female",
+  "Image": "/images/profile/nhu.jpg",
+  "CreatedAt": {
+    "$date": "2024-02-28T00:00:00.000Z"
+  },
+  "Cart": [
+    {
+      "ProductId": {
+        "$oid": "67c0b01cc5fec55b70d0fc9b"
+      },
+      "Quantity": 2
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65c0b01cc5fec55b70d0fa04"
+  },
+  "Name": "Thảo",
+  "Phone": "0954678912",
+  "Mail": "thao@example.com",
+  "DOB": {
+    "$date": "1998-12-15T00:00:00.000Z"
+  },
+  "Address": "Hải Phòng, Việt Nam",
+  "Password": "hashedpassword4",
+  "Gender": "Female",
+  "Image": "/images/profile/thao.jpg",
+  "CreatedAt": {
+    "$date": "2024-02-28T00:00:00.000Z"
+  },
+  "Cart": []
+},
+{
+  "_id": {
+    "$oid": "65c0b01cc5fec55b70d0fa05"
+  },
+  "Name": "Trang",
+  "Phone": "0945789123",
+  "Mail": "trang@example.com",
+  "DOB": {
+    "$date": "1996-06-30T00:00:00.000Z"
+  },
+  "Address": "Cần Thơ, Việt Nam",
+  "Password": "hashedpassword5",
+  "Gender": "Female",
+  "Image": "/images/profile/trang.jpg",
+  "CreatedAt": {
+    "$date": "2024-02-28T00:00:00.000Z"
+  },
+  "Cart": [
+    {
+      "ProductId": {
+        "$oid": "67c0b01cc5fec55b70d0fc9b"
+      },
+      "Quantity": 3
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65c0b01cc5fec55b70d0fa06"
+  },
+  "Name": "Thanh",
+  "Phone": "0934895671",
+  "Mail": "thanh@example.com",
+  "DOB": {
+    "$date": "1994-04-18T00:00:00.000Z"
+  },
+  "Address": "Nha Trang, Việt Nam",
+  "Password": "hashedpassword6",
+  "Gender": "Female",
+  "Image": "/images/profile/thanh.jpg",
+  "CreatedAt": {
+    "$date": "2024-02-28T00:00:00.000Z"
+  },
+  "Cart": []
+}]

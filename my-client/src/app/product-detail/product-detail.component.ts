@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { IProduct } from '../interfaces/product';
 import { ProductService } from '../services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-product-detail',
@@ -14,45 +15,141 @@ export class ProductDetailComponent implements OnInit {
   quantity: number = 1;
   selectedImage: string | null = null;
   isDescriptionExpanded: boolean = false;
+  isDimensionsExpanded: boolean = false;
+  errMessage: string = '';
+
   selectedTab: string = 'Story';
   starsArray: number[] = [];
+  rating: number = 0;
+  reviewCount: number = 0;
+  pairWithProducts: IProduct[] = [];
+  allProducts: IProduct[] = [];
+  hoveredIndex: number = -1;
+  hoveredPairProductIndex: number = -1;
+  storyRandomImage: string = '';
+
+  private routeSubscription!: Subscription;
+
 
   constructor(
       private route: ActivatedRoute,
-      private productService: ProductService
+      private productService: ProductService,
+      private router: Router,
   ) {}
 
   ngOnInit(): void {
-      // Lấy tham số từ URL
-      const identifier = this.route.snapshot.paramMap.get('identifier');
+    // Sử dụng paramMap.subscribe thay vì snapshot để lắng nghe thay đổi tham số route
+    this.routeSubscription = this.route.paramMap.subscribe(params => {
+      const identifier = params.get('identifier');
+      
+      // Đặt lại trạng thái component
+      this.resetComponentState();
+      this.initializeRandomStoryImage();
+      
+      // Tải dữ liệu mới
       if (identifier) {
-          console.log('Received identifier:', identifier); // Kiểm tra giá trị
-          this.getProductDetail(identifier);
+        console.log('Loading product with identifier:', identifier);
+        this.loadData(identifier);
       } else {
-          console.error('Error: Product identifier is missing in route parameters.');
+        console.error('Error: Product identifier is missing in route parameters.');
       }
+    });
+  }
+  // Phương thức khởi tạo lại trạng thái
+  resetComponentState(): void {
+    this.product = null;
+    this.selectedImage = null;
+    this.quantity = 1;
+    this.isDescriptionExpanded = false;
+    this.isDimensionsExpanded = false;
+    this.selectedTab = 'Story';
+  }
+  // Phương thức tải dữ liệu
+  loadData(identifier: string): void {
+    // Lấy tất cả sản phẩm trước
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        this.allProducts = products;
+        
+        // Sau đó lấy chi tiết sản phẩm
+        this.getProductDetail(identifier);
+      },
+      error: (err) => {
+        console.error('Error fetching all products:', err);
+      }
+    });
+  }
+   // Đảm bảo dọn dẹp subscription khi component bị hủy
+   ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+getProductDetail(identifier: string): void {
+    this.productService.getProductByIdentifier(identifier).subscribe(
+        (res: IProduct) => {
+            console.log('Product fetched:', res);
+            this.product = res;
+            this.selectedImage = this.product.Image?.[0] || null;
+            this.generateRandomRating();
+
+            
+            // Khi đã có sản phẩm hiện tại, lấy các sản phẩm ngẫu nhiên để "Pair with"
+            this.generatePairWithProducts();
+            this.initializeRandomStoryImage();
+        },
+        error => {
+            console.error('Error fetching product details', error);
+        }
+    );
+}
+// Thêm phương thức mới để khởi tạo ảnh ngẫu nhiên cho tab Story
+initializeRandomStoryImage(): void {
+  if (this.product && this.product.Image && this.product.Image.length > 0) {
+    const randomIndex = Math.floor(Math.random() * this.product.Image.length);
+    this.storyRandomImage = this.product.Image[randomIndex];
+    console.log('Story random image initialized:', this.storyRandomImage);
+  }
+}
+generatePairWithProducts(): void {
+  if (!this.allProducts || !this.product) return;
+  
+  // Lọc ra các sản phẩm khác với sản phẩm hiện tại
+  const otherProducts = this.allProducts.filter(p => p._id !== this.product?._id);
+  
+  // Trộn ngẫu nhiên danh sách sản phẩm
+  const shuffled = [...otherProducts].sort(() => 0.5 - Math.random());
+  
+  // Lấy 5 sản phẩm đầu tiên sau khi trộn (thay đổi từ 4 lên 5)
+  this.pairWithProducts = shuffled.slice(0, 5);
+  
+  console.log("Pair with products count:", this.pairWithProducts.length);
+}
+/// Chỉnh sửa phương thức điều hướng để xử lý việc chuyển trang đến cùng một component
+viewProductDetails(product: IProduct): void {
+    if (product.Name) {
+      const productName = encodeURIComponent(product.Name.trim());
+      
+      // Kiểm tra xem có phải đang ở cùng trang không
+      if (this.router.url === `/product/${productName}`) {
+        // Nếu cùng trang, có thể buộc reload
+        window.location.reload();
+      } else {
+        // Nếu khác trang, dùng router navigate
+        this.router.navigate(['/product', productName]);
+      }
+    } else {
+      console.error('Error: Product name is missing');
+    }
   }
 
-  getProductDetail(identifier: string): void {
-      this.productService.getProductByIdentifier(identifier).subscribe(
-          (res: IProduct) => {
-              console.log('Product fetched:', res); // Kiểm tra dữ liệu trả về
-              this.product = res;
-              this.selectedImage = this.product.Image?.[0] || null;
-              this.generateRandomRating();
-          },
-          error => {
-              console.error('Error fetching product details', error);
-          }
-      );
+ // Tạo rating trung bình ngẫu nhiên từ 4 đến 5 sao và số lượt đánh giá từ 10 đến 20
+ generateRandomRating(): void {
+    const randomRating = (Math.random() * (5 - 4) + 4).toFixed(1);
+    this.rating = parseFloat(randomRating);
+    this.starsArray = new Array(Math.round(this.rating)).fill(1);
+    this.reviewCount = Math.floor(Math.random() * (20 - 10 + 1)) + 10; // random từ 10 đến 20
   }
-
-  // Tạo rating ngẫu nhiên từ 4 đến 5 sao
-  generateRandomRating(): void {
-      const randomRating = (Math.random() * (5 - 4) + 4).toFixed(1);
-      this.starsArray = new Array(Math.round(Number(randomRating))).fill(1);
-  }
-
   // Chọn ảnh hiển thị
   selectImage(image: string): void {
       this.selectedImage = image;
@@ -85,7 +182,7 @@ export class ProductDetailComponent implements OnInit {
   toggleDescription(): void {
       this.isDescriptionExpanded = !this.isDescriptionExpanded;
   }
-
+    
   // Chọn tab (Story, Product Care, Shipping & Return)
   selectTab(tab: string): void {
       this.selectedTab = tab;
@@ -99,14 +196,55 @@ export class ProductDetailComponent implements OnInit {
       return '';
   }
 
-  // Hàm định dạng kích thước sản phẩm
-  formatDimension(dimension: any): string {
-      if (typeof dimension === 'string') {
-          return dimension.replace(/\n/g, ' ');
-      }
-      if (dimension && dimension.Width !== undefined && dimension.Height !== undefined) {
-          return `${dimension.Width} × ${dimension.Height} ${dimension.unit || ''}`;
-      }
-      return 'No dimension provided.';
-  }  
+  // Get dimensions as an array of lines, one dimension per line
+  getDimensionLines(dimension: any): string[] {
+    if (!dimension) {
+        return ['No dimensions available'];
+    }
+    
+    if (typeof dimension === 'string') {
+        // If it's a string, split by new lines or return as is
+        return dimension.split('\n').filter(line => line.trim() !== '');
+    }
+    
+    // Build dimension lines from available properties
+    const dimensionLines = [];
+    const unit = dimension.unit || 'in';
+    
+    if (dimension.Width !== undefined) {
+        dimensionLines.push(`Width: ${dimension.Width} ${unit}`);
+    }
+    
+    if (dimension.Length !== undefined) {
+        dimensionLines.push(`Length: ${dimension.Length} ${unit}`);
+    }
+    
+    if (dimension.Height !== undefined) {
+        dimensionLines.push(`Height: ${dimension.Height} ${unit}`);
+    }
+    
+    if (dimension.Depth !== undefined) {
+        dimensionLines.push(`Depth: ${dimension.Depth} ${unit}`);
+    }
+    
+    return dimensionLines.length > 0 
+        ? dimensionLines 
+        : ['No dimension details available'];
+}  
+
+toggleDimensions(): void {
+  this.isDimensionsExpanded = !this.isDimensionsExpanded;
+}
+getRandomProductImage(): string {
+  return this.storyRandomImage || (this.product?.Image?.[0] || '');
+}
+
+// Cập nhật các phương thức xử lý hover cho phần Pair with
+onHoverPairProduct(index: number): void {
+  this.hoveredPairProductIndex = index;
+}
+
+onHoverOutPairProduct(): void {
+  this.hoveredPairProductIndex = -1;
+}
 }
