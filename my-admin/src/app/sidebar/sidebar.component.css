@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar Background with Gradient */
+h1{
+    color: #F2EAD3;
+    padding: auto;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 11px;
+    height: 20px;
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.navigate__bar {
+    position: fixed;
+    background: #5E4C3E;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    padding: 20px 0;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav__title {
+    text-align: center;
+}
+
+
+/* Navigation Links */
+.nav__content {
+    list-style: none;
+    color: #F2EAD3;
+    margin-top: 55px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.navigate__bar--link {
+    display: flex;
+    color:#F2EAD3;
+    align-items: center;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 0px;
+    transition: background 0.3s ease, color 0.3s ease;
+    margin: 10px 0;
+}
+
+.navigate__bar--link:hover {
+    background: #C5B6A7;
+    color: #5E4C3E;
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+
+/* Dropdown Menu */
+.nav__item--dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+
+.dropdown-list {
+    visibility: hidden;
+    display: none;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 30px;
+    gap: 20px;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.nav__item--dropdown:hover .dropdown-list {
+    visibility: visible;
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.item--dropdown {
+    color: #ECEFF1 !important;
+    text-decoration: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    border-radius: 6px;
+}
+
+.item--dropdown:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Hover Effect for Icons */
+.material-icons-outlined {
+    color: #F2EAD3;
+    margin-right: 12px;
+    transition: color 0.3s ease;
+}
+
+.material-symbols-outlined {
+    color: #F2EAD3;
+    margin-right: 5px;
+    margin-left: 30px;
+    transition: color 0.3s ease;
+}
+
+
+.navigate__bar--link:hover .material-icons-outlined {
+    color: #5E4C3E;
+}
+
+/* Subtle Box Shadow for Hovered Items */
+ul li:hover {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.nav__item {
+    margin-left: 5px;
+}
+
+
+.navigate__bar--link:active {
+    color: #F2EAD3;
+    background: none;  /* Bỏ màu nền khi nhấn */
+    text-decoration: none; /* Bỏ gạch chân */
+}
