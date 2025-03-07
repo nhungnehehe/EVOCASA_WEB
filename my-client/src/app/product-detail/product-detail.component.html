@@ -1,1 +1,62 @@
-<p>product-detail works!</p>
+<div *ngIf="product; else loading">
+    <h1>{{ product.Name }}</h1>
+    <p>
+      <strong>Price:</strong>
+      {{ product.Price | currency }}
+    </p>
+    <p>
+      <strong>Description:</strong>
+      {{ product.Description }}
+    </p>
+    <p>
+      <strong>Origin:</strong>
+      {{ product.Origin }}
+    </p>
+    <p>
+      <strong>Uses:</strong>
+      {{ product.Uses }}
+    </p>
+    <p>
+      <strong>Store:</strong>
+      {{ product.Store }}
+    </p>
+    <p>
+      <strong>Quantity:</strong>
+      {{ product.Quantity }}
+    </p>
+    <p>
+      <strong>Create Date:</strong>
+      {{ product.Create_date | date:'medium' }}
+    </p>
+    
+    <div *ngIf="product.Dimension">
+      <p>
+        <strong>Dimension:</strong>
+        {{ formatDimension(product.Dimension) }}
+      </p>
+    </div>
+    
+    <p *ngIf="product.Story">
+      <strong>Story:</strong>
+      {{ product.Story }}
+    </p>
+    <p *ngIf="product.ProductCare">
+      <strong>Product Care:</strong>
+      {{ product.ProductCare }}
+    </p>
+    <p *ngIf="product.ShippingReturn">
+      <strong>Shipping & Return:</strong>
+      {{ product.ShippingReturn }}
+    </p>
+    
+    <div *ngIf="product.Image && product.Image.length">
+      <h2>Images</h2>
+      <div *ngFor="let img of product.Image">
+        <img [src]="img" [alt]="product.Name" style="max-width:200px; margin-right:10px;" />
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <p>Loading product details...</p>
+  </ng-template>

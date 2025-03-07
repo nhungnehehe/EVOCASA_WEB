@@ -73,28 +73,6 @@
           <div class="product-title">{{ product.Name }}</div>
           <div class="product-price">${{ product.Price.toFixed(2) }}</div>
         </div>
-    <!-- <div class="product-card"> -->
-      <div class="card-header p-0">
-        <div class="image-container">
-          <ng-container *ngIf="product.Image && product.Image.length > 0">
-            <img
-              [src]="product.Image[0]"
-              [alt]="product.Name"
-              class="img-fluid main-image"
-            >
-          </ng-container>
-          <img *ngIf="!product.Image || product.Image.length === 0"
-            src="assets/images/placeholder.jpg"
-            [alt]="product.Name"
-            class="img-fluid main-image"
-          >
-        </div>
-      </div>
-      
-      <div class="product-header">
-        <div class="product-title">{{ product.Name }}</div>
-        <div class="product-price">${{ product.Price.toFixed(2) }}</div>
-      </div>
     </div>
    <!-- </div>  -->
   </ng-container>

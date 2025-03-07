@@ -111,19 +111,32 @@ app.get("/products/category/:categoryId", async (req, res) => {
 });
 
 // API to get a specific product
-app.get("/products/:id", async (req, res) => {
+app.get("/products/:identifier", async (req, res) => {
     try {
-        const { id } = req.params;
-        const result = await productCollection.findOne({ _id: new ObjectId(id) });
+        const { identifier } = req.params;
+        
+        let query;
+        if (ObjectId.isValid(identifier)) {
+            // Nếu identifier là một ObjectId hợp lệ, tìm theo ID
+            query = { _id: new ObjectId(identifier) };
+        } else {
+            // Nếu không phải ObjectId, tìm theo tên sản phẩm
+            query = { Name: decodeURIComponent(identifier) };
+        }
+
+        const result = await productCollection.findOne(query);
         if (!result) {
             return res.status(404).send({ error: "Product not found" });
         }
+
         res.status(200).send(result);
     } catch (error) {
         console.error("Error fetching product:", error);
         res.status(500).send({ error: "Error fetching product" });
     }
 });
+
+
 
 // API to create a new product
 app.post("/products", async (req, res) => {
