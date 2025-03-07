@@ -20,9 +20,15 @@
       <h1 class="product-title">{{ product.Name }}</h1>
 
       <div class="product-rating">
-        <div class="stars">
-          <span class="star" *ngFor="let star of starsArray">★</span>
+        <div class="star-rating">
+          <div class="star-rating-top" [style.width.%]="(rating/5)*100">
+            ★★★★★
+          </div>
+          <div class="star-rating-bottom">
+            ★★★★★
+          </div>
         </div>
+        <span class="rating-value">({{ reviewCount }} reviews)</span>
       </div>
 
       <div class="product-price">
@@ -40,28 +46,54 @@
       </div>
       <button class="buy-now-btn" (click)="buyNow()">BUY NOW</button>
 
-      <div class="product-description">
-        <div class="description-header" (click)="toggleDescription()">
-          <h3>Description</h3>
-          <span class="expand-icon">{{ isDescriptionExpanded ? '-' : '+' }}</span>
+     <!-- Description -->
+     <div class="product-description">
+      <div class="description-header" (click)="toggleDescription()">
+        <h3>Description</h3>
+        <span class="expand-icon" [attr.aria-expanded]="isDescriptionExpanded">
+          <span class="animated-plus"></span>
+        </span>
+      </div>
+      <div class="section-content" *ngIf="isDescriptionExpanded">
+        <p>{{ product.Description }}</p>
+      </div>
+      <div class="section-divider"></div>
+    </div>
+
+      <!-- Dimensions -->
+      <div class="product-dimensions">
+        <div class="dimensions-header" (click)="toggleDimensions()">
+          <h3>Dimensions</h3>
+          <span class="expand-icon" [attr.aria-expanded]="isDimensionsExpanded">
+            <span class="animated-plus"></span>
+          </span>
         </div>
-        <p *ngIf="isDescriptionExpanded">{{ product.Description }}</p>
+        <div class="section-content dimensions-content" *ngIf="isDimensionsExpanded">
+          <div *ngFor="let dimension of getDimensionLines(product.Dimension)" class="dimension-line">
+            <ng-container *ngIf="dimension.indexOf(':') !== -1; else normalText">
+              <strong>{{ dimension.split(':')[0] }}:</strong>{{ dimension.split(':')[1] }}
+            </ng-container>
+            <ng-template #normalText>
+              {{ dimension }}
+            </ng-template>
+          </div>
+        </div>
+        <div class="section-divider"></div>
       </div>
-
-      <div class="description-header">
-        <h3>Dimensions</h3>
-        <p *ngIf="product.Dimension as dim">
-          {{ formatDimension(dim) }}
-        </p>
-      </div>
-
-      <div class="description-header">
-        <h3>Origin</h3>
-        <p>{{ product.Origin }}</p>
+        <!-- Share This -->
+               <!-- Share This -->
+      <div class="share-section">
+        <div class="share-header">
+          <h3>Share this</h3>
+        </div>
+        <div class="follow-us">
+          <a href="https://vi-vn.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+          <a href="https://x.com/" target="_blank"><i class="fa fa-twitter"></i></a>
+          <a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a>
+        </div>
       </div>
     </div>
   </div>
-
   <!-- More About This Item -->
   <div class="more-section">
     <h2 class="section-title">MORE ABOUT THIS ITEM</h2>
@@ -74,11 +106,56 @@
       </div>
 
       <div class="tab-content">
-        <h3 class="content-title">{{ selectedTab }}</h3>
-        <p class="content-text">{{ getTabContent() }}</p>
+        <div class="content-left">
+          <h3 class="content-title">
+            <ng-container [ngSwitch]="selectedTab">
+              <ng-container *ngSwitchCase="'ShippingReturn'">Shipping & Return</ng-container>
+              <ng-container *ngSwitchCase="'ProductCare'">Product Care</ng-container>
+              <ng-container *ngSwitchDefault>{{ selectedTab }}</ng-container>
+            </ng-container>
+          </h3>
+          <div class="content-text-container">
+            <p class="content-text">{{ getTabContent() }}</p>
+          </div>
+        </div>
+        
+        <!-- Nếu tab hiện tại là Story thì hiển thị ảnh sản phẩm ngẫu nhiên -->
+        <div class="content-right" *ngIf="selectedTab === 'Story'">
+          <img [src]="getRandomProductImage()" [alt]="product.Name" class="tab-image" />
+        </div>
+        
+        <!-- Nếu tab hiện tại là ProductCare thì hiển thị ảnh -->
+        <div class="content-right" *ngIf="selectedTab === 'ProductCare'">
+          <img src="/images/productcare.jpg" alt="Product Care" class="tab-image" />
+        </div>
+        
+        <!-- Nếu tab hiện tại là ShippingReturn thì hiển thị ảnh -->
+        <div class="content-right" *ngIf="selectedTab === 'ShippingReturn'">
+          <img src="/images/shippingreturn.jpg" alt="Shipping & Return" class="tab-image" />
+        </div>
       </div>
     </div>
   </div>
+<!-- Thêm vào cuối, trước </div> cuối cùng của .product-detail-container -->
+
+<!-- Pair with section -->
+<div class="pair-with-section" *ngIf="pairWithProducts.length > 0">
+  <h2 class="section-title">PAIR WITH</h2>
+  
+  <div class="related-products-container">
+    <div class="related-products">
+      <div class="related-product" *ngFor="let product of pairWithProducts">
+        <div class="related-product-image">
+          <img [src]="product.Image[0]" [alt]="product.Name" (click)="viewProductDetails(product)">
+        </div>
+        <div class="related-product-info">
+          <h3 class="related-product-title" (click)="viewProductDetails(product)">{{ product.Name }}</h3>
+          <div class="related-product-price">{{ product.Price | currency }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <ng-template #loading>
