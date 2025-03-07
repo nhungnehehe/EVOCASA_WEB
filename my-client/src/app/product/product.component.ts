@@ -14,6 +14,8 @@ export class ProductComponent implements OnInit {
   products: any[] = []; // Danh sách sản phẩm
   errMessage: string = ''; // Biến để lưu thông báo lỗi
   lastCategory: string | null = null;
+  hovered: boolean = false; // Thêm thuộc tính hovered để kiểm tra trạng thái hover
+  hoveredIndex: number = -1; // Thêm thuộc tính hoveredIndex để xác định ảnh đang được hover
 
   constructor(
     private productService: ProductService,
@@ -21,11 +23,19 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Lấy danh sách sản phẩm từ API
     this.productService.getProducts().subscribe({
       next: (data) => {
-        this.products = data;
-        console.log('Products fetched successfully:', this.products);
+        this.products = data.map((product: any) => {
+          if (product.Image && typeof product.Image === 'string') {
+            try {
+              product.Image = JSON.parse(product.Image); // Ensure it is an array of image URLs
+            } catch (e) {
+              console.error("Error parsing images for product:", product.Name, e);
+              product.Image = []; // Fallback if parsing fails
+            }
+          }
+          return product;
+        });
       },
       error: (err) => {
         this.errMessage = 'Error fetching products. Please try again later.';
@@ -34,47 +44,44 @@ export class ProductComponent implements OnInit {
     });
     this.initializeMenu()
   }
-  loadProducts(): void {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        // Process the data to fix image arrays
-        this.products = data.map((product: any) => {
-          // Handle Image if it's a JSON string
-          if (product.Image && typeof product.Image === 'string') {
-            try {
-              product.Image = JSON.parse(product.Image);
-            } catch (e) {
-              product.Image = [];
-              console.error('Error parsing product image:', e);
-            }
+  // Check if product.Image is an array, and parse if necessary
+loadProducts(): void {
+  this.productService.getProducts().subscribe({
+    next: (data) => {
+      this.products = data.map((product: any) => {
+        if (product.Image && typeof product.Image === 'string') {
+          try {
+            product.Image = JSON.parse(product.Image);
+          } catch (e) {
+            console.error("Error parsing images for product:", product.Name, e);
+            product.Image = [];
           }
-          return product;
-        });
-        
-        console.log('Products fetched successfully:', this.products);
-      },
-      error: (err) => {
-        this.errMessage = 'Error fetching products. Please try again later.';
-        console.error('Error:', err);
-      }
-    });
-  }
-  // Add this method to your product.component.ts file
-formatDimension(dimension: any): string {
-  // If dimension is a string
-  if (typeof dimension === 'string') {
-    // Return it formatted, replacing \n with spaces or <br> tags
-    return dimension.replace(/\n/g, ' ');
-  }
-  
-  // If dimension is an object with Width, Height, and unit properties
-  if (dimension && dimension.Width !== undefined && dimension.Height !== undefined) {
-    return `${dimension.Width} × ${dimension.Height} ${dimension.unit || ''}`;
-  }
-  
-  // Default case - return as is
-  return dimension;
+        }
+        return product;
+      });
+    },
+    error: (err) => {
+      this.errMessage = 'Error fetching products. Please try again later.';
+    }
+  });
 }
+
+
+  // Update hoveredIndex only when hovered over a product with more than one image
+// Update hoveredIndex only when hovered over a product with more than one image
+onHover(index: number): void {
+  // If the product has more than 1 image, set the hovered index to the next one
+  if (this.products[index].Image.length > 1) {
+    this.hoveredIndex = 1;  // Show the second image (index 1) when hovering
+  }
+}
+
+// Reset the hoveredIndex when the hover ends
+onHoverOut(): void {
+  this.hoveredIndex = -1;  // Reset to the main image
+}
+
+
 // Initialize the menu, hiding second-level categories
 initializeMenu(): void {
   const level2s = document.querySelectorAll('.level2');

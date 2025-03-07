@@ -6,17 +6,38 @@
 /* Image container */
 .image-container {
   position: relative;
-  background-color: #f9f9f9;
-  /* padding: 15px; */
 }
 
-.main-image {
+/* Main image */
+.image-container .main-image {
   width: 100%;
-  /* height: 250px; */
-  object-fit: contain;
+  height: 300px;
   display: block;
   margin: 0 auto;
+  border-radius: 7px;
 }
+
+/* Hover image */
+.image-container .hover-image {
+  width: 100%;
+  height: 300px;
+  display: none; /* Initially hidden */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 7px;
+}
+
+/* Show the hover image when hovering */
+.image-container:hover .hover-image {
+  display: block;
+  opacity: 1;
+}
+
+/* Hide the main image when hovering */
+.image-container:hover .main-image {
+  display: none;
+}
+
 
 /* Title and price container */
 .product-header {
@@ -29,7 +50,7 @@
 
 /* Product title */
 .product-title {
-  font-size: 15px; /* Reduced font size */
+  font-size: 14px; /* Reduced font size */
   /* font-weight: 600; */
   margin-bottom: 5px;
   text-align: left;
@@ -38,7 +59,7 @@
 
 /* Product price */
 .product-price {
-  font-size: 15px; /* Reduced font size */
+  font-size: 14px; /* Reduced font size */
   /* font-weight: 600; */
   /* color: #e63946; */
   margin: 0;
@@ -49,7 +70,7 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Adjust the gap between products */
+  gap: 25px; /* Adjust the gap between products */
   justify-content: center; /* Ensure all items are centered horizontally */
   margin: 0 auto; /* Center the row horizontally */
   padding: 0 15px; /* Optional: adds padding on the left and right */
@@ -59,26 +80,26 @@
 /* Product card styling */
 .product-card {
   height: 100%;
-  border-radius: 7px;
+  /* border-radius: 7px; */
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 280px; /* Set the width of each product card */
+  width: 250px; /* Set the width of each product card */
   margin-bottom: 30px;
   box-sizing: border-box;
   flex: 0 0 auto; /* Prevents products from shrinking */
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  /* transform: translateY(-5px); */
+  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); */
   cursor: pointer;
 }
 
 /* Responsive adjustments */
-@media (max-width: 1200px) {
+@media (max-width: 200px) {
   .product-card {
     flex: 1 1 calc(25% - 20px); /* 4 items per row */
   }
