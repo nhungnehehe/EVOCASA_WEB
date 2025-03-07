@@ -154,7 +154,8 @@ input {
 .inline-inputs {
     display: flex;
     gap: 20px;
-    align-items: flex-start;
+    align-items: center; /* Canh giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách vừa phải giữa các phần tử */
 }
 .inline-inputs input {
     width: 48%;
@@ -165,9 +166,21 @@ input {
     font-size: 14px;
     color: #333;
 }
+
+
+.inline-inputs img {
+    width: 30px; /* Thu nhỏ kích thước lại theo ý muốn */
+    height: auto; /* Giữ tỉ lệ hình ảnh */
+    cursor: pointer; /* Nếu muốn icon có hiệu ứng click chuột */
+}
+
+
 input[type="radio"] {
     display: none;
     /* Hides the default radio button */
+}
+input[type="radio"]:checked+label {
+    border: 2px solid #5E4E41;
 }
 .payment-option {
     /* display: flex; */
@@ -175,11 +188,14 @@ input[type="radio"] {
     margin-top: 20px;
 }
 .payment-choice {
-    width: 48%;
+    width: 100%;
     /* Reduced width so they fit on one line */
 }
 .payment-card {
-    display: block;
+    display: flex; /* Thay đổi thành flex để căn chỉnh nội dung dễ hơn */
+    justify-content: space-between; /* Đẩy nội dung về hai phía đối diện nhau */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    /* display: block; */
     padding: 15px;
     background-color: #FFFFFF;
     border: 1px solid #5E4E41;
