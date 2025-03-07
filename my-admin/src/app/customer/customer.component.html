@@ -1,52 +1,65 @@
-    <div class="header">
-      <h1>CUSTOMER MANAGEMENT</h1>
-      <div class="summary">
-        <div class="summary-item">
+
+<h1> CUSTOMER MANAGEMENT </h1>
+    
+    <div class="summary-container">
+        <div class="summary-card">
           <h2>Total customers</h2>
-          <p>5,641 <span class="percent">+15% this month</span></p>
+          <div class="value-container">
+            <p class="value">5,641</p>
+            <p class="percentage">+15% <span>This month</span></p>
+          </div>
         </div>
-        <div class="summary-item">
+        <div class="summary-card">
           <h2>New customers</h2>
-          <p>110 <span class="percent">+10% this month</span></p>
+          <div class="value-container">
+            <p class="value">110</p>
+            <p class="percentage">+10% <span>This month</span></p>
+          </div>
         </div>
-        <div class="summary-item">
+        <div class="summary-card">
           <h2>Total orders</h2>
-          <p>10,641 <span class="percent">+10% this month</span></p>
+          <div class="value-container">
+            <p class="value">10,641</p>
+            <p class="percentage">+10% <span>This month</span></p>
+          </div>
         </div>
-      </div>
-      <div class="actions">
+    </div>
+
+    <div class="actions">
         <button class="filter-btn">Filter by</button>
         <button class="export-btn">Exports</button>
-      </div>
     </div>
-  
-    <table class="customer-table">
-      <thead>
-        <tr>
-          <th>Customer ID</th>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Amount</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let customer of customers">
-          <td>{{ customer.id }}</td>
-          <td>{{ customer.name }}</td>
-          <td>{{ customer.gender }}</td>
-          <td>{{ customer.email }}</td>
-          <td>{{ customer.phone }}</td>
-          <td>{{ customer.amount }}</td>
-          <td>
-            <button class="edit-btn"><i class="fa fa-pencil"></i></button>
-            <button class="delete-btn"><i class="fa fa-trash"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="table-container">
+        <table class="customer-table">
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Amount</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of customers">
+              <td>{{ customer.id }}</td>
+              <td>{{ customer.name }}</td>
+              <td>{{ customer.gender }}</td>
+              <td>{{ customer.email }}</td>
+              <td>{{ customer.phone }}</td>
+              <td>{{ customer.amount }}</td>
+              <td>
+                <button class="edit-btn"><i class="fa fa-pencil"></i></button>
+                <button class="delete-btn"><i class="fa fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
   
     <div class="pagination">
       <button class="prev-btn">&lt;</button>
