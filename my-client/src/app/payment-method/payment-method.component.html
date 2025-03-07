@@ -23,7 +23,7 @@
             <h1>Payment</h1>
             <p><i>Payments are SSL encrypted so that your credit card and payment details stay safe.</i></p>
             <form action="#">
-                <div>
+                <div class="payment-option">
                     <h2>Credit/Debit Card</h2>
                 </div>
                 <div class="payment-card-wrapper">
@@ -32,26 +32,46 @@
                     <div class="inline-inputs">
                         <input type="text" placeholder="MM/YY" required>
                         <input type="text" placeholder="CVV" required>
+                        <img src="images/payment/Question.svg" />
                     </div>
                 </div>
+                <div class="payment-option">
+                    <!-- HTML Angular template -->
                     <div class="delivery-choice">
-                        <input type="radio" id="express" name="delivery" value="express" checked>
+                        <input type="radio" id="card" name="payment-method" value="Card" [(ngModel)]="selectedPaymentMethod">
+                        <label for="card" class="payment-card">
+                            <div>Credit/Debit Card</div>
+                        </label>
+                    </div>
+                    <div class="payment-card-wrapper" *ngIf="selectedPaymentMethod === 'Card'">
+                        <input type="text" placeholder="Card Number" required>
+                        <input type="text" placeholder="Name On Card" required>
+                        <div class="inline-inputs">
+                            <input type="text" placeholder="MM/YY" required>
+                            <input type="text" placeholder="CVV" required>
+                            <img src="images/payment/Question.svg" />
+                        </div>
+                    </div>
+                    <div class="payment-choice">
+                        <input type="radio" id="momo" name="payment-method" value="Momo">
                         <label for="express" class="payment-card">
                             <div>Momo</div>
+                            <img src="images/payment/Logo_Momo.png">
                         </label>
-                    </div>  
-                    <div class="delivery-choice">
-                        <input type="radio" id="express" name="delivery" value="express" checked>
+                    </div>
+                    <div class="payment-choice">
+                        <input type="radio" id="internetbanking" name="payment-method" value="Internet Banking">
                         <label for="express" class="payment-card">
                             <div>Internet Banking</div>
                         </label>
                     </div>
-                    <div class="delivery-choice">
-                        <input type="radio" id="express" name="delivery" value="express" checked>
+                    <div class="payment-choice">
+                        <input type="radio" id="cod" name="payment-method" value="COD">
                         <label for="express" class="payment-card">
                             <div>COD</div>
                         </label>
                     </div>
+                </div>
             </form>
         </div>
         <div class="order-summary">
