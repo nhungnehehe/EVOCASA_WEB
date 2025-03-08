@@ -23,6 +23,10 @@ import { Blog2Component } from './blog-detail/blog2/blog2.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { InsituComponent } from './insitu/insitu.component';
 import { CollectionComponent } from './collection/collection.component';
+import { TheAnniversaryCollectionComponent } from './collection-detail/the-anniversary-collection/the-anniversary-collection.component';
+import { SabiCollectionComponent } from './collection-detail/sabi-collection/sabi-collection.component';
+import { ThePavilionCollectionComponent } from './collection-detail/the-pavilion-collection/the-pavilion-collection.component';
+import { TheDiscCollectionComponent } from './collection-detail/the-disc-collection/the-disc-collection.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -46,8 +50,12 @@ const routes: Routes = [
   { path: 'blog5', component: Blog5Component },
   { path: 'blog6', component: Blog6Component },
   { path: 'product/:identifier', component: ProductDetailComponent },
-  {path: 'insitu-page', component: InsituComponent},
-  { path:'collections', component:CollectionComponent}
+  { path: 'insitu-page', component: InsituComponent},
+  { path: 'collections', component:CollectionComponent},
+  { path: 'the-anniversary-collection', component:TheAnniversaryCollectionComponent},
+  { path: 'sabi-collection', component:SabiCollectionComponent},
+  { path: 'the-pavilion-collection', component:ThePavilionCollectionComponent},
+  { path: 'the-disc-collection', component:TheDiscCollectionComponent}
 ];
 
 @NgModule({
