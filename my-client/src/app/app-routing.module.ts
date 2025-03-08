@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'payment-shipping', component: PaymentShippingComponent },
   { path: 'payment-method', component: PaymentMethodComponent },
   { path: 'payment-confirm', component: PaymentConfirmComponent },
+  { path: 'payment-notice', component: PaymentNoticeComponent},
   { path: 'blog1', component: Blog1Component },
   { path: 'blog2', component: Blog2Component },
   { path: 'blog3', component: Blog3Component },
