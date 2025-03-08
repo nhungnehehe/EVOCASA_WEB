@@ -35,6 +35,7 @@ import { InsituComponent } from './insitu/insitu.component';
 import { OrderTrackingDetailComponent } from './order-tracking-detail/order-tracking-detail.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 import { PopupComponent } from './popup/popup.component';
+import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { PopupComponent } from './popup/popup.component';
     OrderTrackingDetailComponent,
     OrderTrackingComponent,
     PopupComponent,
+    PaymentNoticeComponent,
   ],
   imports: [
     BrowserModule,
