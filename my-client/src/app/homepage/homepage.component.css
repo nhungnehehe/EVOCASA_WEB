@@ -351,25 +351,33 @@ body {
     margin: 0 auto;
 }
 
-/* Trường textarea cho email */
-.email-textarea {
+/* Định dạng cho input */
+.email-input {
     width: 80%;
-    height: 60px;
-    padding-left: 20px;
-    font-size: 18px;
-    font-family: Inter, sans-serif;
-    vertical-align: center;
+    height: 60px; /* Chiều cao của input */
+    padding: 0 20px; /* Khoảng cách giữa nội dung và viền trái/phải */
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
     border: none;
     outline: none;
-    background-color: rgb(94, 76, 62, 0.5);
-    padding-right: 40px; /* Khoảng cách để biểu tượng mũi tên không bị chồng lên văn bản */
+    background-color: rgba(94, 76, 62, 0.5);
+    box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến chiều rộng/chiều cao tổng thể */
+    transition: border 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển đổi cho viền và bóng đổ */
+    line-height: 60px; /* Căn giữa văn bản theo chiều dọc */
 }
 
-.email-textarea::placeholder {
-    text-align: left;
-    line-height: 60px; /* Đặt bằng chiều cao của textarea */
-    vertical-align: left;
+/* Định dạng cho placeholder */
+.email-input::placeholder {
+    color: white; /* Màu chữ placeholder */
 }
+
+/* Hiệu ứng khi input được focus */
+.email-input:focus {
+    border: 2px solid #5E4C3E; /* Màu viền khi focus */
+    box-shadow: 0 0 5px rgba(94, 76, 62, 0.5); /* Hiệu ứng bóng đổ khi focus */
+}
+
+
 
 /* Icon mũi tên nằm trong textarea */
 .email-icon {
