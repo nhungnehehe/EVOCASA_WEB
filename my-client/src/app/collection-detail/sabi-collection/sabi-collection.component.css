@@ -35,11 +35,17 @@ body {
     margin-bottom: 10px;
 }
 
-.image-container img {
+.image-effect {
     width: 70%;
     height: auto;
     margin-top: 10px;
     align-items: center;
+
+    /* Hiệu ứng xuất hiện ảnh (Zoom-in) */
+    opacity: 0;
+    transform: scale(0.5);
+    animation: zoomInAnimation 1.5s forwards;
+    transition: filter 0.5s; /* Thêm hiệu ứng mờ */
 }
 
 
@@ -251,10 +257,26 @@ body {
     margin-bottom: 50px;
 }
 
-.hover-effect {
-    transition: opacity 0.3s ease-in-out;
-}
+        /* Hiệu ứng xuất hiện ảnh (Zoom-in) */
+        .image-effect {
+            opacity: 0;
+            transform: scale(0.5);
+            animation: zoomInAnimation 1.5s forwards;
+            transition: filter 0.5s; /* Thêm hiệu ứng mờ */
+        }
 
-.hover-effect:hover {
-    opacity: 0.7; /* Làm mờ ảnh khi hover */
-}
+        @keyframes zoomInAnimation {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Hiệu ứng Hover làm mờ ảnh */
+        .image-effect:hover {
+            filter: blur(3px);
+        }

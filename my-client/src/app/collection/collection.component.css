@@ -108,3 +108,20 @@
 a {
     text-decoration: none; /* Loại bỏ gạch chân mặc định */
 }
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.5);
+    animation: zoomInAnimation 1.5s forwards;
+}
+
+@keyframes zoomInAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
