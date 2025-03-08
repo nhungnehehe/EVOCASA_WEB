@@ -34,6 +34,8 @@ import { Blog6Component } from './blog-detail/blog6/blog6.component';
 import { InsituComponent } from './insitu/insitu.component';
 import { OrderTrackingDetailComponent } from './order-tracking-detail/order-tracking-detail.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
+import { PopupComponent } from './popup/popup.component';
+import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { OrderTrackingComponent } from './order-tracking/order-tracking.componen
     InsituComponent,
     OrderTrackingDetailComponent,
     OrderTrackingComponent,
+    PopupComponent,
+    PaymentNoticeComponent,
   ],
   imports: [
     BrowserModule,

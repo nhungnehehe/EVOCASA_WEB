@@ -1,0 +1,98 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110vh;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.popup-container {
+    display: flex;
+    flex-direction: row;
+    width: 917px;
+    height: 640px;
+    background: #FFFCF3;
+    border-radius: 7px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.popup-content {
+    width: 437px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.popup-title {
+    font-size: 55px;
+    font-family: 'Zen Old Mincho', serif;
+    color: #5E4C3E;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.popup-subtitle {
+    font-size: 40px;
+    font-family: 'Zen Old Mincho', serif;
+    color: #5E4C3E;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.popup-message {
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    color: #5E4C3E;
+    margin-bottom: 30px;
+}
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.input-box {
+    flex-grow: 1;
+    height: 49px;
+    background: #F2EAD3;
+    border-radius: 7px;
+    padding-left: 15px;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    color: rgba(94, 76, 62, 0.30);
+    border: none;
+    outline: none;
+}
+.submit-button {
+    width: 100px;
+    height: 49px;
+    background: #525B4A;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    color: white;
+    font-size: 22px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+.popup-image {
+    width: 459px;
+    height: 640px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+.terms {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #3F2305;
+    margin-top: 10px;
+}
+.terms a {
+    text-decoration: underline;
+    font-weight: 300;
+    color: #3F2305;
+}

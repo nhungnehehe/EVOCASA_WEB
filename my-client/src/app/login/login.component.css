@@ -1,4 +1,4 @@
-* {
+*, *:before, *:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,15 +7,22 @@
 
 body {
     background: #B49E79;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .signin-container {
-    width: 1200px;
-    height: 709px;
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    min-height: 600px;
+    max-height: 90vh;
     background: #FFFCF3;
     display: flex;
     border-radius: 20px;
@@ -188,15 +195,40 @@ button.signin-btn {
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    object-fit: cover;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Laptop nhỏ */
+@media (max-width: 1024px) {
     .signin-container {
-        flex-direction: column;
-        text-align: center;
         width: 95%;
         padding: 15px;
+    }
+    
+    .signin-content {
+        padding: 30px;
+    }
+    
+    h1 {
+        font-size: 30px;
+    }
+    
+    .sub-text {
+        font-size: 16px;
+    }
+    
+    input {
+        padding: 14px 18px;
+        font-size: 16px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .signin-container {
+        width: 90%;
+        max-height: none; /* Không giới hạn chiều cao */
+        height: auto;
     }
     
     .signin-box {
@@ -211,5 +243,66 @@ button.signin-btn {
     
     .signin-image {
         width: 100%;
+        max-height: 300px; /* Giới hạn chiều cao của ảnh */
     }
+    
+    .signin-image img {
+        object-fit: cover; /* Đảm bảo ảnh luôn được hiển thị đúng tỷ lệ */
+        height: 100%;
+    }
+}
+
+/* Mobile nhỏ */
+@media (max-width: 480px) {
+    .signin-container {
+        padding: 10px;
+        border-radius: 15px;
+    }
+    
+    .signin-content {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .sub-text {
+        font-size: 14px;
+    }
+    
+    input {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+    
+    .social-icons .icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-icons .icon img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Fix for Angular app-root container */
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    background: #B49E79;
+}
+
+/* Fix for some Angular specific issues */
+app-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

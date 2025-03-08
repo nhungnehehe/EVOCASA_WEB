@@ -1,0 +1,723 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base styling with font families */
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    line-height: 1;
+    font-size: 13px;
+}
+
+/* Apply Zen Old Mincho to all headings */
+h1, h2, h3, h4, h5, h6,
+.heading,
+.shopTextInner .heading.h3 {
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 300;
+}
+
+/* Keep Inter font for all paragraph text and buttons */
+p, 
+.button--text,
+.shop-the-look__product-title,
+.shop-the-look__product-link,
+.shopTextContentWrap p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0; 
+    transition: opacity 0.8s ease; 
+}
+
+img.revealed {
+    opacity: 1;
+}
+
+.image-wrapper {
+    position: relative;
+    overflow: hidden; 
+    margin-bottom: 20px; 
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: translateX(0);
+    z-index: 2;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.image-wrapper.revealed .image-overlay {
+    transform: translateX(100%);
+}
+
+/* Base styling for circle-checkbox/dots */
+.circle-checkbox {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    transform: translate(-50%, -50%); 
+    opacity: 0;
+}
+
+/* Create inner circle with pseudo-element */
+.circle-checkbox::after {
+    content: '';
+    width: 0%;
+    height: 0%;
+    border-radius: 50%;
+    background-color: white;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* When active, show the inner circle at 80% size */
+.circle-checkbox.is-active::after {
+    width: 75%;
+    height: 75%;
+}
+
+/* Show checkboxes when image is revealed */
+.image-wrapper.revealed .circle-checkbox {
+    opacity: 1;
+    transition-delay: 0.8s;
+}
+
+/* Stagger the appearance of multiple checkboxes */
+.image-wrapper.revealed .checkbox-1 {
+    transition-delay: 0.8s;
+}
+
+.image-wrapper.revealed .checkbox-2 {
+    transition-delay: 1s;
+}
+
+.image-wrapper.revealed .checkbox-3 {
+    transition-delay: 1.2s;
+}
+
+/* Ripple container */
+.ripple-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Position the dots for each image */
+.checkbox-1 {
+    top: 30%;
+    left: 10%;
+}
+
+.checkbox-2 {
+    top: 35%;
+    left: 70%;
+}
+
+.checkbox-3 {
+    top: 40%;
+    left: 26%;
+}
+.checkbox-4{
+    top: 60%;
+    left: 4%;
+}
+.checkbox-5{
+    top: 57%;
+    left: 50%;
+}
+.checkbox-6{
+    top: 40%;
+    left: 60%;
+}
+.checkbox-7{
+    top: 70%;
+    left: 50%;
+}
+.checkbox-8{
+    top: 80%;
+    left: 80%;
+}
+/* Position the dots for Image 3 */
+.checkbox-9 {
+    top: 41%;
+    left: 35%;
+}
+
+.checkbox-10 {
+    top: 51%;
+    left: 35%;
+}
+
+.checkbox-11 {
+    top: 49%;
+    left: 50%;
+}
+
+.checkbox-12 {
+    top: 55%;
+    left: 57%;
+}
+
+.checkbox-13 {
+    top: 43%;
+    left: 83%;
+}
+
+.checkbox-14 {
+    top: 30%;
+    left: 48%;
+}
+
+
+.checkbox-15 {
+    top: 40%;
+    left: 44%;
+}
+
+.checkbox-16 {
+    top: 39%;
+    left: 88%;
+}
+
+.checkbox-17 {
+    top: 36%;
+    left: 71%;
+}
+
+.checkbox-18 {
+    top: 49%;
+    left: 40%;
+}
+
+.checkbox-19 {
+    top: 50%;
+    left: 66%;
+}
+
+.checkbox-20 {
+    top: 70%;
+    left: 58%;
+}
+
+.checkbox-21 {
+    top: 55%;
+    left: 25%;
+}
+
+.checkbox-22 {
+    top: 55%;
+    left: 56%;
+}
+
+.checkbox-23 {
+    top: 45%;
+    left: 40%;
+}
+
+.checkbox-24 {
+    top: 40%;
+    left: 65%;
+}
+
+.checkbox-25 {
+    top: 60%;
+    left: 77%;
+}
+
+.checkbox-26 {
+    top: 59%;
+    left: 65%;
+}
+
+.checkbox-27 {
+    top: 60%;
+    left: 35%;
+}
+
+.checkbox-28 {
+    top: 35%;
+    left: 18%;
+}
+
+
+.checkbox-29 {
+    top: 25%;
+    left: 35%;
+}
+
+.checkbox-30 {
+    top: 35%;
+    left: 75%;
+}
+
+.checkbox-31 {
+    top: 35%;
+    left: 32%;
+}
+
+.checkbox-32 {
+    top: 50%;
+    left: 60%;
+}
+
+.checkbox-33 {
+    top: 27%;
+    left: 85%;
+}
+
+.checkbox-34 {
+    top: 55%;
+    left: 25%;
+}
+
+.checkbox-35 {
+    top: 68%;
+    left: 40%;
+}
+
+.checkbox-36 {
+    top: 64%;
+    left: 52%;
+}
+
+
+.checkbox-37 {
+    top: 55%;
+    left: 20%;
+}
+
+.checkbox-38 {
+    top: 61%;
+    left: 55%;
+}
+
+.checkbox-39 {
+    top: 22%;
+    left: 5%;
+}
+
+.checkbox-40 {
+    top: 46%;
+    left: 60%;
+}
+
+.checkbox-41 {
+    top: 25%;
+    left: 60%;
+}
+
+.checkbox-42 {
+    top: 32%;
+    left: 95%;
+}
+
+.checkbox-43 {
+    top: 25%;
+    left: 37%;
+}
+
+.checkbox-44 {
+    top: 25%;
+    left: 10%;
+}
+
+.checkbox-45 {
+    top: 60%;
+    left: 40%;
+}
+
+.checkbox-46 {
+    top: 69%;
+    left: 25%;
+}
+
+.checkbox-47 {
+    top: 80%;
+    left: 60%;
+}
+
+.checkbox-48 {
+    top: 90%;
+    left: 40%;
+}
+
+.checkbox-49 {
+    top: 75%;
+    left: 80%;
+}
+
+
+
+/* Ripple effect only for inactive checkboxes */
+.circle-checkbox:not(.is-active) .ripple-container::before,
+.circle-checkbox:not(.is-active) .ripple-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: none;
+    box-shadow: 0 0 0 0.3px rgba(255, 255, 255, 1);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    animation: ripple 3s ease-out infinite;
+}
+
+/* Second ripple with a delay for continuous effect */
+.circle-checkbox:not(.is-active) .ripple-container::after {
+    animation-delay: 1.5s;
+}
+
+/* Keyframes for ripple animation */
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3.5);
+        opacity: 0;
+    }
+}
+
+.circle-checkbox,
+.shop-the-look__product {
+    transition: all 0.3s ease;
+}
+
+/* Product styling */
+.product-image-container {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: block;
+}
+
+.product-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 1;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    transition-delay: 0.05s;
+}
+
+.product-details h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.product-link {
+    font-size: 12px;
+    color: #5E4C3E;
+    text-decoration: none;
+    font-weight: 400;
+    display: inline-block;
+    border-bottom: 1px solid #5E4C3E;
+    padding-bottom: 2px;
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    transition-delay: 0.1s;
+}
+
+.shop-the-look__product.is-open .product-details,
+.shop-the-look__product.is-open .product-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-link:hover {
+    opacity: 0.8;
+}
+
+/* Checkbox text label */
+.checkbox-text {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+/* Chỉnh khoảng cách gần hơn cho product info */
+.shop-the-look__product {
+    position: absolute;
+    display: none;
+    width: 240px; /* Giảm kích thước để gần hơn với checkbox */
+    height: auto;
+    min-height: 100px;
+    max-height: 180px;
+    background: rgba(255, 242, 242, 0.98);
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9;
+    opacity: 0;
+    transform: translateY(5px) scale(0.98);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    overflow: hidden;
+}
+
+.shop-the-look__product.is-open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.circle-checkbox-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.shop-the-look__product-info {
+    flex: 1;
+}
+
+/* Shop Text Styling */
+:root {
+    --container-gutter: 20px;
+}
+
+.shopText {
+    position: absolute;
+    bottom: 0; /* Đặt vị trí ở dưới cùng của container */
+    left: 0;
+    text-align: left;
+    width: 100%;
+    padding: 0 20px;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    margin-bottom: 20px;
+}
+
+.image-wrapper.revealed .shopText {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.shopTextInner {
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.shopTextContentWrap {
+    margin-top: 15px;
+}
+
+.shopTextInner .button-wrapper {
+    margin-top: 20px;
+}
+
+.shopTextInner .heading.h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.shopTextContentWrap p {
+    margin: 0 0 15px 0;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+.button-wrapper .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: none;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button text styling - base styles */
+.button--text {
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    padding-left: 0;
+    margin-left: -21px;
+    font-size: 14px;
+}
+
+/* Shorter underline animation */
+.button--text::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 3px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: #fff;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    max-width: 70%;
+}
+
+.button--text:hover::after {
+    visibility: visible;
+    width: 70%;
+}
+
+/* Additional styling for the button wrapper */
+.button-wrapper {
+    margin-top: 15px;
+    padding-left: 0;
+}
+
+/* Container để ngăn chặn cuộn ngang */
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Responsive styling - chỉ chỉnh kích thước phù hợp */
+@media (min-width: 992px) {
+    .circle-checkbox {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .shop-the-look__product {
+        width: 240px;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .shop-the-look__product {
+        width: 220px;
+    }
+    
+    .product-image-container {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    .shop-the-look__product {
+        width: 200px; /* Giảm kích thước trên mobile */
+    }
+    
+    .product-image-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .product-details h4 {
+        font-size: 13px;
+    }
+    
+    .shopTextInner .heading.h3 {
+        font-size: 18px;
+    }
+    
+    .checkbox-text {
+        font-size: 12px;
+    }
+    
+    .circle-checkbox {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shop-the-look__product {
+        width: 180px; /* Giảm kích thước hơn nữa trên mobile nhỏ */
+        padding: 8px;
+    }
+    
+    .product-image-container {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+    }
+    
+    .shopTextInner .heading.h3 {
+        font-size: 16px;
+    }
+    
+    .shopTextContentWrap p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 375px) {
+    .shop-the-look__product {
+        width: 160px;
+        padding: 5px;
+    }
+    
+    .shopTextInner {
+        padding: 10px;
+    }
+}
