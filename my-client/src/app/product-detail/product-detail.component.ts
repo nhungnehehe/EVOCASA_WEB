@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { IProduct } from '../interfaces/product';
 import { ProductService } from '../services/product.service';
 import { Subscription } from 'rxjs';
+import { CartService } from '../services/cart.service';
 
 @Component({
     selector: 'app-product-detail',
@@ -17,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
   isDescriptionExpanded: boolean = false;
   isDimensionsExpanded: boolean = false;
   errMessage: string = '';
+  products: any[] = []; // 
 
   selectedTab: string = 'Story';
   starsArray: number[] = [];
@@ -35,6 +37,7 @@ export class ProductDetailComponent implements OnInit {
       private route: ActivatedRoute,
       private productService: ProductService,
       private router: Router,
+      private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -168,10 +171,6 @@ viewProductDetails(product: IProduct): void {
       this.quantity = Math.max(1, this.quantity + amount);
   }
 
-  // Thêm vào giỏ hàng
-  addToCart(): void {
-      console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`);
-  }
 
   // Mua ngay
   buyNow(): void {
@@ -246,5 +245,23 @@ onHoverPairProduct(index: number): void {
 
 onHoverOutPairProduct(): void {
   this.hoveredPairProductIndex = -1;
+}
+addToCart(): void {
+  if (!this.product || !this.product._id) {
+      console.error('Cannot add to cart: Product is null or missing ID');
+      return;
+  }
+  
+  // Gọi service để thêm vào giỏ hàng
+  this.cartService.addToCart(this.product._id, this.quantity).subscribe({
+      next: (updatedCart) => {
+          console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`);
+          console.log('Updated cart:', updatedCart);
+      },
+      error: (error) => {
+          console.error('Error adding product to cart:', error);
+      }
+  });
+
 }
 }

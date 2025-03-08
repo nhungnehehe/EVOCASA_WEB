@@ -591,6 +591,26 @@ html, body {
     color: #5E4C3E;
     font-weight: 600;
 }
+/* Animation cho thông báo thêm giỏ hàng thành công */
+.cart-success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+  }
+  
+  .cart-success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
 /* Responsive layout - CÁCH XỬ LÝ MỚI */
 @media (min-width: 1025px) {
