@@ -47,7 +47,7 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 530px;
+  width: 430px;
   height: 100%;
   background-color: #FFFCF3;
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
@@ -111,7 +111,7 @@ body {
 }
 .line-item__price {
   margin-right: 30px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: #5E4C3E;
   font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
@@ -157,7 +157,7 @@ body {
 .cart-total {
   text-align: right;
   margin: 0px 30px 20px;
-  font-size: 30px;
+  font-size: 23px;
   font-weight: bold;
   color: #5E4C3E;
   font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
@@ -171,7 +171,7 @@ body {
   border: none;
   cursor: pointer;
   width: 100%;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 550; /* Semibold */
   font-family: 'Inter', sans-serif;
 }
@@ -191,7 +191,7 @@ body {
   font-family: 'Inter', sans-serif;
   color: #5E4C3E;
   padding-bottom: 5px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
@@ -241,5 +241,5 @@ body {
 /* Tùy chọn thêm cho khi giỏ hàng trống */
 .empty-cart-message p {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
 }

@@ -2,10 +2,13 @@
   margin: 0;
   padding: 0;
   /* background-color: #FFFCF3; */
+  
 }
 
 body{
   background-color: #FFFCF3;
+  flex-direction: column; /* Mặc định hiển thị theo cột trên thiết bị nhỏ */
+
 }
 .cart-container {
   display: flex;
@@ -44,7 +47,7 @@ h2 {
   display: grid;
   grid-template-columns: 0.3fr 2.5fr 1fr 1fr;  /* 3 cột: 2 phần cho sản phẩm và 1 phần cho số lượng/tổng */
   font-weight: bold;
-  color: rgb(81, 90, 73, 0.6);
+  color: rgb(81, 90, 73, 1);
   font-size: 20px;
   font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
 }
@@ -65,7 +68,7 @@ h2 {
 hr {
   border: none; /* Loại bỏ đường viền mặc định */
   height: 1px; /* Chiều cao của đường kẻ */
-  background-color: rgb(94, 76, 62,0.5); /* Màu sắc của đường kẻ */
+  background-color: rgb(94, 76, 62,0.5); 
 }
 
 .header-item {
@@ -117,6 +120,7 @@ hr {
   font-size: smaller;
   border: none;
   cursor: pointer;
+  background-color: none;
   border-radius: 5px;
 }
 
@@ -136,7 +140,7 @@ hr {
 .cart-header-total {
   display: grid;
   font-weight: bold;
-  color: rgb(81, 90, 73, 0.6);
+  color: rgb(81, 90, 73, );
   font-size: 20px;
   font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
   text-align: center;
@@ -166,6 +170,7 @@ hr {
   color: white;
   cursor: pointer;
   padding: 10px;
+  border: none;
   width: 110%;
   font-size: 18px;
   font-family: 'Inter', sans-serif;
