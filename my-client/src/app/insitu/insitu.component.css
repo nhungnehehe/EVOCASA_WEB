@@ -93,8 +93,8 @@ img.revealed {
 
 /* When active, show the inner circle at 80% size */
 .circle-checkbox.is-active::after {
-    width: 80%;
-    height: 80%;
+    width: 75%;
+    height: 75%;
 }
 
 /* Show checkboxes when image is revealed */
@@ -378,8 +378,8 @@ img.revealed {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     background: none;
     box-shadow: 0 0 0 0.3px rgba(255, 255, 255, 1);
@@ -403,7 +403,7 @@ img.revealed {
         opacity: 0.6;
     }
     100% {
-        transform: translate(-50%, -50%) scale(4);
+        transform: translate(-50%, -50%) scale(3.5);
         opacity: 0;
     }
 }
@@ -417,9 +417,9 @@ img.revealed {
 .product-image-container {
     width: 100px;
     height: 100px;
-    margin-right: 15px;
-    margin-left: 15px;
-    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
     overflow: hidden;
     flex-shrink: 0;
     display: block;
@@ -465,11 +465,13 @@ img.revealed {
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
     transition-delay: 0.1s;
 }
+
 .shop-the-look__product.is-open .product-details,
 .shop-the-look__product.is-open .product-link {
     opacity: 1;
     transform: translateY(0);
 }
+
 .product-link:hover {
     opacity: 0.8;
 }
@@ -491,18 +493,22 @@ img.revealed {
     font-size: 14px;
 }
 
+/* Chỉnh khoảng cách gần hơn cho product info */
 .shop-the-look__product {
     position: absolute;
     display: none;
-    width: 250px;
-    height: 150px;
-    background: rgba(255, 242, 242, 0.98); /* Tăng độ đục nền */
-    padding: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Đổ bóng rõ hơn */
+    width: 240px; /* Giảm kích thước để gần hơn với checkbox */
+    height: auto;
+    min-height: 100px;
+    max-height: 180px;
+    background: rgba(255, 242, 242, 0.98);
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     z-index: 9;
     opacity: 0;
-    transform: translateY(5px) scale(0.98); /* Scale nhẹ để tạo hiệu ứng bật */
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Giảm thời gian xuống 0.3s */
+    transform: translateY(5px) scale(0.98);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    overflow: hidden;
 }
 
 .shop-the-look__product.is-open {
@@ -534,12 +540,11 @@ img.revealed {
     text-align: left;
     width: 100%;
     padding: 0 20px;
-    z-index: 10; /* Tăng z-index để đảm bảo hiển thị trên các phần tử khác */
+    z-index: 10;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease, transform 0.8s ease;
-    margin-bottom: 20px; /* Thêm margin để tạo khoảng cách với đáy */
-    padding-top: 40px; /* Thêm padding-top để gradient hiển thị tốt hơn */
+    margin-bottom: 20px;
 }
 
 .image-wrapper.revealed .shopText {
@@ -573,6 +578,7 @@ img.revealed {
     color: #ffffff;
     line-height: 1.5;
 }
+
 .button-wrapper .button {
     display: inline-block;
     padding: 10px 20px;
@@ -581,7 +587,6 @@ img.revealed {
     text-decoration: none;
     border: none;
     cursor: pointer;
-
     transition: background-color 0.3s ease;
 }
 
@@ -589,13 +594,13 @@ img.revealed {
 .button--text {
     position: relative;
     display: inline-block;
-    font-weight: 400; /* Reduced font weight */
+    font-weight: 400;
     color: #fff;
     text-decoration: none;
     background: none;
     padding-left: 0;
     margin-left: -21px;
-    font-size: 14px; /* Reduced text size */
+    font-size: 14px;
 }
 
 /* Shorter underline animation */
@@ -606,18 +611,17 @@ img.revealed {
     height: 1px;
     bottom: 3px;
     left: 0;
-    /* Make the underline start from the center */
     right: 0;
     margin: 0 auto;
     background-color: #fff;
     visibility: hidden;
     transition: all 0.3s ease-in-out;
-    max-width: 70%; /* This controls how long the underline will be (70% of text width) */
+    max-width: 70%;
 }
 
 .button--text:hover::after {
     visibility: visible;
-    width: 70%; /* Match this with the max-width above */
+    width: 70%;
 }
 
 /* Additional styling for the button wrapper */
@@ -626,11 +630,41 @@ img.revealed {
     padding-left: 0;
 }
 
+/* Container để ngăn chặn cuộn ngang */
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
 
-/* Responsive styling */
-@media (max-width: 767px) {
+/* Responsive styling - chỉ chỉnh kích thước phù hợp */
+@media (min-width: 992px) {
+    .circle-checkbox {
+        width: 12px;
+        height: 12px;
+    }
+    
     .shop-the-look__product {
         width: 240px;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .shop-the-look__product {
+        width: 220px;
+    }
+    
+    .product-image-container {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    .shop-the-look__product {
+        width: 200px; /* Giảm kích thước trên mobile */
     }
     
     .product-image-container {
@@ -648,5 +682,42 @@ img.revealed {
     
     .checkbox-text {
         font-size: 12px;
+    }
+    
+    .circle-checkbox {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shop-the-look__product {
+        width: 180px; /* Giảm kích thước hơn nữa trên mobile nhỏ */
+        padding: 8px;
+    }
+    
+    .product-image-container {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+    }
+    
+    .shopTextInner .heading.h3 {
+        font-size: 16px;
+    }
+    
+    .shopTextContentWrap p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 375px) {
+    .shop-the-look__product {
+        width: 160px;
+        padding: 5px;
+    }
+    
+    .shopTextInner {
+        padding: 10px;
     }
 }
