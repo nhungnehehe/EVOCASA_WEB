@@ -17,14 +17,23 @@ body {
 .header-text {
     color: #3F2305;
     font-family: 'Zen Old Mincho', serif;
-    font-size: 30px;
+    font-size: 18px;
     font-weight: 100;
     line-height: 38px;
 }
 
+.header-text h1 {
+    color: #3F2305;
+    font-family: 'Zen Old Mincho', serif;
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 38px;
+    margin-top: 40px;
+}
+
 .header p {
     font-family: 'Inter', serif;
-    font-size: 24px;
+    font-size: 18px;
     color: rgba(0, 0, 0, 0.40);
     font-style: italic;
     margin-right: 100px;
@@ -48,13 +57,13 @@ body {
 
 .conception-title {
     font-family: 'Zen Old Mincho', serif;
-    font-size: 36px;
+    font-size: 25px;
     font-weight: 700;
     color: #5E4C3E;
 }
 
 .conception-description p {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.6;
     color: #5E4C3E;
     text-align: justify;
@@ -79,30 +88,31 @@ body {
 
 .featured {
     font-family: 'Zen Old Mincho', serif;
-    font-size: 20px;
+    font-size: 18px;
     color: #3F2305;
     line-height: 1.6;
 }
 
 .featured-item {
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    color: #5E4C3E;
+    font-size: 18px;
+    color: #3F2305;
     line-height: 1.6;
     margin-bottom: 10px;
+    font-style:italic;
 }
 
 .right-section {
     width: 50%;
     color: #5E4C3E;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.6;
     text-align: justify;
 }
 
 .inspiration-title {
     font-family: 'Zen Old Mincho', serif;
-    font-size: 36px;
+    font-size: 25px;
     color: #5E4E41;
     margin-bottom: 10px;
 }
@@ -113,12 +123,12 @@ body {
 
 .final-title {
     font-family: 'Zen Old Mincho', serif;
-    font-size: 36px;
+    font-size: 25px;
     font-weight: 700;
     color: #5E4C3E;
 }
 .final-description p {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.6;
     color: #5E4C3E;
     text-align: justify;
@@ -151,7 +161,7 @@ body {
     border: 1px solid #3F2305; 
     width: 100%; 
     font-family: 'Zen Old Mincho', serif; 
-    font-size: 32px; 
+    font-size: 20px; 
     color: #3F2305; 
     text-align: center; 
     line-height: 1.6; 
@@ -209,9 +219,17 @@ body {
 
 .product-title {
     font-family: 'Zen Old Mincho', serif;
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 25px;
+    font-weight: 500;
     color: #5E4C3E;
+}
+
+.hover-effect {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hover-effect:hover {
+    opacity: 0.7; /* Làm mờ ảnh khi hover */
 }
 
 
@@ -227,7 +245,7 @@ body {
 
     .header-image {
         width: 100%;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .flex-section {
