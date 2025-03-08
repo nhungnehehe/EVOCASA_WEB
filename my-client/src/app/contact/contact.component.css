@@ -1,3 +1,10 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Chiều cao toàn màn hình */
+    margin: 0;
+}
 /* Banner Styles */
  
 .banner {
@@ -72,9 +79,11 @@
 }
 
 .contact-info-form {
-    width: 50%;
+    max-width: 50%;
     vertical-align: top;
     text-align: center;
+    transform: scale(1);
+    transform-origin: center;
 }
 
 /* Contact Info Styles */
@@ -128,8 +137,17 @@
     color: rgba(0, 0, 0, 0.5);
     border: none;
     width: 80%;
-    font-family: 'Inter', sans-serif; 
+    font-family: 'Inter', sans-serif;
 }
+
+/* Ngăn thay đổi kích thước của textarea */
+.contact-form textarea {
+    resize: none;
+    /* Đặt kích thước cố định cho textarea nếu cần */
+    /* width: 80%; */
+    /* height: 150px; */
+}
+
 
 .contact-form button {
     padding: 12px 20px;
@@ -141,4 +159,19 @@
     border-radius: 7px;
     width: auto;
     text-align: center;
+}
+
+/* Ngăn trình duyệt thay đổi tỷ lệ khi zoom */
+@media screen and (max-width: 768px) {
+    .banner-title {
+        font-size: 2.5rem;
+    }
+    .banner-description {
+        font-size: 1rem;
+    }
+    .google-map, .contact-info-form {
+        width: 100%;
+        max-width: 100%;
+        padding-right: 0;
+    }
 }
