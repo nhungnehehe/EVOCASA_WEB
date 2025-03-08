@@ -53,12 +53,12 @@ export class InsituComponent implements OnInit, AfterViewInit {
        
       // Check if product would go off right edge and adjust if needed
       if (left + productWidth > containerRect.width) {
-        left = left - productWidth - 40; // Position to the left of checkbox
+        left = left - productWidth - 5; // Position to the left of checkbox
       }
        
       // Check if product would go off bottom edge and adjust if needed
       if (top + productHeight > containerRect.height) {
-        top = top - productHeight - 40; // Position above checkbox
+        top = top - productHeight - 5; // Position above checkbox
       }
        
       // Set position with absolute positioning
