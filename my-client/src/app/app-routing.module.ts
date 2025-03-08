@@ -47,7 +47,7 @@ const routes: Routes = [
   { path: 'blog6', component: Blog6Component },
   { path: 'product/:identifier', component: ProductDetailComponent },
   {path: 'insitu-page', component: InsituComponent},
-  { path:'collection', component:CollectionComponent}
+  { path:'collections', component:CollectionComponent}
 ];
 
 @NgModule({
