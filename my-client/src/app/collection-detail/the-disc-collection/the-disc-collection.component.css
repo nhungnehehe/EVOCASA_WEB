@@ -146,3 +146,59 @@
     line-height: 1.8;
     text-align: justify;
 }
+
+
+.products {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.product {
+    text-align: center;
+    width: 24%;
+}
+
+.product img {
+    width: 100%;
+    display: block;
+    margin-top: 30px;
+}
+
+.product-info {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: 'Zen Old Mincho';
+    color: #5E4C3E;
+    text-align: left;
+    padding-left: 10px;
+    margin-right: 5px;
+}
+
+.price {
+    font-size: 18px;
+    text-align: right;
+    padding-right: 10px;
+    font-family: 'Zen Old Mincho';
+    color: #5E4C3E;
+    margin-top: 10px;
+}
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.product-title {
+    color: #5E4C3E;
+    font-size: 28px;
+    font-family: 'Zen Old Mincho', serif;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
