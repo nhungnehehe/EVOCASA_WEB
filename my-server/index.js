@@ -49,6 +49,7 @@ client.connect();
 const database = client.db("EvoCasa");
 const productCollection = database.collection("Product");
 const categoryCollection = database.collection("Category");
+const customerCollection = database.collection("Customer");
 
 // Helper functions to clean HTML and decode HTML entities
 const decodeHtmlEntities = (text) => {
@@ -417,4 +418,156 @@ app.get("/categories", cors(), async (req, res) => {
     //send Category after remove
     res.send(result[0]);
   });
-0  
+  app.get("/customers", async (req, res) => {
+    try {
+      const result = await customerCollection.find({}).toArray();
+      res.send(result);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  //---------------------CUSTOMER----------------------------//
+  // Route thay thế cho /customer (trỏ về cùng một endpoint)
+  app.get("/customer", async (req, res) => {
+    try {
+      const result = await customerCollection.find({}).toArray();
+      res.send(result);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
+  // Lấy khách hàng theo ID
+  app.get("/customer/:id", async (req, res) => {
+    try {
+      const id = req.params["id"];
+      const o_id = new ObjectId(id);
+      const result = await customerCollection.find({ _id: o_id }).toArray();
+      
+      if (result.length === 0) {
+        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+      }
+      
+      res.send(result[0]);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
+  // Lấy khách hàng theo số điện thoại
+  app.get("/customers/:phonenumber", async (req, res) => {
+    try {
+      const phone = req.params["phonenumber"];
+      const result = await customerCollection.find({ Phone: phone }).toArray();
+      
+      if (result.length === 0) {
+        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+      }
+      
+      res.send(result[0]);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
+  // Thêm khách hàng mới
+  app.post("/customers", async (req, res) => {
+    try {
+      const newCustomer = req.body;
+      // Thêm ngày tạo nếu chưa có
+      if (!newCustomer.CreatedAt) {
+        newCustomer.CreatedAt = new Date();
+      }
+      // Khởi tạo giỏ hàng trống nếu chưa có
+      if (!newCustomer.Cart) {
+        newCustomer.Cart = [];
+      }
+      
+      const result = await customerCollection.insertOne(newCustomer);
+      res.status(201).send({
+        ...newCustomer,
+        _id: result.insertedId
+      });
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
+  // Cập nhật thông tin khách hàng (version 1 - đầy đủ thông tin)
+  app.put("/customers/:id", async (req, res) => {
+    try {
+      const id = req.params.id;
+      const o_id = new ObjectId(id);
+      const updates = {
+        Name: req.body.Name,
+        Phone: req.body.Phone,
+        Mail: req.body.Mail,
+        DOB: req.body.DOB,
+        Address: req.body.Address,
+        Gender: req.body.Gender,
+        Image: req.body.Image
+      };
+      
+      // Loại bỏ các trường undefined
+      Object.keys(updates).forEach(key => {
+        if (updates[key] === undefined) {
+          delete updates[key];
+        }
+      });
+      
+      await customerCollection.updateOne(
+        { _id: o_id },
+        { $set: updates }
+      );
+      
+      const updatedCustomer = await customerCollection.findOne({ _id: o_id });
+      if (!updatedCustomer) {
+        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+      }
+      
+      res.send(updatedCustomer);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
+  // Cập nhật giỏ hàng khách hàng
+  app.put("/customers/:id/cart", async (req, res) => {
+    try {
+      const id = req.params.id;
+      const o_id = new ObjectId(id);
+      const updatedCart = req.body.Cart || [];
+      
+      await customerCollection.updateOne(
+        { _id: o_id },
+        { $set: { Cart: updatedCart } }
+      );
+      
+      const updatedCustomer = await customerCollection.findOne({ _id: o_id });
+      if (!updatedCustomer) {
+        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+      }
+      
+      res.send(updatedCustomer);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
+  // Xóa khách hàng
+  app.delete("/customers/:id", async (req, res) => {
+    try {
+      const id = req.params.id;
+      const o_id = new ObjectId(id);
+      
+      const result = await customerCollection.deleteOne({ _id: o_id });
+      
+      if (result.deletedCount === 0) {
+        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+      }
+      
+      res.send({ message: "Đã xóa khách hàng thành công" });
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
