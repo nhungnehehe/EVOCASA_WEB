@@ -33,7 +33,7 @@ import { Blog5Component } from './blog-detail/blog5/blog5.component';
 import { Blog6Component } from './blog-detail/blog6/blog6.component';
 import { InsituComponent } from './insitu/insitu.component';
 import { OrderTrackingDetailComponent } from './order-tracking-detail/order-tracking-detail.component';
-import { ManageAccountComponent } from './manage-account/manage-account.component';
+import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,7 @@ import { ManageAccountComponent } from './manage-account/manage-account.componen
     Blog6Component,
     InsituComponent,
     OrderTrackingDetailComponent,
-    ManageAccountComponent,
+    OrderTrackingComponent,
   ],
   imports: [
     BrowserModule,
