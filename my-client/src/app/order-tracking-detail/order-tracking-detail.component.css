@@ -13,7 +13,16 @@
   }
 }
 
+.your-order {
+  font-size: 28px;
+  font-weight: bold;
+  color: #5e4c3e;
+  /* margin-bottom: 15px; */
+  font-family: "Zen Old Mincho";
+  padding-bottom: 60px;
+}
 .profile-section {
+  padding-top: 20px;
   width: 341px;
 }
 
@@ -27,7 +36,7 @@
 
 .welcome-card {
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,6 +83,7 @@
 
 .main-content {
   flex: 1;
+  margin-bottom: 50px;
 }
 
 .order-header {
@@ -173,56 +183,63 @@
 
 .progress-line {
   position: absolute;
-  top: 30px;
-  left: 78px;
-  width: 447px;
+  top: 6px;
+  left: 90px;
+  right: 90px;
   height: 2px;
-  opacity: 0.5;
   background-color: #3f2305;
-}
-
-@media (max-width: 991px) {
-  .progress-line {
-    width: 80%;
-  }
+  opacity: 0.5;
+  z-index: 1;
 }
 
 .progress-steps {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  align-items: flex-start;
+  position: relative;
+  padding: 0;
+  margin: 0 20px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  width: 150px;
+}
+
+.step-dotcompleted {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  background-color: #12b76a;
+  border: 2px solid #12b76a;
+}
+
+.step-label {
+  color: #12b76a;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+.step-date {
+  color: #667085;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 @media (max-width: 640px) {
   .progress-steps {
     min-width: 500px;
     padding: 0 20px;
+    overflow-x: auto;
   }
-}
-
-.step {
-  text-align: center;
-  width: 100px;
-}
-
-.step-dotcompleted {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  margin: 0 auto 10px;
-  background-color: #4dc88c;
-}
-
-.step-label {
-  color: #12b76a;
-  font-size: 12px;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-.step-date {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 11px;
 }
 
 .timeline-container {
@@ -234,7 +251,7 @@
 }
 
 .date-header {
-  font-size: 28px;
+  font-size: 24px;
   color: #3f2305;
   margin-bottom: 15px;
 }
@@ -247,8 +264,34 @@
 
 .timeline-event {
   display: flex;
-  gap: 50px;
+  align-items: flex-start;
   margin-bottom: 15px;
+  position: relative;
+}
+
+.time {
+  width: 100px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.event-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+  padding-left: 40px;
+  flex: 1;
+}
+
+.event-textsuccess {
+  font-size: 18px;
+  font-weight: 600;
+  color: #12b76a;
+  margin: 0;
+  padding-left: 40px;
+  flex: 1;
 }
 
 @media (max-width: 640px) {
@@ -256,41 +299,15 @@
     flex-direction: column;
     gap: 5px;
   }
-}
 
-.time {
-  width: 120px;
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 22px;
-}
-
-@media (max-width: 640px) {
   .time {
     width: auto;
     margin-bottom: 5px;
   }
-}
 
-.event-textsuccess {
-  font-size: 22px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.7);
-}
-
-@media (max-width: 640px) {
+  .event-text,
   .event-textsuccess {
-    font-size: 18px;
-  }
-}
-
-.event-text {
-  font-size: 22px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.7);
-}
-
-@media (max-width: 640px) {
-  .event-text {
+    padding-left: 0;
     font-size: 18px;
   }
 }
