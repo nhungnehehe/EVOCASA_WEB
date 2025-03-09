@@ -208,20 +208,39 @@ input[type="radio"]:checked+label {
 }
 
 .payment-card:hover {
-    background-color: #e9d897;
+    background-color:  rgba(242, 234, 211, 1);
 }
-button {
-    padding: 12px 25px;
-    background-color: #f0c14b;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
+.payment-card img {
+    width: 30px; /* Đặt lại kích thước nhỏ */
+    height: 20px; /* Giữ tỷ lệ phù hợp */
+    object-fit: contain; /* Giúp hình ảnh không bị méo */
+    border-radius: 2px;
+    padding: 2px;
 }
 
-button:hover {
-    background-color: #e3a900;
+.next-btn {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    width: 100%; /* Đảm bảo chiếm hết chiều ngang */
+    margin-top: 20px;
+    margin-bottom: 80px; /* Đảm bảo khoảng cách dưới */
+}
+
+.next-btn button {
+    background-color: #525B4A; /* Màu nền theo hình mẫu */
+    color: white; /* Màu chữ */
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Định kích thước cố định giúp nút nhìn đẹp hơn */
+    text-align: center;
+}
+
+.next-btn button:hover {
+    background-color: #5E4C3E; /* Màu hover giống mẫu */
 }
 
 
@@ -252,6 +271,7 @@ button:hover {
 
 /* Căn chỉnh sản phẩm trong đơn hàng */
 .order-item {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -297,14 +317,44 @@ button:hover {
     margin-bottom: 5px;
 }
 
-.action {
+.input-container {
+    position: relative;
     display: flex;
-    justify-content: center; /* Căn giữa */
     align-items: center;
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 80px; /* Tạo khoảng cách với footer */
 }
+
+.input-container input {
+    width: 100%;
+    padding: 12px;
+    padding-right: 100px; /* Chừa đủ không gian cho icon */
+    border: 1px solid #404B5A;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.payment-icons {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-70%); /* Căn giữa theo chiều dọc */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.payment-icons img {
+    width: 30px; /* Điều chỉnh kích thước icon */
+    height: 20px;
+    object-fit: contain;
+    border-radius: 2px;
+    background-color: #ffffff;
+    padding: 2px;
+    border: 1px solid #ddd;
+    /* box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); */
+}
+
 
 @media (max-width: 768px) {
     .container {

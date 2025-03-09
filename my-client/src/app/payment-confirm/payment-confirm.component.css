@@ -120,19 +120,6 @@ p,span {
     color: #5E4C3E;
     font-family: Inter;
 }
-button {
-    padding: 12px 25px;
-    background-color: #f0c14b;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #e3a900;
-}
 .info-container {
     background-color: #F2EAD3;
     width: 100%;
@@ -169,8 +156,6 @@ button:hover {
 .info-section img{
     width: 35px;
 }
-
-
 
 a {
     font-size: 14px;
@@ -330,5 +315,5 @@ a:hover {
 }
 
 .action button:hover {
-    background-color: #3F3F32;
+    background-color: #5E4C3E;
 }

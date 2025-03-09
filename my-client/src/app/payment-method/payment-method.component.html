@@ -2,10 +2,10 @@
     <div class="progress-container">
         <a routerLink="/payment-shipping"><img src="images/payment/arrow.svg" alt="Back Arrow" class="back-arrow"></a>
         <div class="progress">
-            <div class="step active">
-                <div class="step-number">1</div>
+            <div class="step completed">
+                <div class="step-number">✓</div>
                 <div class="step-title">Shipping</div>
-            </div>
+            </div>            
             <div class="line-active"></div>
             <div class="step active">
                 <div class="step-number">2</div>
@@ -32,7 +32,17 @@
                         </label>
                     </div>
                     <div class="payment-card-wrapper" *ngIf="selectedPaymentMethod === 'Card'">
-                        <input type="text" placeholder="Card Number" required>
+                        <div class="input-container">
+                            <input type="text" placeholder="Card Number" required>
+                            <div class="payment-icons">
+                                <img src="images/footer/payment/visa.png" alt="Visa">
+                                <img src="images/footer/payment/mastercard.png" alt="Mastercard">
+                                <img src="images/footer/payment/amex.png" alt="Amex">
+                                <img src="images/footer/payment/discover.png" alt="Discover">
+                                <img src="images/footer/payment/diners.png" alt="Diners">
+                                <img src="images/footer/payment/jcb.png" alt="JCB">
+                            </div>
+                        </div>
                         <input type="text" placeholder="Name On Card" required>
                         <div class="inline-inputs">
                             <input type="text" placeholder="MM/YY" required>
@@ -41,14 +51,16 @@
                         </div>
                     </div>
                     <div class="payment-choice">
-                        <input type="radio" id="momo" name="payment" value="Momo" (change)="selectPaymentMethod('Momo')">
+                        <input type="radio" id="momo" name="payment" value="Momo"
+                            (change)="selectPaymentMethod('Momo')">
                         <label for="momo" class="payment-card">
                             <div>Momo</div>
-                            <img src="images/payment/Logo_Momo.png">
+                            <img src="images/footer/payment/MoMo.png">
                         </label>
                     </div>
                     <div class="payment-choice">
-                        <input type="radio" id="internetbanking" name="payment" value="Internet Banking" (change)="selectPaymentMethod('Internet Banking')">
+                        <input type="radio" id="internetbanking" name="payment" value="Internet Banking"
+                            (change)="selectPaymentMethod('Internet Banking')">
                         <label for="internetbanking" class="payment-card">
                             <div>Internet Banking</div>
                         </label>
@@ -96,7 +108,7 @@
             </div>
         </div>
     </div>
-    <div class="action">
+    <div class="next-btn">
         <a routerLink="/payment-confirm"><button type="submit">CHECK OUT</button></a>
     </div>
 </body>
