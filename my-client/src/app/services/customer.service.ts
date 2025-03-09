@@ -8,17 +8,17 @@ import { Customer, ICustomer, CartItem1 } from '../interfaces/customer';
   providedIn: 'root'
 })
 export class CustomerService {
-  // Đường dẫn API base
-  private apiUrl = 'http://localhost:3002/customer'; // Thay đổi URL tùy theo server của bạn
+  // API base URL
+  private apiUrl = 'http://localhost:3002/customer'; 
   
-  // HTTP options mặc định
+  // Default HTTP options
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient) { }
 
-  // Lấy tất cả khách hàng
+  // Get all customers
   getAllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.apiUrl}/customers`)
       .pipe(
@@ -27,7 +27,7 @@ export class CustomerService {
       );
   }
 
-  // Lấy khách hàng theo ID
+  // Get customer by ID
   getCustomerById(id: string): Observable<Customer> {
     return this.http.get<Customer>(`${this.apiUrl}/customer/${id}`)
       .pipe(
@@ -36,7 +36,7 @@ export class CustomerService {
       );
   }
 
-  // Lấy khách hàng theo số điện thoại
+  // Get customer by phone number
   getCustomerByPhone(phone: string): Observable<Customer> {
     return this.http.get<Customer>(`${this.apiUrl}/customers/${phone}`)
       .pipe(
@@ -45,9 +45,10 @@ export class CustomerService {
       );
   }
 
-  // Lấy khách hàng theo email (dùng cho đăng nhập)
+  // Get customer by email (used for login)
   getCustomerByEmail(email: string): Observable<Customer> {
-    // Vì API không có sẵn endpoint tìm theo email, chúng ta có thể lấy tất cả và lọc
+    // Since API may not have an endpoint to search by email, we fetch all and filter
+    // Note: In production, this should be handled server-side
     return this.http.get<Customer[]>(`${this.apiUrl}/customers`)
       .pipe(
         map(customers => {
@@ -62,31 +63,45 @@ export class CustomerService {
       );
   }
 
-  // Đăng nhập bằng email/phone và mật khẩu
+  // Login with email/phone and password
   login(emailOrPhone: string, password: string): Observable<Customer | null> {
-    // Kiểm tra xem đầu vào có phải là email hay không
-    const isEmail = emailOrPhone.includes('@');
+    // For testing purposes only - simulating API call using the sample data
+    // In production, this should be a real API call
+    console.log(`Attempting login with: ${emailOrPhone}`);
     
-    let searchMethod: Observable<Customer>;
-    if (isEmail) {
-      searchMethod = this.getCustomerByEmail(emailOrPhone);
-    } else {
-      searchMethod = this.getCustomerByPhone(emailOrPhone);
-    }
-
-    return searchMethod.pipe(
-      map(customer => {
-        if (customer && customer.Password === password) {
-          const result = { ...customer };
-          return result;
+    // Mock implementation for development/testing
+    // In a real app, you'd make an HTTP request to your backend
+    return of(null).pipe(
+      switchMap(() => {
+        // Determine if input is email or phone
+        const isEmail = emailOrPhone.includes('@');
+        
+        if (isEmail) {
+          return this.getCustomerByEmail(emailOrPhone);
+        } else {
+          return this.getCustomerByPhone(emailOrPhone);
         }
+      }),
+      map(customer => {
+        if (customer) {
+          // In real app, you'd compare hashed passwords
+          // For now, we're just checking if password matches (for testing)
+          if (customer.Password === password) {
+            console.log('Login successful');
+            return customer;
+          }
+        }
+        console.log('Login failed - invalid credentials');
         return null;
       }),
-      catchError(this.handleError<Customer | null>('login', null))
+      catchError(error => {
+        console.error('Login error:', error);
+        return of(null);
+      })
     );
   }
 
-  // Tạo khách hàng mới (đăng ký)
+  // Register new customer
   registerCustomer(customer: ICustomer): Observable<Customer> {
     return this.http.post<Customer>(`${this.apiUrl}/customers`, customer, this.httpOptions)
       .pipe(
@@ -95,7 +110,7 @@ export class CustomerService {
       );
   }
 
-  // Cập nhật thông tin khách hàng
+  // Update customer information
   updateCustomer(customer: Customer): Observable<Customer> {
     return this.http.put<Customer>(`${this.apiUrl}/customers/${customer._id}`, customer, this.httpOptions)
       .pipe(
@@ -104,7 +119,7 @@ export class CustomerService {
       );
   }
 
-  // Cập nhật giỏ hàng của khách hàng
+  // Update customer's cart
   updateCart(customerId: string, cart: CartItem1[]): Observable<Customer> {
     return this.http.put<Customer>(
       `${this.apiUrl}/customers/${customerId}/cart`, 
@@ -116,7 +131,7 @@ export class CustomerService {
     );
   }
 
-  // Thêm sản phẩm vào giỏ hàng
+  // Add product to cart
   addToCart(customerId: string, productId: string, quantity: number = 1): Observable<Customer> {
     return this.getCustomerById(customerId).pipe(
       switchMap(customer => {
@@ -135,7 +150,7 @@ export class CustomerService {
     );
   }
 
-  // Xóa khách hàng
+  // Delete customer
   deleteCustomer(customerId: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/customers/${customerId}`, this.httpOptions)
       .pipe(
@@ -144,7 +159,7 @@ export class CustomerService {
       );
   }
 
-  // Xử lý lỗi
+  // Error handling
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);

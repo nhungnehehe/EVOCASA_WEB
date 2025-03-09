@@ -1,19 +1,56 @@
+.menu-list {
+  border-radius: 7px;
+  /* padding: 10px 20px; */
+  background-color: #f2ead3;
+}
+
+.menu-item {
+  border-radius: 7px;
+  padding: 10px;
+}
+.menu-item:hover {
+  background-color: #e0d3b8; /* Màu nền thay đổi khi hover */
+}
+.menu-icon-text {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Tạo khoảng cách giữa icon và chữ */
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.menu-item.active .menu-text {
+  font-weight: bold; /* Làm đậm chữ "Track Order" */
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+}
+.rotated-image {
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+  display: block; /* Đảm bảo ảnh không bị ảnh hưởng bởi inline spacing */
+  margin-top: 8px;
+}
+
+.menu-arrow {
+  margin-left: auto; 
+  font-size: 18px;
+}
+
 .whole {
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
 }
 .container {
-  display: flex;
   padding: 20px;
-  gap: 40px;
+  gap: 20px;
   font-family: "Inter", sans-serif;
-  margin-left: 50px;
-}
-
-@media (max-width: 991px) {
-  .order-container {
-    flex-direction: column;
-  }
+  margin-left: 40px;
 }
 
 .your-order {
@@ -85,11 +122,12 @@
 }
 /* content bên phải */
 .content {
-  flex: 1;
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
+  margin-top: 100px;
+  width: 100%;
 }
 
 .track-orders-container {
@@ -185,7 +223,52 @@
   font-size: 14px;
   color: #666;
 }
+/* Media Queries */
+@media (max-width: 1024px) {
+  .container {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .profile-section, .content {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .profile-section {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .content {
+    width: 90%;
+    max-width: 90%;
+    margin-right: 10px;
+  }
+
+  .track-orders-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .track-orders-title {
+    font-size: 24px;
+  }
+
+  .order-card {
+    padding: 15px;
+  }
+}
 @media (max-width: 991px) {
   .track-orders-container {
     padding: 20px;

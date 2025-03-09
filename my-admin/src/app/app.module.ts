@@ -9,6 +9,11 @@ import { CustomerComponent } from './customer/customer.component';
 import { OrderComponent } from './order/order.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { EditPeoductComponent } from './product-detail/edit-peoduct/edit-peoduct.component';
+import { EditCategoryComponent } from './category-detail/edit-category/edit-category.component';
+import { AddCategoryComponent } from './category-detail/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { CategoryComponent } from './category/category.component';
     CustomerComponent,
     OrderComponent,
     ProductComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductDetailComponent,
+    AddProductComponent,
+    EditPeoductComponent,
+    EditCategoryComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
