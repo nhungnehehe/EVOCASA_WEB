@@ -672,3 +672,8 @@ app.get("/orders", async (req, res) => {
       res.status(500).send({ error: "Error fetching products" });
   }
 });
+app.get("/orders/:id", cors(), async (req, res) => {
+  var o_id = new ObjectId(req.params["id"]);
+  const result = await orderCollection.find({ _id: o_id }).toArray();
+  res.send(result[0]);
+});
