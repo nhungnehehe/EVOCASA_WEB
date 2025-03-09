@@ -1,3 +1,4 @@
+
 body {
     font-family: Inter, sans-serif;
     background-color: #FFFCF3;
@@ -89,6 +90,7 @@ body {
     font-family: "Zen Old Mincho", serif;
     font-weight: 400; /* Không in đậm */
     margin-bottom: 10px;
+    margin-top: 60px;
 }
 .feels-found p {
     font-size: 14px;
@@ -133,6 +135,7 @@ body {
     font-family: "Zen Old Mincho", serif;
     font-weight: 400;
     margin-bottom: 10px;
+    margin-top: 60px;
 }
 .soul-container p {
     font-size: 14px;
@@ -182,6 +185,7 @@ body {
     font-family: "Zen Old Mincho", serif;
     font-weight: 400;
     margin-bottom: 10px;
+    margin-top: 60px;
 }
 
 .hot-collection p {
@@ -268,6 +272,7 @@ body {
     font-family: "Zen Old Mincho", serif;
     font-weight: 400;
     margin-bottom: 30px;
+    margin-top: 60px;
 }
 .values-content {
     display: flex;
@@ -279,7 +284,7 @@ body {
     flex: 1;
 }
 .values-image img {
-    width: 100%;
+    width: 98%;
     height: auto;
     object-fit: cover;
 }
