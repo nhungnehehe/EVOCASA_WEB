@@ -501,7 +501,7 @@ img.revealed {
     height: auto;
     min-height: 100px;
     max-height: 180px;
-    background: rgba(255, 242, 242, 0.98);
+    background: #FFFCF3;
     padding: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     z-index: 9;
