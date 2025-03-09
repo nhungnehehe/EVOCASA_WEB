@@ -78,11 +78,11 @@ body {
 
 /* Feels Found Section */
 .feels-found {
-    max-width: 100%;
     margin-top: 60px;
     text-align: center;
-    padding: 20px 40px; /* Thêm padding trái và phải */
+    padding: 0 47px;
 }
+
 .feels-found h2 {
     font-size: 32px;
     color: #5E4C3E;
@@ -124,11 +124,9 @@ body {
 
 /* The Soul */
 .soul-container {
-    max-width: 100%;
-    margin: 80px;
     text-align: center;
-    padding: 0 40px; /* Thêm padding trái và phải */
-}
+    padding: 0 47px;
+} 
 .soul-container h2 {
     font-size: 32px;
     color: #5E4C3E;
@@ -151,7 +149,6 @@ body {
 }
 .soul-image {
     flex: 1;
-    max-width: 600px;
 }
 .soul-image img {
     width: 100%;
@@ -175,9 +172,8 @@ body {
 
 /* Hot collection */
 .hot-collection {
-    margin: 80px;
+    padding: 0 47px;
     text-align: center;
-    padding: 0 40px; /* Thêm padding trái và phải */
 }
 
 .hot-collection h2 {
