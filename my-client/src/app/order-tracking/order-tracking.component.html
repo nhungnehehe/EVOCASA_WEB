@@ -12,7 +12,7 @@
         </div>
       </article>
       <nav class="menu-list">
-        <div class="menu-item" [routerLink]="'/manage-account'" routerLinkActive="active">
+        <div class="menu-item" [routerLink]="'/manage-account'">
           <div class="menu-icon-text">
             <img src="images/profile/personal_information.svg" alt="Personal Information Icon" class="menu-icon" />
             <span class="menu-text">Personal information</span>
@@ -22,7 +22,7 @@
         <div class="menu-item">
           <div class="menu-icon-text active">
             <img src="images/profile/track_order.svg" alt="Track Order Icon" class="menu-icon" />
-            <span class="menu-text">Track Order</span>
+            <span class="menu-text"><b>Track Order</b></span>
             <img src="images/payment/arrow.svg" alt="Personal Information Icon" class="rotated-image" />
           </div>
         </div>        
@@ -33,7 +33,7 @@
   <div class="content">
     <div class="track-orders-container">
       <h2 class="track-orders-title">Track Orders</h2>
-      <div class="order-card-wrapper">
+      <div>
         <article class="order-card">
           <div class="order-header">
             <div class="order-id-group">

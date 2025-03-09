@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { OrderTrackingDetailComponent } from './order-tracking-detail/order-trac
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 import { PopupComponent } from './popup/popup.component';
 import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
+import { ManageAccountComponent } from './manage-account/manage-account.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { PaymentNoticeComponent } from './payment-notice/payment-notice.componen
     Blog5Component,
     Blog6Component,
     InsituComponent,
+    ManageAccountComponent,
     OrderTrackingDetailComponent,
     OrderTrackingComponent,
     PopupComponent,
@@ -78,6 +81,7 @@ import { PaymentNoticeComponent } from './payment-notice/payment-notice.componen
     FormsModule,
     HttpClientModule,
     CommonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

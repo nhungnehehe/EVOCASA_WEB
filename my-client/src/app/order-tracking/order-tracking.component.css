@@ -37,26 +37,20 @@
 }
 
 .menu-arrow {
-  margin-left: auto; /* Đẩy dấu '>' sang phải */
+  margin-left: auto; 
   font-size: 18px;
 }
 
 .whole {
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
 }
 .container {
-  display: flex;
   padding: 20px;
-  gap: 40px;
+  gap: 20px;
   font-family: "Inter", sans-serif;
   margin-left: 40px;
-}
-
-@media (max-width: 991px) {
-  .order-container {
-    flex-direction: column;
-  }
 }
 
 .your-order {
@@ -128,11 +122,12 @@
 }
 /* content bên phải */
 .content {
-  flex: 1;
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
+  margin-top: 100px;
+  width: 100%;
 }
 
 .track-orders-container {
@@ -228,7 +223,52 @@
   font-size: 14px;
   color: #666;
 }
+/* Media Queries */
+@media (max-width: 1024px) {
+  .container {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .profile-section, .content {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .profile-section {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .content {
+    width: 90%;
+    max-width: 90%;
+    margin-right: 10px;
+  }
+
+  .track-orders-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .track-orders-title {
+    font-size: 24px;
+  }
+
+  .order-card {
+    padding: 15px;
+  }
+}
 @media (max-width: 991px) {
   .track-orders-container {
     padding: 20px;
