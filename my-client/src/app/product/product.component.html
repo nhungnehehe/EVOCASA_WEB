@@ -1,6 +1,7 @@
 <div class="container">
   <div class="title">
     <h1 id="all-title">Shop All</h1>
+    <p id="category-description"></p> <!-- Phần mô tả được hiển thị ở đây -->
   </div>
   <!-- Menu Section -->
   <div class="menu">
@@ -14,7 +15,7 @@
         <div class="category" (click)="toggleSubMenu('lighting')">Lighting</div>
         <div class="category" (click)="toggleSubMenu('art')">Art</div>
       </div>
-      <!-- TS sẽ tự tạo các div level2 cho các submenu tại đây -->
+      <!-- Các submenu (level2) sẽ được TS tự tạo -->
     </div>
   </div>
 </div>
@@ -30,7 +31,7 @@
               class="img-fluid main-image">
             <img 
               *ngIf="hoveredIndex > 0" 
-              [src]="product.Image[hoveredIndex]" 
+              [src]="product.Image[hoveredIndex]"
               [alt]="product.Name"  
               class="img-fluid hover-image">
           </ng-container>

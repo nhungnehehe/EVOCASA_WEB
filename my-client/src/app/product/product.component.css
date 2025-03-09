@@ -60,30 +60,34 @@
   display: flex;
 }
 
-/* First-level category item */
-.category {
-  cursor: pointer;
-  padding: 8px 12px;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
-
-.category:hover {
-  color: #007bff;
-}
-
-/* Subcategory item */
+/* First-level category và subcategory */
+.category,
 .subcategory {
-  cursor: pointer;
-  padding: 8px 12px;
-  font-size: 16px;
-  transition: color 0.3s ease;
+  font-weight: 300; /* Chữ nhạt */
+  color: #5E4C3E;
+  cursor: pointer; /* Hiển thị con trỏ dạng mũi tên */
+  /* Loại bỏ transition để chữ không động */
 }
 
+/* Khi hover, in đậm và đổi màu ngay lập tức */
+.category:hover,
 .subcategory:hover {
+  font-weight: 300; /* In đậm */
   color: #007bff;
 }
 
+/* Khi được chọn (active) */
+.category.active,
+.subcategory.active {
+  font-weight: 300; /* In đậm */
+  color: #110404;
+}
+
+/* Các phần tử không active giữ màu nhạt */
+.category:not(.active),
+.subcategory:not(.active) {
+  color: #5E4C3E;
+}
 /* Product card styling */
 .row {
   display: flex;
@@ -104,6 +108,23 @@
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+}
+/* Styling for the category description shown under the title */
+#category-description {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #5E4C3E;
+  transition: opacity 0.3s ease;
+}
+
+/* Hiệu ứng xuất hiện, nếu cần */
+#category-description.show {
+  opacity: 1;
+}
+#category-description.hide {
+  opacity: 0;
 }
 
 

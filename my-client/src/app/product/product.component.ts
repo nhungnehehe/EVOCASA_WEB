@@ -21,6 +21,8 @@ export class ProductComponent implements OnInit, AfterViewInit {
   mainCategories: Category[] = [];
   // Map slug -> name
   categoryMapping: { [key: string]: string } = {};
+  // Map slug -> description
+  categoryDescriptionMapping: { [key: string]: string } = {};
   // Map subcategory slug -> parent category slug
   categoryHierarchy: { [key: string]: string } = {};
   // Map slug -> _id
@@ -97,14 +99,13 @@ export class ProductComponent implements OnInit, AfterViewInit {
     console.log('Loading categories...');
     this.categoryService.getCategories().subscribe({
       next: (data: any[]) => {
-        // Mapping dữ liệu: chuyển từ { Name, Slug, ParentCategory, … } sang { name, slug, parentCategory, … }
+        // Mapping dữ liệu: chuyển từ { Name, Slug, Description, ParentCategory, … } sang { name, slug, description, parentCategory, … }
         this.categories = data.map(cat => {
           return {
             _id: cat._id, // giả sử _id ở đây là string
             name: cat.Name,
             description: cat.Description,
             slug: cat.Slug,
-            // Nếu ParentCategory tồn tại, chuyển nó thành string, ngược lại null
             parentCategory: cat.ParentCategory ? (cat.ParentCategory.$oid || cat.ParentCategory) : null
           } as Category;
         });
@@ -113,6 +114,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
         // Xây dựng mapping
         this.categories.forEach(category => {
           this.categoryMapping[category.slug] = category.name;
+          this.categoryDescriptionMapping[category.slug] = category.description;
           this.categoryIdMapping[category.slug] = category._id;
           this.categorySlugMapping[category._id] = category.slug;
         });
@@ -146,30 +148,33 @@ export class ProductComponent implements OnInit, AfterViewInit {
       this.products = this.filteredProducts;
       return;
     }
-    const categoryId = this.categoryIdMapping[categorySlug];
-    if (!categoryId) {
+  
+    const selectedCategoryId = this.categoryIdMapping[categorySlug];
+    if (!selectedCategoryId) {
       console.error(`Category ID not found for slug: ${categorySlug}`);
       return;
     }
-    this.currentCategoryId = categoryId;
-
-    const isMainCategory = this.mainCategories.some(cat => cat._id === categoryId);
+  
+    // Kiểm tra xem đây có phải là main category hay không (main: parentCategory === null)
+    const isMainCategory = this.mainCategories.some(cat => cat._id === selectedCategoryId);
     if (isMainCategory) {
       console.log(`Filtering products for main category: ${categorySlug}`);
+      // Lấy tất cả các subcategory của main category được chọn
       const subCategoryIds = this.categories
-        .filter(cat => cat.parentCategory === categoryId)
+        .filter(cat => cat.parentCategory === selectedCategoryId)
         .map(cat => cat._id);
-      subCategoryIds.push(categoryId);
-      console.log('Category IDs to filter by:', subCategoryIds);
+      // Nếu bạn muốn sản phẩm gán trực tiếp cho main category cũng được hiển thị, bạn có thể:
+      // subCategoryIds.push(selectedCategoryId);
       this.filteredProducts = this.allProducts.filter(product => {
-        const productCategoryId: string = product.Category;
-        return subCategoryIds.includes(productCategoryId);
+        // Chú ý: Sử dụng product.category_id thay vì product.Category
+        const prodCatId: string = product.category_id;
+        return subCategoryIds.includes(prodCatId);
       });
     } else {
       console.log(`Filtering products for subcategory: ${categorySlug}`);
       this.filteredProducts = this.allProducts.filter(product => {
-        const productCategoryId: string = product.Category;
-        return productCategoryId === categoryId;
+        // So sánh product.category_id với _id của subcategory được chọn
+        return product.category_id === selectedCategoryId;
       });
     }
     console.log(`Found ${this.filteredProducts.length} products for category ${categorySlug}`);
@@ -277,6 +282,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
     console.log('Toggle submenu for:', category);
     this.toggleOpacity(category);
     this.filterProductsByCategory(category);
+    // Cập nhật tiêu đề lớn và mô tả
     if (category === 'all') {
       const level2s = document.querySelectorAll('.level2');
       level2s.forEach((submenu: any) => submenu.style.display = 'none');
@@ -285,34 +291,49 @@ export class ProductComponent implements OnInit, AfterViewInit {
       if (titleEl) {
         titleEl.textContent = 'Shop All';
       }
+      const descEl = document.getElementById('category-description');
+      if (descEl) {
+        descEl.textContent = '';
+      }
       return;
     }
     const titleEl = document.getElementById('all-title');
-    const categoryName = this.categoryMapping[category] || 'All';
     if (titleEl) {
-      titleEl.textContent = categoryName;
-      const isMainCategory = this.mainCategories.some(cat => cat.slug === category);
-      if (isMainCategory) {
-        console.log('Is main category. Showing submenu.');
-        if (this.lastCategory && this.lastCategory !== category) {
-          const prevMenu = document.getElementById(this.lastCategory);
-          if (prevMenu) {
-            prevMenu.style.display = 'none';
-          }
+      // Cập nhật tiêu đề theo tên category
+      titleEl.textContent = this.categoryMapping[category] || 'All';
+    }
+    const descEl = document.getElementById('category-description');
+    if (descEl) {
+      // Lấy description từ mapping hoặc từ categories
+      let descriptionText = this.categoryDescriptionMapping[category] || '';
+      // Nếu đây là subcategory, bạn có thể lấy description của nó
+      if (!descriptionText) {
+        const selectedCategory = this.categories.find(cat => cat.slug === category);
+        if (selectedCategory) {
+          descriptionText = selectedCategory.description;
         }
-        const menu = document.getElementById(category);
-        if (menu) {
-          console.log('Found submenu element. Setting display to flex.');
-          menu.style.display = 'flex';
-          this.lastCategory = category;
-        } else {
-          console.warn(`Submenu element with id #${category} not found!`);
+      }
+      descEl.textContent = descriptionText;
+    }
+    const isMainCategory = this.mainCategories.some(cat => cat.slug === category);
+    if (isMainCategory) {
+      console.log('Is main category. Showing submenu.');
+      if (this.lastCategory && this.lastCategory !== category) {
+        const prevMenu = document.getElementById(this.lastCategory);
+        if (prevMenu) {
+          prevMenu.style.display = 'none';
         }
+      }
+      const menu = document.getElementById(category);
+      if (menu) {
+        console.log('Found submenu element. Setting display to flex.');
+        menu.style.display = 'flex';
+        this.lastCategory = category;
       } else {
-        console.log('Is subcategory.');
+        console.warn(`Submenu element with id #${category} not found!`);
       }
     } else {
-      console.warn('Title element not found!');
+      console.log('Is subcategory.');
     }
   }
 
@@ -334,4 +355,4 @@ export class ProductComponent implements OnInit, AfterViewInit {
       console.error('Error: Product Name is missing');
     }
   }
-}0
+}
