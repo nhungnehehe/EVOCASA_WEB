@@ -14,6 +14,7 @@ import { AddProductComponent } from './product/add-product/add-product.component
 import { EditPeoductComponent } from './product-detail/edit-peoduct/edit-peoduct.component';
 import { EditCategoryComponent } from './category-detail/edit-category/edit-category.component';
 import { AddCategoryComponent } from './category-detail/add-category/add-category.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddCategoryComponent } from './category-detail/add-category/add-categor
     AddProductComponent,
     EditPeoductComponent,
     EditCategoryComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
