@@ -2,7 +2,7 @@
   <div class="title">
     <h1 id="all-title">Shop All</h1>
   </div>
-  <!-- Menu Section (right side) -->
+  <!-- Menu Section -->
   <div class="menu">
     <div id="menu-list">
       <div class="level1">
@@ -14,77 +14,38 @@
         <div class="category" (click)="toggleSubMenu('lighting')">Lighting</div>
         <div class="category" (click)="toggleSubMenu('art')">Art</div>
       </div>
-      <div id="furniture" class="level2">
-        <div class="subcategory" (click)="toggleSubMenu('tables')">Tables</div>
-        <div class="subcategory" (click)="toggleSubMenu('seating')">Seating</div>
-        <div class="subcategory" (click)="toggleSubMenu('casegoods')">Casegoods</div>
-      </div>
-      <div id="decor" class="level2">
-        <div class="subcategory" (click)="toggleSubMenu('vases-vessels')">Vases & Vessels</div>
-        <div class="subcategory" (click)="toggleSubMenu('decorative-objects')">Decorative Objects</div>
-        <div class="subcategory" (click)="toggleSubMenu('bowls-dishes')">Bowls & Dishes</div>
-        <div class="subcategory" (click)="toggleSubMenu('mirrors')">Mirrors</div>
-        <div class="subcategory" (click)="toggleSubMenu('utility')">Utility</div>
-        <div class="subcategory" (click)="toggleSubMenu('bath-accessories')">Bath Accessories</div>
-      </div>
-      <div id="dining-entertaining" class="level2">
-        <div class="subcategory" (click)="toggleSubMenu('kitchen-accessories')">Kitchen Accessories</div>
-        <div class="subcategory" (click)="toggleSubMenu('serving-dishes')">Serving Dishes</div>
-        <div class="subcategory" (click)="toggleSubMenu('barware')">Barware</div>
-        <div class="subcategory" (click)="toggleSubMenu('utensils')">Utensils</div>
-        <div class="subcategory" (click)="toggleSubMenu('candleholders')">Candleholders</div>
-        <div class="subcategory" (click)="toggleSubMenu('glassware')">Glassware</div>
-      </div>
-      <div id="soft-goods" class="level2">
-        <div class="subcategory" (click)="toggleSubMenu('pillows')">Pillows</div>
-      </div>
-      <div id="lighting" class="level2">
-        <div class="subcategory" (click)="toggleSubMenu('table-lamps')">Table Lamps</div>
-      </div>
-      <div id="art" class="level2">
-        <div class="subcategory" (click)="toggleSubMenu('vintage')">Vintage</div>
-        <div class="subcategory" (click)="toggleSubMenu('artisan')">Artisan</div>
-      </div>
+      <!-- TS sẽ tự tạo các div level2 cho các submenu tại đây -->
     </div>
   </div>
 </div>
 <div class="row">
   <ng-container *ngFor="let product of products; let i = index">
-    <!-- <div class="col-md-4 mb-4"> -->
     <div class="product-card" (click)="viewProductDetails(product)" style="cursor: pointer;">
       <div class="card-header p-0">
         <div class="image-container" (mouseover)="onHover(i)" (mouseleave)="onHoverOut()">
           <ng-container *ngIf="product.Image && product.Image.length > 0">
-            <!-- Show the main image (first image) -->
             <img 
               [src]="product.Image[0]" 
               [alt]="product.Name" 
               class="img-fluid main-image">
-          
-            <!-- Show the next image (hovered image) when hovered -->
             <img 
               *ngIf="hoveredIndex > 0" 
               [src]="product.Image[hoveredIndex]" 
               [alt]="product.Name"  
               class="img-fluid hover-image">
           </ng-container>
-          
           <img *ngIf="!product.Image || product.Image.length === 0" 
             src="assets/images/placeholder.jpg"
             [alt]="product.Name" 
             class="img-fluid main-image">
         </div>
       </div>
-
       <div class="product-header">
         <div class="product-title">{{ product.Name }}</div>
         <div class="product-price">${{ product.Price.toFixed(2) }}</div>
       </div>
     </div>
-    <!-- </div>  -->
   </ng-container>
-
-  <!-- No products message -->
   <div *ngIf="products.length === 0 && !errMessage" class="col-12 text-center">
     <p>No products found.</p>
   </div>
