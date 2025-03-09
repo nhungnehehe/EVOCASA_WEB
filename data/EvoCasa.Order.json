@@ -1,0 +1,292 @@
+[{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb339"
+  },
+  "Customer_id": "C001",
+  "TrackingNumber": "TN0013649",
+  "OrderDate": "2025-02-13 16:58:06",
+  "ShipDate": "2025-02-15 16:58:06",
+  "Status": "Delivered",
+  "Phone": "09706592693",
+  "Email": "customer1@example.com",
+  "Address": "19 Ho Thi Ky Street, Ho Chi Minh City, Viet Nam",
+  "PaymentMethod": "Bank Transfer",
+  "TotalPrice": 262,
+  "PrePrice": 238,
+  "DeliveryFee": 24,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0be8cc5fec55b70d0fcb3"
+      },
+      "Quantity":2
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb33a"
+  },
+  "Customer_id": "C002",
+  "TrackingNumber": "TN0029961",
+  "OrderDate": "2025-02-02 16:58:06",
+  "ShipDate": "2025-02-06 16:58:06",
+  "Status": "Shipped",
+  "Phone": "09606850491",
+  "Email": "customer2@example.com",
+  "Address": "123 Street, Wuhan, China",
+  "PaymentMethod": "Cash on Delivery",
+  "TotalPrice": 1088,
+  "PrePrice": 1065,
+  "DeliveryFee": 23,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0cf25c5fec55b70d0fcdc"
+      },
+      "Quantity": 10
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb33b"
+  },
+  "Customer_id": "C003",
+  "TrackingNumber": "TN0034757",
+  "OrderDate": "2025-02-17 16:58:06",
+  "ShipDate": "2025-02-22 16:58:06",
+  "Status": "Shipped",
+  "Phone": "09532425598",
+  "Email": "customer3@example.com",
+  "Address": "19 Nguyen Du Street, Ho Chi Minh City, Viet Nam",
+  "PaymentMethod": "PayPal",
+  "TotalPrice": 863,
+  "PrePrice": 818,
+  "DeliveryFee": 45,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0b278c5fec55b70d0fc9e"
+      },
+      "Quantity": 1
+    },
+    {
+      "_id": {
+        "$oid": "67c0be8cc5fec55b70d0fcb3"
+      },
+      "Quantity": 2
+    },
+    {
+      "_id": {
+        "$oid": "67c0c07bc5fec55b70d0fcb9"
+      },
+      "Quantity": 1
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb33c"
+  },
+  "Customer_id": "C004",
+  "TrackingNumber": "TN0049355",
+  "OrderDate": "2025-02-02 16:58:06",
+  "ShipDate": "2025-02-07 16:58:06",
+  "Status": "Delivered",
+  "Phone": "09368044293",
+  "Email": "customer4@example.com",
+  "Address": "148 Hai Ba Trung Street, Ha Noi City, Viet Nam",
+  "PaymentMethod": "Cash on Delivery",
+  "TotalPrice": 1526,
+  "PrePrice": 1485,
+  "DeliveryFee": 41,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0b418c5fec55b70d0fca3"
+      },
+      "Quantity": 3
+    },
+    {
+      "_id": {
+        "$oid": "67c0d233c5fec55b70d0fce6"
+      },
+      "Quantity": 2
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb33d"
+  },
+  "Customer_id": "C005",
+  "TrackingNumber": "TN0051282",
+  "OrderDate": "2025-02-23 16:58:06",
+  "ShipDate": "2025-02-26 16:58:06",
+  "Status": "Cancelled",
+  "Phone": "09190684458",
+  "Email": "customer5@example.com",
+  "Address": "54/27 Hung Vuong Street, Da Nang City, Viet Nam",
+  "PaymentMethod": "Cash on Delivery",
+  "TotalPrice": 570,
+  "PrePrice": 523,
+  "DeliveryFee": 47,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0be8cc5fec55b70d0fcb3"
+      },
+      "Quantity": 1
+    },
+    {
+      "_id": {
+        "$oid": "67c0b278c5fec55b70d0fc9e"
+      },
+      "Quantity":2
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb33e"
+  },
+  "Customer_id": "C006",
+  "TrackingNumber": "TN0066614",
+  "OrderDate": "2025-02-17 16:58:06",
+  "ShipDate": "2025-02-20 16:58:06",
+  "Status": "Processing",
+  "Phone": "09588186941",
+  "Email": "customer6@example.com",
+  "Address": "239 Dang Van Bi Street, Ho Chi Minh City, Viet Nam",
+  "PaymentMethod": "Bank Transfer",
+  "TotalPrice": 701,
+  "PrePrice": 688,
+  "DeliveryFee": 13,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0d06fc5fec55b70d0fcdf"
+      },
+      "Quantity": 5
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb33f"
+  },
+  "Customer_id": "C007",
+  "TrackingNumber": "TN0076207",
+  "OrderDate": "2025-02-22 16:58:06",
+  "ShipDate": "2025-02-24 16:58:06",
+  "Status": "Delivered",
+  "Phone": "09582239949",
+  "Email": "customer7@example.com",
+  "Address": "1/8/12 Vo Van Kiet Street, Can Tho City, Viet Nam",
+  "PaymentMethod": "Bank Transfer",
+  "TotalPrice": 545,
+  "PrePrice": 523,
+  "DeliveryFee": 22,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0b278c5fec55b70d0fc9e"
+      },
+      "Quantity": 3
+    },
+    {
+      "_id": {
+        "$oid": "67c0be8cc5fec55b70d0fcb3"
+      },
+      "Quantity":3
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb340"
+  },
+  "Customer_id": "C008",
+  "TrackingNumber": "TN0084201",
+  "OrderDate": "2025-02-01 16:58:06",
+  "ShipDate": "2025-02-04 16:58:06",
+  "Status": "Shipped",
+  "Phone": "09837498705",
+  "Email": "customer8@example.com",
+  "Address": "42 Nam Ky Khoi Nghia Street, Nghe An Province, Viet Nam",
+  "PaymentMethod": "Cash on Delivery",
+  "TotalPrice": 1592,
+  "PrePrice": 1545,
+  "DeliveryFee": 47,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0b278c5fec55b70d0fc9e"
+      },
+      "Quantity": 7
+    },
+    {
+      "_id": {
+        "$oid": "67c0cf25c5fec55b70d0fcdc"
+      },
+      "Quantity": 6
+    },
+    {
+      "_id": {
+        "$oid": "67c0b96dc5fec55b70d0fcad"
+      },
+      "Quantity": 3
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb341"
+  },
+  "Customer_id": "C009",
+  "TrackingNumber": "TN0093992",
+  "OrderDate": "2025-02-16 16:58:06",
+  "ShipDate": "2025-02-21 16:58:06",
+  "Status": "Processing",
+  "Phone": "09988498437",
+  "Email": "customer9@example.com",
+  "Address": "359 Kha Van Can Street, Thanh Hoa Province, Viet Nam",
+  "PaymentMethod": "Bank Transfer",
+  "TotalPrice": 315,
+  "PrePrice": 285,
+  "DeliveryFee": 30,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0b278c5fec55b70d0fc9e"
+      },
+      "Quantity": 4
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67c1f180d202a289bd1bb342"
+  },
+  "Customer_id": "C0010",
+  "TrackingNumber": "TN00105048",
+  "OrderDate": "2025-01-30 16:58:06",
+  "ShipDate": "2025-01-31 16:58:06",
+  "Status": "Delivered",
+  "Phone": "09214247376",
+  "Email": "customer10@example.com",
+  "Address": "22 Hoa Binh Street, Dong Nai Province, Viet Nam",
+  "PaymentMethod": "PayPal",
+  "TotalPrice": 297,
+  "PrePrice": 285,
+  "DeliveryFee": 12,
+  "OrderProduct": [
+    {
+      "_id": {
+        "$oid": "67c0b278c5fec55b70d0fc9e"
+      },
+      "Quantity": 8
+    }
+  ]
+}]
