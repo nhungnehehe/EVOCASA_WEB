@@ -22,7 +22,7 @@ h1 {
     gap: 30px;
 }
 .sidebar {
-    width: 250px;
+    width: 300px;
     text-align: center;
     margin-right: 40px;
 }
@@ -54,7 +54,7 @@ h1 {
     align-items: flex-start;
 }
 .profile-name {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: black;
     text-align: left;
@@ -85,7 +85,7 @@ h1 {
 }
 .info-box h2 {
     color: #5E4C3E; 
-    font-size: 24px; 
+    font-size: 22px; 
     font-family: Zen Old Mincho; 
     font-weight: 700; 
     word-wrap: break-word; 
@@ -96,7 +96,7 @@ h1 {
 .personal-in4 {
     position: relative; 
     color: #5E4C3E; 
-    font-size: 24px; 
+    font-size: 22px; 
     font-family: Zen Old Mincho; 
     font-weight: 700; 
     word-wrap: break-word; 
@@ -109,7 +109,7 @@ h1 {
     top: 0px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-weight: 500; 
     word-wrap: break-word; 
@@ -120,7 +120,7 @@ h1 {
     top: 37px;
      position: absolute; 
      color: rgba(0, 0, 0, 0.60); 
-     font-size: 24px; 
+     font-size: 17px; 
      font-family: Inter; 
      font-weight: 500; 
      word-wrap: break-word; 
@@ -131,7 +131,7 @@ h1 {
     top: 74px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-weight: 500; 
     word-wrap: break-word; 
@@ -142,7 +142,7 @@ h1 {
     top: 113px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-weight: 500; 
     word-wrap: break-word; 
@@ -153,7 +153,7 @@ h1 {
      top: 156px; 
      position: absolute; 
      color: rgba(0, 0, 0, 0.60); 
-     font-size: 24px; 
+     font-size: 17px; 
      font-family: Inter; 
      font-weight: 500; 
      word-wrap: break-word; 
@@ -164,7 +164,7 @@ h1 {
     top: 0px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-style: italic; 
     font-weight: 300;
@@ -176,7 +176,7 @@ h1 {
     top: 37px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-style: italic; 
     font-weight: 300; 
@@ -188,7 +188,7 @@ h1 {
     top: 74px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-style: italic; 
     font-weight: 300; 
@@ -200,7 +200,7 @@ h1 {
     top: 156px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-style: italic; 
     font-weight: 300; 
@@ -212,7 +212,7 @@ h1 {
     top: 113px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-style: italic; 
     font-weight: 300; 
@@ -222,7 +222,7 @@ h1 {
 .edit1 {
     position: relative; 
     color: #3F2305; 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-weight: 400; 
     text-decoration: underline; 
@@ -234,9 +234,9 @@ h1 {
     top: 17px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
-    font-weight: 500; 
+    font-weight: 400; 
     word-wrap: break-word;
 }
 .phone-number {
@@ -244,9 +244,9 @@ h1 {
     top: 48px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
-    font-weight: 500; 
+    font-weight: 400; 
     word-wrap: break-word;
 }
 .address {
@@ -254,9 +254,9 @@ h1 {
     top: 83px; 
     position: absolute; 
     color: rgba(0, 0, 0, 0.60); 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
-    font-weight: 500; 
+    font-weight: 400; 
     word-wrap: break-word;
 }
 .edit-ship {
@@ -264,36 +264,36 @@ h1 {
     top: 83px; 
     position: absolute; 
     color: #3F2305; 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-weight: 400; 
     text-decoration: underline;
     word-wrap: break-word;
 }
 .delete {
-    left: 630px; 
+    left: 615px; 
     top: 83px; 
     position: absolute; 
     color: #3F2305;
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-weight: 400;
     text-decoration: underline; 
     word-wrap: break-word;
 }
 .add-more-add {
-    left: 15px; 
-    top: 6px; 
+    left: 12px; 
+    top: 10px; 
     position: absolute; 
     color: white; 
-    font-size: 24px; 
+    font-size: 17px; 
     font-family: Inter; 
     font-weight: 400; 
     word-wrap: break-word;
     text-align: center;
 }
 .add-more-add-1 {
-    width: 210px; 
+    width: 180px; 
     height: 41px; 
     left: 0px; 
     top: 0px; 
@@ -303,7 +303,7 @@ h1 {
     text-align: center;
 }
 .add-more-add-2 {
-    width: 240px; 
+    width: 180px; 
     height: 41px; 
     position: relative;  
     margin-top: 50px;
@@ -337,7 +337,7 @@ h1 {
     position: absolute;
 }
 .ship4 {
-    width: 670px; 
+    width: 640px; 
     height: 120px; 
     left: 37px; 
     top: 0px; 
