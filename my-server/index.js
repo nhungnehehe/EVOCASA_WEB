@@ -50,6 +50,7 @@ const database = client.db("EvoCasa");
 const productCollection = database.collection("Product");
 const categoryCollection = database.collection("Category");
 const customerCollection = database.collection("Customer");
+const orderCollection = database.collection("Order");
 
 // Helper functions to clean HTML and decode HTML entities
 const decodeHtmlEntities = (text) => {
@@ -661,4 +662,13 @@ app.put('/change-password', cors(), async (req, res) => {
   );
   
   res.send({ message: 'Đổi mật khẩu thành công' });
+});
+app.get("/orders", async (req, res) => {
+  try {
+      const result = await orderCollection.find({}).toArray();
+      res.status(200).send(result);
+  } catch (error) {
+      console.error("Error fetching products:", error);
+      res.status(500).send({ error: "Error fetching products" });
+  }
 });
