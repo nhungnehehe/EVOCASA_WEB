@@ -13,27 +13,27 @@
       <div class="drawer__content">
         <form id="mini-cart-form" novalidate method="post">
 
-          <div *ngFor="let product of products" class="line-item" [attr.data-product-id]="product.id">
+          <div *ngFor="let product of products" class="line-item" [attr.data-product-id]="product.productId">
             <!-- Phần 1: Hình ảnh sản phẩm -->
             <div class="line-item__content-wrapper">
               <a href="#" class="line-item__image-wrapper">
-                <img [src]="product.image" alt="{{product.name}}" class="line-item__image">
+                <img [src]="product.Image" alt="{{product.Name}}" class="line-item__image">
               </a>
             </div>
     
             <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
             <div class="line-item__info">
-              <p class="line-item__name">{{product.name}}</p>
+              <p class="line-item__name">{{product.Name}}</p>
               <div class="quantity-selector">
-                <button class="quantity-selector__button" type="button" (click)="changeQuantity('decrease', product.id)">-</button>
-                <input type="text" class="quantity-selector__input" [value]="product.quantity" aria-label="Change quantity" readonly>
-                <button class="quantity-selector__button" type="button" (click)="changeQuantity('increase', product.id)">+</button>
+                <button class="quantity-selector__button" type="button" (click)="changeQuantity('decrease', product.productId)">-</button>
+                <input type="text" class="quantity-selector__input" [value]="product.cartQuantity" aria-label="Change quantity" readonly>
+                <button class="quantity-selector__button" type="button" (click)="changeQuantity('increase', product.productId)">+</button>
               </div>
             </div>
     
             <!-- Phần 3: Giá sản phẩm -->
             <div class="line-item__price-wrapper">
-              <p class="line-item__price">${{product.price | number:'1.0-0'}}</p>
+              <p class="line-item__price">${{product.Price | number:'1.0-0'}}</p>
             </div>
           </div>
         </form>

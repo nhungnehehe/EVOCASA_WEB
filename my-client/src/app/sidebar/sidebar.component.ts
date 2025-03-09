@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CartItem } from '../interfaces/cart';
+import { CartService } from '../services/cart.service';
+
+
 
 @Component({
   selector: 'app-sidebar',
@@ -8,54 +12,102 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   // Danh sách sản phẩm trong giỏ hàng
-  products = [
-    { id: 'product-1', name: 'Product 1', price: 6500, quantity: 1, image: 'https://via.placeholder.com/100' },
-    { id: 'product-2', name: 'Product 2', price: 7500, quantity: 1, image: 'https://via.placeholder.com/100' }
-  ];
+  products: CartItem[] = [];  // Danh sách sản phẩm trong giỏ hàng
 
   total: number = 0; // Tổng giỏ hàng
   isCartVisible: boolean = true; // Giỏ hàng có hiển thị hay không
 
-  // Kiểm tra giỏ hàng có trống hay không
-  get isEmpty(): boolean {
-    return this.products.length === 0;
-  }
+  constructor(
+      private cartService: CartService,
+    ) {}
 
-  ngOnInit(): void {
+ // Kiểm tra giỏ hàng có trống hay không
+ get isEmpty(): boolean {
+  return this.products.length === 0;
+}
+
+// Lấy danh sách sản phẩm trong giỏ hàng
+loadProducts(): void {
+  this.cartService.getCartItems().subscribe({
+    next: (data) => {
+      this.products = data.map((product) => {
+        if (product.Image && typeof product.Image === 'string') {
+          try {
+            const images = JSON.parse(product.Image);
+            product.Image = images[0];  // Lấy hình ảnh đầu tiên từ mảng
+          } catch (e) { 
+            console.error('Error parsing images for product:', product.Name, e);
+            product.Image = '';  // Nếu có lỗi, để hình ảnh rỗng
+          }
+        }
+        return product;
+      });
+
+      // GỌI `updateTotal()` Ở ĐÂY ĐỂ CẬP NHẬT GIÁ SAU KHI DỮ LIỆU ĐƯỢC TẢI
+      this.updateTotal();
+    },
+    error: (err) => {
+      console.error('Error loading cart:', err);
+    }
+  });
+}
+    
+    ngOnInit(): void {
+    this.loadProducts(); // Gọi phương thức để lấy danh sách sản phẩm trong giỏ hàng từ API
     this.updateTotal(); // Cập nhật tổng giỏ hàng khi trang tải
   }
 
   // Thay đổi số lượng sản phẩm khi nhấn các nút
   changeQuantity(action: string, productId: string): void {
-    const product = this.products.find(p => p.id === productId);
+    const product = this.products.find(p => p.productId === productId);
     if (!product) return;
 
     // Tăng hoặc giảm số lượng sản phẩm
     if (action === 'increase') {
-      product.quantity++;
-    } else if (action === 'decrease' && product.quantity > 1) {
-      product.quantity--;
-    } else if (action === 'decrease' && product.quantity === 1) {
+      product.cartQuantity++;
+    } else if (action === 'decrease' && product.cartQuantity > 1) {
+      product.cartQuantity--;
+    } else if (action === 'decrease' && product.cartQuantity === 1) {
       this.removeProduct(productId); // Xóa sản phẩm khi số lượng giảm xuống 0
       return;
     }
 
     // Cập nhật tổng giỏ hàng
     this.updateTotal();
+    // Gọi phương thức updateCartItem để cập nhật số lượng lên server
+    this.cartService.updateCartItem(product.productId, product.cartQuantity).subscribe({
+      next: () => {
+      },
+      error: (err) => {
+        console.error('Error updating item quantity:', err);
+      }
+    });
+
   }
 
   // Xóa sản phẩm khi số lượng = 0
   removeProduct(productId: string): void {
-    const index = this.products.findIndex(p => p.id === productId);
+    const index = this.products.findIndex(p => p.productId === productId);
+    
     if (index !== -1) {
-      this.products.splice(index, 1); // Xóa sản phẩm khỏi giỏ hàng
+      this.products.splice(index, 1); // Xóa sản phẩm khỏi giao diện
+      this.updateTotal(); // Cập nhật lại tổng giỏ hàng
+  
+      // 🛠 Gửi yêu cầu API để xóa sản phẩm khỏi giỏ hàng trên server
+      this.cartService.removeCartItem(productId).subscribe({
+        next: () => {
+          console.log(`Product ${productId} removed from cart on server.`);
+        },
+        error: (err) => {
+          console.error('Error removing product from cart:', err);
+        }
+      });
     }
-    this.updateTotal(); // Cập nhật lại tổng giỏ hàng sau khi xóa sản phẩm
   }
 
   // Cập nhật tổng giỏ hàng
   updateTotal(): void {
-    this.total = this.products.reduce((acc, product) => acc + (product.quantity * product.price), 0);
+    this.total = this.products.reduce((acc, product) => acc + (product.cartQuantity * product.Price), 0);
   }
 
   // Hàm để mở giỏ hàng
@@ -87,4 +139,3 @@ export class SidebarComponent implements OnInit {
     });
   }
 }
-

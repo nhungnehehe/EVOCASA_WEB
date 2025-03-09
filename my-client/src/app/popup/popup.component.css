@@ -15,6 +15,7 @@ body {
     border-radius: 7px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
+    pointer-events: auto; /* Cho phép tương tác với popup */
 }
 .popup-content {
     width: 437px;
@@ -96,3 +97,83 @@ body {
     font-weight: 300;
     color: #3F2305;
 }
+
+/* Nút đóng popup */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #3F2305; /* Màu icon trắng */
+  background-color: antiquewhite;
+  font-size: 20px;
+  border: none;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 1000; /* Đảm bảo luôn hiển thị trên cùng */
+}
+
+/* Khi hover vào nút đóng */
+.close-button:hover {
+  background: rgba(225, 213, 153, 0.8);
+}
+
+
+/* Background overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Làm mờ nền */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+    pointer-events: none; /* Cho phép cuộn nền */
+  }
+  
+  /* Khi hiển thị, pop-up sẽ xuất hiện */
+  .modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Nội dung pop-up */
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Khi pop-up hiển thị, scale trở lại kích thước ban đầu */
+  .modal-overlay.show .modal-content {
+    transform: scale(1);
+  }
+  
+  /* Nút đóng */
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
