@@ -446,7 +446,7 @@ app.get("/categories", cors(), async (req, res) => {
       const result = await customerCollection.find({ _id: o_id }).toArray();
       
       if (result.length === 0) {
-        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+        return res.status(404).send({ message: "Customer not found." });
       }
       
       res.send(result[0]);
@@ -462,7 +462,7 @@ app.get("/categories", cors(), async (req, res) => {
       const result = await customerCollection.find({ Phone: phone }).toArray();
       
       if (result.length === 0) {
-        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+        return res.status(404).send({ message: "Customer not found." });
       }
       
       res.send(result[0]);
@@ -523,7 +523,7 @@ app.get("/categories", cors(), async (req, res) => {
       
       const updatedCustomer = await customerCollection.findOne({ _id: o_id });
       if (!updatedCustomer) {
-        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+        return res.status(404).send({ message: "Customer not found." });
       }
       
       res.send(updatedCustomer);
@@ -546,7 +546,7 @@ app.get("/categories", cors(), async (req, res) => {
       
       const updatedCustomer = await customerCollection.findOne({ _id: o_id });
       if (!updatedCustomer) {
-        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+        return res.status(404).send({ message: "Customer not found." });
       }
       
       res.send(updatedCustomer);
@@ -564,10 +564,10 @@ app.get("/categories", cors(), async (req, res) => {
       const result = await customerCollection.deleteOne({ _id: o_id });
       
       if (result.deletedCount === 0) {
-        return res.status(404).send({ message: "Không tìm thấy khách hàng" });
+        return res.status(404).send({ message: "Customer not found." });
       }
       
-      res.send({ message: "Đã xóa khách hàng thành công" });
+      res.send({ message: "Customer deleted successfully." });
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
@@ -596,7 +596,7 @@ app.post("/register", cors(), async (req, res) => {
   
   await customerCollection.insertOne(newCustomer);
   res.status(201).send({
-    message: "Đăng ký thành công",
+    message: "Successfully registered.",
     user: { ...newCustomer, Password: undefined, PasswordSalt: undefined }
   });
 });
@@ -608,7 +608,7 @@ app.post('/login', cors(), async (req, res) => {
   
   const user = await customerCollection.findOne({ Phone: phonenumber });
   if (!user) {
-    return res.status(401).send({ message: 'Số điện thoại không tồn tại' });
+    return res.status(401).send({ message: 'The phone number does not exist.' });
   }
   
   // Kiểm tra nếu có PasswordSalt (nếu đã migrate sang hệ thống mới)
@@ -626,7 +626,7 @@ app.post('/login', cors(), async (req, res) => {
     return res.send(userInfo);
   }
   
-  res.status(401).send({ message: 'Mật khẩu không chính xác' });
+  res.status(401).send({ message: 'The password is incorrect' });
 });
 
 // Đổi mật khẩu
@@ -636,7 +636,7 @@ app.put('/change-password', cors(), async (req, res) => {
   
   const user = await customerCollection.findOne({ Phone: phonenumber });
   if (!user) {
-    return res.status(401).send({ message: 'Số điện thoại không tồn tại' });
+    return res.status(401).send({ message: 'The phone number does not exist.' });
   }
   
   // Kiểm tra mật khẩu cũ
@@ -649,7 +649,7 @@ app.put('/change-password', cors(), async (req, res) => {
   }
   
   if (!isOldPasswordValid) {
-    return res.status(401).send({ message: 'Mật khẩu cũ không chính xác' });
+    return res.status(401).send({ message: 'The old password is incorrect' });
   }
   
   // Tạo salt và hash mới cho mật khẩu mới
@@ -661,7 +661,7 @@ app.put('/change-password', cors(), async (req, res) => {
     { $set: { Password: newHash, PasswordSalt: newSalt } }
   );
   
-  res.send({ message: 'Đổi mật khẩu thành công' });
+  res.send({ message: 'Password changed successfully.' });
 });
 app.get("/orders", async (req, res) => {
   try {
