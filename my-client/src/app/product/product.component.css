@@ -1,200 +1,196 @@
-/* Product card styling */
-*{
-  background-color: #FFFCF3;
-  font-family: Zen Old Mincho;
-}
-/* Image container */
-.image-container {
-  position: relative;
-}
-
-/* Main image */
-.image-container .main-image {
-  width: 100%;
-  height: 300px;
-  display: block;
-  margin: 0 auto;
-  border-radius: 7px;
-}
-
-/* Hover image */
-.image-container .hover-image {
-  width: 100%;
-  height: 300px;
-  display: none; /* Initially hidden */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 7px;
-}
-
-/* Show the hover image when hovering */
-.image-container:hover .hover-image {
-  display: block;
-  opacity: 1;
-}
-
-/* Hide the main image when hovering */
-.image-container:hover .main-image {
-  display: none;
-}
-
-
-/* Title and price container */
-.product-header {
-  display: flex;
-  justify-content: space-between; /* Align title left and price right */
-  align-items: center;
-  margin-top: 10px; /* Space between image and text */
-  /* padding: 0 15px; */
-}
-
-/* Product title */
-.product-title {
-  font-size: 14px; /* Reduced font size */
-  /* font-weight: 600; */
-  margin-bottom: 5px;
-  text-align: left;
-  flex-grow: 1; /* Make sure it takes up remaining space */
-}
-
-/* Product price */
-.product-price {
-  font-size: 14px; /* Reduced font size */
-  /* font-weight: 600; */
-  /* color: #e63946; */
-  margin: 0;
-  text-align: right;
-}
-
-/* General layout of the row */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px; /* Adjust the gap between products */
-  justify-content: center; /* Ensure all items are centered horizontally */
-  margin: 0 auto; /* Center the row horizontally */
-  padding: 0 15px; /* Optional: adds padding on the left and right */
-  max-width: 1500px; /* Optional: ensures the content doesn't stretch too wide on large screens */
-}
-
-/* Product card styling */
-.product-card {
-  height: 100%;
-  /* border-radius: 7px; */
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 250px; /* Set the width of each product card */
-  margin-bottom: 30px;
+/* Reset chung & font mặc định */
+* {
   box-sizing: border-box;
-  flex: 0 0 auto; /* Prevents products from shrinking */
+  margin: 0;
+  padding: 0;
+  font-family: "Zen Old Mincho", serif;
 }
 
-.product-card:hover {
-  /* transform: translateY(-5px); */
-  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); */
-  cursor: pointer;
-}
-
-/* Responsive adjustments */
-@media (max-width: 200px) {
-  .product-card {
-    flex: 1 1 calc(25% - 20px); /* 4 items per row */
-  }
-}
-
-@media (max-width: 992px) {
-  .product-card {
-    flex: 1 1 calc(33.333% - 20px); /* 3 items per row */
-  }
-}
-
-@media (max-width: 768px) {
-  .product-card {
-    flex: 1 1 calc(50% - 20px); /* 2 items per row */
-  }
-}
-
-@media (max-width: 576px) {
-  .product-card {
-    flex: 1 1 calc(100% - 20px); /* 1 item per row */
-  }
-}
-
-/* Reset body and html to take full width */
-
-
-/* Container for layout */
+/* Container header cho Shop All và Menu */
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center; /* Center header vertically */
   padding: 20px;
-  height: 150px;
+  min-height: 150px;
+  background-color: #FFFCF3;
   color: #000000;
 }
 
-/* CASE GOODS section */
+/* Title (Shop All) */
 .title {
   flex: 0 0 auto;
   margin-right: 20px;
-  align-self: flex-start;
-  color:#5E4C3E;
+  color: #5E4C3E;
   margin-left: 30px;
   width: 30%;
 }
-
-/* Main menu styling */
+/* Đặt vị trí cho menu để các submenu có thể hiển thị đúng vị trí */
 .menu {
   padding: 10px;
   text-align: center;
   width: 70%;
-  align-self: flex-end;
-  /* margin-right: 0; */
+  position: relative; /* Thêm thuộc tính này để cấp ngữ cảnh định vị cho submenu */
 }
 
-/* First-level categories (top row) */
+/* First-level categories (level1) */
 .level1 {
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   gap: 15px;
   margin-left: 20px;
 }
 
-.category {
-  cursor: pointer;
-  padding: 8px;
-  font-size: 16px;
-}
-
-.category:hover {
-  color: #007bff;
-}
-
-.category.active, .subcategory.active {
-  opacity: 1 !important;
-}
-
-/* Second-level categories (hidden by default, aligned horizontally) */
+/* Các submenu (level2) được hiển thị dưới menu chính và không làm ảnh hưởng đến header */
 .level2 {
-  display: none;
-  text-align: center;
-  margin-top: 10px;
-  justify-content: left;
+  display: none; /* Ẩn mặc định */
+  position: absolute; /* Định vị tuyệt đối so với .menu */
+  top: 100%; /* Hiển thị bên dưới menu */
+  left: 0;
+  background-color: #FFFCF3; /* Cùng màu nền với header/menu */
+  width: 100%;
+  padding: 10px 20px;
   gap: 15px;
-  display: flex;
-  cursor: pointer;
-  margin-left: 20px;
   border-top: 1px solid #3F2305;
+  z-index: 1000;
 }
 
+/* Khi cần hiển thị, bạn có thể sử dụng inline style hoặc thêm class để thay đổi display */
+.level2.flex {
+  display: flex;
+}
+
+/* First-level category và subcategory */
+.category,
 .subcategory {
-  padding: 8px;
-  font-size: 16px;
+  font-weight: 300; /* Chữ nhạt */
+  color: #5E4C3E;
+  cursor: pointer; /* Hiển thị con trỏ dạng mũi tên */
+  /* Loại bỏ transition để chữ không động */
 }
 
+/* Khi hover, in đậm và đổi màu ngay lập tức */
+.category:hover,
 .subcategory:hover {
+  font-weight: 300; /* In đậm */
   color: #007bff;
+}
+
+/* Khi được chọn (active) */
+.category.active,
+.subcategory.active {
+  font-weight: 300; /* In đậm */
+  color: #110404;
+}
+
+/* Các phần tử không active giữ màu nhạt */
+.category:not(.active),
+.subcategory:not(.active) {
+  color: #5E4C3E;
+}
+/* Product card styling */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin: 20px auto 0 auto;
+  padding: 0 15px;
+  max-width: 1500px;
+}
+
+.product-card {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+/* Styling for the category description shown under the title */
+#category-description {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #5E4C3E;
+  transition: opacity 0.3s ease;
+}
+
+/* Hiệu ứng xuất hiện, nếu cần */
+#category-description.show {
+  opacity: 1;
+}
+#category-description.hide {
+  opacity: 0;
+}
+
+
+
+/* Image container & images */
+.image-container {
+  position: relative;
+}
+.image-container .main-image,
+.image-container .hover-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 7px;
+  display: block;
+  margin: 0 auto;
+}
+
+.image-container .hover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover .hover-image {
+  opacity: 1;
+}
+
+.image-container:hover .main-image {
+  opacity: 0;
+}
+
+/* Product header (title, price) */
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.product-title {
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.product-price {
+  font-size: 14px;
+  text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .product-card {
+    flex: 1 1 calc(33.333% - 20px);
+  }
+}
+@media (max-width: 768px) {
+  .product-card {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+@media (max-width: 576px) {
+  .product-card {
+    flex: 1 1 calc(100% - 20px);
+  }
 }
