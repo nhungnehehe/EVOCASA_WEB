@@ -1,3 +1,45 @@
+.menu-list {
+    border-radius: 7px;
+    /* padding: 10px 20px; */
+    background-color: #f2ead3;
+  }
+  
+  .menu-item {
+    border-radius: 7px;
+    padding: 10px;
+  }
+  .menu-item:hover {
+    background-color: #e0d3b8; /* Màu nền thay đổi khi hover */
+  }
+  .menu-icon-text {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Tạo khoảng cách giữa icon và chữ */
+    font-size: 16px;
+    font-weight: normal;
+  }
+  
+  .menu-item.active .menu-text {
+    font-weight: bold; /* Làm đậm chữ "Track Order" */
+  }
+  
+  .menu-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .rotated-image {
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
+    display: block; /* Đảm bảo ảnh không bị ảnh hưởng bởi inline spacing */
+    margin-top: 8px;
+  }
+  
+  .menu-arrow {
+    margin-left: auto; /* Đẩy dấu '>' sang phải */
+    font-size: 18px;
+  }
 .body {
     font-family: 'Inter', sans-serif;
     background-color: #FAF6EE;
