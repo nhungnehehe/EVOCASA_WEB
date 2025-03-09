@@ -10,10 +10,11 @@
     <!-- Banner -->
     <div class="banner">
         <div class="banner-slider">
-            <img src="images/homepage/Banner2.jpg" class="banner-image" alt="Banner 1">
-            <img src="images/homepage/banner4.jpg" class="banner-image" alt="Banner 2">
-            <img src="images/homepage/3.jpg" class="banner-image" alt="Banner 3">
+            <img src="images/homepage/Banner 1.jpg" class="banner-image" alt="Banner 1">
+            <img src="images/homepage/banner 2.jpg" class="banner-image" alt="Banner 2">
+            <img src="images/homepage/Banner 3.jpg" class="banner-image" alt="Banner 3">
         </div>
+          
         <div class="banner-text">
             <h1>EVOCASA</h1>
             <p>Craft Your Space, Elevate Your Life</p>
@@ -32,27 +33,27 @@
         <p>You can explore all the product categories EvoCasa offers</p>
         <div class="category-container">
             <div class="category-item">
-                <img src="images/homepage/Furniture_3.jpg" alt="Furniture">
+                <img src="images/homepage/Furniture_3.jpg" alt="Furniture" class="hover-effect">
                 <span>Furniture</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Decor_3.jpg" alt="Decor">
+                <img src="images/homepage/Decor_3.jpg" alt="Decor" class="hover-effect">
                 <span>Decor</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Dining_1.jpg" alt="Dining & Entertaining">
+                <img src="images/homepage/Dining_1.jpg" alt="Dining & Entertaining" class="hover-effect">
                 <span>Dining & Entertaining</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/1a.jpg" alt="Soft Goods">
+                <img src="images/homepage/1a.jpg" alt="Soft Goods" class="hover-effect">
                 <span>Soft Goods</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Grapevine Leaf Table Lamp (1).jpg" alt="Lighting">
+                <img src="images/homepage/Grapevine Leaf Table Lamp (1).jpg" alt="Lighting" class="hover-effect">
                 <span>Lighting</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Art_1.jpg" alt="Art">
+                <img src="images/homepage/Art_1.jpg" alt="Art" class="hover-effect">
                 <span>Art</span>
             </div>
         </div>
@@ -64,7 +65,7 @@
         <p>The story of how EvoCasa was born, shaped by the passion for crafting living spaces.</p>
         <div class="soul-content">
             <div class="soul-image">
-                <img src="images/homepage/2.jpg" alt="EvoCasa Interior">
+                <img src="images/homepage/Banner1.jpg" alt="EvoCasa Interior" class="hover-effect">
             </div>
             <div class="soul-text">
                 <p class="soul-description">
@@ -95,7 +96,7 @@
             </div>
             
             <div class="collection-image">
-                <img src="images/homepage/Sabi_2.jpg" alt="Sabi Collection Image">
+                <img src="images/homepage/Sabi_2.jpg" alt="Sabi Collection Image" class="hover-effect">
             </div>
         </div>
     </div>
@@ -149,9 +150,7 @@
             <!-- Thẻ input cho email -->
             <input type="email" class="email-input" placeholder="Your Email">
             <div class="email-icon">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M25.3333 16L6.66667 16M25.3333 16L17.3333 24M25.3333 16L17.3333 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <img src="images/homepage/arrow.png" alt="Arrow" width="32" height="32" viewBox="0 0 32 32" fill="none">
             </div>
         </div>
         <p class="email-info">
@@ -161,38 +160,6 @@
         </p>
     </div>
     
-    <script>
-        let currentIndex = 0;
-        const totalSlides = 3;
-        const slideWidth = 1525;
-        const slider = document.querySelector(".banner-slider");
-        const dots = document.querySelectorAll(".dot");
-
-        function showSlide(index) {
-            if (index >= totalSlides) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = totalSlides - 1;
-            } else {
-                currentIndex = index;
-            }
-            slider.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
-            dots.forEach(dot => dot.classList.remove("active"));
-            dots[currentIndex].classList.add("active");
-        }
-
-        function nextSlide() {
-            showSlide(currentIndex + 1);
-        }
-
-        setInterval(nextSlide, 4000);
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener("click", () => showSlide(index));
-        });
-
-        showSlide(currentIndex);
-    </script>
 
 </body>
 </html>

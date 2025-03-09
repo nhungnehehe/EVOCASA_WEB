@@ -27,6 +27,9 @@ import { TheAnniversaryCollectionComponent } from './collection-detail/the-anniv
 import { SabiCollectionComponent } from './collection-detail/sabi-collection/sabi-collection.component';
 import { ThePavilionCollectionComponent } from './collection-detail/the-pavilion-collection/the-pavilion-collection.component';
 import { TheDiscCollectionComponent } from './collection-detail/the-disc-collection/the-disc-collection.component';
+import { ManageAccountComponent } from './manage-account/manage-account.component';
+import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
+import { OrderTrackingDetailComponent } from './order-tracking-detail/order-tracking-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -56,7 +59,10 @@ const routes: Routes = [
   { path: 'the-anniversary-collection', component:TheAnniversaryCollectionComponent},
   { path: 'sabi-collection', component:SabiCollectionComponent},
   { path: 'the-pavilion-collection', component:ThePavilionCollectionComponent},
-  { path: 'the-disc-collection', component:TheDiscCollectionComponent}
+  { path: 'the-disc-collection', component:TheDiscCollectionComponent},
+  { path: 'manage-account', component:ManageAccountComponent},
+  { path: 'view-orders', component:OrderTrackingComponent},
+  { path: 'view-order-detail', component:OrderTrackingDetailComponent}
 ];
 
 @NgModule({

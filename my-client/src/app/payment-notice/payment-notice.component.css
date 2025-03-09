@@ -115,30 +115,27 @@ body {
     transition: color 0.3s, opacity 0.3s;
 }
 
-.action button{
-    background-color: #525B4A;
-    color: #FFFFFF;
+.next-btn {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    width: 100%; /* Đảm bảo chiếm hết chiều ngang */
+    margin-top: 20px;
+    margin-bottom: 80px; /* Đảm bảo khoảng cách dưới */
 }
 
-button {
+.next-btn button {
+    background-color: #525B4A; /* Màu nền theo hình mẫu */
+    color: white; /* Màu chữ */
     padding: 12px 25px;
-    background-color: #f0c14b;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
+    width: 100%; 
+    text-align: center;
 }
 
-button:hover {
-    background-color: #e3a900;
-}
-
-.action {
-    display: flex;
-    justify-content: center; /* Căn giữa */
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 80px; /* Tạo khoảng cách với footer */
+.next-btn button:hover {
+    background-color: #5E4C3E; /* Màu hover giống mẫu */
 }
