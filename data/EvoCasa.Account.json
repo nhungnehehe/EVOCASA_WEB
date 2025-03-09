@@ -3,7 +3,7 @@
     "$oid": "67285f32a89abab50934451d"
   },
   "Name": "Huyền",
-  "Mail": "huyen@gmail.com",
+  "phonenumber": "0987654321",
   "password": "a7f21582c9",
   "salt": "087579faa4ddc559655c10b6"
 },
@@ -12,7 +12,7 @@
     "$oid": "67289c3ad02b5ada3990aa42"
   },
   "Name": "Nhung",
-  "Mail": "nhung@gmail.com",
+  "phonenumber": "0978123456",
   "password": "b8e31472d8",
   "salt": "9f526a72426d7786ea41b2a5"
 },
@@ -21,7 +21,7 @@
     "$oid": "67289c3ad02b5ada3990aa43"
   },
   "Name": "Như",
-  "Mail": "nhu@gmail.com",
+  "phonenumber": "0965234789",
   "password": "c9f41673e7",
   "salt": "5e627b83537e8897fb52c3b6"
 },
@@ -30,7 +30,7 @@
     "$oid": "67289c3ad02b5ada3990aa44"
   },
   "Name": "Thảo",
-  "Mail": "thao@gmail.com",
+  "phonenumber": "0954678912",
   "password": "d0a51774f6",
   "salt": "7d738c94648f9908gc63d4c7"
 },
@@ -39,7 +39,7 @@
     "$oid": "67289c3ad02b5ada3990aa45"
   },
   "Name": "Trang",
-  "Mail": "trang@gmail.com",
+  "phonenumber": "0945789123",
   "password": "e1b61875g5",
   "salt": "8f849da5759g0a19hd74e5d8"
 },
@@ -48,7 +48,7 @@
     "$oid": "67289c3ad02b5ada3990aa46"
   },
   "Name": "Thanh",
-  "Mail": "thanh@gmail.com",
+  "phonenumber": "0934895671",
   "password": "f2c71976h4",
   "salt": "9g950eb6860h1b20ie85f6e9"
 }]
