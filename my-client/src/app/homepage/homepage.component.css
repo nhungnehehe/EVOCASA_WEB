@@ -58,24 +58,10 @@ body {
 .shop-now:hover {
     background: rgba(242, 234, 211, 1); /* Hover đậm màu hơn */
 }  
-.dots-container {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-}
-.dot {
-    width: 18px;
-    height: 18px;
-    background: rgba(242, 234, 211, 0.50);
-    border-radius: 50%;
-    cursor: pointer;
-}
-.dot.active {
-    background: #F2EAD3;
-}
+
+
+
+
 
 /* Feels Found Section */
 .feels-found {
@@ -443,3 +429,11 @@ body {
         flex-direction: column;
     }
 }
+
+
+
+
+
+
+
+
