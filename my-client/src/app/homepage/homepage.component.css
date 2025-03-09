@@ -412,6 +412,7 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
     vertical-align: center;
+    margin-right: 30px;
 }
 
 /* Nội dung mô tả email */
@@ -451,7 +452,30 @@ body {
 }
 
 
+.hover-effect {
+    transition: opacity 0.3s ease-in-out;
+}
 
+.hover-effect:hover {
+    opacity: 0.7; /* Làm mờ ảnh khi hover */
+}
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.5);
+    animation: zoomInAnimation 1.5s forwards;
+}
+
+@keyframes zoomInAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 
 
