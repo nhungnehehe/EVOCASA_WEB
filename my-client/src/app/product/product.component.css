@@ -28,7 +28,8 @@
 /* Đặt vị trí cho menu để các submenu có thể hiển thị đúng vị trí */
 .menu {
   padding: 10px;
-  text-align: center;
+  margin-left: 40px;
+  text-align: left;
   width: 70%;
   position: relative; /* Thêm thuộc tính này để cấp ngữ cảnh định vị cho submenu */
 }
@@ -40,19 +41,25 @@
   gap: 15px;
   margin-left: 20px;
 }
-
-/* Các submenu (level2) được hiển thị dưới menu chính và không làm ảnh hưởng đến header */
+/* Các submenu (level2) hiển thị bên dưới menu chính */
 .level2 {
   display: none; /* Ẩn mặc định */
-  position: absolute; /* Định vị tuyệt đối so với .menu */
+  position: absolute;
   top: 100%; /* Hiển thị bên dưới menu */
-  left: 0;
-  background-color: #FFFCF3; /* Cùng màu nền với header/menu */
-  width: 100%;
-  padding: 10px 20px;
+  left: 0;   /* Căn trái với cạnh bên trái của menu */
+  background-color: #FFFCF3; /* Giữ cùng màu nền */
+  margin-left: 30px;
   gap: 15px;
-  border-top: 1px solid #3F2305;
   z-index: 1000;
+}
+/* Pseudo-element tạo đường line ngắn bên trái */
+.level2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+ 
+  width: 650px; /* Chiều dài đường line, bạn có thể điều chỉnh */
+  border-top: 1px solid #3F2305;
 }
 
 /* Khi cần hiển thị, bạn có thể sử dụng inline style hoặc thêm class để thay đổi display */
