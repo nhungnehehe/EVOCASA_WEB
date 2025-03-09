@@ -51,6 +51,7 @@ const productCollection = database.collection("Product");
 const categoryCollection = database.collection("Category");
 const customerCollection = database.collection("Customer");
 const orderCollection = database.collection("Order");
+const accountCollection = database.collection("Account");
 
 // Helper functions to clean HTML and decode HTML entities
 const decodeHtmlEntities = (text) => {
@@ -369,21 +370,14 @@ app.get("/categories", cors(), async (req, res) => {
     res.send(result);
   })
   
-  app.get("/categories/:id", cors(), async (req, res) => {
-    var o_id = new ObjectId(req.params["id"]);
-    const result = await categoryCollection.find({ _id: o_id }).toArray();
-    res.send(result[0]);
-  });
-  
-  // Get categories by name
-  app.get("/categories/category/:name", cors(), async (req, res) => {
-    try {
-      const result = await categoryCollection.find({ Name: { $regex: new RegExp(req.params["name"], "i") } }).toArray();
-      res.send(result);
-    } catch (err) {
-      res.status(500).json({ error: "Internal Server Error", message: err.message });
-    }
-  });
+// Get category by either ID or name
+// Get category by ID
+app.get("/categories/:id", cors(), async (req, res) => {
+  var o_id = new ObjectId(req.params["id"]);
+  const result = await categoryCollection.find({ _id: o_id }).toArray();
+  res.send(result[0]);
+});
+
   
   app.put("/categories", cors(), async (req, res) => {
     //update json products into database
@@ -419,17 +413,9 @@ app.get("/categories", cors(), async (req, res) => {
     //send Category after remove
     res.send(result[0]);
   });
-  app.get("/customers", async (req, res) => {
-    try {
-      const result = await customerCollection.find({}).toArray();
-      res.send(result);
-    } catch (error) {
-      res.status(500).send({ message: error.message });
-    }
-  });
   //---------------------CUSTOMER----------------------------//
   // Route thay thế cho /customer (trỏ về cùng một endpoint)
-  app.get("/customer", async (req, res) => {
+  app.get("/customers", async (req, res) => {
     try {
       const result = await customerCollection.find({}).toArray();
       res.send(result);
@@ -455,21 +441,37 @@ app.get("/categories", cors(), async (req, res) => {
     }
   });
   
-  // Lấy khách hàng theo số điện thoại
-  app.get("/customers/:phonenumber", async (req, res) => {
-    try {
-      const phone = req.params["phonenumber"];
-      const result = await customerCollection.find({ Phone: phone }).toArray();
-      
-      if (result.length === 0) {
-        return res.status(404).send({ message: "Customer not found." });
-      }
-      
-      res.send(result[0]);
-    } catch (error) {
-      res.status(500).send({ message: error.message });
+// Lấy khách hàng theo số điện thoại
+app.get("/customers/phone/:phonenumber", cors(), async (req, res) => {
+  try {
+    const phone = req.params["phonenumber"];
+    
+    // Tìm khách hàng theo số điện thoại
+    const customer = await customerCollection.findOne({ Phone: phone });
+    
+    // Kiểm tra nếu không tìm thấy khách hàng
+    if (!customer) {
+      return res.status(404).send({ 
+        success: false, 
+        message: "Không tìm thấy khách hàng với số điện thoại này." 
+      });
     }
-  });
+    
+    // Trả về toàn bộ thông tin khách hàng, bao gồm cả thông tin nhạy cảm
+    res.status(200).send({
+      success: true,
+      data: customer
+    });
+    
+  } catch (error) {
+    console.error("Lỗi khi tìm kiếm khách hàng:", error);
+    res.status(500).send({ 
+      success: false, 
+      message: "Đã xảy ra lỗi khi tìm kiếm khách hàng.",
+      error: error.message
+    });
+  }
+});
   
   // Thêm khách hàng mới
   app.post("/customers", async (req, res) => {

@@ -10,7 +10,7 @@ import { CustomerService } from './customer.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3002/customer'; // Matching the URL from your CustomerService
+  private apiUrl = 'http://localhost:3002/login'; // Matching the URL from your CustomerService
 
   constructor(
     private http: HttpClient, 
