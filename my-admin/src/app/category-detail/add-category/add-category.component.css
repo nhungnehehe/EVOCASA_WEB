@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar Background with Gradient */
+h1{
+    color: #F2EAD3;
+    padding-top: 0px;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 11px;
+    height: 20px;
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.navigate__bar {
+    position: fixed;
+    background: #5E4C3E;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    padding: 15px 0;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav__title {
+    text-align: center;
+}
+
+
+/* Navigation Links */
+.nav__content {
+    list-style: none;
+    color: #F2EAD3;
+    margin-top: 55px;
+    font-size: 20px;
+}
+
+.navigate__bar--link {
+    display: flex;
+    color:#F2EAD3;
+    align-items: center;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 0px;
+    transition: background 0.3s ease, color 0.3s ease;
+    margin: 10px 0;
+}
+
+.navigate__bar--link:hover {
+    background: #C5B6A7;
+    color: #5E4C3E;
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+
+/* Dropdown Menu */
+.nav__item--dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+
+.dropdown-list {
+    visibility: hidden;
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 30px;
+    gap: 10px;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    padding-left: 15px;
+}
+
+.nav__item--dropdown:hover .dropdown-list {
+    visibility: visible;
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    
+}
+
+.item--dropdown {
+    color:#F2EAD3;
+    text-decoration: none;
+    padding: 12px 10px;
+    font-size: 20px;
+    transition: background 0.3s ease;
+    border-radius: 0px;
+
+}
+
+.item--dropdown:hover {
+    background: #C5B6A7;
+    color: #5E4C3E;
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+/* Hover Effect for Icons */
+.material-icons-outlined {
+    color: #F2EAD3;
+    margin-right: 12px;
+    padding-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.material-symbols-outlined {
+    color: #F2EAD3;
+    margin-left: 8px;
+    align-self: right;
+    transition: color 0.3s ease;
+    transform: rotate(270deg);
+}
+
+.navigate__bar--link:hover .material-icons-outlined {
+    color: #5E4C3E;
+}
+
+
+.nav__item--dropdown:hover .material-symbols-outlined {
+    color: #5E4C3E;
+    transform: rotate(0deg);  /* Quay 0 độ khi hover vào dropdown */
+
+} 
+
+
+/* Giữ nguyên màu sắc hover cho các liên kết đang được chọn */
+.navigate__bar--link.active {
+    background: #C5B6A7;
+    color: #5E4C3E;
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+.navigate__bar--link.active .material-icons-outlined {
+    color: #5E4C3E;
+}
+
+/* Hiệu ứng hover cho item trong dropdown */
+.item--dropdown:hover, .item--dropdown.active {
+    background: #C5B6A7;
+    color: #5E4C3E;
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+.nav__item--dropdown.active .material-symbols-outlined {
+    color: #5E4C3E;
+    transform: rotate(0deg);
+}
+
+.dropdown-list.show-dropdown {
+    visibility: visible;
+    display: flex;
+    opacity: 1;
+}
+
+
+.item--dropdown.active {
+    background: #C5B6A7;
+    color: #5E4C3E;
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+
+
+
+/* ADD PRODUCT */
+.all {
+    background-color: #FFFCF3;
+}
+.custom-hr {
+    width: 100%;
+    margin-top: 82px;
+    border: 1px solid rgba(94, 76, 62, 0.40);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    margin-left: 275px;
+    margin-top: 18px;
+}
+
+.title {
+    width: 383px;
+    position: relative;
+    color: #3F2305;
+    font-size: 30px;
+    font-family: 'Zen Old Mincho', serif;
+    word-wrap: break-word;
+}
+
+.flex-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-left: 150px;
+}
+
+.button {
+    width: 125px;
+    height: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    letter-spacing: 0.10px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.save-draft {
+    border: 1px solid #3F2305;
+    color: #3F2305;
+}
+
+.add-product {
+    width: 138px;
+    background: #525B4A;
+    color: #F2EAD3;
+}
+
+.cancel {
+    width: 101px;
+    border: 1px solid #3F2305;
+    color: #3F2305;
+    margin-right: 30px;
+}
+
+.button img {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+}
+
+.custom-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    margin-left: 275px;
+    margin-right: 30px;
+}
+
+.product-info-box {
+    width: 580px;
+    height: 480px;
+    position: relative;
+    background: rgba(246, 239, 221, 0.50);
+    border-radius: 7px;
+    margin-bottom: 40px;
+}
+
+.product-info-content {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    line-height: 20px;
+    letter-spacing: 0.10px;
+    word-wrap: break-word;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.product-info-title {
+    color: #5E4C3E;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.inputs-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.input-field {
+    width: 300px;
+    height: 30px;
+    padding-left: 15px;
+    border-radius: 7px;
+    margin-top: 5px;
+    border: 1px solid #F2EAD3;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    background: #F2EAD3;
+}
+
+.input-field-description {
+    width: 525px;
+    height: 90px;
+    padding-left: 15px;
+    border-radius: 7px;
+    margin-top: 5px;
+    border: 1px solid #F2EAD3;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    background: #F2EAD3;
+    resize: none;
+    padding-top: 10px;
+}
+
+.input-field::placeholder {
+    color: #3F2305;
+}
+
+.input-field-description::placeholder {
+    color: #3F2305;
+}
+
+
+
+/* Second box */
+.box {
+    width: 320px;
+    height: 400px;
+    position: relative;
+    background: rgba(246, 239, 221, 0.50);
+    border-radius: 7px;
+}
+
+/* Title */
+.upload-title {
+    color: #5E4C3E;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    font-family: Inter, sans-serif;
+    line-height: 20px;
+    letter-spacing: 0.10px;
+    word-wrap: break-word;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Main image */
+.main-image {
+    width: 200px;
+    height: 240px;
+    margin-left: 55px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+/* Container for small images */
+.image-container {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+}
+
+/* Small images */
+.small-image {
+    width: 40px;
+    height: 60px;
+    margin-left: 15px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+/* Container for icon inside small box */
+.icon-container {
+    width: 40px;
+    height: 60px;
+    margin-left: 15px;
+    margin-right: 10px;
+    margin-top: 20px;
+    background: rgb(94, 76, 62, 0.5);
+    position: relative;
+}
+
+/* Icon image inside the small box */
+.icon-image {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.combo-box-container {
+    position: relative;
+    width: 300px; /* Set width for the container */
+}
+
+.combo-box-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%); /* Center the image vertically */
+    pointer-events: none; /* Ensure that the image doesn't block the click event on the select */
+    opacity: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 280px;
+    padding-right: 10px;
+}
+
+.input-field1 {
+    width: 315px;
+    height: 30px;
+    padding-left: 15px; 
+    margin-right: 10px; 
+    border-radius: 7px;
+    margin-top: 5px;
+    border: 1px solid #F2EAD3;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    background: #F2EAD3;
+    appearance: none; /* Remove default arrow on most browsers */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+}
+
+.input-field1::placeholder {
+    color: #3F2305;
+}
+
+.input-field1 option {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #3F2305;
+}
+
+.box {
+    width: 320px;
+    height: 480px;
+    position: relative;
+    background: rgba(246, 239, 221, 0.50);
+    border-radius: 7px;
+}
+
+.upload-title {
+    color: #5E4C3E;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    font-family: Inter, sans-serif;
+    line-height: 20px;
+    letter-spacing: 0.10px;
+    word-wrap: break-word;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.main-image {
+    width: 250px;
+    height: 320px;
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+}
+
+/* Icon image inside the small box */
+.icon-image {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    margin-left: 100px;
+    transform: translate(-50%, -50%);
+}
