@@ -9,8 +9,6 @@
     "$date": "1995-05-12T00:00:00.000Z"
   },
   "Address": "Hà Nội, Việt Nam",
-  "Password": "hashedpassword1",
-  "PasswordSalt": "randomsaltvalue1fff",
   "Gender": "Female",
   "Image": "/images/profile/huyen.jpg",
   "CreatedAt": {
@@ -36,8 +34,6 @@
     "$date": "1993-08-22T00:00:00.000Z"
   },
   "Address": "Hồ Chí Minh, Việt Nam",
-  "Password": "hashedpassword2",
-  "PasswordSalt": "randomsaltvaluegdssss",
   "Gender": "Female",
   "Image": "/images/profile/nhung.jpg",
   "CreatedAt": {
@@ -56,8 +52,6 @@
     "$date": "1997-02-10T00:00:00.000Z"
   },
   "Address": "Đà Nẵng, Việt Nam",
-  "Password": "hashedpassword3",
-  "PasswordSalt": "randomsaltvaluefgbbfd",
   "Gender": "Female",
   "Image": "/images/profile/nhu.jpg",
   "CreatedAt": {
@@ -83,8 +77,6 @@
     "$date": "1998-12-15T00:00:00.000Z"
   },
   "Address": "Hải Phòng, Việt Nam",
-  "Password": "hashedpassword4",
-  "PasswordSalt": "randomsaltvalu49d5f5e",
   "Gender": "Female",
   "Image": "/images/profile/thao.jpg",
   "CreatedAt": {
@@ -103,8 +95,6 @@
     "$date": "1996-06-30T00:00:00.000Z"
   },
   "Address": "Cần Thơ, Việt Nam",
-  "Password": "hashedpassword5",
-  "PasswordSalt": "randomsaltvalgsdfdgfue",
   "Gender": "Female",
   "Image": "/images/profile/trang.jpg",
   "CreatedAt": {
@@ -130,8 +120,6 @@
     "$date": "1994-04-18T00:00:00.000Z"
   },
   "Address": "Nha Trang, Việt Nam",
-  "Password": "hashedpassword6",
-  "PasswordSalt": "randomsaltv4g55d2snjffalue",
   "Gender": "Female",
   "Image": "/images/profile/thanh.jpg",
   "CreatedAt": {
