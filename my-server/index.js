@@ -571,3 +571,94 @@ app.get("/categories", cors(), async (req, res) => {
       res.status(500).send({ message: error.message });
     }
   });
+  // Đăng ký
+app.post("/register", cors(), async (req, res) => {
+  const crypto = require('crypto');
+  const salt = crypto.randomBytes(16).toString('hex');
+  const userData = req.body;
+  const hash = crypto.pbkdf2Sync(userData.Password, salt, 1000, 64, `sha512`).toString(`hex`);
+  
+  // Tạo đối tượng khách hàng mới với password đã mã hóa
+  const newCustomer = {
+    Name: userData.Name,
+    Phone: userData.Phone,
+    Mail: userData.Mail,
+    DOB: userData.DOB || '',
+    Address: userData.Address || '',
+    Password: hash,
+    PasswordSalt: salt, // Thêm field salt để lưu
+    Gender: userData.Gender || '',
+    Image: userData.Image || '',
+    CreatedAt: new Date(),
+    Cart: []
+  };
+  
+  await customerCollection.insertOne(newCustomer);
+  res.status(201).send({
+    message: "Đăng ký thành công",
+    user: { ...newCustomer, Password: undefined, PasswordSalt: undefined }
+  });
+});
+
+// Đăng nhập
+app.post('/login', cors(), async (req, res) => {
+  const { phonenumber, password } = req.body;
+  const crypto = require('crypto');
+  
+  const user = await customerCollection.findOne({ Phone: phonenumber });
+  if (!user) {
+    return res.status(401).send({ message: 'Số điện thoại không tồn tại' });
+  }
+  
+  // Kiểm tra nếu có PasswordSalt (nếu đã migrate sang hệ thống mới)
+  if (user.PasswordSalt) {
+    const hash = crypto.pbkdf2Sync(password, user.PasswordSalt, 1000, 64, `sha512`).toString(`hex`);
+    if (user.Password === hash) {
+      // Không trả về password và salt
+      const { Password, PasswordSalt, ...userInfo } = user;
+      return res.send(userInfo);
+    }
+  } else if (user.Password === password) {
+    // Xử lý tạm thời cho trường hợp chưa migrate (password chưa mã hóa)
+    // Bạn nên migrate dữ liệu sang dạng mã hóa
+    const { Password, ...userInfo } = user;
+    return res.send(userInfo);
+  }
+  
+  res.status(401).send({ message: 'Mật khẩu không chính xác' });
+});
+
+// Đổi mật khẩu
+app.put('/change-password', cors(), async (req, res) => {
+  const { phonenumber, oldPassword, newPassword } = req.body;
+  const crypto = require('crypto');
+  
+  const user = await customerCollection.findOne({ Phone: phonenumber });
+  if (!user) {
+    return res.status(401).send({ message: 'Số điện thoại không tồn tại' });
+  }
+  
+  // Kiểm tra mật khẩu cũ
+  let isOldPasswordValid = false;
+  if (user.PasswordSalt) {
+    const oldHash = crypto.pbkdf2Sync(oldPassword, user.PasswordSalt, 1000, 64, `sha512`).toString(`hex`);
+    isOldPasswordValid = (user.Password === oldHash);
+  } else {
+    isOldPasswordValid = (user.Password === oldPassword);
+  }
+  
+  if (!isOldPasswordValid) {
+    return res.status(401).send({ message: 'Mật khẩu cũ không chính xác' });
+  }
+  
+  // Tạo salt và hash mới cho mật khẩu mới
+  const newSalt = crypto.randomBytes(16).toString(`hex`);
+  const newHash = crypto.pbkdf2Sync(newPassword, newSalt, 1000, 64, `sha512`).toString(`hex`);
+  
+  await customerCollection.updateOne(
+    { Phone: phonenumber }, 
+    { $set: { Password: newHash, PasswordSalt: newSalt } }
+  );
+  
+  res.send({ message: 'Đổi mật khẩu thành công' });
+});
