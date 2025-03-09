@@ -49,17 +49,14 @@
                 </div>
 
                 <!-- CHECKBOXES -->
-                <div class="checkboxes">
-                    <label>
-                        <input type="checkbox" name="save-time" id="save-time">
-                        Save time at checkout – create an account to store your address
-                    </label>
-                    <label>
-                        <input type="checkbox" name="same-address" id="same-address">
-                        Billing and delivery address are the same
-                    </label>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="savetime">
+                    <label for="savetime">Save time at checkout – create an account to store your address</label>
                 </div>
-
+                <div class="checkbox-container">
+                    <input type="checkbox" id="sameaddress">
+                    <label for="sameaddress"> Billing and delivery address are the same</label>
+                </div>
                 <h2>DELIVERY OPTION</h2>
                 <div class="delivery-option">
                     <div class="delivery-choice">
@@ -127,7 +124,7 @@
             </div>
         </div>
     </div>
-    <div class="action">
+    <div class="next-btn">
         <a routerLink="/payment-method"><button type="submit">NEXT STEP</button></a>
     </div>
 </body>
