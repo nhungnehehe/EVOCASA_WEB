@@ -415,6 +415,19 @@ app.get("/categories/:id", cors(), async (req, res) => {
   });
   //---------------------CUSTOMER----------------------------//
   // Route thay thế cho /customer (trỏ về cùng một endpoint)
+
+  app.get("/accounts", cors(), async (req, res) => {
+    const result = await accountCollection.find({}).toArray();
+    res.send(result);
+  });
+  
+  app.get("/accounts/:phonenumber", cors(), async (req, res) => {
+    const phone = req.params["phonenumber"];
+    const result = await accountCollection
+      .find({ phonenumber: phone })
+      .toArray();
+    res.send(result[0]);
+  });
   app.get("/customers", async (req, res) => {
     try {
       const result = await customerCollection.find({}).toArray();
@@ -496,7 +509,7 @@ app.get("/customers/phone/:phonenumber", cors(), async (req, res) => {
     }
   });
   
-  // Cập nhật thông tin khách hàng (version 1 - đầy đủ thông tin)
+  // Cập nhật thông tin khách hàng
   app.put("/customers/:id", async (req, res) => {
     try {
       const id = req.params.id;
@@ -574,96 +587,54 @@ app.get("/customers/phone/:phonenumber", cors(), async (req, res) => {
       res.status(500).send({ message: error.message });
     }
   });
-  // Đăng ký
-app.post("/register", cors(), async (req, res) => {
-  const crypto = require('crypto');
-  const salt = crypto.randomBytes(16).toString('hex');
-  const userData = req.body;
-  const hash = crypto.pbkdf2Sync(userData.Password, salt, 1000, 64, `sha512`).toString(`hex`);
-  
-  // Tạo đối tượng khách hàng mới với password đã mã hóa
-  const newCustomer = {
-    Name: userData.Name,
-    Phone: userData.Phone,
-    Mail: userData.Mail,
-    DOB: userData.DOB || '',
-    Address: userData.Address || '',
-    Password: hash,
-    PasswordSalt: salt, // Thêm field salt để lưu
-    Gender: userData.Gender || '',
-    Image: userData.Image || '',
-    CreatedAt: new Date(),
-    Cart: []
-  };
-  
-  await customerCollection.insertOne(newCustomer);
-  res.status(201).send({
-    message: "Successfully registered.",
-    user: { ...newCustomer, Password: undefined, PasswordSalt: undefined }
-  });
-});
+//Đăng ký và Đăng nhập
+app.post("/accounts", cors(), async (req, res) => {
+  var crypto = require('crypto');
+  salt = crypto.randomBytes(16).toString('hex');
+  userCollection = database.collection("Account");
+  user = req.body;
+  hash = crypto.pbkdf2Sync(user.password, salt, 1000, 64, `sha512`).toString(`hex`);
+  user.password = hash;
+  user.salt = salt
+  await userCollection.insertOne(user)
+  res.send(req.body)
+})
 
-// Đăng nhập
 app.post('/login', cors(), async (req, res) => {
   const { phonenumber, password } = req.body;
   const crypto = require('crypto');
-  
-  const user = await customerCollection.findOne({ Phone: phonenumber });
-  if (!user) {
-    return res.status(401).send({ message: 'The phone number does not exist.' });
-  }
-  
-  // Kiểm tra nếu có PasswordSalt (nếu đã migrate sang hệ thống mới)
-  if (user.PasswordSalt) {
-    const hash = crypto.pbkdf2Sync(password, user.PasswordSalt, 1000, 64, `sha512`).toString(`hex`);
-    if (user.Password === hash) {
-      // Không trả về password và salt
-      const { Password, PasswordSalt, ...userInfo } = user;
-      return res.send(userInfo);
+  const userCollection = database.collection('Account');
+  const user = await userCollection.findOne({ phonenumber });
+  if (user == null) {
+    res.status(401).send({ message: 'Unexisted username' });
+  } else {
+    const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, `sha512`).toString(`hex`);
+    if (user.password === hash) {
+      res.send(user);
+    } else {
+      res.status(401).send({ message: 'False password' });
     }
-  } else if (user.Password === password) {
-    // Xử lý tạm thời cho trường hợp chưa migrate (password chưa mã hóa)
-    // Bạn nên migrate dữ liệu sang dạng mã hóa
-    const { Password, ...userInfo } = user;
-    return res.send(userInfo);
   }
-  
-  res.status(401).send({ message: 'The password is incorrect' });
 });
 
-// Đổi mật khẩu
 app.put('/change-password', cors(), async (req, res) => {
   const { phonenumber, oldPassword, newPassword } = req.body;
   const crypto = require('crypto');
-  
-  const user = await customerCollection.findOne({ Phone: phonenumber });
-  if (!user) {
-    return res.status(401).send({ message: 'The phone number does not exist.' });
-  }
-  
-  // Kiểm tra mật khẩu cũ
-  let isOldPasswordValid = false;
-  if (user.PasswordSalt) {
-    const oldHash = crypto.pbkdf2Sync(oldPassword, user.PasswordSalt, 1000, 64, `sha512`).toString(`hex`);
-    isOldPasswordValid = (user.Password === oldHash);
+  const userCollection = database.collection('Account');
+  const user = await userCollection.findOne({ phonenumber });
+  if (user == null) {
+    res.status(401).send({ message: 'Unexisted username' });
   } else {
-    isOldPasswordValid = (user.Password === oldPassword);
+    const oldHash = crypto.pbkdf2Sync(oldPassword, user.salt, 1000, 64, `sha512`).toString(`hex`);
+    if (user.password !== oldHash) {
+      res.status(401).send({ message: 'False old password' });
+    } else {
+      const newSalt = crypto.randomBytes(16).toString(`hex`);
+      const newHash = crypto.pbkdf2Sync(newPassword, newSalt, 1000, 64, `sha512`).toString(`hex`);
+      await userCollection.updateOne({ phonenumber }, { $set: { password: newHash, salt: newSalt } });
+      res.send({ message: 'Change password successfully' });
+    }
   }
-  
-  if (!isOldPasswordValid) {
-    return res.status(401).send({ message: 'The old password is incorrect' });
-  }
-  
-  // Tạo salt và hash mới cho mật khẩu mới
-  const newSalt = crypto.randomBytes(16).toString(`hex`);
-  const newHash = crypto.pbkdf2Sync(newPassword, newSalt, 1000, 64, `sha512`).toString(`hex`);
-  
-  await customerCollection.updateOne(
-    { Phone: phonenumber }, 
-    { $set: { Password: newHash, PasswordSalt: newSalt } }
-  );
-  
-  res.send({ message: 'Password changed successfully.' });
 });
 app.get("/orders", async (req, res) => {
   try {
