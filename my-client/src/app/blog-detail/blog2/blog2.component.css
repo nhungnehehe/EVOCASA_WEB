@@ -73,3 +73,104 @@ h3 {
   margin: 0px;
   padding: 40px 0px;
 }
+
+/* Hiệu ứng reveal khi scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hiệu ứng cho ảnh giữa */
+.imgcenter {
+  display: block;
+  width: 450px;
+  height: auto;
+  margin: 5px auto;
+  border-radius: 4px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+
+.imgcenter:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.2);
+}
+
+/* Hiệu ứng cho ảnh bên phải */
+.imgright {
+  width: 550px;
+  height: auto;
+  border-radius: 4px;
+  margin-left: 50px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+
+.imgright:hover {
+  transform: scale(1.03) translateX(-10px);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.2);
+}
+
+/* Hiệu ứng cho ảnh bên trái */
+.imgleft {
+  width: 450px;
+  height: auto;
+  border-radius: 4px;
+  margin: 5px 47px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+
+.imgleft:hover {
+  transform: scale(1.03) translateX(10px);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.2);
+}
+
+/* Hiệu ứng cho final note */
+.final-note {
+  background-color: #f2ead3;
+  text-align: center;
+  padding: 40px;
+  margin: 50px 150px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: -0.05px;
+  border-radius: 5px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+
+.final-note:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.15);
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin: 20px;
+  }
+  #muc3,
+  .imgright,
+  .imgleft {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .imgcenter {
+    width: 100%;
+    margin: 20px auto;
+  }
+  .final-note {
+    margin: 30px 20px;
+  }
+}

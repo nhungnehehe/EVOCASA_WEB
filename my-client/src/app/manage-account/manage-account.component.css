@@ -131,7 +131,7 @@ h1 {
     font-family: Zen Old Mincho; 
     font-weight: 700; 
     word-wrap: break-word; 
-    margin-top: 33px; 
+    margin-top: 10px; 
     margin-bottom: 33px; 
     margin-left: 33px;
 }
@@ -142,7 +142,7 @@ h1 {
     font-family: Zen Old Mincho; 
     font-weight: 700; 
     word-wrap: break-word; 
-    margin-top: 33px; 
+    margin-top: 10px; 
     margin-bottom: 33px; 
     margin-left: 33px;
 }
@@ -348,7 +348,7 @@ h1 {
     width: 180px; 
     height: 41px; 
     position: relative;  
-    margin-top: 50px;
+    margin-top: 30px;
     vertical-align: right; 
     left: 500px;
 }

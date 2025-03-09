@@ -21,6 +21,7 @@ p {
   align-items: center;
   justify-content: center;
   background-color: #fffcf3;
+  overflow: hidden;
 }
 
 .banner-img {
@@ -30,6 +31,7 @@ p {
   position: absolute;
   left: 0;
   top: 0;
+  animation: fadeInScale 1.5s ease-out forwards;
 }
 
 .overlay {
@@ -37,12 +39,37 @@ p {
   height: 100%;
   position: absolute;
   background: rgba(94, 76, 62, 0.5);
+  animation: fadeIn 2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .banner-text {
   position: absolute;
   text-align: center;
   color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .banner-title {
@@ -99,7 +126,11 @@ p {
   width: 100%;
   max-width: 534px;
   border-radius: 10px;
-  /* max-width: 80%; */
+  transition: transform 0.3s ease;
+}
+
+.image1 img:hover {
+  transform: scale(1.02);
 }
 
 .cta {
@@ -139,14 +170,33 @@ p {
   height: auto;
   object-fit: cover;
 }
-/* Hình ảnh */
-.image2 img {
-  width: 100%; /* Hình ảnh co giãn theo chiều rộng của .image2 */
-  height: auto; /* Giữ tỷ lệ khung hình */
-  max-width: 400px; /* Giới hạn chiều rộng tối đa của ảnh */
-  display: block; /* Loại bỏ khoảng trắng dưới ảnh */
-  margin: 0 auto; /* Căn giữa ảnh */
+
+.image2:nth-child(1) {
+  animation-delay: 0.2s;
 }
+
+.image2:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.image2:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.image2 img {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.image2 img:hover {
+  transform: scale(1.02);
+}
+
+/* Thêm hiệu ứng xuất hiện cho text */
 .image2 p {
   color: rgba(0, 0, 0, 0.6);
   text-align: center;
@@ -260,4 +310,61 @@ button:hover {
   line-height: 50px; /* 208.333% */
   letter-spacing: -1px;
   margin-right: 50px;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hiệu ứng đặc biệt cho ảnh cuối */
+.container-craft img.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 1.2s ease;
+}
+
+.container-craft img.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Hiệu ứng cho button */
+div[align="center"].reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+div[align="center"].reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }

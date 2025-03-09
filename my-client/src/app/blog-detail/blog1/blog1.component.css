@@ -60,6 +60,12 @@ p {
   height: auto;
   margin: 5px auto;
   border-radius: 4px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+.imgcenter:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.2);
 }
 .container {
   display: flex;
@@ -83,6 +89,12 @@ p {
   height: auto;
   border-radius: 4px;
   margin-left: 50px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+.imgright:hover {
+  transform: scale(1.03) translateX(-10px);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.2);
 }
 div::after {
   content: "";
@@ -97,13 +109,17 @@ div::after {
     margin: 20px;
   }
   #muc3,
-  .imgright {
+  .imgright,
+  .imgleft {
     width: 100%;
     margin: 10px 0;
   }
   .imgcenter {
     width: 100%;
     margin: 20px auto;
+  }
+  .final-note {
+    margin: 30px 20px;
   }
 }
 .minimalist-section {
@@ -116,6 +132,12 @@ div::after {
   height: auto;
   border-radius: 4px;
   margin: 5px 47px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+.imgleft:hover {
+  transform: scale(1.03) translateX(10px);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.2);
 }
 #muc5 {
   color: rgba(0, 0, 0, 0.7);
@@ -142,4 +164,22 @@ div::after {
   line-height: 40px;
   letter-spacing: -0.05px;
   border-radius: 5px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 8px rgba(94, 76, 62, 0.1);
+}
+.final-note:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(94, 76, 62, 0.15);
+}
+
+/* Hiệu ứng reveal khi scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
