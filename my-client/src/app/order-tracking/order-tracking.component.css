@@ -87,6 +87,9 @@
 .content {
   flex: 1;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .track-orders-container {
@@ -94,15 +97,23 @@
   background-color: #f2ead3;
   padding: 30px;
   min-height: 400px;
-  margin: 80px 50px;
+  width: 100%;
+  max-width: 884px;
+  margin: 0 auto;
 }
 
 .track-orders-title {
   color: #5e4c3e;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 900;
+  margin: auto;
+  font-family: "Zen Old Mincho";
+  line-height: 40px;
+  letter-spacing: -0.43px;
+  text-transform: uppercase;
+  justify-content: center;
+  display: block;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 .order-card {

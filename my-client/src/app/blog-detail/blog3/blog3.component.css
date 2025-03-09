@@ -16,27 +16,59 @@
   font-weight: 900;
   line-height: 22px;
   letter-spacing: -0.43px;
-  padding: 50px 87px;
+  padding: 60px 87px;
   justify-content: center;
 }
 
 .title {
   color: #5e4c3e;
   font-family: "Zen Old Mincho";
-  font-size: 36px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 900;
   line-height: 40px;
   letter-spacing: -0.43px;
   text-transform: uppercase;
-  justify-content: center;
-  padding-bottom: 10px;
+  text-align: center;
+  margin: 0px auto 10px;
+  max-width: 1000px;
 }
 
 .description {
   text-align: justify;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+}
+
+.imgcenter {
+  display: block;
+  width: 450px;
+  height: 500px;
+  margin: 20px auto;
+  border-radius: 4px;
+}
+
+h2 {
+  color: #5e4c3e;
+  font-family: "Zen Old Mincho";
   font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: -0.43px;
+}
+
+p {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: justify;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: -0.1px;
 }
 
 p,
@@ -50,22 +82,26 @@ li {
   font-weight: 300;
   line-height: 40px;
   letter-spacing: -0.1px;
+  margin-right: 0px;
 }
 img {
   margin: auto;
   display: block;
   width: 30%;
   height: 500px;
+  margin-left: 25px;
+  margin-bottom: 0px;
 }
 
 h3 {
   color: #5e4c3e;
   font-family: "Zen Old Mincho";
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 700;
   line-height: 50px;
   letter-spacing: -0.43px;
+  /* margin-bottom: 0px; */
 }
 .last {
   margin: 0px;

@@ -37,6 +37,7 @@
   flex-direction: column;
   align-items: center;
   gap: 80px;
+  height: 580px;
 }
 
 .blog-card:hover {
@@ -73,7 +74,7 @@
   margin: 0 0 10px;
   text-transform: uppercase;
   color: #5e4c3e;
-
+  /* height: 50px; */
   text-align: center;
   font-family: "Zen Old Mincho";
   font-size: 18px;
@@ -105,8 +106,12 @@
   font-family: Inter;
   text-align: center;
   font-style: italic;
+  /* align-items: center; */
 }
 
 .read-more:hover {
   color: #870303;
+}
+a {
+  text-decoration: none;
 }
