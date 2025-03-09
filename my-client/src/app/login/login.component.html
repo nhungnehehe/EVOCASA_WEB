@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,16 +11,23 @@
                 <h1>Welcome back</h1>
                 <p class="sub-text">Hey! Enter your details to get sign in to your account!</p>
 
-                <div class="input-container">
-                    <input type="email" placeholder="Email or phone">
-                </div>
-                <div class="input-container">
-                    <input type="password" placeholder="Password">
-                </div>
-                
-                <a [routerLink]="['/forgot-page']" class="forgot-password">Forgot password?</a>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <div class="input-container">
+                      <input type="email" formControlName="emailOrPhone" placeholder="Email or phone">
+                  </div>
+                  <div class="input-container">
+                      <input type="password" formControlName="password" placeholder="Password">
+                  </div>
+                  
+                  <a [routerLink]="['/forgot-page']" class="forgot-password">Forgot password?</a>
 
-                <button class="signin-btn">SIGN IN</button>
+                  <button class="signin-btn" type="submit">SIGN IN</button>
+                </form>
+                
+                <!-- Hiển thị thông báo lỗi nếu loginError không rỗng -->
+                <div *ngIf="loginError" class="error-message">
+                  {{ loginError }}
+                </div>
 
                 <p class="or">—— or Sign in with ——</p>
                 
@@ -40,4 +46,3 @@
     </div>
 </body>
 </html>
-
