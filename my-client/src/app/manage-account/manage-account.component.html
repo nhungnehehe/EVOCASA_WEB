@@ -1,7 +1,7 @@
 <div class="whole">
   <main class="container">
     <section class="profile-section">
-      <div class="your-order">YOUR ACCOUNT</div>
+      <div class="your-account">YOUR ACCOUNT</div>
       <article class="welcome-card">
         <figure class="profile-image">
           <img src="https://placehold.co/160x160/f8f0e5/f8f0e5" alt="Profile" class="profile-pic" />
@@ -15,62 +15,72 @@
         <div class="menu-item">
           <div class="menu-icon-text">
             <img src="images/profile/personal_information.svg" alt="Personal Information Icon" class="menu-icon" />
-            <span class="menu-text">Personal information</span>
+            <span class="menu-text"><b>Personal information</b></span>
             <img src="images/payment/arrow.svg" alt="Personal Information Icon" class="rotated-image" />
           </div>
         </div>
-        <div class="menu-item" [routerLink]="'/view-orders'" routerLinkActive="active">
+        <div class="menu-item" [routerLink]="'/view-orders'">
           <div class="menu-icon-text active">
             <img src="images/profile/track_order.svg" alt="Track Order Icon" class="menu-icon" />
             <span class="menu-text">Track Order</span>
             <img src="images/payment/arrow.svg" alt="Personal Information Icon" class="rotated-image" />
           </div>
-        </div>        
+        </div>
       </nav>
     </section>
     <section class="main-content"></section>
   </main>
-</div>
-<body>
-<div class="container">
+  <div class="content">
     <div class="account-section">
-        <div class="content">
-            <div class="info-box">
-                <div class="personal-in4">PERSONAL INFORMATION</div>
-                <div style="width: 502px; height: 185px; position: relative">
-                <div class="full-name">Full name:</div>
-                <div class="gender">Gender:</div>
-                <div class="phone">Phone number:</div>
-                <div class="email">Email:</div>
-                <div class="dob">D.O.B:</div>
-                <div class="andrey">Andrey Nguyen</div>
-                <div class="female">Female</div>
-                <div class="phone-num">(+84)909888777</div>
-                <div class="birth">1/1/1990</div>
-                <div class="mail">andreynguyen&#64;gmail.com</div>
-                </div>
-                <div class="edit1">Edit</div>
-            </div>
-            <div class="info-box">
-                <h2>SHIPPING INFORMATION</h2>
-                <div style="height: 126px; position: relative">
-                    <div class="ship4"></div>
-                    <div class="andrey1">Andrey</div>
-                    <div class="phone-number">(+84)909888777</div>
-                    <div class="address">Thuan Giao, Thuan An, Binh Duong</div>
-                    <div class="edit-ship">Edit</div>
-                    <div class="delete">Delete</div>
-                    <div class="ship3">
-                      <div class="ship2"></div>
-                      <div class="ship1"></div>
-                    </div>
-                </div>
-                <div class="add-more-add-2">
-                    <div class="add-more-add-1"></div>
-                    <div class="add-more-add">Add More Address</div>
-                </div>
-            </div>
+      <!-- PERSONAL INFORMATION -->
+      <div class="info-box">
+        <h3>PERSONAL INFORMATION</h3>
+        <div class="personal-in4">
+          <div class="info-row">
+            <span class="title">Full name:</span>
+            <span class="value">Andrey Nguyen</span>
+          </div>
+          <div class="info-row">
+            <span class="title">Gender:</span>
+            <span class="value">Female</span>
+          </div>
+          <div class="info-row">
+            <span class="title">Phone number:</span>
+            <span class="value">(+84) 909888777</span>
+          </div>
+          <div class="info-row">
+            <span class="title">Email:</span>
+            <span class="value">andreynguyen&#64;gmail.com</span>
+          </div>
+          <div class="info-row">
+            <span class="title">D.O.B:</span>
+            <span class="value">1/1/1990</span>
+          </div>
         </div>
+        <div class="edit-btn">Edit</div>
+      </div>
+  
+      <!-- SHIPPING INFORMATION -->
+      <div class="info-box">
+  <h3>SHIPPING INFORMATION</h3>
+  <label class="shipping-card">
+    <input type="radio" name="shipping" class="radio-btn">
+    <div class="shipping-details">
+      <p><strong>Andrey</strong></p>
+      <p>(+84) 909888777</p>
+      <p>Thuan Giao, Thuan An, Binh Duong</p>
     </div>
+    <div class="actions">
+      <span class="edit-ship">Edit</span>
+      <span class="delete">Delete</span>
+    </div>
+  </label>
+  <div class="add-address">
+    <button class="add-btn">Add More Address</button>
+  </div>
 </div>
-</body>
+
+    </div>
+  </div>
+  
+</div>
