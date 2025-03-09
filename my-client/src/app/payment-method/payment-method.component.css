@@ -271,6 +271,7 @@ input[type="radio"]:checked+label {
 
 /* Căn chỉnh sản phẩm trong đơn hàng */
 .order-item {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     gap: 15px;

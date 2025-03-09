@@ -78,7 +78,6 @@ body {
 .step.active .step-number,
 .step.active .step-title {
     color: #3F2305;
-    font-weight: bold;
 }
 
 .step.active .line {
@@ -112,7 +111,7 @@ h3 {
 h2 {
     font-size: 16px;
     color: #5E4C3E;
-    margin-bottom: 10px;
+    margin: 15px 0 10px;
     font-family: Inter;
 }
 
@@ -201,7 +200,7 @@ select:focus {
 .delivery-option {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    /* margin-top: 10px; */
 }
 
 .delivery-choice {
@@ -217,7 +216,7 @@ select:focus {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     /* Added bottom margin to avoid collapse */
 }
 
