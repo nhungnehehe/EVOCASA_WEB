@@ -22,7 +22,7 @@
 .title {
   color: #5e4c3e;
   font-family: "Zen Old Mincho";
-  font-size: 36px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 900;
   line-height: 40px;
@@ -30,12 +30,15 @@
   text-transform: uppercase;
   justify-content: center;
   padding-bottom: 10px;
+  text-align: center;
+  margin: 0px auto 40px;
+  max-width: 1200px;
 }
 
 .description {
   text-align: justify;
   margin-bottom: 20px;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 p,
@@ -60,7 +63,7 @@ img {
 h3 {
   color: #5e4c3e;
   font-family: "Zen Old Mincho";
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 700;
   line-height: 50px;

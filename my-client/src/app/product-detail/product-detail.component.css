@@ -5,18 +5,19 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow-x: hidden; /* Ngăn thanh cuộn ngang */
+    overflow-x: hidden; 
+    overflow-y: auto;
 }
 
 /* Cấu trúc tổng thể */
 .product-detail-container {
-    max-width: 100%; /* Thay đổi từ 1440px thành 100% */
+    max-width: 100%; 
     margin: 0 auto;
-    padding: 20px; /* Giảm padding trên thiết bị nhỏ */
+    padding: 20px; 
     position: relative;
     background: #FFFCF3;
     color: #5E4C3E;
-    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+    box-sizing: border-box;
 }
 
 /* Phần chính */
@@ -437,9 +438,9 @@ html, body {
 
 .tab-image {
     width: 100%;
-    max-width: 100%; /* Đảm bảo ảnh không vượt quá container */
+    max-width: 100%; 
     height: auto;
-    max-height: 500px; /* Giới hạn chiều cao */
+    max-height: 500px; 
     object-fit: cover;
     object-position: center;
 }
@@ -449,7 +450,7 @@ html, body {
     gap: 8px;
     margin-top: 5px;
     padding-left: 0;
-    flex-wrap: wrap; /* Cho phép các icon xuống dòng */
+    flex-wrap: wrap; 
 }
 
 .follow-us a {
@@ -481,6 +482,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    border-radius: 7px;
 }
 
 .pair-main-image, .pair-hover-image {
@@ -491,22 +493,30 @@ html, body {
     height: 100%;
     object-fit: cover;
     transition: opacity 0.3s ease-in-out;
+    border-radius: 7px;
 }
 
 .pair-main-image {
     opacity: 1;
+    display: block;
 }
+
 
 .pair-hover-image {
     opacity: 0;
+    display: block;
+
+
 }
 
 .pair-image-container:hover .pair-main-image {
     opacity: 0;
+
 }
 
 .pair-image-container:hover .pair-hover-image {
     opacity: 1;
+
 }
 
 /* Điều chỉnh khoảng cách giữa các sản phẩm */
@@ -514,7 +524,14 @@ html, body {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    justify-content: flex-start; /* Thay đổi từ space-between */
+    justify-content: flex-start;
+    border-radius: 7px;
+    margin-top: 5px;
+    height: auto; 
+    min-height: auto; 
+    margin-bottom: 30px; 
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .related-product {
@@ -523,10 +540,12 @@ html, body {
     transition: transform 0.3s;
     margin-bottom: 16px;
     max-width: calc(20% - 10px);
+
 }
 
 .related-product:hover {
     transform: translateY(-5px);
+
 }
 
 .related-product-image {
@@ -535,6 +554,8 @@ html, body {
     padding-top: 100%;
     overflow: hidden;
     margin-bottom: 5px;
+    border-radius: 7px;
+    height: 50px;
 }
 
 .related-product-image .pair-image-container {
@@ -543,6 +564,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
+
 }
 
 .related-product-info {
@@ -556,7 +578,6 @@ html, body {
     font-weight: 500;
     margin: 0;
     text-align: left;
-    /* Để tên sản phẩm không chiếm quá nhiều không gian */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -570,27 +591,30 @@ html, body {
     text-align: right;
 }
 
-/* Cập nhật container để giảm padding và căn đều */
+
 .related-products-container {
     width: 100%;
     padding: 0;
-    overflow: hidden; /* Ngăn chặn thanh cuộn ngang */
+    overflow: hidden;
+    border-radius: 7px;
 }
 
 .pair-with-section {
     margin-top: 30px;
     margin-bottom: 20px;
     width: 100%;
-    overflow: hidden; /* Ngăn chặn thanh cuộn ngang */
+    overflow-x: hidden; 
+    overflow-y: visible; 
 }
 
 .pair-with-section .section-title {
     text-align: left;
-    font-size: 22px; /* Giảm kích thước font */
+    font-size: 22px;
     margin-bottom: 20px;
     color: #5E4C3E;
     font-weight: 600;
 }
+
 /* Animation cho thông báo thêm giỏ hàng thành công */
 .cart-success-message {
     position: fixed;
@@ -612,7 +636,7 @@ html, body {
     transform: translateY(0);
   }
 
-/* Responsive layout - CÁCH XỬ LÝ MỚI */
+/* Responsive layout - CẢI TIẾN */
 @media (min-width: 1025px) {
     .product-detail-container {
         padding: 45px 47px;
@@ -661,9 +685,20 @@ html, body {
     .tab-image {
         max-height: 400px;
     }
+    
+    /* Thêm clearfix cho related-products để giải quyết vấn đề sản phẩm lòi xuống */
+    .related-products:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
 
 @media (max-width: 992px) {
+    .related-products {
+        height: auto; /* Thay đổi chiều cao để tránh sản phẩm lòi xuống */
+    }
+    
     .related-product {
         flex: 0 0 calc(25% - 10px);
         max-width: calc(25% - 10px);
@@ -708,6 +743,11 @@ html, body {
         flex: 0 0 calc(33.333% - 8px);
         max-width: calc(33.333% - 8px);
     }
+    
+    /* Thêm margin-bottom cho related-products để có thêm không gian */
+    .related-products {
+        margin-bottom: 20px; 
+    }
 }
 
 @media (max-width: 576px) {
@@ -743,6 +783,12 @@ html, body {
         max-width: calc(50% - 6px);
     }
     
+    /* Điều chỉnh chiều cao để tránh sản phẩm lòi xuống */
+    .related-products {
+        height: auto;
+        min-height: 350px; /* Giữ lại chiều cao tối thiểu */
+    }
+    
     .section-content {
         padding: 10px 0;
     }
@@ -773,5 +819,11 @@ html, body {
     .related-product {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+    
+    /* Điều chỉnh chiều cao để tránh sản phẩm lòi xuống */
+    .related-products {
+        height: auto;
+        min-height: 250px; /* Giảm chiều cao tối thiểu trên màn hình nhỏ */
     }
 }
