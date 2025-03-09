@@ -257,7 +257,7 @@ h1 {
     font-size: 24px; 
     font-family: Inter; 
     font-weight: 500; 
-    word-wrap: break-word"
+    word-wrap: break-word;
 }
 .edit-ship {
     left: 570px; 
