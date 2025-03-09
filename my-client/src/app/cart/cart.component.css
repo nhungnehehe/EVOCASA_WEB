@@ -115,16 +115,70 @@ hr {
   color:#F2EAD3;
 }
 
-.remove-btn {
-  border: none;
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 10px;
+  padding-left: 2px;
+}
+
+/* Ẩn checkbox mặc định */
+.checkbox-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Tạo checkbox tùy chỉnh */
+.checkbox-container label {
+  position: relative;
+  padding-left: 30px;
   cursor: pointer;
-  background-color:  #FFFCF3;
+  font-size: 14px; /* Giảm font size */
+  color: #5E4C3E;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  line-height: 1.3;
 }
 
-.remove-btn:hover {
-  color: #a41313;
-
+/* Tạo hình vuông giả checkbox */
+.checkbox-container label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border: 1px solid #5E4C3E;
+  border-radius: 2px;
+  background-color: transparent;
 }
+
+/* Tạo dấu check khi được chọn và căn giữa */
+.checkbox-container input[type="checkbox"]:checked + label::after {
+  content: ' ✓';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 14px;
+  text-align: center;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: white;
+}
+
+/* Thay đổi màu nền khi được chọn */
+.checkbox-container input[type="checkbox"]:checked + label::before {
+  background-color: #5E4C3E;
+}
+
+
 
 /* Tổng giỏ hàng và nút Checkout (phần bên phải) */
 .cart-summary {

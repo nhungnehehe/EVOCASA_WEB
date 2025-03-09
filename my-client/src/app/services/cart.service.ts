@@ -11,7 +11,9 @@ export class CartService {
   private baseUrl = 'http://localhost:3002';
   cartCountChanged = new EventEmitter<number>(); // EventEmitter để thông báo số lượng giỏ hàng thay đổi
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    
+  }
 
   // Lấy danh sách các sản phẩm trong giỏ hàng
   getCartItems(): Observable<CartItem[]> {

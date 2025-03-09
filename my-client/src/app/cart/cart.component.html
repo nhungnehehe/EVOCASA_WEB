@@ -1,7 +1,3 @@
-<head>
-  <!-- Thêm Font Awesome -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
-</head>
 <body>
 <h2>Your Cart</h2>
 <div class="cart-container">
@@ -22,23 +18,25 @@
     <hr/>
     <!-- Các sản phẩm trong giỏ hàng -->
     <div *ngFor="let product of products" class="cart-item">
-      <button type="button" (click)="removeProduct(product.id)" class="remove-btn" title="Remove">
-        <img src="images/cart/trash-2.svg"/>
-      </button>
+      <div class="checkbox-container">
+        <input type="checkbox" id="checkbox-{{product.productId}}" (change)="onCheckboxChange($event, product)" />
+        <label for="checkbox-{{product.productId}}"></label>
+        
+     </div>
       <div class="product-image">
-        <img [src]="product.image" alt="404">
+        <img [src]="product.Image" alt="404">
       </div>
       <div class="product-details">
-        <p class="product-name">{{ product.name }}</p>
-        <p class="product-price">${{ product.price | number: '1.0-0' }}</p>
+        <p class="product-name">{{ product.Name }}</p>
+        <p class="product-price">${{ product.Price | number: '1.0-0' }}</p>
       </div>
       <div class="quantity-selector">
-        <button type="button" (click)="changeQuantity('decrease', product.id)">-</button>
-        <input type="text" [value]="product.quantity" min="1" (input)="updateQuantity($event, product.id)" />
-        <button type="button" (click)="changeQuantity('increase', product.id)">+</button>
+        <button type="button" (click)="changeQuantity('decrease', product.productId)">-</button>
+        <input type="text" [value]="product.cartQuantity" min="1" (input)="updateQuantity($event, product.productId )" />
+        <button type="button" (click)="changeQuantity('increase', product.productId)">+</button>
       </div>
       <div class="product-total">
-        <p>${{ product.price * product.quantity | number: '1.0-0' }}</p>
+        <p>${{ product.Price * product.cartQuantity | number: '1.0-0' }}</p>
       </div>
     </div>
   </div>
