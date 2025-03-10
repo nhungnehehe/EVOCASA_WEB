@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../interfaces/cart';
+import { Product } from '../interfaces/product';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartpaymentService {
+  private selectedProducts: Product[] = [];
 
   public paymentCart: CartItem[] = [];  // Giỏ thanh toán
 
   // Thêm sản phẩm vào giỏ thanh toán
-    addToCartPayment(product: CartItem): void {
+  addToCartPayment(product: CartItem): void {
     // Kiểm tra nếu sản phẩm chưa có trong giỏ thanh toán
     if (!this.paymentCart.some((item) => item.productId === product.productId)) {
       this.paymentCart.push(product);
@@ -44,5 +46,14 @@ export class CartpaymentService {
   // Tính tổng giá trị giỏ thanh toán
   getTotalAmount(): number {
     return this.paymentCart.reduce((total, item) => total + (item.cartQuantity * item.Price), 0);
+  }
+  // Lưu các sản phẩm đã chọn vào service
+  setSelectedProducts(products: Product[]): void {
+    this.selectedProducts = products;
+  }
+
+  // Lấy các sản phẩm đã chọn từ service
+  getSelectedProducts(): Product[] {
+    return this.selectedProducts;
   }
 }

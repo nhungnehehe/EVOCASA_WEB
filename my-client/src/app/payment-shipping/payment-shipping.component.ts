@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CartpaymentService } from '../services/cartpayment.service';
 
 @Component({
   selector: 'app-payment-shipping',
@@ -12,10 +13,16 @@ export class PaymentShippingComponent implements OnInit {
   selectedCity: string = '';
   district: string = '';
 
-  constructor(private http: HttpClient) {}
+  totalQuantity: number = 0; // Biến lưu tổng số lượng sản phẩm
+  total: number = 0; // Biến lưu tổng giá trị giỏ hàng
+  cartItems: any[] = [];
 
+  constructor(private http: HttpClient, private cartpaymentService: CartpaymentService) { }
   ngOnInit(): void {
     this.getCities();
+    this.cartItems = this.cartpaymentService.getCartPaymentItems();
+    this.totalQuantity = this.cartpaymentService.getTotalQuantity();
+    this.total = this.cartpaymentService.getTotalAmount();
   }
 
   getCities(): void {

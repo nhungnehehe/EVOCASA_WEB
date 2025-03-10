@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { CartService } from '../services/cart.service';
 import { CartpaymentService } from '../services/cartpayment.service'; 
 import { CartItem } from '../interfaces/cart'
@@ -15,7 +14,6 @@ import { CartItem } from '../interfaces/cart'
 export class CartComponent implements OnInit {
   // Danh sách sản phẩm trong giỏ hàng
   products: CartItem[] = [];  // Danh sách sản phẩm trong giỏ hàng
-
   constructor(
     private cartService: CartService,
     public cartpaymentService: CartpaymentService  
@@ -140,5 +138,4 @@ export class CartComponent implements OnInit {
     this.totalQuantity = this.cartpaymentService.getTotalQuantity(); // Lấy tổng số lượng sản phẩm từ CartPaymentService
     this.total = this.cartpaymentService.getTotalAmount(); // Lấy tổng số tiền từ CartPaymentService
   }
-
  }
