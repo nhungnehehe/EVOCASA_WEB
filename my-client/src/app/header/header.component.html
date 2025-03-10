@@ -95,11 +95,11 @@
         <a routerLink="/login-page" class="icon">SIGN IN</a>
       </div>
       <div class="signcart">
-        <button>
-          <img src="images/header/Cart-icon.svg" />
+        <button (click)="openSidebar()">
+            <img src="images/header/Cart-icon.svg" />
         </button>
         <span class="total_quantity">{{ displayedQuantity }}</span>
-        <a routerLink="/sidebar-page" class="icon">CART</a>
+        <label class="icon" (click)="openSidebar()">CART</label>
       </div>
     </div>
   </div>

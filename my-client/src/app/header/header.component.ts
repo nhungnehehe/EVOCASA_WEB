@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,9 @@ export class HeaderComponent {
   quantity: number = 0; // Tổng số lượng sản phẩm trong giỏ hàng
   displayedQuantity: string = '0';  // Biến hiển thị số lượng trên giao diện
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService,
+    private appComponent: AppComponent
+  ) {}
 
   ngOnInit(): void {
     // Lắng nghe sự kiện khi giỏ hàng thay đổi
@@ -35,4 +38,8 @@ export class HeaderComponent {
         this.displayedQuantity = this.quantity.toString();  // Hiển thị số lượng bình thường
     }
 }
+
+    openSidebar() {
+      this.appComponent.openSidebar();
+    }
 }
