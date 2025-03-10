@@ -143,6 +143,10 @@ input[type="radio"] {
     display: none;
     /* Hides the default radio button */
 }
+input[type="radio"]:checked+label {
+    background-color: #F2EAD3;
+    border: 2px solid #5E4E41;
+}
 
 /* Adjust the layout for the City and District fields to appear inline */
 .inline-inputs {
