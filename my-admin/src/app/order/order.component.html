@@ -134,8 +134,8 @@
         </tr>
       </thead>
 
-      <tr *ngFor="let order of order">
-        <td>{{ no }}</td>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
         <td>{{ order.id }}</td>
         <td>{{ order.customername }}</td>
         <td>{{ order.date }}</td>
