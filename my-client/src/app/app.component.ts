@@ -11,7 +11,7 @@ export class AppComponent {
   isHomepage = false;
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
-      this.isHomepage = this.router.url === '/homepage';
+      this.isHomepage = this.router.url === '/';
     });
 
   }  

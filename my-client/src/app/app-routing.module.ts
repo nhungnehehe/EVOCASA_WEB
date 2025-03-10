@@ -37,7 +37,6 @@ const routes: Routes = [
   { path: 'sidebar-page', component: SidebarComponent },
   { path: 'cart-page', component: CartComponent },
   { path: 'about-page', component: AboutUsComponent },
-  { path: 'homepage', component: HomepageComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'product-page', component: ProductComponent },
   { path: 'login-page', component: LoginComponent },
