@@ -15,6 +15,7 @@ import { AddCategoryComponent } from './category-detail/add-category/add-categor
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { HeaderComponent } from './header/header.component';
 import { AddProductComponent } from './product-detail/add-product/add-product.component';
+import { EditProductComponent } from './product-detail/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddProductComponent } from './product-detail/add-product/add-product.co
     EditCategoryComponent,
     AddCategoryComponent,
     OrderDetailComponent,
-    HeaderComponent
+    HeaderComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
