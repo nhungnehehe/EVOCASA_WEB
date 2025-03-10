@@ -636,6 +636,37 @@ app.put('/change-password', cors(), async (req, res) => {
     }
   }
 });
+app.put('/reset-password', cors(), async (req, res) => {
+  const { phonenumber, newPassword, verificationCode } = req.body;
+  const crypto = require('crypto');
+  const userCollection = database.collection('Account');
+  
+  // Tìm tài khoản với số điện thoại cung cấp
+  const user = await userCollection.findOne({ phonenumber });
+  
+  if (user == null) {
+    res.status(401).send({ message: 'Unexisted username' });
+  } else {
+    try {
+
+      
+      // Tạo mật khẩu mới
+      const newSalt = crypto.randomBytes(16).toString(`hex`);
+      const newHash = crypto.pbkdf2Sync(newPassword, newSalt, 1000, 64, `sha512`).toString(`hex`);
+      
+      // Cập nhật mật khẩu mới vào database
+      await userCollection.updateOne(
+        { phonenumber }, 
+        { $set: { password: newHash, salt: newSalt } }
+      );
+      
+      res.send({ message: 'Password has been reset successfully' });
+    } catch (error) {
+      console.error('Reset password error:', error);
+      res.status(500).send({ message: 'Error resetting password' });
+    }
+  }
+});
 app.get("/orders", async (req, res) => {
   try {
       const result = await orderCollection.find({}).toArray();
