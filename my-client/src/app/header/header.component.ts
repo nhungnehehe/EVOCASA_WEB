@@ -1,55 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { AppComponent } from '../app.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']  // Chú ý: sử dụng "styleUrls" (mảng) thay vì "styleUrl"
+  styleUrls: ['./header.component.css']  // Dùng mảng như đã chỉ
 })
 export class HeaderComponent implements OnInit {
-  quantity: number = 0; // Tổng số lượng sản phẩm trong giỏ hàng
-  displayedQuantity: string = '0';  // Biến hiển thị số lượng trên giao diện
-  currentUserName: string = '';     // Tên hiện thị người dùng (lấy chữ đầu tiên)
+  quantity: number = 0;
+  displayedQuantity: string = '0';
+  currentUserName: string = '';
 
   constructor(
     private cartService: CartService,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    // Lắng nghe sự kiện khi giỏ hàng thay đổi
+    // Lắng nghe sự thay đổi số lượng trong giỏ hàng
     this.cartService.cartCountChanged.subscribe((count: number) => {
-      this.quantity = count;  // Cập nhật số lượng giỏ hàng
-      this.updateDisplayedQuantity();  // Cập nhật số lượng hiển thị
+      this.quantity = count;
+      this.updateDisplayedQuantity();
     });
+    this.cartService.updateCartCount();
 
-    // Lấy số lượng giỏ hàng từ CartService khi component khởi tạo
-    this.cartService.updateCartCount();  // Cập nhật giỏ hàng
-
-    // Lấy thông tin người dùng từ sessionStorage và lấy chữ đầu tiên của tên
-    const storedUser = sessionStorage.getItem('CurrentUser');
-    if (storedUser) {
-      try {
-        const user = JSON.parse(storedUser);
-        if (user && user.Name) {
-          this.currentUserName = user.Name.split(' ')[0];
-        }
-      } catch (err) {
-        console.error('Error parsing CurrentUser from sessionStorage:', err);
-      }
-    }
+    // Subscribe vào UserService để nhận currentUserName khi login cập nhật
+    this.userService.currentUserName$.subscribe((name: string) => {
+      this.currentUserName = name;
+    });
   }
 
-  // Cập nhật số lượng hiển thị (99+ nếu số lượng > 99)
   updateDisplayedQuantity(): void {
     if (this.quantity === 0) {
-      this.displayedQuantity = '';  // Ẩn hiển thị nếu số lượng bằng 0
+      this.displayedQuantity = '';
     } else if (this.quantity > 99) {
-      this.displayedQuantity = '99+';  // Hiển thị 99+ nếu số lượng lớn hơn 99
+      this.displayedQuantity = '99+';
     } else {
-      this.displayedQuantity = this.quantity.toString();  // Hiển thị số lượng bình thường
+      this.displayedQuantity = this.quantity.toString();
     }
   }
 
