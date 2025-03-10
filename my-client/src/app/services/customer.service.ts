@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';
+import { Observable, throwError, of, retry } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { Customer, ICustomer, CartItem1 } from '../interfaces/customer';
 
@@ -9,7 +9,7 @@ import { Customer, ICustomer, CartItem1 } from '../interfaces/customer';
 })
 export class CustomerService {
   // API base URL
-  private apiUrl = 'http://localhost:3002/customer'; 
+  private apiUrl = 'http://localhost:3002/customers'; 
   
   // Default HTTP options
   private httpOptions = {
@@ -63,52 +63,7 @@ export class CustomerService {
       );
   }
 
-  // Login with email/phone and password
-  login(emailOrPhone: string, password: string): Observable<Customer | null> {
-    // For testing purposes only - simulating API call using the sample data
-    // In production, this should be a real API call
-    console.log(`Attempting login with: ${emailOrPhone}`);
-    
-    // Mock implementation for development/testing
-    // In a real app, you'd make an HTTP request to your backend
-    return of(null).pipe(
-      switchMap(() => {
-        // Determine if input is email or phone
-        const isEmail = emailOrPhone.includes('@');
-        
-        if (isEmail) {
-          return this.getCustomerByEmail(emailOrPhone);
-        } else {
-          return this.getCustomerByPhone(emailOrPhone);
-        }
-      }),
-      map(customer => {
-        if (customer) {
-          // In real app, you'd compare hashed passwords
-          // For now, we're just checking if password matches (for testing)
-          if (customer.Password === password) {
-            console.log('Login successful');
-            return customer;
-          }
-        }
-        console.log('Login failed - invalid credentials');
-        return null;
-      }),
-      catchError(error => {
-        console.error('Login error:', error);
-        return of(null);
-      })
-    );
-  }
-
-  // Register new customer
-  registerCustomer(customer: ICustomer): Observable<Customer> {
-    return this.http.post<Customer>(`${this.apiUrl}/customers`, customer, this.httpOptions)
-      .pipe(
-        tap((newCustomer: Customer) => console.log(`Added customer w/ id=${newCustomer._id}`)),
-        catchError(this.handleError<Customer>('registerCustomer'))
-      );
-  }
+  
 
   // Update customer information
   updateCustomer(customer: Customer): Observable<Customer> {
@@ -149,6 +104,7 @@ export class CustomerService {
       catchError(this.handleError<Customer>('addToCart'))
     );
   }
+  
 
   // Delete customer
   deleteCustomer(customerId: string): Observable<any> {
@@ -158,6 +114,20 @@ export class CustomerService {
         catchError(this.handleError<any>('deleteCustomer'))
       );
   }
+  postCustomer(customer: any): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json;charset=utf-8');
+    const requestOptions: Object = {
+      headers: headers,
+      responseType: 'text'
+    };
+    return this.http.post<any>(`${this.apiUrl}/customers`, customer, requestOptions)
+      .pipe(
+        map((res) => JSON.parse(res) as Array<Customer>),
+        retry(3),
+        catchError(this.handleError<Array<Customer>>('postCustomer', []))
+      );
+  }
+
 
   // Error handling
   private handleError<T>(operation = 'operation', result?: T) {
