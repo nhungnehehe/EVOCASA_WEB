@@ -9,7 +9,7 @@
         <div class="banner-text">
             <h1>EVOCASA</h1>
             <p>Craft Your Space, Elevate Your Life</p>
-            <a routerLink="/product-page"><button class="shop-now">SHOP NOW</button></a>
+            <a routerLink="/product"><button class="shop-now">SHOP NOW</button></a>
         </div>
         <div class="dots-container">
             <span class="dot" (click)="changeSlide(0)"></span>
@@ -28,23 +28,23 @@
                 <span>Furniture</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Decor_3.jpg" alt="Decor" class="hover-effect">
+                <img src="images/homepage/Decor_3.jpg" alt="Decor" class="zoom-in-hover-effect">
                 <span>Decor</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Dining_1.jpg" alt="Dining & Entertaining" class="hover-effect">
+                <img src="images/homepage/Dining_1.jpg" alt="Dining & Entertaining" class="zoom-in-hover-effect">
                 <span>Dining & Entertaining</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/1a.jpg" alt="Soft Goods" class="hover-effect">
+                <img src="images/homepage/1a.jpg" alt="Soft Goods" class="zoom-in-hover-effect">
                 <span>Soft Goods</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Grapevine Leaf Table Lamp (1).jpg" alt="Lighting" class="hover-effect">
+                <img src="images/homepage/Grapevine Leaf Table Lamp (1).jpg" alt="Lighting" class="zoom-in-hover-effect">
                 <span>Lighting</span>
             </div>
             <div class="category-item">
-                <img src="images/homepage/Art_1.jpg" alt="Art" class="hover-effect">
+                <img src="images/homepage/Art_1.jpg" alt="Art" class="zoom-in-hover-effect">
                 <span>Art</span>
             </div>
         </div>
@@ -54,17 +54,21 @@
     <div class="soul-container">
         <h2>THE SOUL OF EVOCASA</h2>
         <p>The story of how EvoCasa was born, shaped by the passion for crafting living spaces.</p>
-        <div class="soul-content">
-            <div class="soul-image">
-                <img src="images/homepage/Banner1.jpg" alt="EvoCasa Interior" class="hover-effect">
-            </div>
-            <div class="soul-text">
-                <p class="soul-description">
-                    Every space tells a unique story, and EvoCasa brings those stories to life.
-                    Inspired by the blend of classic elegance and modern charm, we craft pieces embody
-                    art, comfort, and the warmth of home.
-                </p>
-            </div>
+        <div class="container">
+            <table>
+                <tr>
+                    <!-- Left Column (Image) -->
+                    <td class="left-column">
+                        <img src="images/homepage/Banner1.jpg" alt="EvoCasa Interior" class="zoom-in-hover-effect">
+                    </td>
+                    <!-- Right Column (Text) -->
+                    <td class="right-column">
+                        <!-- Description -->
+                        <div class="collection-description">
+                            Every space tells a unique story, and EvoCasa brings those stories to life.Inspired by the blend of classic elegance and modern charm, we craft pieces embody art, comfort, and the warmth of home.
+                        </div>
+                    </td>
+            </table>
         </div>
     </div>
 
@@ -73,7 +77,7 @@
     <div class="hot-collection">
         <h2>HOT COLLECTION</h2>
         <p>Timeless elegance, crafted to transform your space with sophistication and warmth.</p>
-        <div class="collection-content">
+        <!-- <div class="collection-content">
             <div class="collection-text">
                 <p class="collection-name">
                     Sabi Collection
@@ -90,6 +94,29 @@
             <div class="collection-image">
                 <img src="images/homepage/Sabi_2.jpg" alt="Sabi Collection Image" class="hover-effect">
             </div>
+        </div> -->
+        <div class="container">
+            <table>
+                <tr>
+                    <!-- Left Column -->
+                    <td class="left-column2">
+                        <p class="collection-name">
+                            Sabi Collection
+                        </p>
+                        <p class="collection-description1">
+                            Each contour is thoughtfully crafted to reflect the fluid elegance of a woman's shoulder and
+                            neckline, inviting admiration and allure with every glance.
+                        </p>
+                        <a href="../collection-detail/sabi-collection/sabi-collection.component.html" target="_blank">
+                            <button class="explore-button">Explore more</button>
+                        </a>
+                    </td>
+                    <!-- Right Column -->
+                    <td class="right-column2">
+                        <!-- Description -->
+                        <img src="images/homepage/Sabi_2.jpg" alt="Sabi Collection Image" class="zoom-in-hover-effect">
+                    </td>
+            </table>
         </div>
     </div>
 

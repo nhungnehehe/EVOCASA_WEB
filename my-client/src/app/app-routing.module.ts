@@ -29,14 +29,28 @@ import { TheDiscCollectionComponent } from './collection-detail/the-disc-collect
 import { ManageAccountComponent } from './manage-account/manage-account.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 import { OrderTrackingDetailComponent } from './order-tracking-detail/order-tracking-detail.component';
-
+import { ProductResolver } from './product.resolever';
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'contact-page', component: ContactComponent },
   { path: 'cart-page', component: CartComponent },
   { path: 'about-page', component: AboutUsComponent },
   { path: 'blog', component: BlogComponent },
-  { path: 'product-page', component: ProductComponent },
+  { 
+    path: 'product', 
+    component: ProductComponent,
+    resolve: { products: ProductResolver }
+  },
+  { 
+    path: 'product/:mainCategory', 
+    component: ProductComponent,
+    resolve: { products: ProductResolver }
+  },
+  { 
+    path: 'product/:mainCategory/:subCategory', 
+    component: ProductComponent,
+    resolve: { products: ProductResolver }
+  },
   { path: 'login-page', component: LoginComponent },
   { path: 'forgot-page', component: ForgotComponent },
   { path: 'signup-page', component: SignupComponent },
@@ -50,7 +64,7 @@ const routes: Routes = [
   { path: 'blog4', component: Blog4Component },
   { path: 'blog5', component: Blog5Component },
   { path: 'blog6', component: Blog6Component },
-  { path: 'product/:identifier', component: ProductDetailComponent },
+  { path: 'product-detail/:identifier', component: ProductDetailComponent },
   { path: 'insitu-page', component: InsituComponent},
   { path: 'collections', component:CollectionComponent},
   { path: 'the-anniversary-collection', component:TheAnniversaryCollectionComponent},

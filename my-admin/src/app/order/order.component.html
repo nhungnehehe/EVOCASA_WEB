@@ -6,10 +6,7 @@
   <div class="actions">
     <!-- button filter -->
     <button class="filter-button">
-      <img
-        src="images/order/Filter.svg"
-        alt="Filter icon"
-      />
+      <img src="images/order/Filter.svg" alt="Filter icon" />
       <span class="filter-text">Filter by</span>
     </button>
     <!-- button export -->
@@ -42,13 +39,13 @@
         </tr>
       </thead>
 
-      <!-- <tr *ngFor="let order of orders; let i = index"> -->
-        <!-- <td>{{ i + 1 }}</td>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
         <td>{{ order.id }}</td>
-        <td>{{ order.customername }}</td>
+        <td>{{ order.name }}</td>
         <td>{{ order.date }}</td>
-        <td>{{ order.totalprice }}</td>
-        <td>{{ order.status }}</td> -->
+        <td>{{ order.price }}</td>
+        <td>{{ order.status }}</td>
         <td>
           <button class="view-btn">
             <svg
@@ -120,7 +117,8 @@
             </svg>
           </button>
         </td>
-      <!-- </tr> -->
+        <!-- </tr> -->
+      </tr>
     </table>
   </div>
   <!-- Showing -->
