@@ -78,6 +78,7 @@ export class CartComponent implements OnInit {
       this.removeProduct(productId);  // Nếu số lượng là 1, xóa sản phẩm khỏi giỏ
       return;
     }
+    this.cartpaymentService.updateProductQuantity(productId, product.cartQuantity); 
     this.updateCartPaymentSummary();
     // Gọi phương thức updateCartItem để cập nhật số lượng lên server
     this.cartService.updateCartItem(product.productId, product.cartQuantity).subscribe({
