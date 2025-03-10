@@ -135,7 +135,7 @@ input:focus {
     text-decoration: none;
 }
 
-button.signin-btn {
+.signin-btn {
     width: 100%;
     padding: 12px;
     background: #525B4A;
@@ -146,6 +146,11 @@ button.signin-btn {
     border-radius: 7px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.signin-btn:hover {
+    background-color: #5E4C3E;
 }
 
 .or {
@@ -182,6 +187,10 @@ button.signin-btn {
     margin-top: 20px;
     font-size: 14px;
     color: #5E4C3E;
+
+}
+.sign-up:hover {
+    font-weight: 500;
 }
 
 .signin-image {
