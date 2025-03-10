@@ -386,7 +386,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   viewProductDetails(product: IProduct): void {
     if (product.Name) {
       const productName = encodeURIComponent(product.Name.trim());
-      this.router.navigate(['/product', productName]);
+      this.router.navigate(['/product-detail', productName]);
     } else {
       console.error('Error: Product Name is missing');
     }

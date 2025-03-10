@@ -64,7 +64,7 @@ const routes: Routes = [
   { path: 'blog4', component: Blog4Component },
   { path: 'blog5', component: Blog5Component },
   { path: 'blog6', component: Blog6Component },
-  { path: 'product/:identifier', component: ProductDetailComponent },
+  { path: 'product-detail/:identifier', component: ProductDetailComponent },
   { path: 'insitu-page', component: InsituComponent},
   { path: 'collections', component:CollectionComponent},
   { path: 'the-anniversary-collection', component:TheAnniversaryCollectionComponent},
