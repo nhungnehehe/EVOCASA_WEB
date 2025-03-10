@@ -9,7 +9,7 @@ import { Customer, ICustomer, CartItem1 } from '../interfaces/customer';
 })
 export class CustomerService {
   // API base URL
-  private apiUrl = 'http://localhost:3002/customers'; 
+  private apiUrl = 'http://localhost:3002'; 
   
   // Default HTTP options
   private httpOptions = {

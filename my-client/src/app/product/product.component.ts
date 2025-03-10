@@ -4,6 +4,7 @@ import { IProduct } from '../interfaces/product';
 import { Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../interfaces/category';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product',
@@ -41,6 +42,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router,
+    private location: Location,
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
@@ -52,7 +54,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Chờ cho đến khi categories được tải kèm mainCategories
     const intervalId = setInterval(() => {
       if (this.categoriesLoaded && this.mainCategories.length > 0) {
         this.initializeMenu();
@@ -94,15 +95,13 @@ export class ProductComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // Chuyển đổi dữ liệu Category theo đúng interface của bạn
   loadCategories(): void {
     console.log('Loading categories...');
     this.categoryService.getCategories().subscribe({
       next: (data: any[]) => {
-        // Mapping dữ liệu: chuyển từ { Name, Slug, Description, ParentCategory, … } sang { name, slug, description, parentCategory, … }
         this.categories = data.map(cat => {
           return {
-            _id: cat._id, // giả sử _id ở đây là string
+            _id: cat._id,
             name: cat.Name,
             description: cat.Description,
             slug: cat.Slug,
@@ -111,7 +110,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
         });
         console.log('Categories loaded:', this.categories.length);
 
-        // Xây dựng mapping
         this.categories.forEach(category => {
           this.categoryMapping[category.slug] = category.name;
           this.categoryDescriptionMapping[category.slug] = category.description;
@@ -119,7 +117,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
           this.categorySlugMapping[category._id] = category.slug;
         });
 
-        // Tạo mapping từ subcategory đến category cha
         this.categories.forEach(category => {
           if (category.parentCategory) {
             const parentCategory = this.categories.find(c => c._id === category.parentCategory);
@@ -129,7 +126,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
           }
         });
 
-        // Lấy danh mục chính có parentCategory === null
         this.mainCategories = this.categories.filter(category => category.parentCategory === null);
         console.log('Main categories:', this.mainCategories);
         this.categoriesLoaded = true;
@@ -148,32 +144,24 @@ export class ProductComponent implements OnInit, AfterViewInit {
       this.products = this.filteredProducts;
       return;
     }
-  
     const selectedCategoryId = this.categoryIdMapping[categorySlug];
     if (!selectedCategoryId) {
       console.error(`Category ID not found for slug: ${categorySlug}`);
       return;
     }
-  
-    // Kiểm tra xem đây có phải là main category hay không (main: parentCategory === null)
     const isMainCategory = this.mainCategories.some(cat => cat._id === selectedCategoryId);
     if (isMainCategory) {
       console.log(`Filtering products for main category: ${categorySlug}`);
-      // Lấy tất cả các subcategory của main category được chọn
       const subCategoryIds = this.categories
         .filter(cat => cat.parentCategory === selectedCategoryId)
         .map(cat => cat._id);
-      // Nếu bạn muốn sản phẩm gán trực tiếp cho main category cũng được hiển thị, bạn có thể:
-      // subCategoryIds.push(selectedCategoryId);
       this.filteredProducts = this.allProducts.filter(product => {
-        // Chú ý: Sử dụng product.category_id thay vì product.Category
         const prodCatId: string = product.category_id;
         return subCategoryIds.includes(prodCatId);
       });
     } else {
       console.log(`Filtering products for subcategory: ${categorySlug}`);
       this.filteredProducts = this.allProducts.filter(product => {
-        // So sánh product.category_id với _id của subcategory được chọn
         return product.category_id === selectedCategoryId;
       });
     }
@@ -193,7 +181,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
       console.warn('No main categories found!');
       return;
     }
-    // Xóa bỏ các phần tử con cũ của .level1 (ngoại trừ nút "All")
     const level1 = this.el.nativeElement.querySelector('.level1');
     if (level1) {
       const children = Array.from(level1.children);
@@ -202,7 +189,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
           level1.removeChild(children[i]);
         }
       }
-      // Tạo lại các nút cho main category
       this.mainCategories.forEach(category => {
         const mainCategoryEl = this.renderer.createElement('div');
         this.renderer.addClass(mainCategoryEl, 'category');
@@ -213,14 +199,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
         this.renderer.appendChild(level1, mainCategoryEl);
       });
     }
-    // Xóa các submenu cũ (level2)
     const oldSubMenus = this.el.nativeElement.querySelectorAll('.level2');
     oldSubMenus.forEach((submenu: any) => {
       if (submenu.parentNode) {
         submenu.parentNode.removeChild(submenu);
       }
     });
-    // Tạo submenu cho từng main category dựa trên subcategories
     this.mainCategories.forEach(category => {
       const subMenuContainer = this.renderer.createElement('div');
       this.renderer.setAttribute(subMenuContainer, 'id', category.slug);
@@ -282,31 +266,46 @@ export class ProductComponent implements OnInit, AfterViewInit {
     console.log('Toggle submenu for:', category);
     this.toggleOpacity(category);
     this.filterProductsByCategory(category);
-    // Cập nhật tiêu đề lớn và mô tả
+  
+    // Xây dựng URL mới dựa trên category:
+    let newUrl = '';
+    const isMain = this.mainCategories.some(cat => cat.slug === category);
+    if (isMain) {
+      const mainCategory = this.categories.find(cat => cat.slug === category);
+      if (mainCategory) {
+        newUrl = `/product/${mainCategory.name}`;
+      }
+    } else {
+      const parentSlug = this.categoryHierarchy[category];
+      const parentCategory = this.categories.find(cat => cat.slug === parentSlug);
+      const subCategory = this.categories.find(cat => cat.slug === category);
+      if (parentCategory && subCategory) {
+        newUrl = `/product/${parentCategory.name}/${subCategory.name}`;
+      } else {
+        newUrl = `/product/${this.categoryMapping[category]}`;
+      }
+    }
+    // Update URL mà không re-load component:
+    this.location.go(newUrl);
+  
+    // Cập nhật tiêu đề và mô tả (không thay đổi nội dung sản phẩm)
     if (category === 'all') {
       const level2s = document.querySelectorAll('.level2');
       level2s.forEach((submenu: any) => submenu.style.display = 'none');
       this.lastCategory = null;
       const titleEl = document.getElementById('all-title');
-      if (titleEl) {
-        titleEl.textContent = 'Shop All';
-      }
+      if (titleEl) { titleEl.textContent = 'Shop All'; }
       const descEl = document.getElementById('category-description');
-      if (descEl) {
-        descEl.textContent = '';
-      }
+      if (descEl) { descEl.textContent = ''; }
       return;
     }
     const titleEl = document.getElementById('all-title');
     if (titleEl) {
-      // Cập nhật tiêu đề theo tên category
       titleEl.textContent = this.categoryMapping[category] || 'All';
     }
     const descEl = document.getElementById('category-description');
     if (descEl) {
-      // Lấy description từ mapping hoặc từ categories
       let descriptionText = this.categoryDescriptionMapping[category] || '';
-      // Nếu đây là subcategory, bạn có thể lấy description của nó
       if (!descriptionText) {
         const selectedCategory = this.categories.find(cat => cat.slug === category);
         if (selectedCategory) {
@@ -320,9 +319,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
       console.log('Is main category. Showing submenu.');
       if (this.lastCategory && this.lastCategory !== category) {
         const prevMenu = document.getElementById(this.lastCategory);
-        if (prevMenu) {
-          prevMenu.style.display = 'none';
-        }
+        if (prevMenu) { prevMenu.style.display = 'none'; }
       }
       const menu = document.getElementById(category);
       if (menu) {

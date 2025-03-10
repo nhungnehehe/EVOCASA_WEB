@@ -17,7 +17,7 @@ export class BannerService {
   changeSlide(index: number): void {
     this.currentIndex = index;
     this.updateSlide();
-    this.startAutoSlide(); // Reset tự động khi click
+    this.startAutoSlide(); 
   }
 
   private updateSlide(): void {
@@ -40,7 +40,7 @@ export class BannerService {
     this.interval = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
       this.updateSlide();
-    }, 3000); // Chuyển sau mỗi 3 giây
+    }, 3000); 
   }
 
   stopAutoSlide(): void {

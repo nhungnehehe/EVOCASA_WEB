@@ -59,7 +59,7 @@ export class AuthService {
   public deleteCookie(name: string): void {
     this.setCookie(name, '', -1);
   }
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:3002';
 
   async changePassword(phonenumber: string, oldPassword: string, newPassword: string): Promise<string> {
     try {
