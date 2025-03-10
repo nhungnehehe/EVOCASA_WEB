@@ -101,6 +101,8 @@ export class CartComponent implements OnInit {
       this.cartService.updateCartItem(product.productId, parseInt(newQuantity, 10)).subscribe({
         next: () => {
           product.cartQuantity = parseInt(newQuantity, 10);  // Cập nhật số lượng trong giỏ
+          this.cartpaymentService.updateProductQuantity(productId, product.cartQuantity);
+          this.updateCartPaymentSummary();
         },
         error: (err) => {
           console.error('Error updating item quantity:', err);
