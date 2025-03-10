@@ -6,15 +6,17 @@ import { AppComponent } from '../app.component';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']  // Chú ý: sử dụng "styleUrls" (mảng) thay vì "styleUrl"
 })
 export class HeaderComponent implements OnInit {
   quantity: number = 0; // Tổng số lượng sản phẩm trong giỏ hàng
   displayedQuantity: string = '0';  // Biến hiển thị số lượng trên giao diện
-  currentUserName: string = ''; // Tên hiện thị người dùng (lấy chữ đầu tiên)
+  currentUserName: string = '';     // Tên hiện thị người dùng (lấy chữ đầu tiên)
 
-  constructor(private cartService: CartService,
-              private appComponent: AppComponent) {}
+  constructor(
+    private cartService: CartService,
+    private appComponent: AppComponent
+  ) {}
 
   ngOnInit(): void {
     // Lắng nghe sự kiện khi giỏ hàng thay đổi
@@ -26,13 +28,12 @@ export class HeaderComponent implements OnInit {
     // Lấy số lượng giỏ hàng từ CartService khi component khởi tạo
     this.cartService.updateCartCount();  // Cập nhật giỏ hàng
 
-    // Lấy thông tin người dùng từ sessionStorage
+    // Lấy thông tin người dùng từ sessionStorage và lấy chữ đầu tiên của tên
     const storedUser = sessionStorage.getItem('CurrentUser');
     if (storedUser) {
       try {
         const user = JSON.parse(storedUser);
         if (user && user.Name) {
-          // Lấy chữ đầu tiên từ tên
           this.currentUserName = user.Name.split(' ')[0];
         }
       } catch (err) {
