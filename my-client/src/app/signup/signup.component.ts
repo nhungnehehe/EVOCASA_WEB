@@ -57,13 +57,19 @@ export class SignupComponent {
       // Gọi service đăng ký tài khoản
       this._service.postAccount(this.account).subscribe({
         next: (data) => {
-          this.account = data;
+          // Cập nhật lại các trường cần thiết từ dữ liệu trả về
+          // Lưu ý: KHÔNG gán this.account.password = data.password để tránh hiển thị password đã hash trên FE.
+          this.account.Name = data.Name;
+          this.account.phonenumber = data.phonenumber;
+          // Nếu cần giữ lại giá trị password gốc trong biến riêng (không bind với input) thì bạn có thể lưu vào một biến khác
+          // Ví dụ: this.originalPassword = this.account.password;
+          // Nhưng không cập nhật lại đối tượng account mà giao diện đang bind.
+          
           alert('Sign up successfully');
-
+          
           // Map các trường cần thiết từ Account sang Customer
           this.customer.Name = this.account.Name;
           this.customer.Phone = this.account.phonenumber;
-          // Gán mặc định cho những trường không có ở Account
           this.customer.Mail = "";
           this.customer.DOB = "";
           this.customer.Address = "";
@@ -71,17 +77,15 @@ export class SignupComponent {
           this.customer.Image = "";
           this.customer.CreatedAt = "";
           this.customer.Cart = [];
-
-          // Sau khi đăng ký tài khoản thành công, gọi service đăng ký thông tin customer
+          
+          // Gọi đăng ký thông tin customer
           this._customerService.postCustomer(this.customer).subscribe({
             next: (custData) => {
               this.customer = custData;
-              alert('Customer registered successfully');
               this.router.navigate(['/login-page']);
             },
             error: (err) => {
               this.errMessage = err;
-              alert('Customer registration failed');
             }
           });
         },

@@ -10,15 +10,14 @@ import { CartItem } from '../interfaces/cart';
 export class CartService {
   private baseUrl = 'http://localhost:3002';
   cartCountChanged = new EventEmitter<number>(); // EventEmitter để thông báo số lượng giỏ hàng thay đổi
-
   constructor(private http: HttpClient) {
-    
+
   }
 
   // Lấy danh sách các sản phẩm trong giỏ hàng
   getCartItems(): Observable<CartItem[]> {
     return this.http.get<CartItem[]>(`${this.baseUrl}/cart`, { withCredentials: true }).pipe(
-      tap((cartItems) => this.emitCartCount(cartItems)), 
+      tap((cartItems) => this.emitCartCount(cartItems)),
       catchError(this.handleError)
     );
   }
@@ -30,7 +29,7 @@ export class CartService {
       { productId, quantity },
       { withCredentials: true }
     ).pipe(
-      tap((cartItems) => this.emitCartCount(cartItems)), 
+      tap((cartItems) => this.emitCartCount(cartItems)),
       catchError(this.handleError)
     );
   }
@@ -42,7 +41,7 @@ export class CartService {
       { productId, quantity },
       { withCredentials: true }
     ).pipe(
-      tap((cartItems) => this.emitCartCount(cartItems)), 
+      tap((cartItems) => this.emitCartCount(cartItems)),
       catchError(this.handleError)
     );
   }
@@ -75,7 +74,7 @@ export class CartService {
   private emitCartCount(cartItems: CartItem[]): void {
     const totalCount = cartItems.reduce((total, item) => total + (item.cartQuantity || 0), 0);
     console.log('Cart updated, total items:', totalCount); // Log 
-    this.cartCountChanged.emit(totalCount); 
+    this.cartCountChanged.emit(totalCount);
   }
 
   // Hàm xử lý lỗi

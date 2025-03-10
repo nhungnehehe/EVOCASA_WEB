@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
+import { IUser } from '../interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private accountService: AccountService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
   ) { }
 
   checkPhoneNumber(): void {
@@ -32,9 +35,7 @@ export class LoginComponent implements OnInit {
     this.isPhoneNumberValid = phonenumberRegex.test(this.phonenumber);
   }
 
-  ngOnInit() {
-    // Không sử dụng cookie để lưu thông tin đăng nhập nên bỏ luôn phần này
-
+  ngOnInit(): void {
     // Khởi tạo form với giá trị mặc định từ các biến
     this.loginForm = this.formBuilder.group({
       emailOrPhone: [this.phonenumber, [Validators.required]],
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     // Lấy giá trị từ form
     const formValues = this.loginForm.value;
     this.phonenumber = formValues.emailOrPhone;
@@ -54,16 +55,25 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.phonenumber, this.password).subscribe(
-      (user) => {
+      (userObj) => {
+        // Ép kiểu userObj thành IUser
+        const user = userObj as IUser;
+        // Lưu thông tin user hiện tại thông qua AuthService
         this.authService.setCurrentUser(user);
+        // Cập nhật tên người dùng trong UserService để header cập nhật mà không cần reload
+        if (user && user.Name) {
+          const firstName = user.Name.split(' ')[0];
+          this.userService.setCurrentUserName(firstName);
+        }
 
         // Optionally, kiểm tra thay đổi mật khẩu nếu cần
         this.accountService.checkPasswordResetSuccess(this.phonenumber).subscribe({
           next: (data) => {
-            // Xử lí nếu cần, nếu không có thì có thể bỏ phần này
+            // Xử lí nếu cần
           }
         });
         alert('Login successfully!');
+        // Điều hướng về trang chủ
         this.router.navigate(['/'], { relativeTo: this.route });
       },
       (error) => {

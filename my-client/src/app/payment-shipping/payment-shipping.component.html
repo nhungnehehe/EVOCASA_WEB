@@ -101,27 +101,18 @@
                 <a href="#" class="edit-order">Edit</a>
             </div>
             <div class="order-header">
-                <p>1 item</p>
-                <p class="total-price">$3,982</p>
-            </div>
-            <div class="order-item">
-                <img src="image.png" alt="Cement Coffee Table" class="order-image">
+                <p>{{ totalQuantity }} item(s)</p> <!-- Hiển thị tổng số lượng sản phẩm -->
+                <p class="total-price">${{ total | number: '1.0-0' }}</p> <!-- Hiển thị tổng tiền -->
+              </div>
+              <div *ngFor="let product of cartItems" class="order-item">
+                <img [src]="product.Image" alt="{{ product.Name }}" class="order-image">
                 <div class="order-details">
-                    <p class="product-name">Cement Coffee Table</p>
-                    <p class="product-price">$3,982</p>
-                    <p class="product-quantity">Quantity: 1</p>
-                    <p class="product-color">Color: Light Beige</p>
+                  <p class="product-name">{{ product.Name }}</p>
+                  <p class="product-price">${{ product.Price }}</p>
+                  <p class="product-quantity">Quantity: {{ product.cartQuantity }}</p>
+                  <p class="product-color">Color: {{ product.Color }}</p>
                 </div>
-            </div>
-            <div class="order-item">
-                <img src="image.png" alt="Cement Coffee Table" class="order-image">
-                <div class="order-details">
-                    <p class="product-name">Cement Coffee Table</p>
-                    <p class="product-price">$3,982</p>
-                    <p class="product-quantity">Quantity: 1</p>
-                    <p class="product-color">Color: Light Beige</p>
-                </div>
-            </div>
+              </div>
         </div>
     </div>
     <div class="next-btn">
