@@ -23,7 +23,7 @@
     <!-- Các sản phẩm trong giỏ hàng -->
     <div *ngFor="let product of products" class="cart-item">
       <div class="checkbox-container">
-        <input type="checkbox" id="checkbox-{{product.productId}}" (change)="onCheckboxChange($event, product)" />
+        <input type="checkbox" id="checkbox-{{product.productId}}" (change)="onCheckboxChange($event, product)" [checked]="isProductSelected(product.productId)"/>
         <label for="checkbox-{{product.productId}}"></label>
         
      </div>
@@ -65,7 +65,6 @@
         <p class="shipping-info">Shipping & taxes calculated at checkout</p>
         <a routerLink="/payment-shipping"><button class="checkout-btn">CHECK OUT</button></a>
       </div>
-
     </div>
   </div>
 </div>

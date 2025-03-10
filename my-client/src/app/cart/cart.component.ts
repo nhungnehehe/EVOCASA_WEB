@@ -14,6 +14,7 @@ import { CartItem } from '../interfaces/cart'
 export class CartComponent implements OnInit {
   // Danh sách sản phẩm trong giỏ hàng
   products: CartItem[] = [];  // Danh sách sản phẩm trong giỏ hàng
+  selectedProductIds: Set<string> = new Set();
   constructor(
     private cartService: CartService,
     public cartpaymentService: CartpaymentService  
@@ -49,13 +50,21 @@ export class CartComponent implements OnInit {
         error: (err) => {console.error('Error loading cart:', err); }
         });
       }
-      
+      loadSelectedProducts(): void {
+        // Lấy lại các productId đã chọn từ CartpaymentService khi quay lại trang giỏ hàng
+        this.selectedProductIds = this.cartpaymentService.getSelectedProducts();
+      }
+    
     ngOnInit(): void {
       // Lấy sản phẩm trong giỏ hàng khi component khởi tạo
       this.loadProducts(); // Thay vì lặp lại code trong ngOnInit, gọi hàm loadProducts()
       // this.updateCartPaymentSummary(); // Lấy thông tin tổng số lượng và tổng tiền của CartPaymentService
+      this.loadSelectedProducts();
+      this.updateCartPaymentSummary();
     }
-    
+    isProductSelected(productId: string): boolean {
+      return this.selectedProductIds.has(productId); // Kiểm tra xem sản phẩm có được chọn không
+    }
    // Cập nhật số lượng sản phẩm
    changeQuantity(action: string, productId: string): void {
     const product = this.products.find((p) => p.productId === productId);
@@ -120,18 +129,17 @@ export class CartComponent implements OnInit {
 }
 
 
-  // Hàm xử lý sự kiện khi checkbox thay đổi
-  onCheckboxChange(event: any, product: CartItem): void {
-    if (event.target.checked) {
-      // Nếu checkbox được tích vào, thêm sản phẩm vào CartPaymentService
-      this.cartpaymentService.addToCartPayment(product);
-    } else {
-      // Nếu checkbox bỏ tích, xóa sản phẩm khỏi CartPaymentService
-      this.cartpaymentService.removeFromCartPayment(product.productId);
-    }
-     // Cập nhật tổng số lượng và tổng số tiền từ CartPaymentService
-     this.updateCartPaymentSummary();
+onCheckboxChange(event: any, product: CartItem): void {
+  const productId = product.productId.toString(); // Đảm bảo productId là chuỗi
+  if (event.target.checked) {
+    this.selectedProductIds.add(productId);
+    this.cartpaymentService.addToCartPayment(productId, product);
+  } else {
+    this.selectedProductIds.delete(productId);
+    this.cartpaymentService.removeFromCartPayment(productId);
   }
+  this.updateCartPaymentSummary();
+}
 
   // Cập nhật tổng số lượng và tổng số tiền từ CartPaymentService
   updateCartPaymentSummary(): void {
