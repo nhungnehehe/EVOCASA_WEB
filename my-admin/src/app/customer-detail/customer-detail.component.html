@@ -1,0 +1,84 @@
+
+<h1> CUSTOMER DETAILS </h1>
+    <div class="customer-info">
+        <div class="profile-card">
+            <div class="profile-pic"></div>
+            <div class="profile-details">
+                <p><strong>Name:</strong> Mark</p>
+                <p><strong>Gender:</strong> Male</p>
+                <p><strong>Email:</strong> shristi.gmail.com</p>
+                <p><strong>Phone:</strong> 0832-XXX-XXX</p>
+                <p><strong>Address:</strong> 62, rue des</p>
+            </div>
+        </div>
+        <div class="summary-container">
+            <div class="summary-card">
+                <h2>Total Orders</h2>
+                <div class="value-container">
+                    <p class="value">110</p>
+                    <p class="percentage">+10% <span>This month</span></p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <h2>Total Amount</h2>
+                <div class="value-container">
+                    <p class="value">155,641</p>
+                    <p class="percentage">+15% <span>This month</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="filter-btn">                  
+            <img src="images/customer/filter.svg"/>
+            Filter by
+        </button>
+        <button class="export-btn">
+            <img src="images/customer/export.svg"/>
+            Exports
+        </button>
+    </div>
+
+    <div class="table-container">
+        <table class="customer-detail-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Amount</th>
+              <th>Quantuty</th>
+              <th>Order Date</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td>{{ order.id }}</td>
+              <td>{{ order.amount }}</td>
+              <td>{{ order.quantity }}</td>
+              <td>{{ order.date }}</td>
+              <td>{{ order.payment }}</td>
+              <td>{{ order.status }}</td>
+              <td>
+                <button class="view-btn">
+                  <a routerLink="/customer-detail">
+                  <img src="images/customer/view.svg" alt="View">
+                  </a>
+                </button>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+  
+    <div class="pagination">
+      <button class="prev-btn">&lt;</button>
+      <span class="page-number">1</span>
+      <span class="page-number">2</span>
+      <span class="page-number">3</span>
+      <button class="next-btn">&gt;</button>
+    </div>
+  

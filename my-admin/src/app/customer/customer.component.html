@@ -52,9 +52,18 @@
               <td>{{ customer.phone }}</td>
               <td>{{ customer.amount }}</td>
               <td>
-                <button class="edit-btn"><i class="fa fa-pencil"></i></button>
-                <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              </td>
+                <button class="edit-btn">
+                    <img src="images/customer/edit.svg" alt="Edit">
+                </button>
+                <button class="delete-btn">
+                    <img src="images/customer/trash.svg" alt="Delete">
+                </button>
+                <button class="view-btn">
+                  <a routerLink="/customer-detail">
+                  <img src="images/customer/view.svg" alt="View">
+                  </a>
+                </button>
+            </td>
             </tr>
           </tbody>
         </table>

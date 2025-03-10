@@ -38,7 +38,7 @@ h1{
     list-style: none;
     color: #F2EAD3;
     margin-top: 55px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .navigate__bar--link {
@@ -91,7 +91,7 @@ h1{
     color:#F2EAD3;
     text-decoration: none;
     padding: 12px 10px;
-    font-size: 20px;
+    font-size: 18px;
     transition: background 0.3s ease;
     border-radius: 0px;
 
@@ -169,4 +169,69 @@ h1{
     color: #5E4C3E;
     font-weight: bold;
     margin-left: 0px;
+}
+
+
+/* Đối với màn hình nhỏ hơn 1024px (tablet và laptop nhỏ) */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 30px; /* Giảm kích thước h1 cho smartphone */
+        letter-spacing: 8px; /* Giảm khoảng cách chữ */
+    }
+    .navigate__bar {
+        width: 25%; /* Điều chỉnh chiều rộng sidebar */
+    }
+    .navigate__bar--link {
+        font-size: 16px; /* Giảm font-size cho các liên kết */
+    }
+    .dropdown-list {
+        margin-left: 20px; /* Giảm khoảng cách bên trái dropdown */
+    }
+    .item--dropdown{
+        font-size: 16px; /* Giảm font-size cho các liên kết */
+    }
+}
+
+/* Đối với màn hình nhỏ hơn 768px (mobile) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px; /* Giảm kích thước h1 cho smartphone */
+        letter-spacing: 8px; /* Giảm khoảng cách chữ */
+    }
+    .navigate__bar {
+        width: 25%; /* Điều chỉnh sidebar trên các thiết bị nhỏ */
+    }
+    .nav__content {
+        margin-top: 40px; /* Điều chỉnh khoảng cách giữa các mục */
+        font-size: 16px; /* Giảm kích thước font */
+    }
+    .dropdown-list {
+        margin-left: 10px; /* Giảm khoảng cách bên trái dropdown */
+    }
+    .navigate__bar--link {
+        font-size: 14px; /* Font-size nhỏ hơn cho các liên kết */
+        padding: 10px 15px; /* Giảm padding cho các mục */
+    }
+    .item--dropdown{
+        font-size: 14px; /* Font-size nhỏ hơn cho các liên kết */
+        padding: 10px 15px; /* Giảm padding cho các mục */
+    }
+}
+
+/* Đối với màn hình nhỏ hơn 480px (smartphone) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 5px; /* Giảm kích thước h1 cho smartphone */
+        letter-spacing: 1px; /* Giảm khoảng cách chữ */
+    }
+    .navigate__bar {
+        width: 25%; /* Tăng chiều rộng sidebar một chút */
+    }
+    .navigate__bar--link {
+        font-size: 1px; /* Giảm font-size cho các mục */
+        padding: 8px 10px; /* Giảm padding */
+    }
+    .dropdown-list {
+        margin-left: 5px; /* Giảm khoảng cách bên trái dropdown */
+    }
 }

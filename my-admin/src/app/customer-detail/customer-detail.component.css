@@ -13,14 +13,53 @@
     font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
   }
   
+  .customer-info {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+    .customer-info > .profile-card {
+        flex: 1.6;
+    }
+
+    .customer-info > .summary-container {
+        flex: 1;
+    }
+
+.profile-card {
+    display: flex;
+    background-color: #F2EAD3;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    margin-left: 34px;
+    height: 154px;
+}
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    background-color: #4a321e;
+    margin-right: 15px;
+    border-radius: 5px;
+    align-items: center;
+}
+.profile-details p {
+    margin: 2px 0;
+    font-size: 18px;
+    color: #70706E;
+    padding:3px
+}
+
 /* Container chứa các card */
 .summary-container {
     display: flex;
-    margin-left: 34px;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
     margin-right: 34px;
-    gap: 20px; /* Khoảng cách giữa các card */
-  }
-  
+}
+
   /* Các card */
   .summary-card {
     width: 100%;
@@ -126,34 +165,35 @@
         border-radius: 5px;
         margin-left: 34px;
         margin-right: 34px;
+        margin-top: 20px;
         overflow-x: auto; /* Giúp cuộn ngang khi bảng quá rộng */
         border: 1px solid #3F2305; /* Thêm viền */
   }
   
   /* Bảng */
-  .customer-table {
+  .customer-detail-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 5px;
     background-color: #f9f6f2;  /* Màu nền của container */
   }
   
-  .customer-table th, .customer-table td {
+  .customer-detail-table th, .customer-detail-table td {
     padding: 18px;
     text-align: center;
   }
   
-  .customer-table th {
+  .customer-detail-table th {
     background-color: #5E4C3E;
     color:  #F2EAD3;
   }
   
-  .customer-table td {
+  .customer-detail-table td {
     border-bottom: 1px solid #ddd;
     color: rgb(0, 0, 0,0.5);
   }
   
-  .customer-table .edit-btn, .customer-table .delete-btn, .customer-table .view-btn {
+  .customer-detail-table .view-btn {
     padding: 0px 5px;
     border: none;
     cursor: pointer;
@@ -163,8 +203,7 @@
   /* Pagination */
   .pagination {
     text-align: center;
-    margin-top: 15px;
-    margin-right: 50px;
+    margin-top: 20px;
   }
   
   .pagination button {
@@ -185,3 +224,4 @@
     cursor: pointer;
   }
   
+ 
