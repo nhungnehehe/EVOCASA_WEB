@@ -119,7 +119,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
           this.categorySlugMapping[category._id] = category.slug;
         });
 
-        // Tạo mapping từ subcategory đến category cha
+
         this.categories.forEach(category => {
           if (category.parentCategory) {
             const parentCategory = this.categories.find(c => c._id === category.parentCategory);
@@ -129,7 +129,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
           }
         });
 
-        // Lấy danh mục chính có parentCategory === null
         this.mainCategories = this.categories.filter(category => category.parentCategory === null);
         console.log('Main categories:', this.mainCategories);
         this.categoriesLoaded = true;
@@ -155,25 +154,20 @@ export class ProductComponent implements OnInit, AfterViewInit {
       return;
     }
   
-    // Kiểm tra xem đây có phải là main category hay không (main: parentCategory === null)
     const isMainCategory = this.mainCategories.some(cat => cat._id === selectedCategoryId);
     if (isMainCategory) {
       console.log(`Filtering products for main category: ${categorySlug}`);
-      // Lấy tất cả các subcategory của main category được chọn
       const subCategoryIds = this.categories
         .filter(cat => cat.parentCategory === selectedCategoryId)
         .map(cat => cat._id);
-      // Nếu bạn muốn sản phẩm gán trực tiếp cho main category cũng được hiển thị, bạn có thể:
-      // subCategoryIds.push(selectedCategoryId);
       this.filteredProducts = this.allProducts.filter(product => {
-        // Chú ý: Sử dụng product.category_id thay vì product.Category
         const prodCatId: string = product.category_id;
         return subCategoryIds.includes(prodCatId);
       });
     } else {
       console.log(`Filtering products for subcategory: ${categorySlug}`);
       this.filteredProducts = this.allProducts.filter(product => {
-        // So sánh product.category_id với _id của subcategory được chọn
+
         return product.category_id === selectedCategoryId;
       });
     }
