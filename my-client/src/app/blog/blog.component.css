@@ -1,3 +1,13 @@
+/* Thêm CSS cho việc zoom */
+html {
+  min-width: 1200px; /* Đảm bảo chiều rộng tối thiểu */
+}
+
+body {
+  overflow-x: auto; /* Cho phép cuộn ngang khi cần */
+  min-width: 1200px;
+}
+
 .blog-container {
   max-width: 1525px;
   margin: 0px auto;
@@ -6,6 +16,7 @@
   align-self: stretch;
   flex-wrap: wrap;
   background: #fffcf3;
+  min-width: 1200px; /* Đảm bảo chiều rộng tối thiểu */
 }
 
 .blog-title {
@@ -26,6 +37,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin: 80px 60px;
+  min-width: 1100px; /* Đảm bảo grid không bị vỡ */
+  width: calc(100% - 120px); /* Đảm bảo khoảng cách đều hai bên */
 }
 
 .blog-card {
@@ -41,6 +54,8 @@
   background: #fff;
   transform: translateY(0) scale(1);
   will-change: transform;
+  min-width: 300px; /* Đảm bảo kích thước tối thiểu của card */
+  width: 100%; /* Đảm bảo card luôn đầy đủ chiều rộng */
 }
 
 .blog-card:hover {
@@ -55,6 +70,8 @@
   border-bottom: 1px solid #ddd;
   height: 280px;
   transition: all 0.4s ease;
+  min-height: 280px; /* Đảm bảo chiều cao tối thiểu */
+  max-height: 280px; /* Đảm bảo chiều cao tối đa */
 }
 
 .blog-card:hover .blog-image {
@@ -64,13 +81,16 @@
 .blog-content {
   padding: 20px;
   color: rgba(0, 0, 0, 0.7);
-
   text-align: center;
   font-family: Inter;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: 24.38px;
+  min-height: 200px; /* Đảm bảo chiều cao tối thiểu cho nội dung */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .blog-year {
@@ -84,24 +104,32 @@
   margin: 0 0 10px;
   text-transform: uppercase;
   color: #5e4c3e;
-  /* height: 50px; */
   text-align: center;
   font-family: "Zen Old Mincho";
   font-size: 18px;
   font-style: normal;
   font-weight: bold;
   line-height: 24.38px;
+  min-height: 50px; /* Đảm bảo chiều cao tối thiểu cho tiêu đề */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Giới hạn số dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .blog-description {
   color: rgba(0, 0, 0, 0.7);
-
   text-align: center;
   font-family: Inter;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: 24.38px;
+  min-height: 100px; /* Đảm bảo chiều cao tối thiểu cho mô tả */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Giới hạn số dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .read-more {
