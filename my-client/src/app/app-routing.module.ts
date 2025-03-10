@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { CartComponent } from './cart/cart.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
@@ -34,7 +33,6 @@ import { OrderTrackingDetailComponent } from './order-tracking-detail/order-trac
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'contact-page', component: ContactComponent },
-  { path: 'sidebar-page', component: SidebarComponent },
   { path: 'cart-page', component: CartComponent },
   { path: 'about-page', component: AboutUsComponent },
   { path: 'blog', component: BlogComponent },

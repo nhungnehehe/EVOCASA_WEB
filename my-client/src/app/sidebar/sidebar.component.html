@@ -2,14 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar</title>
-    <link rel="stylesheet" href="sidebar.component.css">
 </head>
 
 <body>
-  <div class="drawer__overlay"  (click)="closeCart()"></div>
-    <div class="drawer" id="mini-cart" [ngClass]="{ 'open': isCartVisible, 'slide-out': !isCartVisible }">  
-      
+  <div class="drawer" id="mini-cart" [ngClass]="{ 'open': isVisible, 'slide-out': !isVisible }">
       <div class="drawer__content">
         <form id="mini-cart-form" novalidate method="post">
 
@@ -45,15 +41,14 @@
       <p><span id="total">${{total | number:'1.0-0'}}</span></p>
     </div>
     <p class="shipping-info">Shipping & taxes calculated at checkout</p>
-    <button type="button" class="cart__checkout-button" routerLink="/cart-page">
-      COMPLETE YOUR ORDER
-    </button>
+    <button type="button" class="cart__checkout-button" (click)="navigateToCart()">COMPLETE ORDER</button>
   </footer>
 
   <!-- Thông báo giỏ hàng trống -->
   <div *ngIf="isEmpty" class="empty-cart-message">
     <p>Your cart is empty!</p>
   </div>
+  <div class="drawer__overlay" *ngIf="isVisible" (click)="closeCart()"></div>
 </div>
 </body>
 </html>

@@ -1,3 +1,20 @@
+:host {
+  position: fixed;
+  top: 94px;
+  right: 0;
+  width: -430px; /* Độ rộng sidebar */
+  height: 100vh;
+  z-index: 1000;
+  background: white;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%); /* Ẩn ban đầu */
+}
+
+:host(.open) {
+  transform: translateX(0); /* Hiện sidebar */
+}
+ 
+
 * {
   margin: 0;
   padding: 0;
@@ -19,14 +36,14 @@ body {
       right: 0;
   }
   100% {
-      right: -530px; /* Di chuyển giỏ hàng ra ngoài màn hình */
+      right: -430px; /* Di chuyển giỏ hàng ra ngoài màn hình */
   }
 }
 
 /* Animation di chuyển giỏ hàng từ bên phải vào (mở giỏ hàng) */
 @keyframes slideIn {
   0% {
-      right: -530px; /* Bắt đầu ngoài màn hình */
+      right: -430px; /* Bắt đầu ngoài màn hình */
   }
   100% {
       right: 0; /* Di chuyển vào vị trí ban đầu */
@@ -40,43 +57,48 @@ body {
 
 /* Khi giỏ hàng di chuyển vào (open) */
 .drawer.open {
+  right: 0;
   animation: slideIn 0.5s forwards; /* Áp dụng animation khi mở giỏ hàng */
 }
 
 .drawer {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -430px;
   width: 430px;
   height: 100%;
   background-color: #FFFCF3;
-  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 1050;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Đảm bảo các phần tử có khoảng cách đúng */
   overflow-y: auto;
-  transition: transform 0.5s ease; /* Chuyển động mượt mà khi đóng */
+  transition: right 0.5s ease-in-out; /* Chuyển động mượt mà khi đóng */
 
 }
 
 /* Khi giỏ hàng di chuyển */
 .drawer.slide-out {
+  right: -430px;
   animation: slideOut 0.5s forwards; /* Áp dụng animation */
 }
 
-
 /* Làm tối phần bên dứoi giỏ hàng */
 .drawer__overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
   cursor: pointer; /* Con trỏ chuột thay đổi thành ngón tay chỉ khi di chuột vào overlay */
+  pointer-events: auto;
+  
 }
+
+
 
 .line-item {
   display: flex;
@@ -149,9 +171,9 @@ body {
 
 
 .drawer__content {
-  flex: 1; /* Nội dung chiếm phần không gian còn lại */
   overflow-y: auto; /* Chỉ cuộn cho nội dung */
-  margin-bottom: 20px; /* Tạo khoảng trống giữa content và footer */
+  padding-bottom: 50px;
+  margin-bottom: 40px; /* Tạo khoảng trống giữa content và footer */
 }
 
 .cart-total {
@@ -181,9 +203,10 @@ body {
   color: #5E4C3E;
 }
 
+
 .mini-cart__footer {
   text-align: center;
-  padding-bottom: 5px; /* Đảm bảo có khoảng trống phía dưới footer */
+  padding-bottom: 100px; /* Đảm bảo có khoảng trống phía dưới footer */
 }
 
 
