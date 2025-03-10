@@ -39,6 +39,7 @@ import { OrderTrackingComponent } from './order-tracking/order-tracking.componen
 import { PopupComponent } from './popup/popup.component';
 import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 import { ManageAccountComponent } from './manage-account/manage-account.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ManageAccountComponent } from './manage-account/manage-account.componen
     OrderTrackingComponent,
     PopupComponent,
     PaymentNoticeComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
