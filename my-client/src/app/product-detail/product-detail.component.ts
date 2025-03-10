@@ -134,12 +134,12 @@ viewProductDetails(product: IProduct): void {
       const productName = encodeURIComponent(product.Name.trim());
       
       // Kiểm tra xem có phải đang ở cùng trang không
-      if (this.router.url === `/product/${productName}`) {
+      if (this.router.url === `/product-detail/${productName}`) {
         // Nếu cùng trang, có thể buộc reload
         window.location.reload();
       } else {
         // Nếu khác trang, dùng router navigate
-        this.router.navigate(['/product', productName]);
+        this.router.navigate(['/product-detail', productName]);
       }
     } else {
       console.error('Error: Product name is missing');
