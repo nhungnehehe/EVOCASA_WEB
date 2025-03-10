@@ -120,6 +120,9 @@ body {
     text-align: center;
     flex: 1;
 }
+.category-item :hover {
+    cursor: pointer;
+}
 .category-item img {
     width: 165px;
     height: 262px;
