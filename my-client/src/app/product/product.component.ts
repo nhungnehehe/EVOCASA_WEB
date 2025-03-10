@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ProductService } from '../services/product.service'; 
 import { IProduct } from '../interfaces/product';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../interfaces/category';
 import { Location } from '@angular/common';
@@ -42,14 +42,23 @@ export class ProductComponent implements OnInit, AfterViewInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router,
+    private route: ActivatedRoute,
     private location: Location,
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
 
   ngOnInit(): void {
-    this.loadCategories(); // Tải categories trước khi tạo menu
-    this.loadProducts();
+    // Lấy dữ liệu sản phẩm từ resolver
+    this.route.data.subscribe((data: any) => {
+      this.allProducts = data.products;
+      this.filteredProducts = [...this.allProducts];
+      this.products = this.filteredProducts;
+      console.log(`Loaded ${this.products.length} products (via resolver)`);
+    });
+    
+    this.loadCategories();
+    this.loadProducts(); // Giữ lại hàm này nếu cần fallback (có thể bị trùng với resolver)
     this.initializeMenu();
   }
 
@@ -68,6 +77,34 @@ export class ProductComponent implements OnInit, AfterViewInit {
         console.warn('Timeout reached, categories might not be loaded!');
       }
     }, 5000);
+  }
+
+  // Xử lý tham số URL và filter sản phẩm theo danh mục khi reload
+  private handleRouteParams(): void {
+    const mainCategoryParam = this.route.snapshot.paramMap.get('mainCategory');
+    const subCategoryParam = this.route.snapshot.paramMap.get('subCategory');
+    let targetSlug: string | undefined;
+  
+    if (mainCategoryParam) {
+      if (subCategoryParam) {
+        const subCat = this.categories.find(cat =>
+          cat.name.toLowerCase() === subCategoryParam.toLowerCase());
+        if (subCat) {
+          targetSlug = subCat.slug;
+        }
+      } else {
+        const mainCat = this.categories.find(cat =>
+          cat.name.toLowerCase() === mainCategoryParam.toLowerCase());
+        if (mainCat) {
+          targetSlug = mainCat.slug;
+        }
+      }
+  
+      if (targetSlug) {
+        // Gọi hàm filter và cập nhật giao diện theo category được chỉ định từ URL
+        this.toggleSubMenu(targetSlug);
+      }
+    }
   }
 
   loadProducts(): void {
@@ -119,16 +156,18 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
         this.categories.forEach(category => {
           if (category.parentCategory) {
-            const parentCategory = this.categories.find(c => c._id === category.parentCategory);
-            if (parentCategory) {
-              this.categoryHierarchy[category.slug] = parentCategory.slug;
+            const parent = this.categories.find(c => c._id === category.parentCategory);
+            if (parent) {
+              this.categoryHierarchy[category.slug] = parent.slug;
             }
           }
         });
 
-        this.mainCategories = this.categories.filter(category => category.parentCategory === null);
+        this.mainCategories = this.categories.filter(cat => cat.parentCategory === null);
         console.log('Main categories:', this.mainCategories);
         this.categoriesLoaded = true;
+        // Sau khi load xong danh mục, xử lý URL nếu có param
+        this.handleRouteParams();
       },
       error: (err) => {
         this.errMessage = 'Error fetching categories. Please try again later.';
@@ -267,7 +306,19 @@ export class ProductComponent implements OnInit, AfterViewInit {
     this.toggleOpacity(category);
     this.filterProductsByCategory(category);
   
-    // Xây dựng URL mới dựa trên category:
+    // Nếu chọn 'all' thì cập nhật URL thành '/product' và giao diện
+    if (category === 'all') {
+      const level2s = document.querySelectorAll('.level2');
+      level2s.forEach((submenu: any) => submenu.style.display = 'none');
+      this.lastCategory = null;
+      const titleEl = document.getElementById('all-title');
+      if (titleEl) { titleEl.textContent = 'Shop All'; }
+      const descEl = document.getElementById('category-description');
+      if (descEl) { descEl.textContent = ''; }
+      this.location.go('/product');
+      return;
+    }
+  
     let newUrl = '';
     const isMain = this.mainCategories.some(cat => cat.slug === category);
     if (isMain) {
@@ -285,20 +336,8 @@ export class ProductComponent implements OnInit, AfterViewInit {
         newUrl = `/product/${this.categoryMapping[category]}`;
       }
     }
-    // Update URL mà không re-load component:
     this.location.go(newUrl);
   
-    // Cập nhật tiêu đề và mô tả (không thay đổi nội dung sản phẩm)
-    if (category === 'all') {
-      const level2s = document.querySelectorAll('.level2');
-      level2s.forEach((submenu: any) => submenu.style.display = 'none');
-      this.lastCategory = null;
-      const titleEl = document.getElementById('all-title');
-      if (titleEl) { titleEl.textContent = 'Shop All'; }
-      const descEl = document.getElementById('category-description');
-      if (descEl) { descEl.textContent = ''; }
-      return;
-    }
     const titleEl = document.getElementById('all-title');
     if (titleEl) {
       titleEl.textContent = this.categoryMapping[category] || 'All';
