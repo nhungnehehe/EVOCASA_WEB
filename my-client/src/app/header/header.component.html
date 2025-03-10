@@ -92,7 +92,8 @@
       </div>
       <div class="signcart">
         <img src="images/header/Sign-in-icon.svg" />
-        <a routerLink="/login-page" class="icon">SIGN IN</a>
+        <a routerLink="/login-page" class="icon" *ngIf="!currentUserName">SIGN IN</a>
+        <span class="icon" *ngIf="currentUserName">Hi, {{ currentUserName }}</span>
       </div>
       <div class="signcart">
         <button (click)="openSidebar()">
