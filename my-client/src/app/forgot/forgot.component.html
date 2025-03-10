@@ -1,32 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div class="forgot-container">
-        <div class="forgot-box">
-            <div class="forgot-image">
-                <img src="/images/forgot/forgot.jpg" alt="Forgot Password Image">
-            </div>
-            <div class="forgot-content">
-                <h1>Forgot password?</h1>
-                <p class="sub-text">No worries, we'll send you reset instructions.</p>
-
-                <input type="email" placeholder="Phone number">
-
-                <button class="forgot-btn">RESET PASSWORD</button>
-
-                <a [routerLink]="['/login-page']"    class="back-link">
-                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="19" y1="12" x2="5" y2="12"></line>
-                        <polyline points="12 19 5 12 12 5"></polyline>
-                    </svg>
-                    Back to sign in
-                </a>
-            </div>
-        </div>
+<div class="forgot-container" *ngIf="step === 1">
+    <div class="forgot-box">
+      <div class="forgot-image">
+        <img src="/images/forgot/forgot.jpg" alt="Forgot Password Image">
+      </div>
+      <div class="forgot-content">
+        <h1>Forgot password?</h1>
+        <p class="sub-text">No worries, we'll send you reset instructions.</p>
+        <input type="text" placeholder="Phone number" [(ngModel)]="phoneNumber" (keyup)="checkPhoneNumber()">
+        <button class="forgot-btn" (click)="sendCode()">SEND CODE</button>
+        <a [routerLink]="['/login-page']" class="back-link">
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to sign in
+        </a>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+  
+  <div class="forgot-container" *ngIf="step === 2">
+    <div class="forgot-box">
+      <div class="forgot-image">
+        <img src="/images/forgot/forgot.jpg" alt="Verification Image">
+      </div>
+
+      <div class="forgot-content">
+        <h1>Enter Verification Code</h1>
+        <p class="sub-text">
+          A verification code has been sent to your phone.<br>
+          It expires in {{ countdown }} seconds.
+        </p>
+        <div class="verification-notice" *ngIf="step === 2 && showVerificationCodeForDebug">
+          <small style="color: #888;">Development mode: Verification code is {{ generatedCode }}</small>
+        </div>
+        <input type="text" placeholder="Verification code" [(ngModel)]="verificationCode" (keyup)="checkVerificationCode()">
+        <button class="forgot-btn" (click)="verifyCode()">VERIFY CODE</button>
+        <button class="forgot-btn" (click)="resend()">RESEND CODE</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="forgot-container" *ngIf="step === 3">
+    <div class="forgot-box">
+      <div class="forgot-image">
+        <img src="/images/forgot/forgot.jpg" alt="Reset Password Image">
+      </div>
+      <div class="forgot-content">
+        <h1>Reset Password</h1>
+        <input type="password" placeholder="New Password" [(ngModel)]="newPassword">
+        <input type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+        <button class="forgot-btn" (click)="resetPassword()">RESET PASSWORD</button>
+        <a [routerLink]="['/login-page']" class="back-link">
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to sign in
+        </a>
+      </div>
+    </div>
+  </div>

@@ -87,4 +87,5 @@ export class AuthService {
       alert('An error occurred while changing password. Please try again later.');
     }
   }
+  
 }
