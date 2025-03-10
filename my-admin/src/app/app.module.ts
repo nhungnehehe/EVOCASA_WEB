@@ -9,12 +9,12 @@ import { CustomerComponent } from './customer/customer.component';
 import { OrderComponent } from './order/order.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
-import { EditPeoductComponent } from './product-detail/edit-peoduct/edit-peoduct.component';
 import { EditCategoryComponent } from './category-detail/edit-category/edit-category.component';
 import { AddCategoryComponent } from './category-detail/add-category/add-category.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { HeaderComponent } from './header/header.component';
 import { AddProductComponent } from './product-detail/add-product/add-product.component';
+import { EditProductComponent } from './product-detail/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -26,15 +26,15 @@ import { AddProductComponent } from './product-detail/add-product/add-product.co
     ProductComponent,
     CategoryComponent,
     AddProductComponent,
-    EditPeoductComponent,
     EditCategoryComponent,
     AddCategoryComponent,
     OrderDetailComponent,
-    HeaderComponent
+    HeaderComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

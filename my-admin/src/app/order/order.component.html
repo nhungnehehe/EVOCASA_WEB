@@ -1,1 +1,227 @@
-<p>order works!</p>
+<title>ORDER MANAGEMENT PAGE</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
+<!-- side bar -->
+<div class="navigate">
+  <div class="navigate__bar">
+    <div class="nav__title">
+      <h1>EVOCASA</h1>
+    </div>
+    <ul class="nav__content">
+      <li>
+        <a
+          routerLink="/"
+          class="navigate__bar--link"
+          [ngClass]="{ active: isActive('/admin-dashboard') }"
+          (click)="closeDropdown()"
+        >
+          <span class="material-icons-outlined">dashboard</span>
+          <span class="nav__item">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/admin-customer"
+          class="navigate__bar--link"
+          [ngClass]="{ active: isActive('/admin-customer') }"
+          (click)="closeDropdown()"
+        >
+          <span class="material-icons-outlined">person</span>
+          <span class="nav__item">Customer Management</span>
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/admin-order"
+          class="navigate__bar--link"
+          [ngClass]="{ active: isActive('/admin-order') }"
+          (click)="closeDropdown()"
+        >
+          <span class="material-icons-outlined">shopping_cart</span>
+          <span class="nav__item">Order Management</span>
+        </a>
+      </li>
+
+      <li class="nav__item--dropdown">
+        <a class="navigate__bar--link">
+          <span class="material-icons-outlined">inventory</span>
+          <span class="nav__item">Product Management</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </a>
+        <div
+          class="dropdown-list"
+          [ngClass]="{ 'show-dropdown': isDropdownOpen }"
+        >
+          <a
+            class="item--dropdown"
+            routerLink="/admin-product"
+            [ngClass]="{ active: isActive('/admin-product') }"
+            (click)="keepDropdownOpen($event)"
+            >Product</a
+          >
+          <a
+            class="item--dropdown"
+            routerLink="/admin-category"
+            [ngClass]="{ active: isActive('/admin-category') }"
+            (click)="keepDropdownOpen($event)"
+            >Category</a
+          >
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="main-content">
+  <h3>ORDER MANAGEMENT</h3>
+  <br />
+  <h4>Total Orders (18) | Showing 5/18</h4>
+  <div class="actions">
+    <!-- button filter -->
+    <button class="filter-button">
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/14d50c563c3fc218b6c1be7ac4e1b2a8b7ec719d39577318ef2e4d6b7944405f?placeholderIfAbsent=true&apiKey=4b1afb3277a34d60874b074cf734b4f0"
+        class="filter-icon"
+        alt="Filter icon"
+      />
+      <span class="filter-text">Filter by</span>
+    </button>
+    <!-- button export -->
+    <button class="export-button">
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0faa700bcadbaabec0c4ef0d1adc6ea09000797707c728e9cf3b8827a83045ad?placeholderIfAbsent=true&apiKey=4b1afb3277a34d60874b074cf734b4f0"
+        alt="Export icon"
+        class="export-icon"
+      />
+      <span class="export-text">Exports</span>
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/19b62177b0d554b91be14f426e88b1604db4a02cfe49928ee5a03e753c8c291f?placeholderIfAbsent=true&apiKey=4b1afb3277a34d60874b074cf734b4f0"
+        alt="Dropdown arrow"
+        class="dropdown-icon"
+      />
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Order ID</th>
+          <th>Customer Name</th>
+          <th>Order Date</th>
+          <th>Total Price</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.id }}</td>
+        <td>{{ order.customername }}</td>
+        <td>{{ order.date }}</td>
+        <td>{{ order.totalprice }}</td>
+        <td>{{ order.status }}</td>
+        <td>
+          <button class="view-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.5 10C2.5 10 5.625 4.375 10 4.375C14.375 4.375 17.5 10 17.5 10C17.5 10 14.375 15.625 10 15.625C5.625 15.625 2.5 10 2.5 10Z"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 12.1875C11.2047 12.1875 12.1875 11.2047 12.1875 10C12.1875 8.79531 11.2047 7.8125 10 7.8125C8.79531 7.8125 7.8125 8.79531 7.8125 10C7.8125 11.2047 8.79531 12.1875 10 12.1875Z"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="delete-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.875 4.375H3.125"
+                stroke="#FF0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.125 8.125V13.125"
+                stroke="#FF0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M11.875 8.125V13.125"
+                stroke="#FF0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15.625 4.375V16.25C15.625 16.4158 15.5592 16.5747 15.4419 16.6919C15.3247 16.8092 15.1658 16.875 15 16.875H5C4.83424 16.875 4.67527 16.8092 4.55806 16.6919C4.44085 16.5747 4.375 16.4158 4.375 16.25V4.375"
+                stroke="#FF0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M13.125 4.375V3.125C13.125 2.79348 12.9933 2.47554 12.7589 2.24112C12.5245 2.0067 12.2065 1.875 11.875 1.875H8.125C7.79348 1.875 7.47554 2.0067 7.24112 2.24112C7.0067 2.47554 6.875 2.79348 6.875 3.125V4.375"
+                stroke="#FF0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- Showing -->
+  <p>Showing 5/18 of all results</p>
+  <div class="pagination">
+    <button class="prev-btn">&lt;</button>
+    <span class="page-number">1</span>
+    <span class="page-number">2</span>
+    <span class="page-number">3</span>
+    <button class="next-btn">&gt;</button>
+  </div>
+</div>

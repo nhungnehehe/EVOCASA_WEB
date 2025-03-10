@@ -1,4 +1,5 @@
-import { Component  } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy  } from '@angular/core';
+import { BannerService } from '../services/banner.service';
 
 @Component({
   selector: 'app-homepage',
@@ -6,6 +7,19 @@ import { Component  } from '@angular/core';
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
-export class HomepageComponent {
-  
+export class HomepageComponent implements AfterViewInit, OnDestroy {
+
+  constructor(private bannerService: BannerService) {}
+
+  ngAfterViewInit(): void {
+    this.bannerService.initSlider();
+  }
+
+  changeSlide(index: number): void {
+    this.bannerService.changeSlide(index);
+  }
+
+  ngOnDestroy(): void {
+    this.bannerService.stopAutoSlide();
+  }
 }

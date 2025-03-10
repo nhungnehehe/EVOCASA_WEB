@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HOMEPAGE</title>
-    <!-- <link rel="stylesheet" href="/DoAnCK/Homepage/homepage.css"> -->
-</head>
 <body>
     <!-- Banner -->
     <div class="banner">
         <div class="banner-slider">
             <img src="images/homepage/Banner 1.jpg" class="banner-image" alt="Banner 1">
-            <img src="images/homepage/banner 2.jpg" class="banner-image" alt="Banner 2">
+            <img src="images/homepage/Banner 2.jpg" class="banner-image" alt="Banner 2">
             <img src="images/homepage/Banner 3.jpg" class="banner-image" alt="Banner 3">
         </div>
-          
         <div class="banner-text">
             <h1>EVOCASA</h1>
             <p>Craft Your Space, Elevate Your Life</p>
-            <button class="shop-now">SHOP NOW</button>
+            <a routerLink="/product-page"><button class="shop-now">SHOP NOW</button></a>
         </div>
         <div class="dots-container">
-            <span class="dot" onclick="currentSlide(0)"></span>
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" (click)="changeSlide(0)"></span>
+            <span class="dot" (click)="changeSlide(1)"></span>
+            <span class="dot" (click)="changeSlide(2)"></span>
         </div>
     </div>
 
@@ -69,8 +60,8 @@
             </div>
             <div class="soul-text">
                 <p class="soul-description">
-                    Every space tells a unique story, and EvoCasa brings those stories to life. 
-                    Inspired by the blend of classic elegance and modern charm, we craft pieces embody 
+                    Every space tells a unique story, and EvoCasa brings those stories to life.
+                    Inspired by the blend of classic elegance and modern charm, we craft pieces embody
                     art, comfort, and the warmth of home.
                 </p>
             </div>
@@ -88,13 +79,14 @@
                     Sabi Collection
                 </p>
                 <p class="collection-description">
-                    Each contour is thoughtfully crafted to reflect the fluid elegance of a woman's shoulder and neckline, inviting admiration and allure with every glance.
+                    Each contour is thoughtfully crafted to reflect the fluid elegance of a woman's shoulder and
+                    neckline, inviting admiration and allure with every glance.
                 </p>
                 <a href="../collection-detail/sabi-collection/sabi-collection.component.html" target="_blank">
                     <button class="explore-button">Explore more</button>
                 </a>
             </div>
-            
+
             <div class="collection-image">
                 <img src="images/homepage/Sabi_2.jpg" alt="Sabi Collection Image" class="hover-effect">
             </div>
@@ -118,7 +110,7 @@
     <div class="wrapper">
         <div class="container">
             <div class="service-box">
-                <img src="images/homepage/Vector.png" style="margin-bottom: 20px;"alt="Free Shipping">
+                <img src="images/homepage/Vector.png" style="margin-bottom: 20px;" alt="Free Shipping">
                 <h3>Free Shipping</h3>
                 <p>For Orders Over 10 Million VND<br> in Ho Chi Minh City</p>
             </div>
@@ -139,9 +131,9 @@
             </div>
         </div>
     </div>
-    
-    
-    
+
+
+
     <!-- Contact -->
     <div class="contact-container">
         <h2 class="contact-title">CONTACT US</h2>
@@ -154,12 +146,11 @@
             </div>
         </div>
         <p class="email-info">
-            Fill in your email to receive 10% off your first purchase and you'll hear<br/>
-            about our new product collections, antiquities, and more before<br/>
+            Fill in your email to receive 10% off your first purchase and you'll hear<br />
+            about our new product collections, antiquities, and more before<br />
             anyone else!
         </p>
     </div>
-    
+
 
 </body>
-</html>

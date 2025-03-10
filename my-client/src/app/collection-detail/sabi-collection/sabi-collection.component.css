@@ -278,5 +278,29 @@ body {
 
         /* Hiệu ứng Hover làm mờ ảnh */
         .image-effect:hover {
-            filter: blur(3px);
+            transform: scale(1.05) !important; /* Phóng to ảnh khi hover, dùng !important để đảm bảo không bị ghi đè */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Thêm bóng đổ khi hover */
+        }
+
+        .zoom-in-hover-effect {
+            opacity: 0;
+            transform: scale(0.5);
+            animation: zoomInAnimation 1.5s forwards;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        .zoom-in-hover-effect:hover {
+            transform: scale(1.1) !important; /* Phóng to ảnh khi hover, dùng !important để đảm bảo không bị ghi đè */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Thêm bóng đổ khi hover */
+        }
+        
+        @keyframes zoomInAnimation {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
