@@ -1,6 +1,10 @@
 body {
     font-family: Inter, sans-serif;
     background-color: #FFFCF3;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-size: 1rem;
 }
 
 /* Banner Section */
@@ -150,31 +154,49 @@ body {
     font-style: italic;
     margin-bottom: 30px;
 }
-.soul-content {
-    display: flex;
-    align-items: center; /* Căn giữa dọc */
-    justify-content: center;
-    gap: 40px;
+
+
+.container {
+    border-collapse: collapse;
+    background-color: #FFFCF3;
+    box-sizing: border-box;
+    /* margin: 60px; */
 }
-.soul-image {
-    flex: 1;
-}
-.soul-image img {
-    width: 100%;
+
+/* Left Column (Image) */
+.left-column {
     height: auto;
+    border: none;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.left-column img {
+    width: 100%; /* Đảm bảo ảnh luôn chiếm đủ chiều rộng */
+    height: auto; /* Giữ tỷ lệ ảnh */
+    display: block;
     object-fit: cover;
 }
-.soul-text {
-    max-width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+
+
+/* Right Column (Text) */
+.right-column {
+    padding-left: 30px;
+    vertical-align: middle;
+    border: none;
+    text-align: left;
+    box-sizing: border-box;
+    width: 50%;
 }
-.soul-description {
-    font-size: 20px !important; 
-    font-family: Inter, sans-serif;
+
+/* Description of Collection */
+.collection-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
     color: rgba(0, 0, 0, 0.60);
+    font-style: italic;
+    line-height: 30px;
+    margin-top: 20px;
     line-height: 42px; 
     text-align: center;
 }
@@ -210,7 +232,7 @@ body {
     vertical-align: center;
 }
 
-.collectio-text {
+.collection-text {
     text-align: center;
     vertical-align: center;
 }
@@ -220,26 +242,25 @@ body {
     color: #5E4C3E !important;
     font-family: "Zen Old Mincho", serif !important;
     margin-bottom: 20px; 
+    text-align: center;
 }
 
-.collection-description {
+.collection-description1 {
     font-size: 20px !important; 
     font-family: Inter, sans-serif;
     color: rgba(0, 0, 0, 0.60);
     line-height: 42px; 
     text-align: center;
-    max-width: 600px; 
-    margin: 0 auto;
+    margin-right: 47px;
+    margin-left: 47px;
 }
 
 .collection-image {
-    flex: 1;
+    margin-right: 10px;
 }
 
 .collection-image img {
     object-fit: cover;
-    width: 100%;
-    height: auto;
 }
 
 .explore-button {
@@ -267,11 +288,12 @@ body {
 
 /* Our values */
 .values-container {
-    max-width: 1340px; 
+    max-width: 100%; 
     margin-top: 80px;
     text-align: center;
     padding: 0 40px; /* Thêm padding trái và phải */
 }
+
 .values-container h2 {
     font-size: 32px;
     color: #5E4C3E;
@@ -280,26 +302,31 @@ body {
     margin-bottom: 30px;
     margin-top: 60px;
 }
+
 .values-content {
     display: flex;
     align-items: center; /* Căn giữa dọc */
-    justify-content: space-between;
+    justify-content: center;
     gap: 40px; /* Đảm bảo khoảng cách hợp lý */
+    position: relative;
 }
+
 .values-image {
     flex: 1;
+    flex-basis: 50%; 
     align-items: center;
     justify-content: center;
+    max-width: 100%;;
+    margin-right: 10px;
+    margin-left: 10px;
 }
+
 .values-image img {
-    width: 98%;
+    width: 100%;
     height: auto;
     object-fit: cover;
     display: block;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-
+    margin: 0 auto;
 }
 
 /* Our services */
@@ -452,13 +479,29 @@ body {
 }
 
 
-.hover-effect {
-    transition: opacity 0.3s ease-in-out;
+.zoom-in-hover-effect {
+    opacity: 0;
+    transform: scale(0.5);
+    animation: zoomInAnimation 1.5s forwards;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.hover-effect:hover {
-    opacity: 0.7; /* Làm mờ ảnh khi hover */
+.zoom-in-hover-effect:hover {
+    transform: scale(1.1) !important; /* Phóng to ảnh khi hover, dùng !important để đảm bảo không bị ghi đè */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Thêm bóng đổ khi hover */
 }
+
+@keyframes zoomInAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 .zoom-in {
     opacity: 0;
@@ -476,7 +519,5 @@ body {
         transform: scale(1);
     }
 }
-
-
 
 
