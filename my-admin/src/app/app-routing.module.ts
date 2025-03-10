@@ -6,6 +6,7 @@ import { CategoryComponent } from './category/category.component';
 import { OrderComponent } from './order/order.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 const routes: Routes = [
   { path: "", component:DashboardComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: "admin-product", component: ProductComponent },
   { path: "admin-category", component: CategoryComponent},
   { path: "admin-order", component:OrderComponent},
-  { path: "customer-detail", component:CustomerDetailComponent}
+  { path: "customer-detail", component:CustomerDetailComponent},
+  { path: "order-detail", component:OrderDetailComponent}
 ];
 
 @NgModule({
