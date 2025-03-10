@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-popup',
@@ -13,17 +13,19 @@ export class PopupComponent implements OnInit {
     // Hiển thị popup sau 10 giây
     setTimeout(() => {
       this.isVisible = true;
-
-      // Sau khi popup xuất hiện, đặt timeout để tự đóng sau 10 giây
-      setTimeout(() => {
-        this.closePopup();
-      }, 10000);
-
     }, 10000);
   }
 
   closePopup(): void {
     this.isVisible = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+      const popup = document.querySelector('.popup-container');
+      if (this.isVisible && popup && !popup.contains(event.target as Node)) {
+          this.closePopup();
+      }
   }
 }
 
