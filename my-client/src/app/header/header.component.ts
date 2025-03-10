@@ -27,10 +27,12 @@ export class HeaderComponent {
 
   // Cập nhật số lượng hiển thị (99+ nếu số lượng > 99)
   updateDisplayedQuantity(): void {
-    if (this.quantity > 99) {
-      this.displayedQuantity = '99+';  // Hiển thị 99+ nếu số lượng lớn hơn 99
+    if (this.quantity === 0) {
+        this.displayedQuantity = '';  // Ẩn hiển thị nếu số lượng bằng 0
+    } else if (this.quantity > 99) {
+        this.displayedQuantity = '99+';  // Hiển thị 99+ nếu số lượng lớn hơn 99
     } else {
-      this.displayedQuantity = this.quantity.toString();  // Hiển thị số lượng nếu nhỏ hơn hoặc bằng 99
+        this.displayedQuantity = this.quantity.toString();  // Hiển thị số lượng bình thường
     }
-  }
+}
 }
