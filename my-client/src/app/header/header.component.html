@@ -12,7 +12,7 @@
     <ul class="menu">
       <li><a routerLink="/">HOMEPAGE</a></li>
       <li class="dropdown">
-        <a routerLink="/product-page">PRODUCTS</a>
+        <a routerLink="/product">PRODUCTS</a>
         <div class="dropdown-menu">
           <ul>
             <li>
@@ -92,14 +92,15 @@
       </div>
       <div class="signcart">
         <img src="images/header/Sign-in-icon.svg" />
-        <a routerLink="/login-page" class="icon">SIGN IN</a>
+        <a routerLink="/login-page" class="icon" *ngIf="!currentUserName">SIGN IN</a>
+        <span class="icon" *ngIf="currentUserName">Hi, {{ currentUserName }}</span>
       </div>
       <div class="signcart">
-        <button>
-          <img src="images/header/Cart-icon.svg" />
+        <button (click)="openSidebar()">
+            <img src="images/header/Cart-icon.svg" />
         </button>
         <span class="total_quantity">{{ displayedQuantity }}</span>
-        <a routerLink="/sidebar-page" class="icon">CART</a>
+        <label class="icon" (click)="openSidebar()">CART</label>
       </div>
     </div>
   </div>

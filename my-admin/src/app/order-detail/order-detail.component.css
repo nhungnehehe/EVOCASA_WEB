@@ -198,13 +198,6 @@ h1 {
 }
 
 .back-button {
-  /* padding: 8px 15px;
-  background-color: transparent;
-  border: 1px solid #5e4c3e;
-  color: #5e4c3e;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px; */
   width: 100px;
   height: 30px;
   background-color: #f6efdd;
@@ -248,7 +241,6 @@ h1 {
   width: 800px;
   justify-content: center;
   margin-bottom: 20px;
-  /* background-color: #fdf6e9; */
   border-radius: 4px;
   padding: 15px 0;
 }
@@ -308,14 +300,8 @@ h1 {
   opacity: 0.7;
   border-bottom: 0.5px solid #000000;
 }
-/* 
-.order-table tr:nth-child(even) td {
-  background-color: #141a75;
-} */
-
 .price-details {
   text-align: right;
-  /* color: #3f2305; */
   margin-top: 20px;
 
   color: rgba(0, 0, 0, 0.7);
@@ -352,7 +338,6 @@ h1 {
   border-radius: 15px;
   background: #f2ead3;
 }
-
 .customer-info {
   margin-bottom: 10px 20px;
   color: #3f2305;
@@ -382,12 +367,7 @@ h1 {
 }
 
 .status-buttons {
-  /* display: flex;
-  gap: 15px; */
   display: flex;
-  /* padding: 10px 40px; */
-  /* justify-content: center; */
-  /* align-items: center; */
   gap: 20px;
 }
 
@@ -412,11 +392,9 @@ h1 {
   gap: 30px;
   margin-bottom: 30px;
 }
-
 .left-content {
   flex: 1;
 }
-
 .right-content {
   width: 350px;
 }

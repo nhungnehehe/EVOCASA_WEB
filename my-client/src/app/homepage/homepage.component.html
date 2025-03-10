@@ -9,7 +9,7 @@
         <div class="banner-text">
             <h1>EVOCASA</h1>
             <p>Craft Your Space, Elevate Your Life</p>
-            <a routerLink="/product-page"><button class="shop-now">SHOP NOW</button></a>
+            <a routerLink="/product"><button class="shop-now">SHOP NOW</button></a>
         </div>
         <div class="dots-container">
             <span class="dot" (click)="changeSlide(0)"></span>
@@ -23,8 +23,8 @@
         <h2>FEELS FOUND</h2>
         <p>You can explore all the product categories EvoCasa offers</p>
         <div class="category-container">
-            <div class="category-item">
-                <img src="images/homepage/Furniture_3.jpg" alt="Furniture" class="zoom-in-hover-effect">
+            <div class="category-item" [routerLink]="'/product/Furniture'">
+                <img src="images/homepage/Furniture_3.jpg" alt="Furniture" class="hover-effect">
                 <span>Furniture</span>
             </div>
             <div class="category-item">

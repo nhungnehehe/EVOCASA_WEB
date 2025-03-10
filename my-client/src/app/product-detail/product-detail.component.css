@@ -44,7 +44,7 @@ html, body {
     background-color: #F8F1E7;
     overflow: hidden;
     margin-bottom: 20px;
-    aspect-ratio: 4/3; /* Duy trì tỷ lệ khung hình */
+    aspect-ratio: 2/3; /* Duy trì tỷ lệ khung hình */
 }
 
 /* Position the image to focus on the bottom part */
@@ -55,7 +55,7 @@ html, body {
     top: 0;
     left: 0;
     object-fit: cover;
-    object-position: center;
+    object-position: bottom;
 }
 
 /* Arrow styling */

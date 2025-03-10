@@ -34,16 +34,17 @@ export class AccountService {
     const headers = new HttpHeaders().set(
       'Content-Type',
       'application/json;charset=utf-8'
-    )
+    );
     const requestOptions: Object = {
       headers: headers,
-      responseType: 'text',
-    }
-    return this._http.post<any>("/accounts", JSON.stringify(aAccount), requestOptions).pipe(
+      responseType: 'text'
+    };
+    // Sử dụng URL tuyệt đối để gọi đến API server (ví dụ: http://localhost:3002)
+    return this._http.post<any>('http://localhost:3002/accounts', JSON.stringify(aAccount), requestOptions).pipe(
       map(res => JSON.parse(res) as Account),
       retry(3),
       catchError(this.handleError)
-    )
+    );
   }
 
   private apiUrl = 'http://localhost:3002';

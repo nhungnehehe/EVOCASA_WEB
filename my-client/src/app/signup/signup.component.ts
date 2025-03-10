@@ -37,7 +37,7 @@ export class SignupComponent {
     }
   }
 
-  // Đăng ký tài khoản (Account)
+  // Đăng ký tài khoản (Account) và sau đó đăng ký thông tin Customer
   postAccount(): void {
     if (!this.isPhoneNumberValid) {
       alert('Please enter a valid phone number!');
@@ -54,11 +54,40 @@ export class SignupComponent {
       alert('Password does not match.');
       return;
     } else {
+      // Gọi service đăng ký tài khoản
       this._service.postAccount(this.account).subscribe({
         next: (data) => {
-          this.account = data;
+          // Cập nhật lại các trường cần thiết từ dữ liệu trả về
+          // Lưu ý: KHÔNG gán this.account.password = data.password để tránh hiển thị password đã hash trên FE.
+          this.account.Name = data.Name;
+          this.account.phonenumber = data.phonenumber;
+          // Nếu cần giữ lại giá trị password gốc trong biến riêng (không bind với input) thì bạn có thể lưu vào một biến khác
+          // Ví dụ: this.originalPassword = this.account.password;
+          // Nhưng không cập nhật lại đối tượng account mà giao diện đang bind.
+          
           alert('Sign up successfully');
-          this.router.navigate(['/login-page']);
+          
+          // Map các trường cần thiết từ Account sang Customer
+          this.customer.Name = this.account.Name;
+          this.customer.Phone = this.account.phonenumber;
+          this.customer.Mail = "";
+          this.customer.DOB = "";
+          this.customer.Address = "";
+          this.customer.Gender = "";
+          this.customer.Image = "";
+          this.customer.CreatedAt = "";
+          this.customer.Cart = [];
+          
+          // Gọi đăng ký thông tin customer
+          this._customerService.postCustomer(this.customer).subscribe({
+            next: (custData) => {
+              this.customer = custData;
+              this.router.navigate(['/login-page']);
+            },
+            error: (err) => {
+              this.errMessage = err;
+            }
+          });
         },
         error: (err) => {
           this.errMessage = err;
@@ -68,10 +97,17 @@ export class SignupComponent {
     }
   }
 
-  // Đăng ký thông tin customer (chỉ map các trường có sẵn)
+  // Hàm đăng ký Customer riêng (nếu cần sử dụng riêng)
   postCustomer(): void {
     this.customer.Name = this.account.Name;
     this.customer.Phone = this.account.phonenumber;
+    this.customer.Mail = "";
+    this.customer.DOB = "";
+    this.customer.Address = "";
+    this.customer.Gender = "";
+    this.customer.Image = "";
+    this.customer.CreatedAt = "";
+    this.customer.Cart = [];
 
     if (!this.isPhoneNumberValid) {
       return;
