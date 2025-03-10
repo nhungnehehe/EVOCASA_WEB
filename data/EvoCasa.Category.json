@@ -62,17 +62,6 @@
 },
 {
   "_id": {
-    "$oid": "507f191e810c19729de860f2"
-  },
-  "Name": "Decorative Objects",
-  "Description": "Objects used for home decoration.",
-  "Slug": "decorative-objects",
-  "ParentCategory": {
-    "$oid": "507f191e810c19729de860f0"
-  }
-},
-{
-  "_id": {
     "$oid": "507f191e810c19729de860f3"
   },
   "Name": "Bowls & Dishes",
@@ -164,17 +153,6 @@
   "Name": "Utensils",
   "Description": "Utensils for dining and cooking.",
   "Slug": "utensils",
-  "ParentCategory": {
-    "$oid": "507f191e810c19729de860f7"
-  }
-},
-{
-  "_id": {
-    "$oid": "507f191e810c19729de860fc"
-  },
-  "Name": "Candleholders",
-  "Description": "Candleholders for decoration.",
-  "Slug": "candleholders",
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f7"
   }
