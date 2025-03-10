@@ -37,7 +37,7 @@ export class SignupComponent {
     }
   }
 
-  // Đăng ký tài khoản (Account)
+  // Đăng ký tài khoản (Account) và sau đó đăng ký thông tin Customer
   postAccount(): void {
     if (!this.isPhoneNumberValid) {
       alert('Please enter a valid phone number!');
@@ -54,11 +54,36 @@ export class SignupComponent {
       alert('Password does not match.');
       return;
     } else {
+      // Gọi service đăng ký tài khoản
       this._service.postAccount(this.account).subscribe({
         next: (data) => {
           this.account = data;
           alert('Sign up successfully');
-          this.router.navigate(['/login-page']);
+
+          // Map các trường cần thiết từ Account sang Customer
+          this.customer.Name = this.account.Name;
+          this.customer.Phone = this.account.phonenumber;
+          // Gán mặc định cho những trường không có ở Account
+          this.customer.Mail = "";
+          this.customer.DOB = "";
+          this.customer.Address = "";
+          this.customer.Gender = "";
+          this.customer.Image = "";
+          this.customer.CreatedAt = "";
+          this.customer.Cart = [];
+
+          // Sau khi đăng ký tài khoản thành công, gọi service đăng ký thông tin customer
+          this._customerService.postCustomer(this.customer).subscribe({
+            next: (custData) => {
+              this.customer = custData;
+              alert('Customer registered successfully');
+              this.router.navigate(['/login-page']);
+            },
+            error: (err) => {
+              this.errMessage = err;
+              alert('Customer registration failed');
+            }
+          });
         },
         error: (err) => {
           this.errMessage = err;
@@ -68,10 +93,17 @@ export class SignupComponent {
     }
   }
 
-  // Đăng ký thông tin customer (chỉ map các trường có sẵn)
+  // Hàm đăng ký Customer riêng (nếu cần sử dụng riêng)
   postCustomer(): void {
     this.customer.Name = this.account.Name;
     this.customer.Phone = this.account.phonenumber;
+    this.customer.Mail = "";
+    this.customer.DOB = "";
+    this.customer.Address = "";
+    this.customer.Gender = "";
+    this.customer.Image = "";
+    this.customer.CreatedAt = "";
+    this.customer.Cart = [];
 
     if (!this.isPhoneNumberValid) {
       return;
