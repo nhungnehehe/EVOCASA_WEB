@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   isPhoneNumberValid: boolean = true;
   loginForm!: FormGroup;
   loginError: string = '';
+  showPassword: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -81,5 +82,8 @@ export class LoginComponent implements OnInit {
         this.loginError = 'Login failed!';
       }
     );
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

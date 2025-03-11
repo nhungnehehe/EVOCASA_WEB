@@ -3,6 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup Page</title>
+
 </head>
 <body>
   <div class="container">
@@ -18,26 +19,40 @@
           <input type="text" placeholder="Phone number"
                  [(ngModel)]="account.phonenumber" name="phonenumber" required
                  (blur)="checkPhoneNumber()">
-          <input type="password" placeholder="Password"
-                 [(ngModel)]="account.password" name="password" #passwordInput required>
-          <input type="password" placeholder="Type password again"
-                 [(ngModel)]="confirmPassword" name="confirmPassword" #confirmPasswordInput required>
+                 <div class="password-container" style="position: relative;">
+                  <input [type]="showPassword1 ? 'text' : 'password'" placeholder="Password"
+                         [(ngModel)]="account.password" name="password" #passwordInput required>
+                  <span class="eye-icon" (click)="togglePasswordVisibility1()" style="position:absolute; right:10px; top:50%; transform: translateY(-50%); cursor:pointer;">
+                    <span class="material-icons">
+                      {{ showPassword1 ? 'visibility_off' : 'visibility' }}
+                    </span>
+                  </span>
+                </div>
+                <div class="password-container" style="position: relative;">
+                  <input [type]="showPassword2 ? 'text' : 'password'" placeholder="Type password again"
+                         [(ngModel)]="confirmPassword" name="confirmPassword" #confirmPasswordInput required>
+                  <span class="eye-icon" (click)="togglePasswordVisibility2()" style="position:absolute; right:10px; top:50%; transform: translateY(-50%); cursor:pointer;">
+                    <span class="material-icons">
+                      {{ showPassword2 ? 'visibility_off' : 'visibility' }}
+                    </span>
+                  </span>
+                </div>
         </div>
                 
         <div class="checkbox-container">
-          <input type="checkbox" id="agree">
+          <input type="checkbox" id="agree" [(ngModel)]="agree" name="agree" required>
           <label for="agree">Agree with <strong>&nbsp;Term &amp; Condition</strong></label>
         </div>
-
-        <button class="sign-up" (click)="postAccount()">SIGN UP</button>
-
+    
+        <button class="signup-btn" (click)="postAccount()">SIGN UP</button>
+    
         <p class="or">—— or Sign up with ——</p>
         <div class="social-icons">
           <div class="icon"><img src="/images/iconmxh/google.png" alt="Google"></div>
           <div class="icon"><img src="/images/iconmxh/twitter.png" alt="X"></div>
           <div class="icon"><img src="/images/iconmxh/facebook.png" alt="Facebook"></div>
         </div>
-
+    
         <p class="sign-in">Already have an account? <strong><a [routerLink]="['/login-page']">Sign in</a></strong></p>
       </div>
     </div>

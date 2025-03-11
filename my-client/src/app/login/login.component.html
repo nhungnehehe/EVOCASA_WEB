@@ -15,7 +15,13 @@
             <input type="email" formControlName="emailOrPhone" placeholder="Phone number" >
           </div>
           <div class="input-container">
-            <input type="password" formControlName="password" placeholder="Password">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password">
+            <span class="eye-icon" (click)="togglePasswordVisibility()">
+              <span class="material-icons">
+                {{ showPassword ? 'visibility_off' : 'visibility' }}
+              </span>
+            </span>
+            
           </div>
           <a [routerLink]="['/forgot-page']" class="forgot-password">Forgot password?</a>
           <button class="signin-btn" type="submit">SIGN IN</button>

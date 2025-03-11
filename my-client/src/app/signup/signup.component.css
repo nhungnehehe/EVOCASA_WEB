@@ -215,19 +215,22 @@ input:focus::placeholder {
     font-weight: bold;
 }
 
-button.sign-up {
+.signup-btn {
     width: 100%;
     padding: 12px;
     background: #525B4A;
     color: white;
-    font-size: 18px; /* Giảm font size */
+    font-size: 18px;
     font-weight: 600;
     border: none;
     border-radius: 7px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease; /* Add smooth transition */
 }
-
+.signup-btn:hover {
+    background-color: #5E4C3E;
+}
 .or {
     margin: 20px 0;
     font-size: 16px;
@@ -275,6 +278,17 @@ button.sign-up {
     color: #5E4C3E;
 }
 
+.sign-in a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px; 
+    color: #5E4C3E; 
+    transition: font-weight 0.2s ease-in-out; 
+}
+
+.sign-in a:hover {
+    font-weight: bolder; 
+}
 /* Responsive cho màn hình lớn hơn tablet */
 @media (min-width: 769px) {
     .container {
@@ -352,6 +366,37 @@ button.sign-up {
         font-size: 16px;
     }
 }
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .eye-icon {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-65%) !important;
+    cursor: pointer !important;
+    font-size: 20px !important;
+    color: #5E4C3E !important;
+    margin-bottom: 20px !important;
+    padding: 0 !important;
+  }
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+
 
 /* Responsive cho màn hình nhỏ */
 @media (max-width: 480px) {
