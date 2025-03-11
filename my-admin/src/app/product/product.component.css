@@ -60,15 +60,6 @@ h4 {
   background-color: transparent;
   cursor: pointer;
 }
-
-/* .filter-icon {
-  aspect-ratio: 1.17;
-  object-fit: contain;
-  object-position: center;
-  width: 28px;
-  flex-shrink: 0;
-} */
-
 .filter-text {
   margin: auto 0;
 }
@@ -156,7 +147,7 @@ h4 {
 }
 /* Container chứa bảng */
 .table-container {
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
   margin-top: 20px;
   margin-left: 34px;
@@ -176,7 +167,7 @@ h4 {
 .product-table th {
   background-color: #5e4c3e;
   color: #f2ead3;
-  padding: 15px;
+  padding: 15px 5px;
   text-align: center;
   border-bottom: 1px solid #482d2d;
 }
@@ -246,9 +237,7 @@ h4 {
   border: none;
   cursor: pointer;
   padding: 0px;
-  /* display: flex; */
   align-items: center;
-  /* justify-content: center; */
   color: rgba(0, 0, 0, 0.5);
   margin-left: 10px;
 }
@@ -257,9 +246,7 @@ h4 {
   display: flex;
 }
 
-.view-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
+.icon-btn:hover {
   color: rgb(189, 97, 97);
   text-decoration: wavy;
 }
