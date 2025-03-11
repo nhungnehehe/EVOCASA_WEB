@@ -5,83 +5,77 @@
   <div class="actions">
     <!-- button filter -->
     <button class="filter-button">
-      <img
-        src="images/product/filter.svg"
-        class="filter-icon"
-        alt="Filter icon"
-      />
+      <img src="images/order/Filter.svg" alt="Filter icon" />
       <span class="filter-text">Filter by</span>
     </button>
-    <div class="right-button">
-      <!--button Add Product -->
-      <div class="addproduct-button">
-        <img src="images/product/add.png" alt="Add" />
-        <span>Add product</span>
-      </div>
-      <!-- button export -->
-      <button class="export-button">
-        <img
-          src="images/product/export.svg"
-          alt="Export icon"
-          class="export-icon"
-        />
-        <span class="export-text">Exports</span>
-        <img
-          src="images/product/arrow.svg"
-          alt="Dropdown arrow"
-          class="dropdown-icon"
-        />
-      </button>
+    <!--button Add Product -->
+    <div class="addproduct-button">
+      <img src="images/product/add.png" alt="Add" />
+      <span>Add product</span>
     </div>
+    <!-- button export -->
+    <button class="export-button">
+      <img
+        src="images/product/export.svg"
+        alt="Export icon"
+        class="export-icon"
+      />
+      <span class="export-text">Exports</span>
+      <img
+        src="images/product/arrow.svg"
+        alt="Dropdown arrow"
+        class="dropdown-icon"
+      />
+    </button>
   </div>
+</div>
 
-  <div class="table-container">
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Image</th>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Category</th>
-          <th>Inventory</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ product.image }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.price }}</td>
-          <td>{{ product.category }}</td>
-          <td>{{ product.quantity }}</td>
-          <td>
-            <button class="view-btn">
-              <img
-                src="images/product/view.svg"
-                alt="viewicon"
-                style="border: black"
-              />
-            </button>
-            <button class="edit-btn">
-              <img src="images/product/edit.svg" alt="editicon" />
-            </button>
-            <button class="delete-btn">
-              <img src="images/product/trash.svg" alt="trashicon" />
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <!-- Showing -->
-  <div class="show">Showing 5/150 of all results</div>
-  <div class="pagination">
-    <button class="prev-btn">&lt;</button>
-    <span class="page-number">1</span>
-    <span class="page-number">2</span>
-    <span class="page-number">3</span>
-    <button class="next-btn">&gt;</button>
-  </div>
+<div class="table-container">
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Inventory</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ product.image }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <button class="view-btn">
+            <img
+              src="images/product/view.svg"
+              alt="viewicon"
+              style="border: black"
+            />
+          </button>
+          <button class="edit-btn">
+            <img src="images/product/edit.svg" alt="editicon" />
+          </button>
+          <button class="delete-btn">
+            <img src="images/product/trash.svg" alt="trashicon" />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Showing -->
+<div class="show">Showing 5/150 of all results</div>
+<div class="pagination">
+  <button class="prev-btn">&lt;</button>
+  <span class="page-number">1</span>
+  <span class="page-number">2</span>
+  <span class="page-number">3</span>
+  <button class="next-btn">&gt;</button>
 </div>
