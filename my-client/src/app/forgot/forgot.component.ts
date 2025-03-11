@@ -27,6 +27,8 @@ export class ForgotComponent implements OnInit {
   generatedCode: string = "";
   countdown: number = 30;
   timer: any;
+  showNewPassword: boolean = false;
+  showConfirmPassword: boolean = false;
   
   // Step 3 fields: Reset password
   newPassword: string = "";
@@ -201,4 +203,13 @@ resetPassword(): void {
       }
     });
 }
+toggleNewPasswordVisibility(): void {
+  this.showNewPassword = !this.showNewPassword;
+}
+
+// Phương thức để chuyển đổi hiển thị xác nhận mật khẩu
+toggleConfirmPasswordVisibility(): void {
+  this.showConfirmPassword = !this.showConfirmPassword;
+}
+
 }

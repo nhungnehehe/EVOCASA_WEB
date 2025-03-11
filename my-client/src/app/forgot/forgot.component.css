@@ -155,14 +155,23 @@ button.forgot-btn {
     padding: 12px;
     background: #525B4A;
     color: white;
-    font-size: 16px; /* Giảm kích thước cho mobile */
+    font-size: 18px; /* Nếu muốn tăng kích thước font */
     font-weight: 600;
     border: none;
     border-radius: 7px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease; /* Add smooth transition */
 }
 
+button.forgot-btn:hover {
+    background-color: #5E4C3E;
+}
+.button-row {
+    display: flex;
+    justify-content: space-between; /* hoặc center, tùy ý */
+    gap: 10px; /* Khoảng cách giữa 2 button */
+  }
 .or {
     margin: 20px 0;
     font-size: 14px; /* Giảm kích thước cho mobile */
@@ -203,6 +212,28 @@ button.forgot-btn {
     height: 100%;
     border-radius: 10px;
     object-fit: cover;
+}
+.eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #5E4C3E;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
 }
 
 /* Tablet và lớn hơn */

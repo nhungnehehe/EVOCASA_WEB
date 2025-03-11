@@ -32,11 +32,13 @@
           It expires in {{ countdown }} seconds.
         </p>
         <div class="verification-notice" *ngIf="step === 2 && showVerificationCodeForDebug">
-          <small style="color: #888;">Development mode: Verification code is {{ generatedCode }}</small>
+          <small style="color: #888;">Verification code is {{ generatedCode }}</small>
         </div>
         <input type="text" placeholder="Verification code" [(ngModel)]="verificationCode" (keyup)="checkVerificationCode()">
-        <button class="forgot-btn" (click)="verifyCode()">VERIFY CODE</button>
-        <button class="forgot-btn" (click)="resend()">RESEND CODE</button>
+        <div class="button-row">
+          <button class="forgot-btn" (click)="verifyCode()">VERIFY CODE</button>
+          <button class="forgot-btn" (click)="resend()">RESEND CODE</button>
+        </div>
       </div>
     </div>
   </div>
@@ -48,8 +50,22 @@
       </div>
       <div class="forgot-content">
         <h1>Reset Password</h1>
-        <input type="password" placeholder="New Password" [(ngModel)]="newPassword">
-        <input type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+        <div class="password-container" style="position: relative;">
+          <input [type]="showNewPassword ? 'text' : 'password'" placeholder="New Password" [(ngModel)]="newPassword">
+          <span class="eye-icon" (click)="toggleNewPasswordVisibility()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+            <span class="material-icons">
+              {{ showNewPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </span>
+        </div>
+        <div class="password-container" style="position: relative; margin-top: 10px;">
+          <input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+          <span class="eye-icon" (click)="toggleConfirmPasswordVisibility()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+            <span class="material-icons">
+              {{ showConfirmPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </span>
+        </div>
         <button class="forgot-btn" (click)="resetPassword()">RESET PASSWORD</button>
         <a [routerLink]="['/login-page']" class="back-link">
           <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
