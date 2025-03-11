@@ -29,4 +29,7 @@ export class PaymentConfirmComponent {
     this.deliveryFee = deliveryFee;
     this.totalOrder = totalOrder;
   }
+  getProductTotal(productId: string): number {
+    return this.cartpaymentService.getProductTotal(productId);
+  }
 }

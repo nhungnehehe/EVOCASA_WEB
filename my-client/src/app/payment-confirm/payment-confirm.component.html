@@ -79,8 +79,8 @@
                     <th>Item</th>
                     <th>Attributes</th>
                     <th>Quantity</th>
-                    <th>Shipping</th>
-                    <th>Price</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,8 +99,8 @@
                         <p><strong>Height:</strong> 16 in</p>
                     </td>
                     <td>{{ product.cartQuantity }}</td>
-                    <td>${{ deliveryFee | number: '1.0-0' }}</td>
                     <td>${{ product.Price }}</td>
+                    <td>${{ getProductTotal(product.productId) | number: '1.0-0' }}</td>
                 </tr> 
                 <tr class="bottom-line">
                     <td colspan="5"></td>
@@ -117,7 +117,7 @@
                     <td>${{ total | number: '1.0-0' }}</td>
                 </tr>
                 <tr>
-                    <td>Sales Tax</td>
+                    <td>Sales Tax (8%)</td>
                     <td>${{ saleTax | number: '1.0-2' }}</td>
                 </tr>
                 <tr>
