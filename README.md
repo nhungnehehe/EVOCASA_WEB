@@ -17,7 +17,15 @@
 -    **Năm học:** HK2 (2024 - 2025)
 -    **Giảng viên:** TS.Trần Duy Thanh
 
+## THÀNH VIÊN NHÓM 3
 
+| STT | MSSV       | Họ và Tên                        | GitHub                                      | Email                          |
+|:---:|:---------:|:--------------------------------:|:--------------------------------------------:|:------------------------------:|
+|  1  | K224111460 | Phạm Tuyết Nhung (Nhóm trưởng)  | [nhungnehehe](https://github.com/nhungnehehe) | nhungpt22411c@st.uel.edu.vn   |
+|  2  | K224111450 | Nguyễn Trần Thanh Huyền        | [thhuyenn19](https://github.com/thhuyenn19) | huyennntt22411c@st.uel.edu.vn |
+|  3  | K224111461 | Vũ Quỳnh Như                    | [qnhu11](https://github.com/qnhu11)         | nhuvq22411c@st.uel.edu.vn     |
+|  4  | K224111462 | Lê Nguyễn Minh Thảo             | [lnmthao](https://github.com/lnmthao)       | thaolnm22411c@st.uel.edu.vn   |
+|  5  | K224111470 | Phan Thị Thùy Trang             | [ThuyTrang1604](https://github.com/ThuyTrang1604) | trangptt22411c@st.uel.edu.vn |
 ## GIỚI THIỆU ĐỒ ÁN
 
 -    **Đề tài:** Trang web bán nội thất
@@ -40,13 +48,5 @@
   - Hosting: 
   -
   - 
-## THÀNH VIÊN NHÓM 3
 
-| STT | MSSV       | Họ và Tên                        | GitHub                                      | Email                          |
-|:---:|:---------:|:--------------------------------:|:--------------------------------------------:|:------------------------------:|
-|  1  | K224111460 | Phạm Tuyết Nhung (Nhóm trưởng)  | [nhungnehehe](https://github.com/nhungnehehe) | nhungpt22411c@st.uel.edu.vn   |
-|  2  | K224111450 | Nguyễn Trần Thanh Huyền        | [thhuyenn19](https://github.com/thhuyenn19) | huyennntt22411c@st.uel.edu.vn |
-|  3  | K224111461 | Vũ Quỳnh Như                    | [qnhu11](https://github.com/qnhu11)         | nhuvq22411c@st.uel.edu.vn     |
-|  4  | K224111462 | Lê Nguyễn Minh Thảo             | [lnmthao](https://github.com/lnmthao)       | thaolnm22411c@st.uel.edu.vn   |
-|  5  | K224111470 | Phan Thị Thùy Trang             | [ThuyTrang1604](https://github.com/ThuyTrang1604) | trangptt22411c@st.uel.edu.vn |
 
