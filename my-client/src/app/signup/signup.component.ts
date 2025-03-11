@@ -14,15 +14,24 @@ import { Router } from '@angular/router';
 export class SignupComponent {
   account: Account = new Account();
   customer: Customer = new Customer();
+  // Lưu thông báo lỗi
   errMessage: string = '';
+  // Biến kiểm tra số điện thoại hợp lệ
   isPhoneNumberValid: boolean = true;
+  // Biến lưu xác nhận mật khẩu
   confirmPassword: string = '';
+  // Biến hiển thị/ẩn mật khẩu cho 2 input
+  showPassword1: boolean = false;
+  showPassword2: boolean = false;
+  // Biến kiểm tra checkbox (không lưu vào account vì interface không có thuộc tính agree)
+  agree: boolean = false;
+  submitted: boolean = false;
 
   @ViewChild('passwordInput') passwordInput: any;
   @ViewChild('confirmPasswordInput') confirmPasswordInput: any;
 
   constructor(
-    private _service: AccountService, 
+    private _service: AccountService,
     private router: Router,
     private _customerService: CustomerService
   ) { }
@@ -39,6 +48,14 @@ export class SignupComponent {
 
   // Đăng ký tài khoản (Account) và sau đó đăng ký thông tin Customer
   postAccount(): void {
+    this.submitted = true;
+    
+    // Kiểm tra nếu checkbox chưa được tick
+    if (!this.agree) {
+      alert("Please tick the checkbox to agree with Term & Condition");
+      return;
+    }
+    
     if (!this.isPhoneNumberValid) {
       alert('Please enter a valid phone number!');
       return;
@@ -58,16 +75,12 @@ export class SignupComponent {
       this._service.postAccount(this.account).subscribe({
         next: (data) => {
           // Cập nhật lại các trường cần thiết từ dữ liệu trả về
-          // Lưu ý: KHÔNG gán this.account.password = data.password để tránh hiển thị password đã hash trên FE.
+          // Lưu ý: KHÔNG gán this.account.password = data.password để tránh hiển thị giá trị hash trên FE.
           this.account.Name = data.Name;
           this.account.phonenumber = data.phonenumber;
-          // Nếu cần giữ lại giá trị password gốc trong biến riêng (không bind với input) thì bạn có thể lưu vào một biến khác
-          // Ví dụ: this.originalPassword = this.account.password;
-          // Nhưng không cập nhật lại đối tượng account mà giao diện đang bind.
-          
           alert('Sign up successfully');
           
-          // Map các trường cần thiết từ Account sang Customer
+          // Map các trường từ Account sang Customer
           this.customer.Name = this.account.Name;
           this.customer.Phone = this.account.phonenumber;
           this.customer.Mail = "";
@@ -132,5 +145,13 @@ export class SignupComponent {
         }
       });
     }
+  }
+
+  togglePasswordVisibility1(): void {
+    this.showPassword1 = !this.showPassword1;
+  }
+  
+  togglePasswordVisibility2(): void {
+    this.showPassword2 = !this.showPassword2;
   }
 }

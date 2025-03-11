@@ -187,11 +187,20 @@ input:focus {
     margin-top: 20px;
     font-size: 14px;
     color: #5E4C3E;
+}
 
+.sign-up a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px; 
+    color: #5E4C3E; 
+    transition: font-weight 0.2s ease-in-out; 
 }
-.sign-up:hover {
-    font-weight: 500;
+
+.sign-up a:hover {
+    font-weight: bolder; 
 }
+
 
 .signin-image {
     width: 50%;
@@ -206,6 +215,33 @@ input:focus {
     border-radius: 10px;
     object-fit: cover;
 }
+.input-container {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #5E4C3E;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+
 
 /* Laptop nhỏ */
 @media (max-width: 1024px) {
