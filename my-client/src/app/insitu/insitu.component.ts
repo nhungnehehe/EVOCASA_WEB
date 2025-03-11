@@ -11,16 +11,16 @@ export class InsituComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
-    // Thêm Bootstrap script nếu cần
+
     this.loadExternalScripts();
   }
 
   ngAfterViewInit(): void {
-    // Gọi các hàm JavaScript sau khi view đã được khởi tạo
+
     this.initializeShopTheLook();
   }
 
-  // Hàm tải các script bổ sung nếu cần
+
   private loadExternalScripts(): void {
     const bootstrapScript = document.createElement('script');
     bootstrapScript.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js';
@@ -28,35 +28,35 @@ export class InsituComponent implements OnInit, AfterViewInit {
     document.body.appendChild(bootstrapScript);
   }
 
-  // Chuyển các hàm từ script JavaScript sang methods của component
+
   private initializeShopTheLook(): void {
     const productDots = document.querySelectorAll('.circle-checkbox');
     
-    // Giữ nguyên các hàm chức năng
+
     const positionProductInfo = (checkbox: Element, product: Element): void => {
       if (!checkbox || !product) return;
        
-      // Get position relative to the container instead of window
+
       const container = checkbox.closest('.shop-the-look__image-wrapper');
       if (!container) return;
       
       const checkboxRect = checkbox.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
        
-      // Position product info to the right of checkbox but within container bounds
-      const productWidth = 300; // Set fixed width for calculation
-      const productHeight = 160; // Set fixed height for calculation
+  
+      const productWidth = 300; 
+      const productHeight = 160; 
        
-      // Calculate position relative to container
+
       let left = checkboxRect.left - containerRect.left + 20;
       let top = checkboxRect.top - containerRect.top + 20;
        
-      // Check if product would go off right edge and adjust if needed
+ 
       if (left + productWidth > containerRect.width) {
-        left = left - productWidth - 5; // Position to the left of checkbox
+        left = left - productWidth - 5; 
       }
        
-      // Check if product would go off bottom edge and adjust if needed
+
       if (top + productHeight > containerRect.height) {
         top = top - productHeight - 5; 
       }
