@@ -80,30 +80,30 @@
                 <a href="#" class="edit-order">Edit</a>
             </div>
             <div class="order-header">
-                <p>1 item</p>
-                <p class="total">$3,982</p>
+                <p>{{ totalQuantity }} item(s)</p>
+                <p class="total">${{ total | number: '1.0-0' }}</p>
             </div>
             <div class="order-header">
-                <p>Sales Tax</p>
-                <p class="total">$318,56</p>
+                <p>Sales Tax (8%)</p>
+                <p class="total">${{ saleTax | number: '1.0-2' }}</p>
             </div>
             <div class="order-header">
                 <p>Delivery</p>
-                <p class="total">$50,25</p>
+                <p class="total">${{ deliveryFee | number: '1.0-0' }}</p>
             </div>
             <hr style="margin-bottom: 15px;">
             <div class="order-header">
                 <p>Total</p>
-                <p class="total">$4,350.81</p>
+                <p class="total">${{ totalOrder | number: '1.0-2' }}</p>
             </div>
             <a href="#">USE VOUCHER CODE</a>
-            <div class="order-item">
-                <img src="image.png" alt="Cement Coffee Table" class="order-image">
+            <div class="order-item" *ngFor="let product of cartItems">
+                <img [src]="product.Image" alt="Cement Coffee Table" class="order-image">
                 <div class="order-details">
-                    <p class="product-name">Cement Coffee Table</p>
-                    <p class="product-price">$3,982</p>
-                    <p class="product-quantity">Quantity: 1</p>
-                    <p class="product-color">Color: Light Beige</p>
+                    <p class="product-name">{{ product.Name }}</p>
+                    <p class="product-price">${{ product.Price }}</p>
+                    <p class="product-quantity">Quantity: {{ product.cartQuantity }}</p>
+                    <p class="product-color">Color: {{ product.Color }}</p>
                 </div>
             </div>
         </div>

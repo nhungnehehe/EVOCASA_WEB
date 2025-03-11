@@ -71,5 +71,26 @@ export class CartpaymentService {
     this.selectedProductIds.delete(productId);
     this.paymentCart = this.paymentCart.filter((item) => item.productId !== productId);
   }
+  // Tính tổng giá trị cho từng sản phẩm trong giỏ
+  getProductTotal(productId: string): number {
+    const product = this.paymentCart.find(item => item.productId === productId);
+    if (product) {
+      return product.cartQuantity * product.Price;
+    }
+    return 0; // Return 0 if the product is not found
+  }
+   // Tính tổng giá trị đơn hàng gồm tổng tiền, thuế bán hàng và phí giao hàng
+   getTotalOrder(): { totalAmount: number, saleTax: number, deliveryFee: number, totalOrder: number } {
+    const totalAmount = this.getTotalAmount();
+    const saleTax = totalAmount * 0.08; // Thuế bán hàng 8%
+    const deliveryFee = 50; // Phí giao hàng cố định
+    const totalOrder = totalAmount + saleTax + deliveryFee; // Tổng đơn hàng
 
+    return {
+      totalAmount,
+      saleTax,
+      deliveryFee,
+      totalOrder
+    };
+  }
 }

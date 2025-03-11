@@ -79,49 +79,29 @@
                     <th>Item</th>
                     <th>Attributes</th>
                     <th>Quantity</th>
-                    <th>Shipping</th>
-                    <th>Price</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Sản phẩm 1 -->
-                <tr>
+                <tr *ngFor="let product of cartItems">
                     <td class="item-image">
-                        <img src="image1.png" alt="Cement Coffee Table">
+                        <img [src]="product.Image" alt="Cement Coffee Table">
                         <div class="item-details">
-                            <div>Cement Coffee Table</div>
-                            <i>True vintage</i>
+                            <div>{{ product.Name }}</div>
                         </div>
                     </td>
                     <td class="item-attributes">
-                        <p><strong>Color:</strong> Light Beige</p>
+                        <p><strong>Color: </strong> {{ product.Color }}</p>
                         <p><strong>Width:</strong> 35 in</p>
                         <p><strong>Depth:</strong> 46 in</p>
                         <p><strong>Height:</strong> 16 in</p>
                     </td>
-                    <td>1</td>
-                    <td>$50.25</td>
-                    <td>$3,982</td>
-                </tr>
-    
-                <!-- Sản phẩm 2 -->
-                <tr>
-                    <td class="item-image">
-                        <img src="image2.png" alt="Wooden Dining Chair">
-                        <div class="item-details">
-                            <div>Wooden Dining Chair</div>
-                            <i>Classic design</i>
-                        </div>
-                    </td>
-                    <td class="item-attributes">
-                        <p><strong>Color:</strong> Dark Walnut</p>
-                        <p><strong>Height:</strong> 40 in</p>
-                        <p><strong>Seat Depth:</strong> 18 in</p>
-                    </td>
-                    <td>2</td>
-                    <td>$30.00</td>
-                    <td>$450</td>
-                </tr>
+                    <td>{{ product.cartQuantity }}</td>
+                    <td>${{ product.Price }}</td>
+                    <td>${{ getProductTotal(product.productId) | number: '1.0-0' }}</td>
+                </tr> 
                 <tr class="bottom-line">
                     <td colspan="5"></td>
                 </tr>
@@ -133,20 +113,20 @@
         <table class="total-table">
             <tbody>
                 <tr>
-                    <td>1 Item</td>
-                    <td>$3,982</td>
+                    <td>{{ totalQuantity }} item(s)</td>
+                    <td>${{ total | number: '1.0-0' }}</td>
                 </tr>
                 <tr>
-                    <td>Sales Tax</td>
-                    <td>$318.56</td>
+                    <td>Sales Tax (8%)</td>
+                    <td>${{ saleTax | number: '1.0-2' }}</td>
                 </tr>
                 <tr>
                     <td>Delivery</td>
-                    <td>$50.25</td>
+                    <td>${{ deliveryFee | number: '1.0-0' }}</td>
                 </tr>
                 <tr class="total-row">
                     <td><strong>Total</strong></td>
-                    <td><strong>$4,350.81</strong></td>
+                    <td><strong>${{ totalOrder | number: '1.0-2' }}</strong></td>
                 </tr>
             </tbody>
         </table>
