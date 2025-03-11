@@ -215,19 +215,22 @@ input:focus::placeholder {
     font-weight: bold;
 }
 
-button.sign-up {
+.signup-btn {
     width: 100%;
     padding: 12px;
     background: #525B4A;
     color: white;
-    font-size: 18px; /* Giảm font size */
+    font-size: 18px;
     font-weight: 600;
     border: none;
     border-radius: 7px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease; /* Add smooth transition */
 }
-
+.signup-btn:hover {
+    background-color: #5E4C3E;
+}
 .or {
     margin: 20px 0;
     font-size: 16px;
@@ -275,6 +278,17 @@ button.sign-up {
     color: #5E4C3E;
 }
 
+.sign-in a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px; 
+    color: #5E4C3E; 
+    transition: font-weight 0.2s ease-in-out; 
+}
+
+.sign-in a:hover {
+    font-weight: bolder; 
+}
 /* Responsive cho màn hình lớn hơn tablet */
 @media (min-width: 769px) {
     .container {
