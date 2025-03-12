@@ -104,13 +104,13 @@
                 <p>{{ totalQuantity }} item(s)</p> <!-- Hiển thị tổng số lượng sản phẩm -->
                 <p class="total-price">${{ total | number: '1.0-0' }}</p> <!-- Hiển thị tổng tiền -->
               </div>
-              <div *ngFor="let product of cartItems" class="order-item">
+              <div *ngFor="let product of products" class="order-item">
                 <img [src]="product.Image" alt="{{ product.Name }}" class="order-image">
                 <div class="order-details">
                   <p class="product-name">{{ product.Name }}</p>
                   <p class="product-price">${{ product.Price }}</p>
                   <p class="product-quantity">Quantity: {{ product.cartQuantity }}</p>
-                  <p class="product-color">Color: {{ product.Color }}</p>
+                  <!-- <p class="product-color">Color: {{ product.Color }}</p> -->
                 </div>
               </div>
         </div>

@@ -3,6 +3,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { CartItem } from '../interfaces/cart';
+import { BuyNowItem } from '../interfaces/buynow';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { CartItem } from '../interfaces/cart';
 export class CartService {
   private baseUrl = 'http://localhost:3002';
   cartCountChanged = new EventEmitter<number>(); // EventEmitter để thông báo số lượng giỏ hàng thay đổi
+  private buyNowItems: CartItem[] = [];
   constructor(private http: HttpClient) {
 
   }
@@ -33,6 +35,27 @@ export class CartService {
       catchError(this.handleError)
     );
   }
+  getBuyNowItems(): Observable<BuyNowItem[]> {
+    return this.http.get<BuyNowItem[]>(`${this.baseUrl}/buynow`, { withCredentials: true }).pipe(
+      // tap((buyNowItems) => this.emitCartCount(buyNowItems)),
+      catchError(this.handleError)
+    );
+  }
+  buyNow(productId: string, quantity: number): Observable<BuyNowItem[]> {
+    return this.http.post<BuyNowItem[]>(
+      `${this.baseUrl}/buynow`,
+      { productId, quantity },
+      { withCredentials: true }
+    ).pipe(
+      tap((buyNowItems) => {
+        // Cập nhật lại BuyNowItems sau khi thêm sản phẩm
+        this.buyNowItems = [];
+        this.buyNowItems = buyNowItems;
+      }),
+      catchError(this.handleError)
+    );
+  }
+  
 
   // Cập nhật số lượng sản phẩm trong giỏ hàng
   updateCartItem(productId: string, quantity: number): Observable<CartItem[]> {
