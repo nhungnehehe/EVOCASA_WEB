@@ -52,7 +52,6 @@ export class Product implements IProduct {
     this.Name = product?.Name || '';
     this.Price = product?.Price || 0;
     
-    // Parse Image if it's a string
     if (product?.Image) {
       if (typeof product.Image === 'string') {
         try {
@@ -76,10 +75,8 @@ export class Product implements IProduct {
     
     if (product?.Dimension) {
       if (typeof product.Dimension === 'string') {
-        // Keep it as a string
         this.Dimension = product.Dimension;
       } else {
-        // Handle as object with optional properties
         this.Dimension = {
           Width: product.Dimension.Width,
           Length: product.Dimension.Length,

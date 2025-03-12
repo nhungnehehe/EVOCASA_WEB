@@ -20,15 +20,10 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   categories: Category[] = [];
   mainCategories: Category[] = [];
-  // Map slug -> name
   categoryMapping: { [key: string]: string } = {};
-  // Map slug -> description
   categoryDescriptionMapping: { [key: string]: string } = {};
-  // Map subcategory slug -> parent category slug
   categoryHierarchy: { [key: string]: string } = {};
-  // Map slug -> _id
   categoryIdMapping: { [key: string]: string } = {};
-  // Map _id -> slug
   categorySlugMapping: { [key: string]: string } = {};
 
   errMessage: string = '';
@@ -65,7 +60,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
       this.products = this.filteredProducts;
       console.log(`Loaded ${this.products.length} products (via resolver)`);
       
-      // Load categories immediately
       this.loadCategories();
     });
     
@@ -73,14 +67,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-  // Check more frequently to set up category menu faster
   const intervalId = setInterval(() => {
     if (this.categoriesLoaded && this.mainCategories.length > 0) {
       this.setupCategoryMenu();
-      
-      // Add a small delay to ensure DOM elements are ready
       setTimeout(() => {
-        this.handleRouteParams(); // Handle params after menu is fully setup
+        this.handleRouteParams(); 
         console.log('Applied active states to category menu');
       }, 50);
       
@@ -93,7 +84,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
     clearInterval(intervalId);
     if (!this.categoriesLoaded) {
       console.warn('Timeout reached, categories might not be loaded!');
-      // Try to handle route params anyway
       this.handleRouteParams();
     }
   }, 2000);
@@ -104,59 +94,46 @@ private handleRouteParams(): void {
   const subCategoryParam = this.route.snapshot.paramMap.get('subCategory');
   
   if (mainCategoryParam) {
-    // Find the main category
     const mainCat = this.categories.find(cat => 
       cat.slug.toLowerCase() === mainCategoryParam.toLowerCase());
     
     if (mainCat) {
       console.log('Found main category in params:', mainCat.name);
       
-      // Ensure submenu exists and is displayed
       this.showSubmenu(mainCat.slug);
-      
-      // Set active state for main category
       setTimeout(() => {
         this.activateCategory(mainCat.slug);
       }, 0);
       
       if (subCategoryParam) {
-        // Find subcategory
         const subCat = this.categories.find(cat => 
           cat.slug.toLowerCase() === subCategoryParam.toLowerCase());
         
         if (subCat) {
           console.log('Found subcategory in params:', subCat.name);
           
-          // Set active state for subcategory with a small delay
           setTimeout(() => {
             this.activateSubcategory(subCat.slug);
           }, 0);
           
           this.filterProductsByCategory(subCat.slug);
           
-          // Update title and description
           this.updateTitleAndDescription(subCat.slug);
           
-          // Remember the last category
           this.lastCategory = mainCat.slug;
           return;
         }
       }
       
-      // Only main category is specified
       this.filterProductsByCategory(mainCat.slug);
       
-      // Update title and description
       this.updateTitleAndDescription(mainCat.slug);
-      
-      // Remember the last category
       this.lastCategory = mainCat.slug;
     }
   }
 }
 
 private activateCategory(categorySlug: string): void {
-  // Small timeout to ensure DOM is ready
   setTimeout(() => {
     const catElements = document.querySelectorAll('.category');
     catElements.forEach((el: any) => {
@@ -170,7 +147,6 @@ private activateCategory(categorySlug: string): void {
 }
 
 private activateSubcategory(subcategorySlug: string): void {
-  // Small timeout to ensure DOM is ready
   setTimeout(() => {
     const subcatElements = document.querySelectorAll('.subcategory');
     subcatElements.forEach((el: any) => {
@@ -184,15 +160,11 @@ private activateSubcategory(subcategorySlug: string): void {
 }
   
 private showSubmenu(categorySlug: string): void {
-  // Small timeout to ensure DOM is ready
   setTimeout(() => {
-    // Hide all submenus first
     const allSubmenus = document.querySelectorAll('.level2');
     allSubmenus.forEach((menu: any) => {
       menu.style.display = 'none';
     });
-    
-    // Show the specific submenu
     const submenu = document.getElementById(categorySlug);
     if (submenu) {
       submenu.style.display = 'flex';
@@ -275,8 +247,6 @@ private showSubmenu(categorySlug: string): void {
         this.mainCategories = this.categories.filter(cat => cat.parentCategory === null);
         console.log('Main categories:', this.mainCategories);
         this.categoriesLoaded = true;
-        
-        // Handle route params immediately after categories are loaded
         this.handleRouteParams();
       },
       error: (err) => {
@@ -302,20 +272,17 @@ private showSubmenu(categorySlug: string): void {
       return;
     }
     
-    // Kiểm tra xem đây có phải là main category không
     const isMainCategory = this.mainCategories.some(cat => cat.slug === categorySlug);
     
     if (isMainCategory) {
       console.log(`Filtering products for main category: ${categorySlug}`);
       
-      // Lấy tất cả subcategories của main category này
       const subCategoryIds = this.categories
         .filter(cat => cat.parentCategory === selectedCategoryId)
         .map(cat => cat._id);
         
       console.log('Sub categories IDs:', subCategoryIds);
-      
-      // Lọc sản phẩm thuộc main category hoặc bất kỳ subcategory nào của nó
+    
       this.filteredProducts = this.allProducts.filter(product => {
         if (!product.category_id) return false;
         const prodCatId = product.category_id.toString();
@@ -323,7 +290,6 @@ private showSubmenu(categorySlug: string): void {
                subCategoryIds.some(id => id.toString() === prodCatId);
       });
     } else {
-      // Đây là subcategory, chỉ lọc sản phẩm thuộc chính xác subcategory này
       console.log(`Filtering products for subcategory: ${categorySlug}`);
       this.filteredProducts = this.allProducts.filter(product => {
         if (!product.category_id) return false;
@@ -346,10 +312,7 @@ private showSubmenu(categorySlug: string): void {
       console.warn('No main categories found!');
       return;
     }
-    
-    // Don't rebuild the top-level menu items since they're already in the HTML
-    
-    // Create submenus
+
     const oldSubMenus = this.el.nativeElement.querySelectorAll('.level2');
     oldSubMenus.forEach((submenu: any) => {
       if (submenu.parentNode) {
@@ -377,21 +340,17 @@ private showSubmenu(categorySlug: string): void {
       
       this.renderer.appendChild(menuContainer, subMenuContainer);
     });
-    
-    // Add event listeners to the static menu items
+  
     const categoryElements = this.el.nativeElement.querySelectorAll('.category');
     categoryElements.forEach((el: any) => {
-      // Add mouseenter event to show submenu on hover
       this.renderer.listen(el, 'mouseenter', () => {
         const categorySlug = this.getCategorySlugFromText(el.textContent);
         if (categorySlug) {
-          // Hide all other submenus
           const allSubmenus = document.querySelectorAll('.level2');
           allSubmenus.forEach((menu: any) => {
             menu.style.display = 'none';
           });
           
-          // Show this submenu
           const submenu = document.getElementById(categorySlug);
           if (submenu) {
             submenu.style.display = 'flex';
@@ -400,16 +359,13 @@ private showSubmenu(categorySlug: string): void {
       });
     });
     
-    // Add mouseleave listener to the menu container
     this.renderer.listen(menuContainer, 'mouseleave', () => {
-      // Only hide submenus if there's no active category
       if (!this.lastCategory) {
         const allSubmenus = document.querySelectorAll('.level2');
         allSubmenus.forEach((menu: any) => {
           menu.style.display = 'none';
         });
       } else {
-        // If there's an active category, show its submenu
         const allSubmenus = document.querySelectorAll('.level2');
         allSubmenus.forEach((menu: any) => {
           menu.style.display = 'none';
@@ -425,12 +381,9 @@ private showSubmenu(categorySlug: string): void {
     console.log('Category menu setup completed');
   }
 
-  // Helper function to get slug from category text
   private getCategorySlugFromText(text: string): string | null {
-    // Handle "All" category
     if (text === 'All') return 'all';
     
-    // Search through main categories to find the slug by name
     const category = this.mainCategories.find(c => c.name === text);
     return category ? category.slug : null;
   }
@@ -474,8 +427,6 @@ private showSubmenu(categorySlug: string): void {
 
   toggleSubMenu(category: string): void {
     console.log('Toggle submenu for:', category);
-    
-    // If "all" is selected
     if (category === 'all') {
       const catElements = document.querySelectorAll('.category, .subcategory');
       catElements.forEach((el: any) => {
@@ -501,21 +452,20 @@ private showSubmenu(categorySlug: string): void {
       this.location.go('/product');
       return;
     }
-    
-    // Check if it's a main category or subcategory
+  
     const isMainCategory = this.mainCategories.some(cat => cat.slug === category);
     
     if (isMainCategory) {
-      // Handle main category click
+
       this.activateCategory(category);
       this.showSubmenu(category);
       this.filterProductsByCategory(category);
       this.updateTitleAndDescription(category);
       
-      // Update URL
+
       this.location.go(`/product/${category}`);
     } else {
-      // Handle subcategory click
+
       const parentSlug = this.categoryHierarchy[category];
       
       if (parentSlug) {
@@ -524,8 +474,7 @@ private showSubmenu(categorySlug: string): void {
         this.showSubmenu(parentSlug);
         this.filterProductsByCategory(category);
         this.updateTitleAndDescription(category);
-        
-        // Update URL
+
         this.location.go(`/product/${parentSlug}/${category}`);
       }
     }

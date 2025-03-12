@@ -26,7 +26,6 @@
           <a [routerLink]="['/forgot-page']" class="forgot-password">Forgot password?</a>
           <button class="signin-btn" type="submit">SIGN IN</button>
         </form>
-        <!-- Hiển thị thông báo lỗi nếu loginError không rỗng -->
         <div *ngIf="loginError" class="error-message">
           {{ loginError }}
         </div>

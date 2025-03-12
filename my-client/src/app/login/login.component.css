@@ -63,7 +63,7 @@ h1 {
 
 .input-container {
     position: relative;
-    margin: 10px 0; /* Reduced from 20px to 10px */
+    margin: 10px 0; 
 }
 
 input {
@@ -86,7 +86,7 @@ input:focus {
     transform: scale(1.02);
 }
 
-/* Special placeholder styling */
+
 input::placeholder {
     color: rgba(94, 76, 62, 0.6);
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -98,7 +98,7 @@ input:focus::placeholder {
     transform: translateY(-10px);
 }
 
-/* Add icon indication for input focus */
+
 .input-container::before {
     content: '✓';
     position: absolute;
@@ -116,12 +116,12 @@ input:focus::placeholder {
     transform: translateY(-50%) scale(1);
 }
 
-/* Remove underline effect */
+
 .input-container::after {
     display: none;
 }
 
-/* Add glow effect on focus */
+
 input:focus {
     box-shadow: 0 5px 20px rgba(180, 158, 121, 0.4);
 }
@@ -147,7 +147,7 @@ input:focus {
     border-radius: 7px;
     cursor: pointer;
     margin-top: 10px;
-    transition: background-color 0.3s ease; /* Add smooth transition */
+    transition: background-color 0.3s ease; 
 }
 
 .signin-btn:hover {
@@ -273,7 +273,7 @@ input:focus {
 @media (max-width: 768px) {
     .signin-container {
         width: 90%;
-        max-height: none; /* Không giới hạn chiều cao */
+        max-height: none; 
         height: auto;
     }
     
@@ -289,16 +289,16 @@ input:focus {
     
     .signin-image {
         width: 100%;
-        max-height: 300px; /* Giới hạn chiều cao của ảnh */
+        max-height: 300px; 
     }
     
     .signin-image img {
-        object-fit: cover; /* Đảm bảo ảnh luôn được hiển thị đúng tỷ lệ */
+        object-fit: cover; 
         height: 100%;
     }
 }
 
-/* Mobile nhỏ */
+
 @media (max-width: 480px) {
     .signin-container {
         padding: 10px;
@@ -333,7 +333,7 @@ input:focus {
     }
 }
 
-/* Fix for Angular app-root container */
+
 :host {
     display: flex;
     justify-content: center;
@@ -345,7 +345,7 @@ input:focus {
     background: #B49E79;
 }
 
-/* Fix for some Angular specific issues */
+
 app-login {
     display: flex;
     justify-content: center;
