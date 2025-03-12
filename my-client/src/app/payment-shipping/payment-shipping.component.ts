@@ -40,4 +40,3 @@ export class PaymentShippingComponent implements OnInit {
       );
   }
 }
-
