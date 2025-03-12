@@ -1,8 +1,8 @@
-/* Import Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Base styling with font families */
+
 body {
     font-family: 'Inter', sans-serif;
     font-weight: 200;
@@ -10,7 +10,7 @@ body {
     font-size: 13px;
 }
 
-/* Apply Zen Old Mincho to all headings */
+
 h1, h2, h3, h4, h5, h6,
 .heading,
 .shopTextInner .heading.h3 {
@@ -18,7 +18,6 @@ h1, h2, h3, h4, h5, h6,
     font-weight: 300;
 }
 
-/* Keep Inter font for all paragraph text and buttons */
 p, 
 .button--text,
 .shop-the-look__product-title,
@@ -65,7 +64,7 @@ img.revealed {
     transform: translateX(100%);
 }
 
-/* Base styling for circle-checkbox/dots */
+
 .circle-checkbox {
     position: absolute;
     width: 10px;
@@ -83,7 +82,7 @@ img.revealed {
     opacity: 0;
 }
 
-/* Create inner circle with pseudo-element */
+
 .circle-checkbox::after {
     content: '';
     width: 0%;
@@ -93,19 +92,19 @@ img.revealed {
     transition: width 0.3s ease, height 0.3s ease;
 }
 
-/* When active, show the inner circle at 80% size */
+
 .circle-checkbox.is-active::after {
     width: 75%;
     height: 75%;
 }
 
-/* Show checkboxes when image is revealed */
+
 .image-wrapper.revealed .circle-checkbox {
     opacity: 1;
     transition-delay: 0.8s;
 }
 
-/* Stagger the appearance of multiple checkboxes */
+
 .image-wrapper.revealed .checkbox-1 {
     transition-delay: 0.8s;
 }
@@ -127,7 +126,7 @@ img.revealed {
     pointer-events: none;
 }
 
-/* Position the dots for each image */
+
 .checkbox-1 {
     top: 30%;
     left: 10%;
@@ -162,7 +161,7 @@ img.revealed {
     top: 80%;
     left: 80%;
 }
-/* Position the dots for Image 3 */
+
 .checkbox-9 {
     top: 41%;
     left: 35%;
@@ -373,7 +372,7 @@ img.revealed {
 
 
 
-/* Ripple effect only for inactive checkboxes */
+
 .circle-checkbox:not(.is-active) .ripple-container::before,
 .circle-checkbox:not(.is-active) .ripple-container::after {
     content: '';
@@ -390,12 +389,12 @@ img.revealed {
     animation: ripple 3s ease-out infinite;
 }
 
-/* Second ripple with a delay for continuous effect */
+
 .circle-checkbox:not(.is-active) .ripple-container::after {
     animation-delay: 1.5s;
 }
 
-/* Keyframes for ripple animation */
+
 @keyframes ripple {
     0% {
         transform: translate(-50%, -50%) scale(1);
@@ -415,7 +414,7 @@ img.revealed {
     transition: all 0.3s ease;
 }
 
-/* Product styling */
+
 .product-image-container {
     width: 100px;
     height: 100px;
@@ -487,7 +486,6 @@ img,
     opacity: 0.8;
 }
 
-/* Checkbox text label */
 .checkbox-text {
     position: absolute;
     left: calc(100% + 10px);
@@ -504,11 +502,11 @@ img,
     font-size: 14px;
 }
 
-/* Chỉnh khoảng cách gần hơn cho product info */
+
 .shop-the-look__product {
     position: absolute;
     display: none;
-    width: 240px; /* Giảm kích thước để gần hơn với checkbox */
+    width: 240px; 
     height: auto;
     min-height: 100px;
     max-height: 180px;
@@ -601,7 +599,7 @@ img,
     transition: background-color 0.3s ease;
 }
 
-/* Button text styling - base styles */
+
 .button--text {
     position: relative;
     display: inline-block;
@@ -614,7 +612,7 @@ img,
     font-size: 14px;
 }
 
-/* Shorter underline animation */
+
 .button--text::after {
     content: '';
     position: absolute;
@@ -635,13 +633,12 @@ img,
     width: 70%;
 }
 
-/* Additional styling for the button wrapper */
 .button-wrapper {
     margin-top: 15px;
     padding-left: 0;
 }
 
-/* Container để ngăn chặn cuộn ngang */
+
 .container {
     width: 100%;
     max-width: 100%;
@@ -650,7 +647,6 @@ img,
     overflow-x: hidden;
 }
 
-/* Responsive styling - improved scaling for all elements including background images */
 @media (min-width: 992px) {
     .circle-checkbox {
         width: 12px;
@@ -670,7 +666,6 @@ img,
     }
 }
 
-/* Add viewport-based scaling for images */
 @media screen and (max-width: 100%) {
     .image-wrapper {
         width: 100vw;
@@ -858,13 +853,13 @@ img,
     }
 }
 
-/* Handle browser zoom (Ctrl +/-) scaling */
+
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
 
-/* Special rules for scaling with browser zoom */
+
 @media screen and (min-resolution: 0.001dpcm) {
     img, 
     .image-wrapper,
@@ -885,20 +880,17 @@ html {
     }
 }
 
-/* Fix issue with position of checkboxes when zooming */
 @media screen and (max-width: 100%) {
     .circle-checkbox {
         position: absolute;
         transform: translate(-50%, -50%) scale(var(--scale-factor, 1));
     }
     
-    /* Position adjustments for checkbox text labels when zooming */
     .checkbox-text {
         transform: translateY(-50%) scale(var(--scale-factor, 1));
     }
 }
 
-/* For browser zoom handling */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .image-wrapper {
         width: 100%;

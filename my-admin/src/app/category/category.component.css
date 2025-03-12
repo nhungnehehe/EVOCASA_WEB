@@ -5,7 +5,7 @@
 }
 /* Main Content */
 .main-content {
-  padding: 20px 20px;
+  padding: 10px;
   background-color: #fffcf3;
   min-height: 100vh;
 }
@@ -24,26 +24,32 @@ h4 {
   font-style: normal;
   font-weight: 300;
 }
+
 /* Container chứa các nút */
 .actions {
   margin-top: 20px;
   margin-right: 34px;
   margin-bottom: 20px;
   margin-left: 34px;
-  display: flex;
-  justify-content: space-between;
+  display: flex; /* Chuyển container thành flex */
+  justify-content: space-between; /* Căn chỉnh các phần tử con về phía bên phải */
   align-self: stretch;
 }
 .right-button {
   display: flex;
   gap: 5px;
 }
+
 /* nút filter*/
 .filter-button {
-  max-width: 160px;
+  max-width: 130px;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   color: rgba(63, 35, 5, 1);
   font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.1px;
+  line-height: 1;
   border-radius: 7px;
   border: 1px solid rgba(63, 35, 5, 1);
   display: flex;
@@ -52,17 +58,7 @@ h4 {
   gap: 14px;
   background-color: transparent;
   cursor: pointer;
-  margin-right: 620px;
 }
-
-.filter-icon {
-  aspect-ratio: 1.17;
-  object-fit: contain;
-  object-position: center;
-  width: 28px;
-  flex-shrink: 0;
-}
-
 .filter-text {
   margin: auto 0;
 }
@@ -71,7 +67,6 @@ h4 {
 .filter-button:hover {
   background-color: rgba(63, 35, 5, 0.05);
 }
-
 /* Focus state for accessibility */
 .filter-button:focus {
   outline: 2px solid rgba(63, 35, 5, 0.5);
@@ -95,7 +90,6 @@ h4 {
   cursor: pointer;
 }
 /* nút export */
-
 .export-button {
   max-width: 150px;
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
@@ -124,12 +118,10 @@ h4 {
   align-self: stretch;
   flex-shrink: 0;
 }
-
 .export-text {
   align-self: stretch;
   margin: auto 0;
 }
-
 .dropdown-icon {
   aspect-ratio: 2;
   object-fit: contain;
@@ -139,23 +131,20 @@ h4 {
   margin: auto 0;
   flex-shrink: 0;
 }
-
 .export-button:hover {
   background-color: rgba(187, 172, 157, 1);
 }
-
 .export-button:focus {
   outline: 2px solid rgba(63, 35, 5, 0.5);
   outline-offset: 2px;
 }
 /* Container chứa bảng */
 .table-container {
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
-  margin-left: 34px;
-  margin-right: 34px;
-  overflow-x: auto; /* Giúp cuộn ngang khi bảng quá rộng */
-  border: 1px solid #3f2305; /* Thêm viền */
+  margin: 20px 34px;
+  overflow-x: auto;
+  border: 1px solid #3f2305;
 }
 
 /* Bảng */
@@ -163,56 +152,132 @@ h4 {
   width: 100%;
   border-collapse: collapse;
   margin-top: 5px;
+  table-layout: auto;
+}
+/* Điều chỉnh độ rộng cho từng cột */
+.category-table th:nth-child(1) {
+  /* No */
+  width: 5%;
+  min-width: 50px;
+}
+
+.category-table th:nth-child(2) {
+  /* Image */
+  width: 12%;
+  min-width: 100px;
+}
+
+.category-table th:nth-child(3) {
+  /* Category Name */
+  width: 18%;
+  min-width: 180px;
+}
+.category-table th:nth-child(4) {
+  /* Category ID */
+  width: 10%;
+  min-width: 100px;
+}
+
+.category-table th:nth-child(5) {
+  /* Description */
+  width: 40%;
+  min-width: 200px;
+}
+
+.category-table th:nth-child(6) {
+  /* Action */
+  width: 15%;
+  min-width: 120px;
 }
 
 .category-table th {
   background-color: #5e4c3e;
   color: #f2ead3;
-  padding: 20px;
+  padding: 15px 10px;
+  text-align: center;
+  border-bottom: 1px solid #482d2d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 .category-table td {
   border-bottom: 0.5px solid #482d2d;
-  color: rgb(0, 0, 0, 0.5);
-  padding: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 15px 10px;
+  text-align: center;
+  vertical-align: middle;
+  height: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Cho phép description hiển thị nhiều dòng */
+.category-table td:nth-child(5) {
+  white-space: normal;
+  line-height: 1.2;
+  max-height: 3.6em;
+}
+
+/* Cho phép category name hiển thị tốt hơn */
+.category-table td:nth-child(3) {
+  white-space: normal;
+  line-height: 1.2;
+  padding: 10px 15px;
   text-align: center;
 }
 
-/* Căn đều nội dung description */
-.category-table td:nth-child(2) {
-  text-align: justify;
-  padding: 10px 20px;
-  line-height: 1.5;
-}
-
-/* Căn chỉnh các icon ngang hàng */
-.category-table td:last-child {
+/* Action buttons container */
+.action-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
-  min-height: 60px;
+  gap: 15px;
 }
 
-.view-btn,
-.edit-btn,
-.delete-btn {
+.icon-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
-  display: flex;
+  padding: 10px;
   align-items: center;
   justify-content: center;
   color: rgba(0, 0, 0, 0.5);
-  transition: color 0.2s ease;
+  /* margin-left: 5px; */
 }
 
-.view-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
-  color: #5e4c3e;
+.icon-btn:hover {
+  color: rgb(189, 97, 97);
+}
+
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .table-container {
+    margin: 10px;
+  }
+
+  .category-table td,
+  .category-table th {
+    padding: 10px 5px;
+  }
+
+  .action-buttons {
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h3,
+  h4 {
+    text-align: center;
+    margin-left: 0;
+  }
 }
 
 /* Pagination */

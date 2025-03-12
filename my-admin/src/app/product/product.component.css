@@ -5,7 +5,7 @@
 }
 /* Main Content */
 .main-content {
-  padding: 20px 20px;
+  padding: 10px 10px;
   background-color: #fffcf3;
   min-height: 100vh;
 }
@@ -43,10 +43,14 @@ h4 {
 
 /* nút filter*/
 .filter-button {
-  max-width: 160px;
+  max-width: 130px;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   color: rgba(63, 35, 5, 1);
   font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.1px;
+  line-height: 1;
   border-radius: 7px;
   border: 1px solid rgba(63, 35, 5, 1);
   display: flex;
@@ -55,17 +59,7 @@ h4 {
   gap: 14px;
   background-color: transparent;
   cursor: pointer;
-  margin-right: 620px;
 }
-
-.filter-icon {
-  aspect-ratio: 1.17;
-  object-fit: contain;
-  object-position: center;
-  width: 28px;
-  flex-shrink: 0;
-}
-
 .filter-text {
   margin: auto 0;
 }
@@ -153,8 +147,9 @@ h4 {
 }
 /* Container chứa bảng */
 .table-container {
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
+  margin-top: 20px;
   margin-left: 34px;
   margin-right: 34px;
   overflow-x: auto; /* Giúp cuộn ngang khi bảng quá rộng */
@@ -166,30 +161,39 @@ h4 {
   width: 100%;
   border-collapse: collapse;
   margin-top: 5px;
+  table-layout: fixed;
 }
 
 .product-table th {
   background-color: #5e4c3e;
   color: #f2ead3;
-  padding: 20px;
+  padding: 15px 5px;
+  text-align: center;
+  border-bottom: 1px solid #482d2d;
 }
 
 .product-table td {
   border-bottom: 0.5px solid #482d2d;
-  color: rgb(0, 0, 0, 0.5);
-  /* padding: 16px 50px; */
-  padding: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
   text-align: center;
-  /* height: 40px; */
+  vertical-align: middle;
+  height: 60px;
+}
+
+.product-table tr {
+  line-height: 1.5;
 }
 
 .product-table td:last-child {
+  padding: 10px;
+}
+
+.product-table td:last-child .action-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 20px;
-  /* height: 40px; */
 }
 
 /* Pagination */
@@ -228,22 +232,21 @@ h4 {
   display: flex;
 }
 
-.view-btn,
-.edit-btn,
-.delete-btn {
+.icon-btn {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0px;
-  display: flex;
   align-items: center;
-  justify-content: center;
   color: rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+}
+.icon-btn img {
+  padding: auto;
+  display: flex;
 }
 
-.view-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
+.icon-btn:hover {
   color: rgb(189, 97, 97);
   text-decoration: wavy;
 }
