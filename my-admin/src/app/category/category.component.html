@@ -50,7 +50,7 @@
       <tbody>
         <tr *ngFor="let category of categories; let i = index">
           <td>{{ i + 1 }}</td>
-          <td><img [src]="category.image" alt="Category Image" width="50"></td>
+          <td>{{ category.image }}</td>
           <td>{{ category.name }}</td>
           <td>{{ category.id }}</td>
           <td>{{ category.description }}</td>

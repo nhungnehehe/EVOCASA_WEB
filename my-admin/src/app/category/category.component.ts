@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
   fetchCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
-        console.log('Categories fetched:', data);  // Log data for debugging
+        console.log('Categories fetched:', data);  // Log data để kiểm tra cấu trúc dữ liệu
         this.categories = data;
       },
       error: (err) => {
