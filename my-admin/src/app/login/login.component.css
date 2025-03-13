@@ -1,185 +1,31 @@
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    /* background: url('../../assets/images/forest-background.jpg') center/cover no-repeat; */
-  }
-  
-  .signin-container {
-    width: 400px;
-    background: #FFFFFF;
-    display: flex;
-    border-radius: 8px;
-    overflow: hidden;
-    padding: 0;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .signin-box {
-    width: 100%;
-  }
-  
-  .signin-content {
-    width: 100%;
-    padding: 30px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  h1 {
-    color: #5E4C3E;
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 5px;
-  }
-  
-  .sub-text {
-    color: #5E4C3E;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .input-container {
-    position: relative;
-    margin: 10px 0;
-  }
-  
-  input {
-    width: 100%;
-    padding: 14px 20px;
-    border-radius: 5px;
-    border: 1px solid #E8E0D0;
-    background: #F2EAD3;
-    font-size: 16px;
-    color: #5E4C3E;
-    outline: none;
-  }
-  
-  input:focus {
-    border-color: #8D7B68;
-    background: #FFFEF9;
-  }
-  
-  input::placeholder {
-    color: rgba(94, 76, 62, 0.6);
-  }
-  
-  .eye-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #5E4C3E;
-  }
-  
-  .material-icons {
-    font-size: 20px;
-  }
-  
-  .forgot-password {
-    display: block;
-    text-align: right;
-    color: #5E4C3E;
-    font-size: 14px;
-    margin: 8px 0 15px;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .signin-btn {
-    width: 100%;
-    padding: 12px;
-    background: #525B4A;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    margin-top: 5px;
-  }
-  
-  .signin-btn:hover {
-    background-color: #5E4C3E;
-  }
-  
-  .error-message {
-    color: #e74c3c;
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  .or {
-    margin: 20px 0;
-    font-size: 14px;
-    color: #5E4C3E;
-  }
-  
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-  }
-  
-  .icon {
-    background: white;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    cursor: pointer;
-  }
-  
-  .icon img {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .sign-up {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #5E4C3E;
-  }
-  
-  .sign-up a {
-    text-decoration: none;
-    color: #5E4C3E;
-    font-weight: bold;
-  }
-  
-  .sign-up a:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 480px) {
-    .signin-container {
-      width: 100%;
-    }
-    
-    .signin-content {
-      padding: 20px;
-    }
-    
-    h1 {
-      font-size: 24px;
-    }
-  }
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  /* background: url('../../assets/images/forest-background.jpg') center/cover no-repeat; */
+}
+
+.signin-container {
+  width: 100%;
+}
+
+.signin-content {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+}

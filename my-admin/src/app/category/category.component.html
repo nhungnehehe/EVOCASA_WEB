@@ -1,7 +1,10 @@
 <div class="main-content">
   <h3>CATEGORY MANAGEMENT</h3>
   <br />
-  <h4>Total Category (6) | Showing 4/6</h4>
+  <!-- <h4>Total Category (6) | Showing 4/6</h4> -->
+  <h4>Total Category ({{ categories.length }}) | Showing 4/{{ categories.length }}</h4>
+
+
   <div class="actions">
     <!-- button filter -->
     <button class="filter-button">
@@ -31,6 +34,7 @@
     </div>
   </div>
 
+
   <div class="table-container">
     <table class="category-table">
       <thead>
@@ -44,11 +48,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let category of categories; let i = index">
+        <tr *ngFor="let category of paginatedCategories; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ category.image }}</td>
+          <!-- Hiển thị hình ảnh -->
+          <td><img *ngIf="category.image" [src]="category.image" alt="Category Image" style="width: 50px; height: 50px;"></td>
+          <!-- Hiển thị tên danh mục -->
           <td>{{ category.name }}</td>
+          <!-- Hiển thị mã danh mục -->
           <td>{{ category.id }}</td>
+          <!-- Hiển thị mô tả -->
           <td>{{ category.description }}</td>
           <td>
             <button class="icon-btn">
@@ -69,12 +77,18 @@
       </tbody>
     </table>
   </div>
-  <!-- Showing -->
-  <div class="show">Showing 4/6 of all results</div>
-  <div class="pagination">
-    <button class="prev-btn">&lt;</button>
-    <span class="page-number">1</span>
-    <span class="page-number">2</span>
-    <button class="next-btn">&gt;</button>
-  </div>
-</div>
+   <!-- Showing -->
+   <div class="show">Showing {{ (currentPage - 1) * pageSize + 1 }} - {{ currentPage * pageSize }} of all results</div>
+
+   <!-- Pagination with page numbers -->
+   <div class="pagination">
+     <button class="prev-btn" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
+ 
+     <!-- Display all page numbers -->
+     <ng-container *ngFor="let page of pageNumbers()">
+       <button class="page-btn" (click)="goToPage(page)" [class.active]="currentPage === page">{{ page }}</button>
+     </ng-container>
+ 
+     <button class="next-btn" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
+   </div>
+ </div>

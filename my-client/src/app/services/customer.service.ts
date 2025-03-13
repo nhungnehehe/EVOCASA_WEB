@@ -91,12 +91,12 @@ export class CustomerService {
     return this.getCustomerById(customerId).pipe(
       switchMap(customer => {
         const cart = [...customer.Cart];
-        const existingItem = cart.find(item => item.ProductId === productId);
+        const existingItem = cart.find(item => item.productId === productId);
         
         if (existingItem) {
-          existingItem.Quantity += quantity;
+          existingItem.cartQuantity += quantity;
         } else {
-          cart.push({ ProductId: productId, Quantity: quantity });
+          cart.push({ productId: productId, cartQuantity: quantity });
         }
         
         return this.updateCart(customerId, cart);
@@ -105,7 +105,7 @@ export class CustomerService {
     );
   }
   
-  //  API: Lấy danh sách sản phẩm trong giỏ hàng dựa trên customerId
+  // Lấy danh sách sản phẩm trong giỏ hàng dựa trên customerId
   getCartByCustomerId(customerId: string): Observable<CartItem1[]> {
     return this.http.get<CartItem1[]>(`${this.apiUrl}/customers/${customerId}/cart`)
       .pipe(
@@ -145,4 +145,5 @@ export class CustomerService {
       return of(result as T);
     };
   }
+
 }

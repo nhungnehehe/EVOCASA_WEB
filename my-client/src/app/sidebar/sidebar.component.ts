@@ -15,13 +15,14 @@ export class SidebarComponent implements OnInit, OnChanges {
 
   // Add isHiding property to control animation
   isHiding: boolean = false;
+  isClosing: boolean = false;
 
   // Danh sách sản phẩm trong giỏ hàng
   products: CartItem[] = [];  // Danh sách sản phẩm trong giỏ hàng
   total: number = 0; // Tổng giỏ hàng
   private hasInitialized = false;
   private isFirstLoad = true;
-
+  public cartContentLoaded = false;
   constructor(
     private cartService: CartService,
     private router: Router,
@@ -38,27 +39,33 @@ export class SidebarComponent implements OnInit, OnChanges {
     // Chỉ tải sản phẩm khi sidebar thực sự được hiển thị
     if (!this.isVisible) return;
     
+    // Đánh dấu đang tải dữ liệu
+    this.cartContentLoaded = false;
+    
     this.cartService.getCartItems().subscribe({
       next: (data) => {
         this.products = this.formatProducts(data);
         this.updateTotal();
         
-        // Giải quyết vấn đề với giỏ hàng trống
-        if (this.isFirstLoad && this.products.length === 0 && this.isVisible) {
-          this.isFirstLoad = false;
-          // Nếu đây là lần tải đầu tiên, giỏ hàng trống và sidebar đang hiển thị, tự động đóng nó
-          setTimeout(() => {
-            if (this.isVisible) {
-              this.closeCart();
-            }
-          }, 0);
-        }
+        // Đánh dấu đã tải xong
+        this.cartContentLoaded = true;
+        
+        // Không nên tự động đóng sidebar khi giỏ hàng trống
+        // Xóa đoạn code tự động đóng sidebar ở đây
       },
       error: (err) => {
         console.error('Error loading cart:', err);
+        this.cartContentLoaded = true; // Đảm bảo đánh dấu hoàn thành ngay cả khi có lỗi
       }
     });
   }
+  
+  resetSidebar() {
+    this.products = [];
+    this.total = 0;
+    this.isHiding = false;
+  }
+  
     
   ngOnInit(): void {
     console.log('Sidebar initialized with isVisible:', this.isVisible);
@@ -143,19 +150,17 @@ export class SidebarComponent implements OnInit, OnChanges {
     this.total = this.products.reduce((acc, product) => acc + (product.cartQuantity * product.Price), 0);
   }
 
-  // Hàm để đóng giỏ hàng
   closeCart(): void {
-    // Start the hiding animation first
-    this.isHiding = true;
+    // Chỉ đặt trạng thái đang đóng
+    this.isClosing = true;
     
-    // Wait for animation to complete before actually closing
+    // Đợi hiệu ứng hoàn thành trước khi thực sự đóng
     setTimeout(() => {
-      this.closeSidebarEvent.emit(); // Emit event to the parent
-      document.body.style.overflow = ''; // Allow scrolling
-      this.isHiding = false; // Reset for next time
-    }, 300); // Match this with your CSS transition time
+      this.closeSidebarEvent.emit(); // Thông báo cho component cha
+      document.body.style.overflow = ''; // Cho phép cuộn trang
+      this.isClosing = false; // Đặt lại trạng thái
+    }, 300); // Thời gian transition
   }
-
   // Only listen for clicks if sidebar is visible
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event): void {
@@ -171,29 +176,23 @@ export class SidebarComponent implements OnInit, OnChanges {
   
   ngOnChanges(changes: SimpleChanges): void {
     if (this.hasInitialized && changes['isVisible']) {
-      console.log('Sidebar isVisible changed to:', this.isVisible);
-      
       if (this.isVisible) {
-        // When opening the sidebar
-        this.isHiding = false; // Reset hiding state
+        // Khi mở sidebar
+        this.isClosing = false;
         this.renderer.addClass(document.body, 'no-scroll');
         document.body.style.overflow = 'hidden';
-        
-        // Load products
-        if (this.isFirstLoad) {
-          setTimeout(() => {
-            if (this.isVisible) {
-              this.loadProducts();
-              this.isFirstLoad = false;
-            }
-          }, 100);
-        } else {
-          this.loadProducts();
-        }
+        this.loadProducts();
       } else {
-        // When sidebar is closed
+        // Khi đóng sidebar, chỉ reset state mà không thay đổi animation
         this.renderer.removeClass(document.body, 'no-scroll');
         document.body.style.overflow = '';
+        
+        // Không reset sidebar ngay lập tức
+        setTimeout(() => {
+          if (!this.isVisible) {
+            this.resetSidebar();
+          }
+        }, 300);
       }
     }
   }

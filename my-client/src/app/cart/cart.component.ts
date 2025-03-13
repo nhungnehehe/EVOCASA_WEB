@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   isUserLoggedIn: boolean = false;
 
   // Danh sách sản phẩm trong giỏ hàng
-  products: CartItem[] = [];  // Danh sách sản phẩm trong giỏ hàng
+  products: CartItem1[] = [];  // Danh sách sản phẩm trong giỏ hàng
   selectedProductIds: Set<string> = new Set();
   constructor(
     private cartService: CartService,
@@ -42,30 +42,80 @@ export class CartComponent implements OnInit {
   getCustomerId(phone: string) {
     this.customerService.getCustomerByPhone(phone).subscribe(
       (customer) => {
-        this.currentCustomerId = customer._id;
+        this.currentUserPhone = customer.Phone;
         this.isUserLoggedIn = true;
-        if (this.currentCustomerId) {
-          this.loadCart(this.currentCustomerId);
+        if (customer.Phone) {
+          this.loadCart(phone);
+          console.log("📢 ID khách hàng:", this.currentCustomerId);
         }
       },
       (error) => {
-        console.error('Không tìm thấy khách hàng với số điện thoại này', error);
         this.isUserLoggedIn = false;
+        this.loadProducts(); // Nếu không tìm thấy khách hàng, load giỏ hàng từ session
       }
     );
   }
   
-  loadCart(customerId: string) {
-    this.customerService.getCartByCustomerId(customerId).subscribe((cartItems: CartItem1[]) => {
-      // Chuyển đổi CartItem1[] sang CartItem[]
-      // Cần triển khai logic chuyển đổi tùy theo cấu trúc dữ liệu thực tế
-      this.cartService.getCartItems().subscribe((cartServiceItems) => {
-        // Kết hợp dữ liệu từ cả hai nguồn
-        this.products = [...cartServiceItems];
-        this.updateCartPaymentSummary();
-      });
-    });
+  // // Load giỏ hàng từ Database nếu đã đăng nhập
+  loadCart(phone: string) {
+    console.log("📢 Gọi API lấy giỏ hàng với customerId:", phone);
+  
+    this.customerService.getCartByCustomerId(phone).subscribe(
+      (cartItems: CartItem1[]) => {
+        console.log("✅ Giỏ hàng từ Database:", cartItems);
+  
+        if (cartItems.length === 0) {
+          console.log("🛒 Giỏ hàng trống!");
+          this.products = [];
+          return;
+        }
+  
+    //     // Lấy danh sách productId từ giỏ hàng
+    //     const productIds = cartItems.map(item => item.productId);
+  
+    //     // Gọi API lấy thông tin sản phẩm dựa trên productId
+    //     this.customerService.getProductsByIds(productIds).subscribe(
+    //       (productDetails: CartItem[]) => {
+    //         console.log("📦 Thông tin sản phẩm:", productDetails);
+  
+    //         // 🔄 Chuyển đổi `CartItem1` thành `CartItem`
+    //         this.products = cartItems.map(cartItem => {
+    //           const productDetail = productDetails.find(p => p.productId === cartItem.productId);
+  
+    //           return {
+    //             productId: cartItem.productId,
+    //             cartQuantity: cartItem.cartQuantity,
+    //             category_id: productDetail?.category_id || '',
+    //             Name: productDetail?.Name || 'Không có tên',
+    //             Price: productDetail?.Price || 0,
+    //             Image: productDetail?.Image || '',
+    //             Description: productDetail?.Description || '',
+    //             Origin: productDetail?.Origin || '',
+    //             Uses: productDetail?.Uses || '',
+    //             Store: productDetail?.Store || '',
+    //             Quantity: productDetail?.Quantity || 0,
+    //             Create_date: productDetail?.Create_date || '',
+    //             Dimension: productDetail?.Dimension || '',
+    //             Story: productDetail?.Story || '',
+    //             ProductCare: productDetail?.ProductCare || '',
+    //             ShippingReturn: productDetail?.ShippingReturn || '',
+    //           } as CartItem;
+    //         });
+  
+    //         this.updateCartPaymentSummary();
+    //       },
+    //       (error: any) => {
+    //         console.error("❌ Lỗi khi lấy thông tin sản phẩm:", error);
+    //       }
+    //     );
+    //   },
+    //   (error: any) => {
+    //     console.error("❌ Lỗi khi lấy giỏ hàng từ Database:", error);
+    //     this.products = [];
+      }
+    );
   }
+
 
   // Lấy danh sách sản phẩm trong giỏ hàng
   loadProducts(): void {
@@ -97,7 +147,6 @@ export class CartComponent implements OnInit {
     ngOnInit(): void {
       // Lấy sản phẩm trong giỏ hàng khi component khởi tạo
       this.loadProducts(); // Thay vì lặp lại code trong ngOnInit, gọi hàm loadProducts()
-      // this.updateCartPaymentSummary(); // Lấy thông tin tổng số lượng và tổng tiền của CartPaymentService
       this.loadSelectedProducts();
       this.updateCartPaymentSummary();
 
@@ -106,12 +155,18 @@ export class CartComponent implements OnInit {
       this.currentUserPhone = phone;
       this.isUserLoggedIn = !!phone; // Đặt isUserLoggedIn dựa trên việc có phone hay không
     
-        if (phone) {
-          this.getCustomerId(phone);
-        } else {
-        }
-      });
-}
+      if (phone) {
+        // Lấy ID khách hàng nếu có số điện thoại
+        this.getCustomerId(phone);
+        console.log("📢 Người dùng đã đăng nhập với số điện thoại:", phone);
+      } else {
+        // Nếu chưa đăng nhập, load giỏ hàng từ session
+        console.log("⚠ Người dùng chưa đăng nhập, tải giỏ hàng từ session.");
+        this.loadProducts();
+      }
+    });
+
+  }
 
     isProductSelected(productId: string): boolean {
       return this.selectedProductIds.has(productId); // Kiểm tra xem sản phẩm có được chọn không
@@ -200,14 +255,13 @@ onCheckboxChange(event: any, product: CartItem): void {
     this.totalQuantity = this.cartpaymentService.getTotalQuantity(); // Lấy tổng số lượng sản phẩm từ CartPaymentService
     this.total = this.cartpaymentService.getTotalAmount(); // Lấy tổng số tiền từ CartPaymentService
   }
+
+  
   // Xử lý khi người dùng nhấn nút Checkout
   onCheckout(): void {
-    console.log("Đã nhấn Checkout. Người dùng đã đăng nhập:", this.isUserLoggedIn);
     if (this.isUserLoggedIn) {
-      console.log("Đang chuyển hướng đến payment-shipping");
       this.router.navigate(['/payment-shipping']);
     } else {
-      console.log("Đang chuyển hướng đến login-page");
       this.router.navigate(['/login-page'], { queryParams: { returnUrl: '/payment-shipping' } });
     }
   }
