@@ -34,16 +34,6 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     EditProductComponent,
     CustomerDetailComponent,
-<<<<<<< HEAD
-    LoginComponent,
-=======
-    LoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
->>>>>>> ff529fe06a8bc29a47e197b3f97a550cadb8d684
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
