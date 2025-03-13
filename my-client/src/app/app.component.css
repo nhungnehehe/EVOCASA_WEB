@@ -12,6 +12,10 @@
     visibility: visible;
     cursor: pointer;
   }
+
+  .overlay-fading {
+    opacity: 0;
+  }
 /* Ẩn overlay khi sidebar đóng */
 .overlay.hidden {
     opacity: 0;  /* Giảm độ mờ đến 0 */
