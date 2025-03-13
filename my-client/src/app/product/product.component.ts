@@ -50,7 +50,8 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((data: any) => {
-      this.allProducts = data.products.map((product: any) => {
+      // Process the products first
+      let processedProducts = data.products.map((product: any) => {
         if (product.Image && typeof product.Image === 'string') {
           try {
             product.Image = JSON.parse(product.Image);
@@ -61,15 +62,22 @@ export class ProductComponent implements OnInit, AfterViewInit {
         }
         return product;
       });
+      
+      // Randomize the products using Fisher-Yates shuffle
+      for (let i = processedProducts.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [processedProducts[i], processedProducts[j]] = [processedProducts[j], processedProducts[i]];
+      }
+      
+      this.allProducts = processedProducts;
       this.filteredProducts = [...this.allProducts];
-      this.updatePagination();  // Cập nhật số trang
-      // this.products = this.filteredProducts;
+      this.updatePagination();
       this.products = this.paginateProducts();
-      console.log(`Loaded ${this.products.length} products (via resolver)`);
-
+      console.log(`Loaded ${this.products.length} randomized products (via resolver)`);
+  
       this.loadCategories();
     });
-
+  
     this.initializeMenu();
   }
   // Hàm phân trang và cập nhật số trang
@@ -216,7 +224,8 @@ export class ProductComponent implements OnInit, AfterViewInit {
   loadProducts(): void {
     this.productService.getProducts().subscribe({
       next: (data) => {
-        this.allProducts = data.map((product: any) => {
+        // First process all products
+        let processedProducts = data.map((product: any) => {
           if (product.Image && typeof product.Image === 'string') {
             try {
               product.Image = JSON.parse(product.Image);
@@ -227,9 +236,19 @@ export class ProductComponent implements OnInit, AfterViewInit {
           }
           return product;
         });
+        
+        // Create a randomized array of indices
+        let indices = Array.from({ length: processedProducts.length }, (_, i) => i);
+        for (let i = indices.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        
+        // Use the randomized indices to create the shuffled product array
+        this.allProducts = indices.map(index => processedProducts[index]);
         this.filteredProducts = [...this.allProducts];
-        // this.products = this.filteredProducts;
-        console.log(`Loaded ${this.products.length} products`);
+        
+        console.log(`Loaded ${this.allProducts.length} products in random order`);
       },
       error: (err) => {
         this.errMessage = 'Error fetching products. Please try again later.';
@@ -286,31 +305,30 @@ export class ProductComponent implements OnInit, AfterViewInit {
     this.currentPage = 1;
     if (categorySlug === 'all') {
       this.filteredProducts = [...this.allProducts];
-      this.updatePagination();  // Cập nhật số trang
-      // this.products = this.filteredProducts;
+      this.updatePagination();
       this.products = this.paginateProducts();
       return;
     }
-
+  
     const selectedCategoryId = this.categoryIdMapping[categorySlug];
     console.log('Filtering by slug:', categorySlug, '-> selectedCategoryId:', selectedCategoryId);
-
+  
     if (!selectedCategoryId) {
       console.error(`Category ID not found for slug: ${categorySlug}`);
       return;
     }
-
+  
     const isMainCategory = this.mainCategories.some(cat => cat.slug === categorySlug);
-
+  
     if (isMainCategory) {
       console.log(`Filtering products for main category: ${categorySlug}`);
-
+  
       const subCategoryIds = this.categories
         .filter(cat => cat.parentCategory === selectedCategoryId)
         .map(cat => cat._id);
-
+  
       console.log('Sub categories IDs:', subCategoryIds);
-
+  
       this.filteredProducts = this.allProducts.filter(product => {
         if (!product.category_id) return false;
         const prodCatId = product.category_id.toString();
@@ -324,11 +342,18 @@ export class ProductComponent implements OnInit, AfterViewInit {
         return product.category_id.toString() === selectedCategoryId.toString();
       });
     }
-
-    console.log(`Found ${this.filteredProducts.length} products for category ${categorySlug}`);
-    // this.products = this.filteredProducts;
-    this.updatePagination();  // Cập nhật lại số trang cho danh mục hiện tại
-    this.products = this.paginateProducts();  // Cập nhật lại sản phẩm hiển thị
+  
+    // Randomize the filtered products
+    const filteredArray = [...this.filteredProducts];
+    for (let i = filteredArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [filteredArray[i], filteredArray[j]] = [filteredArray[j], filteredArray[i]];
+    }
+    this.filteredProducts = filteredArray;
+  
+    console.log(`Found ${this.filteredProducts.length} randomized products for category ${categorySlug}`);
+    this.updatePagination();
+    this.products = this.paginateProducts();
   }
 
   setupCategoryMenu(): void {
