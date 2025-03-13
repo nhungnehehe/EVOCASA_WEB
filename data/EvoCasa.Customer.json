@@ -39,7 +39,14 @@
   "CreatedAt": {
     "$date": "2024-02-28T00:00:00.000Z"
   },
-  "Cart": []
+  "Cart": [
+    {
+      "ProductId": {
+        "$oid": "67c0b01cc5fec55b70d0fc9b"
+      },
+      "Quantity": 1
+    }
+  ]
 },
 {
   "_id": {

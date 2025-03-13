@@ -17,7 +17,9 @@ export class UserService {
 
   setCurrentUserPhone(phone: string): void {
     this._currentUserPhone.next(phone);
+    localStorage.setItem('currentUserPhone', phone);
   }
+
   clearCurrentUser(): void {
     this._currentUserName.next('');
   }
