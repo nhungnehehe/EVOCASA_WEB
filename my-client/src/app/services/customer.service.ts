@@ -38,7 +38,7 @@ export class CustomerService {
 
   // Get customer by phone number
   getCustomerByPhone(phone: string): Observable<Customer> {
-    return this.http.get<Customer>(`${this.apiUrl}/customers/${phone}`)
+    return this.http.get<Customer>(`${this.apiUrl}/customers/phone/${phone}`)
       .pipe(
         tap(_ => console.log(`Fetched customer with phone=${phone}`)),
         catchError(this.handleError<Customer>('getCustomerByPhone'))
@@ -105,6 +105,14 @@ export class CustomerService {
     );
   }
   
+  //  API: Lấy danh sách sản phẩm trong giỏ hàng dựa trên customerId
+  getCartByCustomerId(customerId: string): Observable<CartItem1[]> {
+    return this.http.get<CartItem1[]>(`${this.apiUrl}/customers/${customerId}/cart`)
+      .pipe(
+        tap(_ => console.log(`Fetched cart for customer id=${customerId}`)),
+        catchError(this.handleError<CartItem1[]>('getCartByCustomerId', []))
+      );
+  }
 
   // Delete customer
   deleteCustomer(customerId: string): Observable<any> {
