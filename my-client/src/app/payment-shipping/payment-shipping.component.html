@@ -1,6 +1,8 @@
 <body>
     <div class="progress-container">
-        <a routerLink="/cart-page"><img src="images/payment/arrow.svg" alt="Back Arrow" class="back-arrow"></a>
+        <!-- Nút Back -->
+        <a (click)="goBack()"><img src="images/payment/arrow.svg" alt="Back Arrow" class="back-arrow"></a>
+
         <div class="progress">
             <div class="step active">
                 <div class="step-number">1</div>
@@ -103,16 +105,16 @@
             <div class="order-header">
                 <p>{{ totalQuantity }} item(s)</p> <!-- Hiển thị tổng số lượng sản phẩm -->
                 <p class="total-price">${{ total | number: '1.0-0' }}</p> <!-- Hiển thị tổng tiền -->
-              </div>
-              <div *ngFor="let product of products" class="order-item">
+            </div>
+            <div *ngFor="let product of products" class="order-item">
                 <img [src]="product.Image" alt="{{ product.Name }}" class="order-image">
                 <div class="order-details">
-                  <p class="product-name">{{ product.Name }}</p>
-                  <p class="product-price">${{ product.Price }}</p>
-                  <p class="product-quantity">Quantity: {{ product.cartQuantity }}</p>
-                  <!-- <p class="product-color">Color: {{ product.Color }}</p> -->
+                    <p class="product-name">{{ product.Name }}</p>
+                    <p class="product-price">${{ product.Price }}</p>
+                    <p class="product-quantity">Quantity: {{ product.cartQuantity }}</p>
+                    <!-- <p class="product-color">Color: {{ product.Color }}</p> -->
                 </div>
-              </div>
+            </div>
         </div>
     </div>
     <div class="next-btn">
