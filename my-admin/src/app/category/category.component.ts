@@ -15,10 +15,14 @@ export class CategoryComponent implements OnInit {
   mainCategories: Category[] = [];
   subCategories: { [key: string]: Category[] } = {};
 
+  paginatedCategories: Category[] = [];
+  currentPage: number = 1;
+  pageSize: number = 6;
+  totalPages: number = 0;
+
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    console.log('Category component initialized');
     this.fetchCategories();
   }
 
@@ -29,6 +33,8 @@ export class CategoryComponent implements OnInit {
         console.log('Categories fetched successfully:', data);
         this.categories = data;
         
+        this.totalPages = Math.ceil(this.categories.length / this.pageSize);
+        this.updatePaginatedCategories();
         // Organize into main categories and subcategories
         this.mainCategories = this.categories.filter(cat => cat.parentCategory === null);
         console.log('Main categories:', this.mainCategories);
@@ -54,6 +60,22 @@ export class CategoryComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+  updatePaginatedCategories(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = this.currentPage * this.pageSize;
+    this.paginatedCategories = this.categories.slice(startIndex, endIndex);
+  }
+
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updatePaginatedCategories();
+    }
+  }
+
+  pageNumbers(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
   /**
