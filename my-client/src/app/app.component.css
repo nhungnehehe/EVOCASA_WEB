@@ -8,7 +8,7 @@
     background-color: rgba(0, 0, 0, 0.5);  /* Nền mờ */
     z-index: 100;  /* Đảm bảo overlay nằm trên cùng */
     pointer-events: auto;  /* Cho phép người dùng tương tác với overlay (đóng sidebar khi click vào overlay) */
-    opacity: 1;  /* Đảm bảo overlay bắt đầu với độ mờ đầy đủ */
+    opacity: 1;  
     visibility: visible;
     cursor: pointer;
   }
@@ -16,7 +16,7 @@
   .overlay-fading {
     opacity: 0;
   }
-/* Ẩn overlay khi sidebar đóng */
+
 .overlay.hidden {
     opacity: 0;  /* Giảm độ mờ đến 0 */
     visibility: hidden;

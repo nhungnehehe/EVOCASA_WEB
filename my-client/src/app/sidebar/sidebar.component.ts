@@ -153,7 +153,7 @@ export class SidebarComponent implements OnInit, OnChanges {
       this.closeSidebarEvent.emit(); // Emit event to the parent
       document.body.style.overflow = ''; // Allow scrolling
       this.isHiding = false; // Reset for next time
-    }, 300); // Match this with your CSS transition time
+    }, 300); 
   }
 
   // Only listen for clicks if sidebar is visible
@@ -179,7 +179,6 @@ export class SidebarComponent implements OnInit, OnChanges {
         this.renderer.addClass(document.body, 'no-scroll');
         document.body.style.overflow = 'hidden';
         
-        // Load products
         if (this.isFirstLoad) {
           setTimeout(() => {
             if (this.isVisible) {
@@ -191,7 +190,6 @@ export class SidebarComponent implements OnInit, OnChanges {
           this.loadProducts();
         }
       } else {
-        // When sidebar is closed
         this.renderer.removeClass(document.body, 'no-scroll');
         document.body.style.overflow = '';
       }

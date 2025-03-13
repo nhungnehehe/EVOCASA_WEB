@@ -5,7 +5,6 @@
              (closeSidebarEvent)="closeSidebar()" 
              [hidden]="!isVisibleSidebar"></app-sidebar>
 
-<!-- Overlay khi sidebar mở, che phủ phần router-outlet và app-footer -->
 <div [ngClass]="{ 'overlay': isOverlayVisible, 'overlay-fading': isOverlayFading, 'hidden': !isOverlayVisible }" 
      (click)="closeSidebar()" 
      [hidden]="!isOverlayVisible"></div>

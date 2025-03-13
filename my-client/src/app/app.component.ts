@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   isHomepage = false;
   isVisibleSidebar = false;
   isOverlayVisible = false;
-  isOverlayFading = false; // Add this new property
+  isOverlayFading = false; 
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
-        // Đóng sidebar khi chuyển trang
+
         if (this.isVisibleSidebar) {
           this.closeSidebar();
         }
@@ -31,7 +31,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Đảm bảo sidebar luôn đóng khi component khởi tạo
     setTimeout(() => {
       this.isVisibleSidebar = false;
       this.isOverlayVisible = false;
@@ -46,17 +45,15 @@ export class AppComponent implements OnInit {
   }
 
   closeSidebar() {
-    this.isOverlayFading = true; // Start fading the overlay
-    
-    // Keep the overlay visible while the sidebar is sliding out
+    this.isOverlayFading = true; 
+  
     setTimeout(() => {
       this.isVisibleSidebar = false;
       
-      // After sidebar has slid out, hide the overlay
       setTimeout(() => {
         this.isOverlayVisible = false;
         this.isOverlayFading = false;
-      }, 50); // Small delay after sidebar is hidden
-    }, 250); // This should be slightly less than your sidebar transition time
+      }, 50); 
+    }, 250); 
   }
 }
