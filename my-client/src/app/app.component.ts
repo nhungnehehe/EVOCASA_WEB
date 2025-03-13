@@ -30,10 +30,19 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.isVisibleSidebar = false;
-      this.isOverlayVisible = false;
-    }, 0);
+    // Clear any existing sidebar state completely on initialization
+    this.isVisibleSidebar = false;
+    this.isOverlayVisible = false;
+    
+    // Listen for router events to completely reset sidebar
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        // Force close sidebar and reset all states when page changes
+        this.isVisibleSidebar = false;
+        this.isOverlayVisible = false;
+        this.isOverlayFading = false;
+      });
   }
 
   openSidebar() {

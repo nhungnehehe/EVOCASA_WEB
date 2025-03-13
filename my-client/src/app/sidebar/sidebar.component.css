@@ -64,7 +64,6 @@ body {
 .drawer {
   position: fixed;
   top: 0;
-  right: -430px;
   width: 430px;
   height: 100%;
   background-color: #FFFCF3;
@@ -72,16 +71,19 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Đảm bảo các phần tử có khoảng cách đúng */
+  justify-content: space-between;
   overflow-y: auto;
-  transition: right 0.5s ease-in-out; /* Chuyển động mượt mà khi đóng */
-
+  right: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Khi giỏ hàng di chuyển */
-.drawer.slide-out {
-  right: -430px;
-  animation: slideOut 0.5s forwards; /* Áp dụng animation */
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer.closing {
+  transform: translateX(100%);
 }
 
 /* Làm tối phần bên dứoi giỏ hàng */

@@ -1,53 +1,53 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+<!-- Overlay khi sidebar mở -->
+<div *ngIf="isVisible" class="drawer__overlay" (click)="closeCart()"></div>
 
-<body>
-  <div class="drawer" id="mini-cart" [ngClass]="{ 'open': isVisible, 'slide-out': !isVisible }">
-     <!-- Thông báo giỏ hàng trống -->
-  <div *ngIf="isEmpty" class="empty-cart-message">
-    <p>Your cart is empty!</p>
-  </div>
-      <div class="drawer__content">
-        <form id="mini-cart-form" novalidate method="post">
+<!-- Sidebar / Mini-cart container -->
+<div class="drawer" id="mini-cart" [ngClass]="{ 'open': isVisible && !isClosing, 'closing': isClosing }">
+  <div class="drawer__content">
+    <!-- Thông báo đang tải -->
+    <div *ngIf="!cartContentLoaded" class="loading-message">
+      <p>Loading your cart...</p>
+    </div>
+    
+    <!-- Thông báo giỏ hàng trống -->
+    <div *ngIf="cartContentLoaded && isEmpty" class="empty-cart-message">
+      <p>Your cart is empty!</p>
+    </div>
 
-          <div *ngFor="let product of products" class="line-item" [attr.data-product-id]="product.productId">
-            <!-- Phần 1: Hình ảnh sản phẩm -->
-            <div class="line-item__content-wrapper">
-              <a href="#" class="line-item__image-wrapper">
-                <img [src]="product.Image" alt="{{product.Name}}" class="line-item__image">
-              </a>
-            </div>
-    
-            <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
-            <div class="line-item__info">
-              <p class="line-item__name">{{product.Name}}</p>
-              <div class="quantity-selector">
-                <button class="quantity-selector__button" type="button" (click)="changeQuantity('decrease', product.productId)">-</button>
-                <input type="text" class="quantity-selector__input" [value]="product.cartQuantity" aria-label="Change quantity" readonly>
-                <button class="quantity-selector__button" type="button" (click)="changeQuantity('increase', product.productId)">+</button>
-              </div>
-            </div>
-    
-            <!-- Phần 3: Giá sản phẩm -->
-            <div class="line-item__price-wrapper">
-              <p class="line-item__price">${{product.Price | number:'1.0-0'}}</p>
-            </div>
+    <!-- Nội dung giỏ hàng -->
+    <form id="mini-cart-form" novalidate method="post" *ngIf="cartContentLoaded && !isEmpty">
+      <div *ngFor="let product of products" class="line-item" [attr.data-product-id]="product.productId">
+        <!-- Phần 1: Hình ảnh sản phẩm -->
+        <div class="line-item__content-wrapper">
+          <a href="#" class="line-item__image-wrapper">
+            <img [src]="product.Image" alt="{{product.Name}}" class="line-item__image">
+          </a>
+        </div>
+
+        <!-- Phần 2: Tên sản phẩm và nút điều chỉnh số lượng -->
+        <div class="line-item__info">
+          <p class="line-item__name">{{product.Name}}</p>
+          <div class="quantity-selector">
+            <button class="quantity-selector__button" type="button" (click)="changeQuantity('decrease', product.productId)">-</button>
+            <input type="text" class="quantity-selector__input" [value]="product.cartQuantity" aria-label="Change quantity" readonly>
+            <button class="quantity-selector__button" type="button" (click)="changeQuantity('increase', product.productId)">+</button>
           </div>
-        </form>
+        </div>
+
+        <!-- Phần 3: Giá sản phẩm -->
+        <div class="line-item__price-wrapper">
+          <p class="line-item__price">${{product.Price | number:'1.0-0'}}</p>
+        </div>
       </div>
-      
-       <!-- Footer giỏ hàng -->
-  <footer class="mini-cart__footer" *ngIf="!isEmpty">
+    </form>
+  </div>
+  
+  <!-- Footer giỏ hàng - chỉ hiển thị khi giỏ hàng có sản phẩm -->
+  <footer class="mini-cart__footer" *ngIf="cartContentLoaded && !isEmpty">
     <div class="cart-total">
       <p><span id="total">${{total | number:'1.0-0'}}</span></p>
     </div>
     <p class="shipping-info">Shipping & taxes calculated at checkout</p>
     <button type="button" class="cart__checkout-button" (click)="navigateToCart()">COMPLETE ORDER</button>
   </footer>
-
-  </div>
-</body>
-</html>
+</div>
