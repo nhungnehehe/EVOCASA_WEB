@@ -689,3 +689,51 @@ app.delete("/orders/:id", cors(), async (req, res) => {
   )
   res.send(result[0])
 }) 
+//--------BUY NOW API--------
+// API để thêm sản phẩm vào BuyNowItems (mua ngay)
+app.post("/buynow", async (req, res) => {
+  const { productId, quantity } = req.body;
+
+  try {
+    const product = await productCollection.findOne({ _id: new ObjectId(productId) });
+    if (!product) {
+      return res.status(404).send({ error: "Product not found" });
+    }
+
+    req.session.buyNowItems = [];
+
+    // Thêm sản phẩm vào BuyNowItems
+    req.session.buyNowItems.push({
+      productId,
+      _id: product._id,
+      category_id: product.category_id,
+      Name: product.Name,
+      Price: product.Price,
+      Image: product.Image,
+      Description: product.Description,
+      Origin: product.Origin,
+      Uses: product.Uses,
+      Store: product.Store,
+      Quantity: product.Quantity,
+      cartQuantity: quantity,
+      Create_date: product.Create_date,
+      Dimension: product.Dimension,
+      Story: product.Story,
+      ProductCare: product.ProductCare,
+      ShippingReturn: product.ShippingReturn
+    });
+
+    console.log("Buy Now Items updated:", req.session.buyNowItems);
+    res.status(200).send(req.session.buyNowItems);
+  } catch (error) {
+    console.error("Error adding to Buy Now:", error);
+    res.status(400).send({ error: "Invalid product ID or request" });
+  }
+});
+
+// API để lấy sản phẩm từ BuyNowItems
+app.get("/buynow", (req, res) => {
+  console.log("Fetching Buy Now items:", req.session.buyNowItems);
+  res.status(200).send(req.session.buyNowItems);
+});
+
