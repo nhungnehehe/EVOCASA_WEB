@@ -15,8 +15,8 @@ export class Customer {
 
 export class CartItem1 {
   constructor(
-    public ProductId: any = null,
-    public Quantity: number = 0
+    public productId: any = null,
+    public cartQuantity: number = 0
   ) { }
 }
 

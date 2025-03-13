@@ -529,15 +529,24 @@ app.put("/customers/:id", async (req, res) => {
 // Lấy giỏ hàng khách hàng theo ID
 app.get("/customers/:id/cart", async (req, res) => {
   try {
-    const id = req.params.id;
-    const o_id = new ObjectId(id);
-    const getCart = await customerCollection.findOne({ _id: o_id });
+    const customerId = req.params.id;
 
-    if (!getCart) {
+    // Kiểm tra nếu customerId không hợp lệ
+    if (!ObjectId.isValid(customerId)) {
+      return res.status(400).send({ message: "ID khách hàng không hợp lệ." });
+    }
+
+    const o_id = new ObjectId(customerId);
+
+    // Lấy dữ liệu khách hàng từ MongoDB
+    const customer = await customerCollection.findOne({ _id: o_id });
+
+    if (!customer) {
       return res.status(404).send({ message: "Không tìm thấy khách hàng." });
     }
 
-    res.send(getCart.Cart || []); // Nếu không có giỏ hàng, trả về mảng rỗng
+    // Trả về giỏ hàng của khách hàng
+    res.status(200).send(customer.Cart || []);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
@@ -706,6 +715,7 @@ app.delete("/orders/:id", cors(), async (req, res) => {
   )
   res.send(result[0])
 }) 
+
 //--------BUY NOW API--------
 // API để thêm sản phẩm vào BuyNowItems (mua ngay)
 app.post("/buynow", async (req, res) => {
@@ -753,4 +763,3 @@ app.get("/buynow", (req, res) => {
   console.log("Fetching Buy Now items:", req.session.buyNowItems);
   res.status(200).send(req.session.buyNowItems);
 });
-
