@@ -13,7 +13,7 @@ export class CartpaymentService {
   public paymentCart: CartItem[] = [];  // Giỏ thanh toán
 
   // Thêm sản phẩm vào giỏ thanh toán
-  addToCartPayment1(product: CartItem): void {
+  addToCartPayment1(productId: string, product: CartItem): void {
     // Kiểm tra nếu sản phẩm chưa có trong giỏ thanh toán
     if (!this.paymentCart.some((item) => item.productId === product.productId)) {
       this.paymentCart.push(product);
