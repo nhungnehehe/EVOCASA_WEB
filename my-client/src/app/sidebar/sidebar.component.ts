@@ -23,7 +23,6 @@ export class SidebarComponent implements OnInit {
       private renderer: Renderer2,
       private elementRef: ElementRef  // Lấy tham chiếu đến sidebar
     ) {}
-
  // Kiểm tra giỏ hàng có trống hay không
  get isEmpty(): boolean {
   return this.products.length === 0;
