@@ -1,11 +1,13 @@
 <app-header></app-header>
 <app-popup *ngIf="isHomepage"></app-popup>
 
-<!-- Sidebar -->
-<app-sidebar [isVisible]="isVisibleSidebar" (closeSidebarEvent)="closeSidebar()"></app-sidebar>
+<app-sidebar [isVisible]="isVisibleSidebar" 
+             (closeSidebarEvent)="closeSidebar()" 
+             [hidden]="!isVisibleSidebar"></app-sidebar>
 
-<!-- Overlay khi sidebar mở, che phủ phần router-outlet và app-footer -->
-<div [ngClass]="{ 'overlay': isOverlayVisible, 'hidden': !isOverlayVisible }" (click)="closeSidebar()"></div>
+<div [ngClass]="{ 'overlay': isOverlayVisible, 'overlay-fading': isOverlayFading, 'hidden': !isOverlayVisible }" 
+     (click)="closeSidebar()" 
+     [hidden]="!isOverlayVisible"></div>
 
 <!-- Nội dung chính -->
 <router-outlet></router-outlet>

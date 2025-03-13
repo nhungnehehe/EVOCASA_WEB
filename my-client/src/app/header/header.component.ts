@@ -7,11 +7,11 @@ import { UserService } from '../services/user.service';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']  // Dùng mảng như đã chỉ
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
   quantity: number = 0;
-  displayedQuantity: string = '0';
+  displayedQuantity: string = '';  // Initialize as empty string, not '0'
   currentUserName: string = '';
 
   constructor(
@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
       this.quantity = count;
       this.updateDisplayedQuantity();
     });
+    
+    // Get initial cart count
     this.cartService.updateCartCount();
 
     // Subscribe vào UserService để nhận currentUserName khi login cập nhật
@@ -35,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   updateDisplayedQuantity(): void {
-    if (this.quantity === 0) {
+    if (this.quantity <= 0) {
       this.displayedQuantity = '';
     } else if (this.quantity > 99) {
       this.displayedQuantity = '99+';

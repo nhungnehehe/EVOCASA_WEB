@@ -249,20 +249,11 @@ body {
   color: #5E4C3E; /* Màu chữ */
 }
 
-.empty-cart-message {
-  text-align: center;
-  font-size: 18px;
-  color: #5E4C3E;  /* Màu chữ */
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #F2EAD3;  /* Màu nền nhẹ */
-  border: 1px solid #ddd;  /* Đường viền nhẹ */
-  border-radius: 5px;  /* Bo góc cho box */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Tạo bóng mờ */
-}
-
 /* Tùy chọn thêm cho khi giỏ hàng trống */
 .empty-cart-message p {
   font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
   font-size: 18px;
+  color: #5E4C3E;  /* Màu chữ */
 }

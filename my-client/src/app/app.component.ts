@@ -10,8 +10,9 @@ import { filter } from 'rxjs';
 export class AppComponent {
   title = 'my-client';
   isHomepage = false;
-  isVisibleSidebar: boolean = false;
-  isOverlayVisible: boolean = false;  // Biến điều khiển overlay
+  isVisibleSidebar = false;
+  isOverlayVisible = false;
+  isOverlayFading = false; 
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
@@ -21,12 +22,19 @@ export class AppComponent {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
+
         if (this.isVisibleSidebar) {
           this.closeSidebar();
         }
     });
+  }
 
-  }  
+  ngOnInit() {
+    setTimeout(() => {
+      this.isVisibleSidebar = false;
+      this.isOverlayVisible = false;
+    }, 0);
+  }
 
   openSidebar() {
     this.isVisibleSidebar = true;
@@ -34,12 +42,15 @@ export class AppComponent {
   }
 
   closeSidebar() {
-    this.isVisibleSidebar = false;
-       // Ẩn overlay sau time
-       setTimeout(() => {
-        this.isOverlayVisible = false;
-      }, 500);
-    
-  }
+    this.isOverlayFading = true; 
   
+    setTimeout(() => {
+      this.isVisibleSidebar = false;
+      
+      setTimeout(() => {
+        this.isOverlayVisible = false;
+        this.isOverlayFading = false;
+      }, 50); 
+    }, 250); 
+  }
 }

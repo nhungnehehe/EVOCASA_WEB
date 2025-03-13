@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { CartpaymentService } from '../services/cartpayment.service'; 
 import { CartItem } from '../interfaces/cart'
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
   selectedProductIds: Set<string> = new Set();
   constructor(
     private cartService: CartService,
-    public cartpaymentService: CartpaymentService  
+    public cartpaymentService: CartpaymentService,
+    private userService: UserService
   ) {}
 
   total: number = 0; // Tổng giỏ hàng
@@ -61,6 +63,7 @@ export class CartComponent implements OnInit {
       // this.updateCartPaymentSummary(); // Lấy thông tin tổng số lượng và tổng tiền của CartPaymentService
       this.loadSelectedProducts();
       this.updateCartPaymentSummary();
+
     }
     isProductSelected(productId: string): boolean {
       return this.selectedProductIds.has(productId); // Kiểm tra xem sản phẩm có được chọn không
