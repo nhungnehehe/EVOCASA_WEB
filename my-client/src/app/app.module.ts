@@ -12,7 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PaymentShippingComponent } from './payment-shipping/payment-shipping.component';
 import { ProductComponent } from './product/product.component';
@@ -87,7 +87,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     ReactiveFormsModule,
     
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -40,33 +40,41 @@
   <div class="content">
     <div class="account-section">
       <!-- PERSONAL INFORMATION -->
-      <div class="info-box">
+      <div class="info-box" >
         <h3>PERSONAL INFORMATION</h3>
-        <div class="personal-in4">
+        <div class="personal-in4" *ngIf="customerInfo">
           <div class="info-row">
             <span class="title">Full name:</span>
-            <span class="value">Andrey Nguyen</span>
+            <span class="value">{{ customerInfo.Name }}</span>
           </div>
-          <div class="info-row">
+          <div class="info-row" >
             <span class="title">Gender:</span>
-            <span class="value">Female</span>
+            <span class="value">{{ customerInfo.Gender }}</span>
           </div>
           <div class="info-row">
             <span class="title">Phone number:</span>
-            <span class="value">(+84) 909888777</span>
+            <span class="value">{{ customerInfo.Phone }}</span>
           </div>
           <div class="info-row">
             <span class="title">Email:</span>
-            <span class="value">andreynguyen&#64;gmail.com</span>
+            <span class="value">{{ customerInfo.Mail }}</span>
           </div>
           <div class="info-row">
-            <span class="title">Address:</span>
-            <span class="value">1/1/1990</span>
+            <span class="title">D.O.B: </span>
+            <span class="value">{{ formattedDOB || 'N/A' }}</span>
           </div>
         </div>
         <div class="edit-btn">Edit</div>
       </div>
-
+      <div *ngIf="cartItems && cartItems.length > 0">
+        <h3>Your Cart:</h3>
+        <ul>
+          <li *ngFor="let item of cartItems">
+            <p><strong>Product ID:</strong> {{ item.productId }}</p>  <!-- Sử dụng productId với chữ thường -->
+            <p><strong>Quantity:</strong> {{ item.cartQuantity }}</p>  <!-- Sử dụng cartQuantity với chữ thường -->
+          </li>
+        </ul>
+      </div>
       <!-- SHIPPING INFORMATION -->
       <div class="info-box">
         <h3>SHIPPING INFORMATION</h3>
