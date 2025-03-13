@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'my-client';
   isHomepage = false;
   isVisibleSidebar = false;
@@ -39,9 +38,7 @@ export class AppComponent implements OnInit {
 
   openSidebar() {
     this.isVisibleSidebar = true;
-    this.isOverlayVisible = true;
-    this.isOverlayFading = false;
-    console.log('Sidebar opened');
+    this.isOverlayVisible = true;  // Hiển thị overlay khi mở sidebar
   }
 
   closeSidebar() {

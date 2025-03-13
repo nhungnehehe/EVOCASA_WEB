@@ -6,6 +6,10 @@
 
 <body>
   <div class="drawer" id="mini-cart" [ngClass]="{ 'open': isVisible, 'slide-out': !isVisible }">
+     <!-- Thông báo giỏ hàng trống -->
+  <div *ngIf="isEmpty" class="empty-cart-message">
+    <p>Your cart is empty!</p>
+  </div>
       <div class="drawer__content">
         <form id="mini-cart-form" novalidate method="post">
 
@@ -44,11 +48,6 @@
     <button type="button" class="cart__checkout-button" (click)="navigateToCart()">COMPLETE ORDER</button>
   </footer>
 
-  <!-- Thông báo giỏ hàng trống -->
-  <div *ngIf="isEmpty" class="empty-cart-message">
-    <p>Your cart is empty!</p>
   </div>
-  <div class="drawer__overlay" *ngIf="isVisible" (click)="closeCart()"></div>
-</div>
 </body>
 </html>
