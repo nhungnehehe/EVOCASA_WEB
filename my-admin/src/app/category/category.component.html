@@ -49,7 +49,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let category of paginatedCategories; let i = index">
-          <td>{{ i + 1 }}</td>
+          <td>{{ (currentPage - 1) * pageSize + (i + 1) }}</td>
           <!-- Hiển thị hình ảnh -->
           <td><img *ngIf="category.image" [src]="category.image" alt="Category Image" style="width: 50px; height: 50px;"></td>
           <!-- Hiển thị tên danh mục -->
