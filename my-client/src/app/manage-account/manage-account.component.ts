@@ -13,6 +13,7 @@ export class ManageAccountComponent {
     private router: Router,
     private userService: UserService
   ) {}
+  
    // Hàm xử lý đăng xuất
    signOut(): void {
     localStorage.removeItem('token');

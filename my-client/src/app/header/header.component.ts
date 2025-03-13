@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
     // Subscribe vào UserService để nhận currentUserName khi login cập nhật
     this.userService.currentUserName$.subscribe((name: string) => {
-      this.currentUserName = name;
+      this.currentUserName = name.toUpperCase();
     });
   }
 
