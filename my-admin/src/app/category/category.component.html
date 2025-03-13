@@ -1,7 +1,10 @@
 <div class="main-content">
   <h3>CATEGORY MANAGEMENT</h3>
   <br />
-  <h4>Total Category (6) | Showing 4/6</h4>
+  <!-- <h4>Total Category (6) | Showing 4/6</h4> -->
+  <h4>Total Category ({{ categories.length }}) | Showing 4/{{ categories.length }}</h4>
+
+
   <div class="actions">
     <!-- button filter -->
     <button class="filter-button">
@@ -10,10 +13,10 @@
     </button>
     <div class="right-button">
       <!--button Add Product -->
-      <div class="addproduct-button">
+      <button class="addproduct-button" routerLink="/admin-category-add">
         <img src="images/product/add.png" alt="Add" />
         <span>Add product</span>
-      </div>
+      </button>
       <!-- button export -->
       <button class="export-button">
         <img
@@ -31,6 +34,7 @@
     </div>
   </div>
 
+
   <div class="table-container">
     <table class="category-table">
       <thead>
@@ -46,7 +50,7 @@
       <tbody>
         <tr *ngFor="let category of categories; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ category.image }}</td>
+          <td><img [src]="category.image" alt="Category Image" width="50"></td>
           <td>{{ category.name }}</td>
           <td>{{ category.id }}</td>
           <td>{{ category.description }}</td>

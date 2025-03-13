@@ -526,6 +526,23 @@ app.put("/customers/:id", async (req, res) => {
   }
 });
 
+// Lấy giỏ hàng khách hàng theo ID
+app.get("/customers/:id/cart", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const o_id = new ObjectId(id);
+    const getCart = await customerCollection.findOne({ _id: o_id });
+
+    if (!getCart) {
+      return res.status(404).send({ message: "Không tìm thấy khách hàng." });
+    }
+
+    res.send(getCart.Cart || []); // Nếu không có giỏ hàng, trả về mảng rỗng
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
+
 // Cập nhật giỏ hàng khách hàng
 app.put("/customers/:id/cart", async (req, res) => {
   try {

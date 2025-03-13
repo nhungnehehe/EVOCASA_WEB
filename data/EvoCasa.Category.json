@@ -5,7 +5,8 @@
   "Name": "Furniture",
   "Description": "All kinds of furniture products.",
   "Slug": "furniture",
-  "ParentCategory": null
+  "ParentCategory": null,
+  "Image": "\n\"/images/Furniture/Alfred Christensen Chair - Floral12.jpg\"\n]"
 },
 {
   "_id": {
@@ -47,7 +48,8 @@
   "Name": "Decor",
   "Description": "Decorative items for homes and offices.",
   "Slug": "decor",
-  "ParentCategory": null
+  "ParentCategory": null,
+  "Image": "[\n\"/images/Decor/Articulated Mannequin Hand4.jpg\"\n]"
 },
 {
   "_id": {
@@ -175,7 +177,8 @@
   "Name": "Soft Goods",
   "Description": "Soft products like cushions, rugs, bedding, etc.",
   "Slug": "soft-goods",
-  "ParentCategory": null
+  "ParentCategory": null,
+  "Image": "[\n\"/images/Soft Goods/Autumn Harvest Pillow2.jpg\"\n]"
 },
 {
   "_id": {
@@ -195,7 +198,8 @@
   "Name": "Lighting",
   "Description": "Lighting solutions for home and office.",
   "Slug": "lighting",
-  "ParentCategory": null
+  "ParentCategory": null,
+  "Image": "[\n\"/images/Lighting/Copper Lamp4.jpg\"\n]"
 },
 {
   "_id": {
