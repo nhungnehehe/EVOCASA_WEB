@@ -5,12 +5,7 @@
              (closeSidebarEvent)="closeSidebar()" 
              [hidden]="!isVisibleSidebar"></app-sidebar>
 
-<<<<<<< Updated upstream
 <div [ngClass]="{ 'overlay': isOverlayVisible, 'overlay-fading': isOverlayFading, 'hidden': !isOverlayVisible }" 
-=======
-<!-- Overlay khi sidebar mở, che phủ phần router-outlet và app-footer -->
-<div [ngClass]="{ 'overlay': isOverlayVisible, 'hidden': !isOverlayVisible }" 
->>>>>>> Stashed changes
      (click)="closeSidebar()" 
      [hidden]="!isOverlayVisible"></div>
 
