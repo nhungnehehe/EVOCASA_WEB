@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
-import { ProductService } from '../services/product.service'; 
+import { ProductService } from '../services/product.service';
 import { IProduct } from '../interfaces/product';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../services/category.service';
@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
   standalone: false,
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
-  encapsulation: ViewEncapsulation.Emulated 
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class ProductComponent implements OnInit, AfterViewInit {
   products: any[] = [];
@@ -33,6 +33,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
   categoriesLoaded: boolean = false;
   currentCategoryId: string = '';
 
+  currentPage: number = 1;
+  productsPerPage: number = 24;
+  totalPages: number = 0;
+  pageNumbers: number[] = [];
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
@@ -41,7 +46,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
     private location: Location,
     private renderer: Renderer2,
     private el: ElementRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.data.subscribe((data: any) => {
@@ -57,131 +62,151 @@ export class ProductComponent implements OnInit, AfterViewInit {
         return product;
       });
       this.filteredProducts = [...this.allProducts];
-      this.products = this.filteredProducts;
+      this.updatePagination();  // Cập nhật số trang
+      // this.products = this.filteredProducts;
+      this.products = this.paginateProducts();
       console.log(`Loaded ${this.products.length} products (via resolver)`);
-      
+
       this.loadCategories();
     });
-    
+
     this.initializeMenu();
   }
+  // Hàm phân trang và cập nhật số trang
+  updatePagination(): void {
+    this.totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
+    this.pageNumbers = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+  
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.products = this.paginateProducts(); // Cập nhật lại sản phẩm khi người dùng nhấn vào số trang
+  }
+  
+  // Hàm lấy các sản phẩm cần hiển thị trên trang hiện tại
+  paginateProducts(): any[] {
+    const startIndex = (this.currentPage - 1) * this.productsPerPage;
+    const endIndex = startIndex + this.productsPerPage;
+    return this.filteredProducts.slice(startIndex, endIndex);
+  }
+
 
   ngAfterViewInit(): void {
-  const intervalId = setInterval(() => {
-    if (this.categoriesLoaded && this.mainCategories.length > 0) {
-      this.setupCategoryMenu();
-      setTimeout(() => {
-        this.handleRouteParams(); 
-        console.log('Applied active states to category menu');
-      }, 50);
-      
-      clearInterval(intervalId);
-      console.log('Setup category menu completed');
-    }
-  }, 100);
-  
-  setTimeout(() => {
-    clearInterval(intervalId);
-    if (!this.categoriesLoaded) {
-      console.warn('Timeout reached, categories might not be loaded!');
-      this.handleRouteParams();
-    }
-  }, 2000);
-}
+    const intervalId = setInterval(() => {
+      if (this.categoriesLoaded && this.mainCategories.length > 0) {
+        this.setupCategoryMenu();
+        setTimeout(() => {
+          this.handleRouteParams();
+          console.log('Applied active states to category menu');
+        }, 50);
 
-private handleRouteParams(): void {
-  const mainCategoryParam = this.route.snapshot.paramMap.get('mainCategory');
-  const subCategoryParam = this.route.snapshot.paramMap.get('subCategory');
-  
-  if (mainCategoryParam) {
-    const mainCat = this.categories.find(cat => 
-      cat.slug.toLowerCase() === mainCategoryParam.toLowerCase());
-    
-    if (mainCat) {
-      console.log('Found main category in params:', mainCat.name);
-      
-      this.showSubmenu(mainCat.slug);
-      setTimeout(() => {
-        this.activateCategory(mainCat.slug);
-      }, 0);
-      
-      if (subCategoryParam) {
-        const subCat = this.categories.find(cat => 
-          cat.slug.toLowerCase() === subCategoryParam.toLowerCase());
-        
-        if (subCat) {
-          console.log('Found subcategory in params:', subCat.name);
-          
-          setTimeout(() => {
-            this.activateSubcategory(subCat.slug);
-          }, 0);
-          
-          this.filterProductsByCategory(subCat.slug);
-          
-          this.updateTitleAndDescription(subCat.slug);
-          
-          this.lastCategory = mainCat.slug;
-          return;
-        }
+        clearInterval(intervalId);
+        console.log('Setup category menu completed');
       }
-      
-      this.filterProductsByCategory(mainCat.slug);
-      
-      this.updateTitleAndDescription(mainCat.slug);
-      this.lastCategory = mainCat.slug;
+    }, 100);
+
+    setTimeout(() => {
+      clearInterval(intervalId);
+      if (!this.categoriesLoaded) {
+        console.warn('Timeout reached, categories might not be loaded!');
+        this.handleRouteParams();
+      }
+    }, 2000);
+  }
+
+  private handleRouteParams(): void {
+    const mainCategoryParam = this.route.snapshot.paramMap.get('mainCategory');
+    const subCategoryParam = this.route.snapshot.paramMap.get('subCategory');
+
+    if (mainCategoryParam) {
+      const mainCat = this.categories.find(cat =>
+        cat.slug.toLowerCase() === mainCategoryParam.toLowerCase());
+
+      if (mainCat) {
+        console.log('Found main category in params:', mainCat.name);
+
+        this.showSubmenu(mainCat.slug);
+        setTimeout(() => {
+          this.activateCategory(mainCat.slug);
+        }, 0);
+
+        if (subCategoryParam) {
+          const subCat = this.categories.find(cat =>
+            cat.slug.toLowerCase() === subCategoryParam.toLowerCase());
+
+          if (subCat) {
+            console.log('Found subcategory in params:', subCat.name);
+
+            setTimeout(() => {
+              this.activateSubcategory(subCat.slug);
+            }, 0);
+
+            this.filterProductsByCategory(subCat.slug);
+
+            this.updateTitleAndDescription(subCat.slug);
+
+            this.lastCategory = mainCat.slug;
+            return;
+          }
+        }
+
+        this.filterProductsByCategory(mainCat.slug);
+
+        this.updateTitleAndDescription(mainCat.slug);
+        this.lastCategory = mainCat.slug;
+      }
     }
   }
-}
 
-private activateCategory(categorySlug: string): void {
-  setTimeout(() => {
-    const catElements = document.querySelectorAll('.category');
-    catElements.forEach((el: any) => {
-      el.classList.remove('active');
-      if (el.textContent === this.categoryMapping[categorySlug]) {
-        el.classList.add('active');
-        console.log('Activated main category:', el.textContent);
-      }
-    });
-  }, 0);
-}
+  private activateCategory(categorySlug: string): void {
+    setTimeout(() => {
+      const catElements = document.querySelectorAll('.category');
+      catElements.forEach((el: any) => {
+        el.classList.remove('active');
+        if (el.textContent === this.categoryMapping[categorySlug]) {
+          el.classList.add('active');
+          console.log('Activated main category:', el.textContent);
+        }
+      });
+    }, 0);
+  }
 
-private activateSubcategory(subcategorySlug: string): void {
-  setTimeout(() => {
-    const subcatElements = document.querySelectorAll('.subcategory');
-    subcatElements.forEach((el: any) => {
-      el.classList.remove('active');
-      if (el.textContent === this.categoryMapping[subcategorySlug]) {
-        el.classList.add('active');
-        console.log('Activated subcategory:', el.textContent);
+  private activateSubcategory(subcategorySlug: string): void {
+    setTimeout(() => {
+      const subcatElements = document.querySelectorAll('.subcategory');
+      subcatElements.forEach((el: any) => {
+        el.classList.remove('active');
+        if (el.textContent === this.categoryMapping[subcategorySlug]) {
+          el.classList.add('active');
+          console.log('Activated subcategory:', el.textContent);
+        }
+      });
+    }, 0);
+  }
+
+  private showSubmenu(categorySlug: string): void {
+    setTimeout(() => {
+      const allSubmenus = document.querySelectorAll('.level2');
+      allSubmenus.forEach((menu: any) => {
+        menu.style.display = 'none';
+      });
+      const submenu = document.getElementById(categorySlug);
+      if (submenu) {
+        submenu.style.display = 'flex';
+        this.lastCategory = categorySlug;
+        console.log('Showed submenu for:', categorySlug);
+      } else {
+        console.warn(`Submenu for ${categorySlug} not found in DOM yet`);
       }
-    });
-  }, 0);
-}
-  
-private showSubmenu(categorySlug: string): void {
-  setTimeout(() => {
-    const allSubmenus = document.querySelectorAll('.level2');
-    allSubmenus.forEach((menu: any) => {
-      menu.style.display = 'none';
-    });
-    const submenu = document.getElementById(categorySlug);
-    if (submenu) {
-      submenu.style.display = 'flex';
-      this.lastCategory = categorySlug;
-      console.log('Showed submenu for:', categorySlug);
-    } else {
-      console.warn(`Submenu for ${categorySlug} not found in DOM yet`);
-    }
-  }, 0);
-}
-  
+    }, 0);
+  }
+
   private updateTitleAndDescription(categorySlug: string): void {
     const titleEl = document.getElementById('all-title');
     if (titleEl) {
       titleEl.textContent = this.categoryMapping[categorySlug] || 'All';
     }
-    
+
     const descEl = document.getElementById('category-description');
     if (descEl) {
       descEl.textContent = this.categoryDescriptionMapping[categorySlug] || '';
@@ -203,7 +228,7 @@ private showSubmenu(categorySlug: string): void {
           return product;
         });
         this.filteredProducts = [...this.allProducts];
-        this.products = this.filteredProducts;
+        // this.products = this.filteredProducts;
         console.log(`Loaded ${this.products.length} products`);
       },
       error: (err) => {
@@ -227,14 +252,14 @@ private showSubmenu(categorySlug: string): void {
           } as Category;
         });
         console.log('Categories loaded:', this.categories.length);
-  
+
         this.categories.forEach(category => {
           this.categoryMapping[category.slug] = category.name;
           this.categoryDescriptionMapping[category.slug] = category.description;
           this.categoryIdMapping[category.slug] = category._id;
           this.categorySlugMapping[category._id] = category.slug;
         });
-  
+
         this.categories.forEach(category => {
           if (category.parentCategory) {
             const parent = this.categories.find(c => c._id === category.parentCategory);
@@ -243,7 +268,7 @@ private showSubmenu(categorySlug: string): void {
             }
           }
         });
-  
+
         this.mainCategories = this.categories.filter(cat => cat.parentCategory === null);
         console.log('Main categories:', this.mainCategories);
         this.categoriesLoaded = true;
@@ -258,36 +283,39 @@ private showSubmenu(categorySlug: string): void {
   }
 
   filterProductsByCategory(categorySlug: string): void {
+    this.currentPage = 1;
     if (categorySlug === 'all') {
       this.filteredProducts = [...this.allProducts];
-      this.products = this.filteredProducts;
+      this.updatePagination();  // Cập nhật số trang
+      // this.products = this.filteredProducts;
+      this.products = this.paginateProducts();
       return;
     }
-    
+
     const selectedCategoryId = this.categoryIdMapping[categorySlug];
     console.log('Filtering by slug:', categorySlug, '-> selectedCategoryId:', selectedCategoryId);
-    
+
     if (!selectedCategoryId) {
       console.error(`Category ID not found for slug: ${categorySlug}`);
       return;
     }
-    
+
     const isMainCategory = this.mainCategories.some(cat => cat.slug === categorySlug);
-    
+
     if (isMainCategory) {
       console.log(`Filtering products for main category: ${categorySlug}`);
-      
+
       const subCategoryIds = this.categories
         .filter(cat => cat.parentCategory === selectedCategoryId)
         .map(cat => cat._id);
-        
+
       console.log('Sub categories IDs:', subCategoryIds);
-    
+
       this.filteredProducts = this.allProducts.filter(product => {
         if (!product.category_id) return false;
         const prodCatId = product.category_id.toString();
-        return prodCatId === selectedCategoryId || 
-               subCategoryIds.some(id => id.toString() === prodCatId);
+        return prodCatId === selectedCategoryId ||
+          subCategoryIds.some(id => id.toString() === prodCatId);
       });
     } else {
       console.log(`Filtering products for subcategory: ${categorySlug}`);
@@ -296,9 +324,11 @@ private showSubmenu(categorySlug: string): void {
         return product.category_id.toString() === selectedCategoryId.toString();
       });
     }
-    
+
     console.log(`Found ${this.filteredProducts.length} products for category ${categorySlug}`);
-    this.products = this.filteredProducts;
+    // this.products = this.filteredProducts;
+    this.updatePagination();  // Cập nhật lại số trang cho danh mục hiện tại
+    this.products = this.paginateProducts();  // Cập nhật lại sản phẩm hiển thị
   }
 
   setupCategoryMenu(): void {
@@ -319,15 +349,15 @@ private showSubmenu(categorySlug: string): void {
         submenu.parentNode.removeChild(submenu);
       }
     });
-    
+
     this.mainCategories.forEach(category => {
       const subMenuContainer = this.renderer.createElement('div');
       this.renderer.setAttribute(subMenuContainer, 'id', category.slug);
       this.renderer.addClass(subMenuContainer, 'level2');
-      
+
       const subcategories = this.getSubcategoriesForCategory(category._id);
       console.log(`Subcategories for ${category.name}:`, subcategories);
-      
+
       subcategories.forEach(subcat => {
         const subcategoryEl = this.renderer.createElement('div');
         this.renderer.addClass(subcategoryEl, 'subcategory');
@@ -337,10 +367,10 @@ private showSubmenu(categorySlug: string): void {
         });
         this.renderer.appendChild(subMenuContainer, subcategoryEl);
       });
-      
+
       this.renderer.appendChild(menuContainer, subMenuContainer);
     });
-  
+
     const categoryElements = this.el.nativeElement.querySelectorAll('.category');
     categoryElements.forEach((el: any) => {
       this.renderer.listen(el, 'mouseenter', () => {
@@ -350,7 +380,7 @@ private showSubmenu(categorySlug: string): void {
           allSubmenus.forEach((menu: any) => {
             menu.style.display = 'none';
           });
-          
+
           const submenu = document.getElementById(categorySlug);
           if (submenu) {
             submenu.style.display = 'flex';
@@ -358,7 +388,7 @@ private showSubmenu(categorySlug: string): void {
         }
       });
     });
-    
+
     this.renderer.listen(menuContainer, 'mouseleave', () => {
       if (!this.lastCategory) {
         const allSubmenus = document.querySelectorAll('.level2');
@@ -370,20 +400,20 @@ private showSubmenu(categorySlug: string): void {
         allSubmenus.forEach((menu: any) => {
           menu.style.display = 'none';
         });
-        
+
         const activeSubmenu = document.getElementById(this.lastCategory);
         if (activeSubmenu) {
           activeSubmenu.style.display = 'flex';
         }
       }
     });
-    
+
     console.log('Category menu setup completed');
   }
 
   private getCategorySlugFromText(text: string): string | null {
     if (text === 'All') return 'all';
-    
+
     const category = this.mainCategories.find(c => c.name === text);
     return category ? category.slug : null;
   }
@@ -432,42 +462,42 @@ private showSubmenu(categorySlug: string): void {
       catElements.forEach((el: any) => {
         el.classList.remove('active');
       });
-      
+
       const allCatElement = this.el.nativeElement.querySelector('.category');
       if (allCatElement) {
         allCatElement.classList.add('active');
       }
-      
+
       const level2s = document.querySelectorAll('.level2');
       level2s.forEach((submenu: any) => submenu.style.display = 'none');
-      
+
       this.lastCategory = null;
       const titleEl = document.getElementById('all-title');
       if (titleEl) { titleEl.textContent = 'Shop All'; }
-      
+
       const descEl = document.getElementById('category-description');
       if (descEl) { descEl.textContent = ''; }
-      
+
       this.filterProductsByCategory('all');
       this.location.go('/product');
       return;
     }
-  
+
     const isMainCategory = this.mainCategories.some(cat => cat.slug === category);
-    
+
     if (isMainCategory) {
 
       this.activateCategory(category);
       this.showSubmenu(category);
       this.filterProductsByCategory(category);
       this.updateTitleAndDescription(category);
-      
+
 
       this.location.go(`/product/${category}`);
     } else {
 
       const parentSlug = this.categoryHierarchy[category];
-      
+
       if (parentSlug) {
         this.activateCategory(parentSlug);
         this.activateSubcategory(category);
@@ -478,6 +508,9 @@ private showSubmenu(categorySlug: string): void {
         this.location.go(`/product/${parentSlug}/${category}`);
       }
     }
+    this.filterProductsByCategory(category);
+    this.products = this.paginateProducts();  // Cập nhật lại sản phẩm khi chuyển đổi danh mục
+    this.updatePagination();  // Cập nhật lại số trang
   }
 
   onHover(index: number): void {

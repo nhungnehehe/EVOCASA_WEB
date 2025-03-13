@@ -183,6 +183,39 @@
   font-size: 14px;
   text-align: right;
 }
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.pagination-controls button {
+  margin: 0 5px;
+  padding: 10px 15px;
+  background-color: #F2EAD3; /* Màu nền cho nút bình thường */
+  border: 1px solid #5E4C3E; /* Border 1px khi bình thường */
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease, border-width 0.3s ease;
+  font-weight: normal; /* Đảm bảo font chữ bình thường */
+  opacity: 1; /* Đảm bảo không có hiệu ứng làm mờ */
+}
+
+.pagination-controls button:hover {
+  background-color: #5E4C3E;
+}
+
+.pagination-controls button.active {
+
+  border-color: #5E4C3E; /* Viền khi được click */
+  border-width: 2px; /* Border 2px khi được click */
+  font-weight: bold; /* Làm đậm chữ khi nút được chọn */
+  opacity: 1; /* Đảm bảo không bị mờ khi được chọn */
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 992px) {

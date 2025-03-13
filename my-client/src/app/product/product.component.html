@@ -49,3 +49,11 @@
     <p>No products found.</p>
   </div>
 </div>
+<div *ngIf="totalPages > 1" class="pagination-controls">
+  <button *ngFor="let page of pageNumbers" 
+          (click)="goToPage(page)" 
+          [class.active]="page === currentPage" 
+          [disabled]="page === currentPage">
+    {{ page }}
+  </button>
+</div> 
