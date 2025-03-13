@@ -18,5 +18,7 @@ export class UserService {
   setCurrentUserPhone(phone: string): void {
     this._currentUserPhone.next(phone);
   }
-
+  clearCurrentUser(): void {
+    this._currentUserName.next('');
+  }
 }
