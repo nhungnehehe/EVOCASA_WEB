@@ -61,6 +61,9 @@ export class LoginComponent implements OnInit {
           const firstName = user.Name.split(' ')[0];
           this.userService.setCurrentUserName(firstName);
         }
+        if (user && user.phonenumber) {
+          this.userService.setCurrentUserPhone(user.phonenumber);
+        }
         this.accountService.checkPasswordResetSuccess(this.phonenumber).subscribe({
           next: (data) => {
           }

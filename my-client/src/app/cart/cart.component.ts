@@ -3,6 +3,9 @@ import { CartService } from '../services/cart.service';
 import { CartpaymentService } from '../services/cartpayment.service'; 
 import { CartItem } from '../interfaces/cart'
 import { UserService } from '../services/user.service';
+import { CustomerService } from '../services/customer.service';
+import { CartItem1 } from '../interfaces/customer';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,13 +16,19 @@ import { UserService } from '../services/user.service';
 })
 
 export class CartComponent implements OnInit {
+  currentUserPhone: string | null = null;
+  currentCustomerId: string | null = null;
+  isUserLoggedIn: boolean = false;
+
   // Danh sách sản phẩm trong giỏ hàng
   products: CartItem[] = [];  // Danh sách sản phẩm trong giỏ hàng
   selectedProductIds: Set<string> = new Set();
   constructor(
     private cartService: CartService,
     public cartpaymentService: CartpaymentService,
-    private userService: UserService
+    private userService: UserService,
+    private customerService: CustomerService,
+    private router: Router
   ) {}
 
   total: number = 0; // Tổng giỏ hàng
@@ -28,6 +37,34 @@ export class CartComponent implements OnInit {
   // Kiểm tra giỏ hàng có trống hay không
   get isEmpty(): boolean {
     return this.products.length === 0;
+  }
+
+  getCustomerId(phone: string) {
+    this.customerService.getCustomerByPhone(phone).subscribe(
+      (customer) => {
+        this.currentCustomerId = customer._id;
+        this.isUserLoggedIn = true;
+        if (this.currentCustomerId) {
+          this.loadCart(this.currentCustomerId);
+        }
+      },
+      (error) => {
+        console.error('Không tìm thấy khách hàng với số điện thoại này', error);
+        this.isUserLoggedIn = false;
+      }
+    );
+  }
+  
+  loadCart(customerId: string) {
+    this.customerService.getCartByCustomerId(customerId).subscribe((cartItems: CartItem1[]) => {
+      // Chuyển đổi CartItem1[] sang CartItem[]
+      // Cần triển khai logic chuyển đổi tùy theo cấu trúc dữ liệu thực tế
+      this.cartService.getCartItems().subscribe((cartServiceItems) => {
+        // Kết hợp dữ liệu từ cả hai nguồn
+        this.products = [...cartServiceItems];
+        this.updateCartPaymentSummary();
+      });
+    });
   }
 
   // Lấy danh sách sản phẩm trong giỏ hàng
@@ -64,7 +101,18 @@ export class CartComponent implements OnInit {
       this.loadSelectedProducts();
       this.updateCartPaymentSummary();
 
-    }
+      // Subscribe để lấy số điện thoại của người dùng khi họ đăng nhập
+      this.userService.currentUserPhone$.subscribe((phone: string | null) => {
+      this.currentUserPhone = phone;
+      this.isUserLoggedIn = !!phone; // Đặt isUserLoggedIn dựa trên việc có phone hay không
+    
+        if (phone) {
+          this.getCustomerId(phone);
+        } else {
+        }
+      });
+}
+
     isProductSelected(productId: string): boolean {
       return this.selectedProductIds.has(productId); // Kiểm tra xem sản phẩm có được chọn không
     }
@@ -152,4 +200,16 @@ onCheckboxChange(event: any, product: CartItem): void {
     this.totalQuantity = this.cartpaymentService.getTotalQuantity(); // Lấy tổng số lượng sản phẩm từ CartPaymentService
     this.total = this.cartpaymentService.getTotalAmount(); // Lấy tổng số tiền từ CartPaymentService
   }
+  // Xử lý khi người dùng nhấn nút Checkout
+  onCheckout(): void {
+    console.log("Đã nhấn Checkout. Người dùng đã đăng nhập:", this.isUserLoggedIn);
+    if (this.isUserLoggedIn) {
+      console.log("Đang chuyển hướng đến payment-shipping");
+      this.router.navigate(['/payment-shipping']);
+    } else {
+      console.log("Đang chuyển hướng đến login-page");
+      this.router.navigate(['/login-page'], { queryParams: { returnUrl: '/payment-shipping' } });
+    }
+  }
+
  }
