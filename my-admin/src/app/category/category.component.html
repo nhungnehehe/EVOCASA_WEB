@@ -50,9 +50,13 @@
       <tbody>
         <tr *ngFor="let category of categories; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ category.image }}</td>
+          <!-- Hiển thị hình ảnh -->
+          <td><img *ngIf="category.image" [src]="category.image" alt="Category Image" style="width: 50px; height: 50px;"></td>
+          <!-- Hiển thị tên danh mục -->
           <td>{{ category.name }}</td>
+          <!-- Hiển thị mã danh mục -->
           <td>{{ category.id }}</td>
+          <!-- Hiển thị mô tả -->
           <td>{{ category.description }}</td>
           <td>
             <button class="icon-btn">
