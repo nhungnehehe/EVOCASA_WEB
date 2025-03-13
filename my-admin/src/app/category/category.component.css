@@ -170,7 +170,7 @@ h4 {
 .category-table th:nth-child(3) {
   /* Category Name */
   width: 18%;
-  min-width: 180px;
+  min-width: 160px;
 }
 .category-table th:nth-child(4) {
   /* Category ID */
@@ -180,36 +180,38 @@ h4 {
 
 .category-table th:nth-child(5) {
   /* Description */
-  width: 40%;
+  width: 35%;
   min-width: 200px;
 }
 
 .category-table th:nth-child(6) {
   /* Action */
   width: 15%;
-  min-width: 120px;
+  min-width: 100px;
 }
 
 .category-table th {
   background-color: #5e4c3e;
   color: #f2ead3;
-  padding: 15px 10px;
+  padding: 10px 5px;
   text-align: center;
   border-bottom: 1px solid #482d2d;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 13px;
 }
 .category-table td {
   border-bottom: 0.5px solid #482d2d;
   color: rgba(0, 0, 0, 0.5);
-  padding: 15px 10px;
+  padding: 10px 5px;
   text-align: center;
   vertical-align: middle;
   height: 60px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 13px;
 }
 
 /* Cho phép description hiển thị nhiều dòng */
@@ -223,7 +225,7 @@ h4 {
 .category-table td:nth-child(3) {
   white-space: normal;
   line-height: 1.2;
-  padding: 10px 15px;
+  padding: 5px 10px;
   text-align: center;
 }
 
@@ -232,14 +234,14 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
 }
 
 .icon-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 5px;
   align-items: center;
   justify-content: center;
   color: rgba(0, 0, 0, 0.5);
@@ -251,8 +253,8 @@ h4 {
 }
 
 .icon-btn img {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   object-fit: contain;
 }
 
