@@ -16,6 +16,7 @@ import { AddProductComponent } from './product-detail/add-product/add-product.co
 import { EditProductComponent } from './product-detail/edit-product/edit-product.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,10 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     EditProductComponent,
     CustomerDetailComponent,
-    LoginComponent
+    LoginComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
