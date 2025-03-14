@@ -151,7 +151,7 @@ export class CustomerService {
 getCartByPhone(phone: string): Observable<CartItem1[]> {
   return this.http.get<CartItem1[]>(`${this.apiUrl}/customers/phone/${phone}/cart`)
     .pipe(
-      tap(_ => console.log(`📢 Fetched cart for phone=${phone}`)),
+      tap(_ => console.log(`Fetched cart for phone=${phone}`)),
       catchError(this.handleError<CartItem1[]>('getCartByPhone', []))
     );
 }

@@ -16,12 +16,10 @@ export class CartService {
 
   }
 
-  // Lấy danh sách các sản phẩm trong giỏ hàng
-  getCartItems(): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(`${this.baseUrl}/cart`, { withCredentials: true }).pipe(
-      tap((cartItems) => this.emitCartCount(cartItems)),
-      catchError(this.handleError)
-    );
+   // Lấy danh sách sản phẩm trong giỏ hàng
+   getCartItems(): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(`${this.baseUrl}/cart`, { withCredentials: true })
+      .pipe(catchError(this.handleError));
   }
 
   // Thêm sản phẩm vào giỏ hàng
@@ -31,10 +29,11 @@ export class CartService {
       { productId, quantity },
       { withCredentials: true }
     ).pipe(
-      tap((cartItems) => this.emitCartCount(cartItems)),
+      tap((cartItems: CartItem[]) => this.emitCartCount(cartItems)),
       catchError(this.handleError)
     );
   }
+
   getBuyNowItems(): Observable<BuyNowItem[]> {
     return this.http.get<BuyNowItem[]>(`${this.baseUrl}/buynow`, { withCredentials: true }).pipe(
       // tap((buyNowItems) => this.emitCartCount(buyNowItems)),
@@ -59,31 +58,28 @@ export class CartService {
 
   // Cập nhật số lượng sản phẩm trong giỏ hàng
   updateCartItem(productId: string, quantity: number): Observable<CartItem[]> {
-    return this.http.put<CartItem[]>(
-      `${this.baseUrl}/cart`,
-      { productId, quantity },
-      { withCredentials: true }
-    ).pipe(
-      tap((cartItems) => this.emitCartCount(cartItems)),
-      catchError(this.handleError)
-    );
+    return this.http.put<CartItem[]>(`${this.baseUrl}/cart`, { productId, quantity }, { withCredentials: true })
+      .pipe(
+        tap(cartItems => this.emitCartCount(cartItems)), // Phát sự kiện cập nhật giỏ hàng
+        catchError(this.handleError)
+      );
   }
 
   // Xóa một sản phẩm khỏi giỏ hàng
   removeCartItem(productId: string): Observable<CartItem[]> {
-    return this.http.delete<CartItem[]>(`${this.baseUrl}/cart/${productId}`, { withCredentials: true }).pipe(
-      tap((cartItems) => this.emitCartCount(cartItems)),
-      catchError(this.handleError)
-    );
+    return this.http.delete<CartItem[]>(`${this.baseUrl}/cart/${productId}`, { withCredentials: true })
+      .pipe(
+        tap(cartItems => this.emitCartCount(cartItems)), // Phát sự kiện khi xóa sản phẩm
+        catchError(this.handleError)
+      );
   }
 
-  // Xóa toàn bộ giỏ hàng
+ // Xóa toàn bộ giỏ hàng (KHÔNG phát sự kiện)
   removeAllCart(): Observable<CartItem[]> {
-    return this.http.delete<CartItem[]>(`${this.baseUrl}/cart`, { withCredentials: true }).pipe(
-      tap(() => this.cartCountChanged.emit(0)), // Phát sự kiện giỏ hàng trống
-      catchError(this.handleError)
-    );
+    return this.http.delete<CartItem[]>(`${this.baseUrl}/cart`, { withCredentials: true })
+      .pipe(catchError(this.handleError));
   }
+
 
   // Cập nhật tổng số lượng giỏ hàng
   updateCartCount(): void {
