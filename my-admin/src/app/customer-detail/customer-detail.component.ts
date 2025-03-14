@@ -110,4 +110,9 @@ export class CustomerDetailComponent {
   getTotalAmount(): number {
     return this.orders.reduce((total, order) => total + order.TotalPrice, 0);
   }
+
+  getOrderQuantity(order: Order): number {
+    return order.OrderProduct.reduce((total, product) => total + product.Quantity, 0);
+  }
+  
 }
