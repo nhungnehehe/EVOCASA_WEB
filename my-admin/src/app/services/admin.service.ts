@@ -76,7 +76,8 @@ export class AdminService {
 
   // Check if user is logged in
   isLoggedIn(): boolean {
-    return !!this.currentAdminSubject.value;
+    const admin = this.getCurrentAdmin();
+    return !!admin && !!admin._id; // Make sure we have a valid admin object with ID
   }
 
   // Error handling
