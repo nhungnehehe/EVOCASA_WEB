@@ -1,14 +1,14 @@
 
 <h1> CUSTOMER DETAILS </h1>
-    <div class="customer-info">
+    <div class="customer-info" *ngIf="displayedCustomer">
         <div class="profile-card">
             <div class="profile-pic"></div>
             <div class="profile-details">
-                <p><strong>Name:</strong> Mark</p>
-                <p><strong>Gender:</strong> Male</p>
-                <p><strong>Email:</strong> shristi.gmail.com</p>
-                <p><strong>Phone:</strong> 0832-XXX-XXX</p>
-                <p><strong>Address:</strong> 62, rue des</p>
+                <p><strong>Name:</strong> {{ displayedCustomer.Name }}</p>
+                <p><strong>Gender:</strong> {{ displayedCustomer.Gender }}</p>
+                <p><strong>Email:</strong> {{ displayedCustomer.Mail }}</p>
+                <p><strong>Phone:</strong> {{ displayedCustomer.Phone }}</p>
+                <p><strong>Address:</strong> {{ displayedCustomer.Address}}</p>
             </div>
         </div>
         <div class="summary-container">
@@ -54,7 +54,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let order of orders">
+            <!-- <tr *ngFor="let order of orders">
               <td>{{ order.id }}</td>
               <td>{{ order.amount }}</td>
               <td>{{ order.quantity }}</td>
@@ -68,17 +68,28 @@
                   </a>
                 </button>
             </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
       
   
-    <div class="pagination">
+    <!-- <div class="pagination">
       <button class="prev-btn">&lt;</button>
       <span class="page-number">1</span>
       <span class="page-number">2</span>
       <span class="page-number">3</span>
       <button class="next-btn">&gt;</button>
-    </div>
+    </div> -->
+
+    <!-- Pagination Controls -->
+<div class="pagination">
+  <button class="prev-btn" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
+  <span *ngFor="let page of [].constructor(totalPages); let i = index">
+    <button class="page-number" (click)="changePage(i + 1)" [class.active]="currentPage === (i + 1)">
+      {{ i + 1 }}
+    </button>
+  </span>
+  <button class="next-btn" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
+</div>
   
