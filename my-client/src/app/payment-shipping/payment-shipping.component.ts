@@ -4,6 +4,7 @@ import { CartpaymentService } from '../services/cartpayment.service';
 import { CartService } from '../services/cart.service';
 import { BuyNowItem } from '../interfaces/buynow';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CheckoutDataService } from '../services/checkout-data.service';
 
 @Component({
   selector: 'app-payment-shipping',
@@ -23,7 +24,13 @@ export class PaymentShippingComponent implements OnInit {
 
   productName: string | null = null;
 
-  constructor(private http: HttpClient, private cartpaymentService: CartpaymentService, private cartService: CartService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private cartpaymentService: CartpaymentService,
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private checkoutDataService: CheckoutDataService) { }
   loadProducts(): void {
     if (this.isBuyNow) {
       // Nếu là Buy Now, lấy các sản phẩm từ BuyNowItems
@@ -43,6 +50,7 @@ export class PaymentShippingComponent implements OnInit {
             }
             return product;
           });
+          this.checkoutDataService.setCheckoutData(this.products);
           this.updateTotal();
         },
         error: (err) => {
@@ -52,6 +60,7 @@ export class PaymentShippingComponent implements OnInit {
     } else {
       // Nếu không phải Buy Now, lấy các sản phẩm từ CartPaymentItems
       this.products = this.cartpaymentService.getCartPaymentItems(); // Thay vì gọi API, dùng getCartPaymentItems
+      this.checkoutDataService.setCheckoutData(this.products);
       this.updateTotal();
     }
   }
