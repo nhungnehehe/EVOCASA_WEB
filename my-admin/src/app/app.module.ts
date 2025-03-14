@@ -18,6 +18,9 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,8 +38,9 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     EditProductComponent,
     CustomerDetailComponent,
+    LoginComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, CommonModule],
   providers: [],
   bootstrap: [AppComponent],
 })
