@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from '../interfaces/customer';
 import { CustomerService } from '../services/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OrderService } from '../services/order.service'; 
+
 
 @Component({
   selector: 'app-customer-detail',
@@ -17,9 +19,13 @@ export class CustomerDetailComponent {
   itemsPerPage: number = 1;
   totalCustomers: number = 0;
   displayedCustomer: Customer | null = null;
+  orders: any[] = [];
+  filteredOrders: any[] = [];
+  customerNames: { [key: string]: string } = {};
 
 
-  constructor(private customerService: CustomerService,  private router: Router, private route: ActivatedRoute) {}
+
+  constructor(private customerService: CustomerService,  private router: Router, private route: ActivatedRoute, private orderService: OrderService) {}
 
   ngOnInit(): void {
     this.loadCustomers();
@@ -27,6 +33,7 @@ export class CustomerDetailComponent {
       const customerId = params.get('id');
       if (customerId) {
         this.displayCustomerDetails(customerId);
+        this.loadCustomerOrders(customerId);
       }
     });
   }
@@ -59,6 +66,22 @@ export class CustomerDetailComponent {
       this.displayedCustomer = customer;  // Hiển thị chi tiết khách hàng theo ID
     }
   }
+
+
+  loadCustomerOrders(customerId: string): void {
+    this.orderService.getOrdersByCustomer(customerId).subscribe(
+      (orders) => {
+        console.log('Orders:', orders);  // Kiểm tra dữ liệu đơn hàng trả về
+        this.orders = orders;
+      },
+      (error) => {
+        console.error('Lỗi khi lấy đơn hàng của khách hàng:', error);
+      }
+    );
+  }
+
+  
+
 
   // Pagination: change the page
   changePage(page: number): void {

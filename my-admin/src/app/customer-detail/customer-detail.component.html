@@ -54,13 +54,13 @@
             </tr>
           </thead>
           <tbody>
-            <!-- <tr *ngFor="let order of orders">
-              <td>{{ order.id }}</td>
-              <td>{{ order.amount }}</td>
-              <td>{{ order.quantity }}</td>
-              <td>{{ order.date }}</td>
-              <td>{{ order.payment }}</td>
-              <td>{{ order.status }}</td>
+            <tr *ngFor="let order of orders">
+              <td>{{ customerNames[order.Customer_id] || 'Loading...' }}</td>
+              <td>{{ order.TotalPrice }}</td>
+              <td>{{ order.OrderProduct }}</td>
+              <td>{{ order.Date }}</td>
+              <td>{{ order.PaymentMethod }}</td>
+              <td>{{ order.Status }}</td>
               <td>
                 <button class="view-btn">
                   <a routerLink="/customer-detail">
@@ -68,7 +68,7 @@
                   </a>
                 </button>
             </td>
-            </tr> -->
+            </tr>
           </tbody>
         </table>
       </div>
