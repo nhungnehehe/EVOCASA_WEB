@@ -186,4 +186,14 @@ export class CategoryComponent implements OnInit {
       }
     });
   }
+
+  getCategoryImageForTable(category: Category): string {
+    if (category.image && category.image.trim() !== '') {
+      // Parse the JSON string and get the first image URL
+      const imageArray = JSON.parse(category.image);
+      return imageArray[0]; // Return the first image in the array
+    }
+    return 'assets/images/category-placeholder.png'; // Fallback image
+  }
+  
 }

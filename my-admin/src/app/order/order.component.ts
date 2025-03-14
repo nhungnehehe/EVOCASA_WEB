@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Order } from '../interfaces/order';
+import { OrderService } from '../services/order.service';
+import { Router } from '@angular/router';
+import { CustomerService } from '../services/customer.service';
+import { Customer } from '../interfaces/customer';
 
 @Component({
   selector: 'app-order',
@@ -7,46 +12,58 @@ import { Component } from '@angular/core';
   styleUrl: './order.component.css',
 })
 export class OrderComponent {
-  orders = [
-    {
-      id: 123450,
-      customerid: '250228014',
-      name: 'Nhung Pham',
-      date: '27/02/2025',
-      price: 680,
-      status: 'Delivered',
-    },
-    {
-      id: 123451,
-      customerid: '250228014',
-      name: 'Trang Phan',
-      date: '28/02/2025',
-      price: 750,
-      status: 'In transit',
-    },
-    {
-      id: 123452,
-      customerid: '250228014',
-      name: 'Huyen Nguyen',
-      date: '28/02/2025',
-      price: 980,
-      status: 'Delivered',
-    },
-    {
-      id: 123453,
-      customerid: '250228014',
-      name: 'Nhu Vu',
-      date: '01/03/2025',
-      price: 740,
-      status: 'Delivered',
-    },
-    {
-      id: 123460,
-      customerid: '250228013',
-      name: 'Minh Thao Le',
-      date: '28/02/2025',
-      price: 850,
-      status: 'Completed',
-    },
-  ];
+  orders: Order[] = [];
+
+  totalOrders: number = 0;
+
+  customerNames: { [key: string]: string } = {}; 
+
+  selectedOrder: Order | null = null;
+ 
+  constructor(private orderService: OrderService, private customerService: CustomerService,  private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadOrders();
+  }
+  loadOrders(): void {
+    this.orderService.getAllOrders().subscribe(
+      (data) => {
+        this.orders = data;
+        this.totalOrders = data.length;
+        this.fetchCustomerNames(); 
+        // this.updateDisplayedCustomers();
+      },
+      (error) => {
+        console.error('Error fetching orders:', error);
+      }
+    );
+  }
+  // Fetch customer names based on customer_id and store them temporarily
+  fetchCustomerNames(): void {
+    this.orders.forEach((order) => {
+      // Check if customer name is already fetched, if not, fetch it
+      if (!this.customerNames[order.Customer_id]) {
+        this.customerService.getCustomerById(order.Customer_id).subscribe(
+          (customer: Customer) => {
+            this.customerNames[order.Customer_id] = customer.Name; // Store customer name by customer_id
+          },
+          (error) => {
+            console.error('Error fetching customer details:', error);
+          }
+        );
+      }
+    });
+  }
+  viewOrderDetails(id: string): void {
+    this.orderService.getOrderById(id).subscribe(
+      (data) => {
+        this.selectedOrder = data; // Store the selected customer's details
+      },
+      (error) => {
+        console.error('Error fetching order details:', error);
+      }
+    );
+    this.router.navigate([`/order-detail/${id}`]);
+  }
+  
 }
