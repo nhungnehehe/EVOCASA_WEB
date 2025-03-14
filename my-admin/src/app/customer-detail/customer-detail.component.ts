@@ -106,4 +106,8 @@ export class CustomerDetailComponent {
   get totalPages(): number {
     return Math.ceil(this.totalCustomers / this.itemsPerPage);
   }
+
+  getTotalAmount(): number {
+    return this.orders.reduce((total, order) => total + order.TotalPrice, 0);
+  }
 }

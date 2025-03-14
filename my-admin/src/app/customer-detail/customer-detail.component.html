@@ -15,14 +15,14 @@
             <div class="summary-card">
                 <h2>Total Orders</h2>
                 <div class="value-container">
-                    <p class="value">110</p>
+                    <p class="value">{{ orders.length }}</p>
                     <p class="percentage">+10% <span>This month</span></p>
                 </div>
             </div>
             <div class="summary-card">
                 <h2>Total Amount</h2>
                 <div class="value-container">
-                    <p class="value">155,641</p>
+                    <p class="value">{{ getTotalAmount() }}</p>
                     <p class="percentage">+15% <span>This month</span></p>
                 </div>
             </div>
