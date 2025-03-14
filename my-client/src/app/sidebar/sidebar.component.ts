@@ -314,9 +314,11 @@ updateCustomerCartOnServer(): void {
 
   navigateToCart() {
     this.closeCart(); // Đóng sidebar trước
-    this.router.navigate(['/cart-page']); // Chuyển đến trang giỏ hàng
+    this.cartpaymentService.clearCartPayment(); 
+    console.log("✅ Giỏ hàng thanh toán đã được xóa.");
+    this.router.navigate(['/cart-page']); // Chuyển hướng sau khi xóa
   }
-
+  
   clearCart(): void {
     this.products = [];
     this.total = 0;
