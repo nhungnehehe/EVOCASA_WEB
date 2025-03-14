@@ -59,27 +59,43 @@ export class HeaderComponent implements OnInit {
    // Hàm tìm kiếm
    search(): void {
     if (this.searchTerm.trim()) {
-      this.searchService.search(this.searchTerm).subscribe((results) => {
-        this.searchResults = results;  // Lưu kết quả vào searchResults
-        console.log("Kết quả tìm kiếm:", results); 
-
-        if (results.length > 0) {
-          const product = results[0]; // Lấy sản phẩm đầu tiên từ kết quả
-          // Hiển thị thông tin sản phẩm bằng alert()
-          // alert(`Sản phẩm tìm thấy:\nTên: ${product.name}\nGiá: ${product.price}\nLink: ${product.link}`);
-        } else {
-          // alert("Không tìm thấy sản phẩm khớp với từ khóa.");
+      this.searchService.search(this.searchTerm).subscribe(
+        (results) => {
+          if (results.length === 0) {
+            this.searchResults = [
+              {
+                name: "⚠️ No matching products found.",
+                price: null, 
+                link: null,
+                image: "assets/images/not-found.png", // Ảnh mặc định nếu không tìm thấy sản phẩm
+                isPlaceholder: true 
+              }
+            ];
+          } else {
+            this.searchResults = results.map((product) => ({
+              ...product,
+              image: product.image || "assets/images/default-product.png" // Nếu sản phẩm không có ảnh, dùng ảnh mặc định
+            }));
+          }
+        },
+        (error) => {
+          console.error("Lỗi khi tìm kiếm:", error);
+          this.searchResults = [
+            {
+              name: "⚠️ No matching products found.",
+              price: null,
+              link: null,
+              image: "assets/images/not-found.png", // Ảnh mặc định khi xảy ra lỗi
+              isPlaceholder: true
+            }
+          ];
         }
-      }, error => {
-        console.error("Lỗi khi tìm kiếm:", error);
-        this.searchResults = [];  // Xử lý lỗi khi không có kết quả
-        this.searchTerm = '';  // Xóa nội dung trong ô input
-      });
+      );
     } else {
-      this.searchResults = [];  // Nếu không có từ khóa, không có kết quả
-      this.searchTerm = '';  // Xóa nội dung trong ô input
+      this.searchResults = [];
     }
   }
+  
   
   selectProduct(product: any): void {
     // Ví dụ: Chuyển hướng đến trang chi tiết sản phẩm

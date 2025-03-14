@@ -125,25 +125,31 @@
     </div>
     <div *ngIf="searchResults.length > 0" class="search-suggestions">
       <ul>
-        <li *ngFor="let result of searchResults" (click)="selectProduct(result)">
-          {{ result.name }} - {{ result.price | currency }}
+        <li *ngFor="let result of searchResults" 
+            (click)="!result.isPlaceholder && selectProduct(result)" 
+            class="search-item">
+          <img [src]="result.image[0]" alt="Product Image" class="search-image">
+          <div class="search-info">
+            <span>{{ result.name }}</span>
+            <span *ngIf="result.price"> - {{ result.price | currency }}</span>
+          </div>
         </li>
       </ul>
     </div>
-    
-    
 
-      <div class="signcart">
-        <img src="images/header/Sign-in-icon.svg" />
-        <a routerLink="/login-page" class="icon" *ngIf="!currentUserName" routerLinkActive="active">SIGN IN</a>
-        <span class="icon" *ngIf="currentUserName"><a routerLink="/manage-account" class="icon" routerLinkActive="active">HI, {{ currentUserName }}</a></span>
-      </div>
-      <div class="signcart">
-        <button (click)="openSidebar()">
-          <img src="images/header/Cart-icon.svg" />
-        </button>
-        <span class="total_quantity">{{ displayedQuantity }}</span>
-        <label class="icon" (click)="openSidebar()" routerLinkActive="active">CART</label>
-      </div>
+
+    <div class="signcart">
+      <img src="images/header/Sign-in-icon.svg" />
+      <a routerLink="/login-page" class="icon" *ngIf="!currentUserName" routerLinkActive="active">SIGN IN</a>
+      <span class="icon" *ngIf="currentUserName"><a routerLink="/manage-account" class="icon"
+          routerLinkActive="active">HI, {{ currentUserName }}</a></span>
     </div>
+    <div class="signcart">
+      <button (click)="openSidebar()">
+        <img src="images/header/Cart-icon.svg" />
+      </button>
+      <span class="total_quantity">{{ displayedQuantity }}</span>
+      <label class="icon" (click)="openSidebar()" routerLinkActive="active">CART</label>
+    </div>
+  </div>
 </header>

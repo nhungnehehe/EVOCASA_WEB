@@ -951,8 +951,8 @@ app.get("/search", async (req, res) => {
       type: 'product',
       name: product.Name,
       price: product.Price,
-      link: `/product/${product._id}`,
-      image: product.Image[0] // Giả sử mỗi sản phẩm có ít nhất một hình ảnh
+      link: `/product-detail/${encodeURIComponent(product.Name.trim())}`,
+      image: product.Image // Giả sử mỗi sản phẩm có ít nhất một hình ảnh
     }));
 
     // Trả về kết quả tìm kiếm
