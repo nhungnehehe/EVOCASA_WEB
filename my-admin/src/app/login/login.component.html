@@ -1,3 +1,13 @@
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <img src="images/header/LogoHasName.png" alt="Logo" />
+    </div>
+    <div class="nav-links">
+      <a routerLink="login-page" class="log-in-btn">SIGN IN</a>
+    </div>
+  </div>
+</header>
 <div class="signin-container">
   <div class="signin-box">
     <div class="signin-content">
@@ -6,44 +16,42 @@
         Hey! Enter your details to get sign in to your account!
       </p>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div>
-          <label for="employeeId">Employee ID</label>
-          <input id="employeeId" formControlName="employeeId" type="text" />
+        <div class="input-container">
+          <input
+            type="text"
+            formControlName="employeeId"
+            placeholder="Employee ID"
+          />
           <div
             *ngIf="
               loginForm.get('employeeId')?.invalid &&
               loginForm.get('employeeId')?.touched
             "
-          >
-            Employee ID is required.
-          </div>
+          ></div>
         </div>
 
-        <div>
-          <label for="password">Password</label>
+        <div class="input-container">
           <input
-            id="password"
-            formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Password"
           />
-          <button type="button" (click)="togglePasswordVisibility()">
-            {{ showPassword ? "Hide" : "Show" }} Password
-          </button>
+          <span class="eye-icon" (click)="togglePasswordVisibility()">
+            <span class="material-icons">
+              {{ showPassword ? "visibility_off" : "visibility" }}
+            </span>
+          </span>
           <div
             *ngIf="
               loginForm.get('password')?.invalid &&
               loginForm.get('password')?.touched
             "
-          >
-            Password is required and must be at least 6 characters long.
-          </div>
+          ></div>
         </div>
 
-        <div *ngIf="loginError">{{ loginError }}</div>
-
-        <button type="submit">Login</button>
+        <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+        <button class="signin-btn" type="submit">SIGN IN</button>
       </form>
-      <p class="or">—— or Sign in with ——</p>
     </div>
   </div>
 </div>

@@ -14,9 +14,9 @@
          <img src="images/header/Noti-icon.png" alt="Notifications" />
        </div>
        <div class="user-profile">
-         <span><a>Hi, Huyen</a></span>
-         <img src="images/header/avt.png" alt="User Profile" />
-       </div>
+        <span><a>HI, {{ getLastNameUppercase() }}</a></span>
+        <img [src]="currentAdmin?.Image || 'images/header/avt.png'" alt="User Profile" />
+      </div>
      </div>
    </div>
  </header>

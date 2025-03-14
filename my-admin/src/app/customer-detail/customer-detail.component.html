@@ -15,14 +15,14 @@
             <div class="summary-card">
                 <h2>Total Orders</h2>
                 <div class="value-container">
-                    <p class="value">110</p>
+                    <p class="value">{{ orders.length }}</p>
                     <p class="percentage">+10% <span>This month</span></p>
                 </div>
             </div>
             <div class="summary-card">
                 <h2>Total Amount</h2>
                 <div class="value-container">
-                    <p class="value">155,641</p>
+                    <p class="value">{{ getTotalAmount() }}</p>
                     <p class="percentage">+15% <span>This month</span></p>
                 </div>
             </div>
@@ -54,35 +54,27 @@
             </tr>
           </thead>
           <tbody>
-            <!-- <tr *ngFor="let order of orders">
-              <td>{{ customerNames[order.Customer_id] || 'Loading...' }}</td>
+            <tr *ngFor="let order of orders">
+              <td>{{ order._id}}</td>
               <td>{{ order.TotalPrice }}</td>
-              <td>{{ order.OrderProduct }}</td>
-              <td>{{ order.Date }}</td>
+              <td>{{ getOrderQuantity(order) }}</td>
+              <td>{{ order.OrderDate }}</td>
               <td>{{ order.PaymentMethod }}</td>
               <td>{{ order.Status }}</td>
               <td>
                 <button class="view-btn">
-                  <a routerLink="/customer-detail">
+                  <a routerLink="/order-detail">
                   <img src="images/customer/view.svg" alt="View">
                   </a>
                 </button>
             </td>
-            </tr> -->
+            </tr>
           </tbody>
         </table>
       </div>
       
-  
-    <!-- <div class="pagination">
-      <button class="prev-btn">&lt;</button>
-      <span class="page-number">1</span>
-      <span class="page-number">2</span>
-      <span class="page-number">3</span>
-      <button class="next-btn">&gt;</button>
-    </div> -->
 
-    <!-- Pagination Controls -->
+    <!-- Pagination Controls
 <div class="pagination">
   <button class="prev-btn" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
   <span *ngFor="let page of [].constructor(totalPages); let i = index">
@@ -91,5 +83,5 @@
     </button>
   </span>
   <button class="next-btn" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
-</div>
+</div> -->
   

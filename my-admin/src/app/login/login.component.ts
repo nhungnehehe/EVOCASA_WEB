@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import {Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private adminService: AdminService
   ) { }
 
   ngOnInit(): void {
@@ -35,16 +37,20 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // Here you would normally call an authentication service
-    // This is a placeholder for demonstration purposes
     const { employeeId, password } = this.loginForm.value;
     
-    // Example authentication logic (replace with actual authentication)
-    if (employeeId === 'employee123' && password === 'password123') {
-      // Navigate to dashboard on successful login
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.loginError = 'Invalid employee ID or password.';
-    }
+    this.adminService.login(employeeId, password).subscribe(
+      admin => {
+        if (admin) {
+          this.router.navigate(['/']);
+        } else {
+          this.loginError = 'Invalid employee ID or password.';
+        }
+      },
+      error => {
+        this.loginError = 'Login failed. Please try again.';
+        console.error('Login error:', error);
+      }
+    );
   }
 }
