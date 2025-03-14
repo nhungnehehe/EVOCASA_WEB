@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { IProduct } from '../interfaces/product';
 import { Category } from '../interfaces/category';
 import { CategoryService } from '../services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -26,7 +27,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -246,32 +248,7 @@ export class ProductComponent implements OnInit {
 
   // Hàm xử lý các chức năng cơ bản
   addProduct(): void {
-    const newProduct: IProduct = {
-      Name: 'New Product',
-      Price: 100,
-      Description: 'A new product description',
-      Origin: 'Unknown',
-      Uses: 'General use',
-      Store: 'Default Store',
-      Quantity: 10,
-      Create_date: new Date(),
-      Image: [],
-      category_id: 'default-category-id',
-    };
-    this.productService.createProduct(newProduct).subscribe({
-      next: (product) => {
-        this.products.push(product);
-        this.totalItems = this.products.length;
-        this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-        this.updatePageNumbers();
-        this.updateFilteredProducts();
-        alert('Product added successfully.');
-      },
-      error: (err) => {
-        this.errorMessage = err.message;
-        console.error('Error adding product:', err);
-      },
-    });
+    this.router.navigate(['/admin-product-add']);
   }
 
   viewProduct(product: IProduct): void {
