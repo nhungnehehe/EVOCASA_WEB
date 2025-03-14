@@ -3,6 +3,7 @@ import { CartService } from '../services/cart.service';
 import { AppComponent } from '../app.component';
 import { UserService } from '../services/user.service';
 import { CustomerService } from '../services/customer.service';
+import { SearchService } from '../services/search.service';
 
 
 @Component({
@@ -19,11 +20,15 @@ export class HeaderComponent implements OnInit {
   currentUserPhone: string | null = null;
 
 
+  searchTerm: string = '';  // Từ khóa tìm kiếm
+  searchResults: any[] = [];  // Kết quả tìm kiếm
+
   constructor(
     private cartService: CartService,
     private appComponent: AppComponent,
     private customerService: CustomerService,
-    private userService: UserService
+    private userService: UserService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +56,15 @@ export class HeaderComponent implements OnInit {
       this.currentUserName = name.toUpperCase();
     });
   }
-
+  search(): void {
+    if (this.searchTerm.trim()) {
+      this.searchService.search(this.searchTerm).subscribe((results) => {
+        this.searchResults = results;  // Lưu kết quả vào searchResults
+      });
+    } else {
+      this.searchResults = [];  // Nếu không có từ khóa, không có kết quả
+    }
+  }
   updateCartQuantity(): void {
     if (this.isUserLoggedIn && this.currentUserPhone) {
       // Nếu đã đăng nhập, lấy số lượng từ giỏ hàng trong database

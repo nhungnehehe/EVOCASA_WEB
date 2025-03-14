@@ -927,3 +927,36 @@ app.put("/customers/phone/:phone/cart", async (req, res) => {
   }
 });
 
+// API tìm kiếm toàn cục cho sản phẩm, blog và bộ sưu tập
+app.get("/search", async (req, res) => {
+  const query = req.query.q; // Lấy từ khóa tìm kiếm
+
+  try {
+    // Lấy sản phẩm khớp với từ khóa tìm kiếm
+    const products = await productCollection.find({ 
+      Name: { $regex: query, $options: 'i' } // Tìm kiếm không phân biệt chữ hoa chữ thường
+    }).toArray();
+
+    // Lấy blog khớp với từ khóa tìm kiếm
+    const blogs = await blogCollection.find({
+      title: { $regex: query, $options: 'i' }
+    }).toArray();
+
+    // Lấy bộ sưu tập khớp với từ khóa tìm kiếm
+    const collections = await collectionCollection.find({
+      name: { $regex: query, $options: 'i' }
+    }).toArray();
+
+    // Kết hợp kết quả từ tất cả các nguồn
+    const results = [
+      ...products.map((product) => ({ type: 'product', name: product.Name, link: `/product/${product._id}` })),
+      ...blogs.map((blog) => ({ type: 'blog', name: blog.title, link: `/blog/${blog._id}` })),
+      ...collections.map((collection) => ({ type: 'collection', name: collection.name, link: `/collection/${collection._id}` }))
+    ];
+
+    res.status(200).send(results);
+  } catch (error) {
+    console.error("Lỗi khi lấy kết quả tìm kiếm:", error);
+    res.status(500).send({ error: "Lỗi khi lấy kết quả tìm kiếm" });
+  }
+});

@@ -10,14 +10,17 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #FFFCF3;
 }
+
 .brown-banner {
-    background-color: #5E4C3E; /* Màu nâu */
+    background-color: #5E4C3E;
+    /* Màu nâu */
     color: white;
     text-align: center;
     padding: 5px;
     font-family: 'Zen Old Mincho', serif;
     font-size: 16px;
 }
+
 /* Navbar */
 .navbar {
     display: flex;
@@ -31,7 +34,8 @@ body {
     font-family: Inter;
     font-size: 16px;
     padding: 10px 20px;
-    flex-wrap: wrap; /* Cho phép các phần tử xuống dòng khi không đủ chỗ */
+    flex-wrap: wrap;
+    /* Cho phép các phần tử xuống dòng khi không đủ chỗ */
 }
 
 /* Logo */
@@ -44,8 +48,9 @@ body {
 .menu {
     display: flex;
     list-style: none;
-    gap: 8px; /* Giảm khoảng cách giữa các mục */
-    flex-wrap: nowrap; 
+    gap: 8px;
+    /* Giảm khoảng cách giữa các mục */
+    flex-wrap: nowrap;
     white-space: nowrap;
 }
 
@@ -58,11 +63,13 @@ body {
     text-decoration: none;
     color: black;
     font-size: 16px;
-    padding: 8px; 
+    padding: 8px;
     display: block;
     font-weight: 500;
-    position: relative;    /* Đã thêm: cần cho pseudo-element định vị */
-    overflow: hidden;      /* Đã thêm: ẩn phần pseudo-element khi chưa được hiển thị */
+    position: relative;
+    /* Đã thêm: cần cho pseudo-element định vị */
+    overflow: hidden;
+    /* Đã thêm: ẩn phần pseudo-element khi chưa được hiển thị */
 }
 
 /* Hiệu ứng hover với đường gạch dưới động */
@@ -72,9 +79,12 @@ body {
     left: 0;
     bottom: 0;
     width: 0;
-    height: 0.5px;               /* Độ dày của đường gạch dưới */
-    background-color: currentColor; /* Sử dụng màu chữ hiện tại */
-    transition: width 0.3s ease; /* Hiệu ứng chuyển động: từ 0 đến 100% */
+    height: 0.5px;
+    /* Độ dày của đường gạch dưới */
+    background-color: currentColor;
+    /* Sử dụng màu chữ hiện tại */
+    transition: width 0.3s ease;
+    /* Hiệu ứng chuyển động: từ 0 đến 100% */
 }
 
 .menu li a:hover::after,
@@ -91,8 +101,10 @@ body {
     background-color: #FFFCF3;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 850px; /* Điều chỉnh độ rộng cho phù hợp */
-    max-width: 100vw; /* Giới hạn tối đa để không bị tràn */
+    width: 850px;
+    /* Điều chỉnh độ rộng cho phù hợp */
+    max-width: 100vw;
+    /* Giới hạn tối đa để không bị tràn */
     justify-content: space-between;
     position: absolute;
     left: 0;
@@ -135,9 +147,11 @@ body {
     display: block;
     padding: 5px 0;
 }
+
 /* Bên trái: Danh sách bộ sưu tập */
 .collections-list {
-    width: 35%; /* Chiếm 35% menu */
+    width: 35%;
+    /* Chiếm 35% menu */
     padding-right: 20px;
     border-right: 1px solid #ddd;
 }
@@ -162,10 +176,13 @@ body {
 
 /* Bên phải: Grid ảnh bộ sưu tập */
 .collections-grid {
-    width: 60%; /* Chiếm 60% menu */
+    width: 60%;
+    /* Chiếm 60% menu */
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 cột */
-    grid-template-rows: repeat(2, auto); /* 2 hàng */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 cột */
+    grid-template-rows: repeat(2, auto);
+    /* 2 hàng */
     gap: 15px;
     padding-left: 20px;
 }
@@ -180,7 +197,8 @@ body {
 
 /* Hình ảnh trong bộ sưu tập */
 .collection-item img {
-    width: 200px;  /* Kích thước ảnh */
+    width: 200px;
+    /* Kích thước ảnh */
     height: 120px;
     object-fit: cover;
     /* border-radius: 8px; */
@@ -199,11 +217,15 @@ body {
     font-weight: 500;
     color: black;
     display: block;
-    max-width: 130px; /* Giới hạn chiều rộng chữ để không bị tràn */
-    white-space: nowrap; /* Giữ chữ trên một dòng */
+    max-width: 130px;
+    /* Giới hạn chiều rộng chữ để không bị tràn */
+    white-space: nowrap;
+    /* Giữ chữ trên một dòng */
     overflow: hidden;
-    text-overflow: ellipsis; /* Cắt chữ nếu quá dài */
+    text-overflow: ellipsis;
+    /* Cắt chữ nếu quá dài */
 }
+
 /* Search box */
 .search {
     display: flex;
@@ -211,7 +233,8 @@ body {
     background: #F5EEDA;
     padding: 5px 10px;
     border-radius: 20px;
-    margin-left: 20px; /* Tạo khoảng cách giữa search và các mục khác */
+    margin-left: 20px;
+    /* Tạo khoảng cách giữa search và các mục khác */
     height: 40px;
 }
 
@@ -221,12 +244,15 @@ body {
     background: transparent;
     outline: none;
     padding: 5px;
-    width: 120px; /* Giảm chiều rộng để tiết kiệm không gian */
-    transition: width 0.3s ease; /* Hiệu ứng mở rộng khi nhập */
+    width: 120px;
+    /* Giảm chiều rộng để tiết kiệm không gian */
+    transition: width 0.3s ease;
+    /* Hiệu ứng mở rộng khi nhập */
 }
 
 .search input:focus {
-    width: 150px; /* Khi focus vào ô tìm kiếm */
+    width: 150px;
+    /* Khi focus vào ô tìm kiếm */
 }
 
 .search button {
@@ -236,18 +262,52 @@ body {
     font-size: 16px;
 }
 
+.search-results {
+    position: absolute;
+    top: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-results li {
+    padding: 8px 12px;
+}
+
+.search-results li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: block;
+}
+
+.search-results li:hover {
+    background-color: #f1f1f1;
+}
+
 /* User actions */
 .user-actions {
     display: flex;
     align-items: center;
-    gap: 15px; /* Tăng khoảng cách giữa các mục */
+    gap: 15px;
+    /* Tăng khoảng cách giữa các mục */
     white-space: nowrap;
 }
 
 /* Sign In và Cart khi active */
 .user-actions .icon.active {
-    font-weight: bold; /* Hoặc bất kỳ hiệu ứng nào bạn muốn */
-    text-decoration: underline; /* Giả sử bạn muốn gạch dưới khi active */
+    font-weight: bold;
+    /* Hoặc bất kỳ hiệu ứng nào bạn muốn */
+    text-decoration: underline;
+    /* Giả sử bạn muốn gạch dưới khi active */
 }
 
 /* Biểu tượng */
@@ -260,14 +320,17 @@ body {
     gap: 5px;
     font-weight: bold;
 }
+
 .signcart {
     display: flex;
     align-items: center;
     margin-left: 10px;
 }
-.signcart img{
+
+.signcart img {
     padding: 5px;
 }
+
 .signcart button {
     border: none;
     background: transparent;
@@ -276,33 +339,39 @@ body {
 
 /* Media Query cho các màn hình nhỏ */
 @media (max-width: 1024px) {
+
     /* Navbar và các phần tử giảm khoảng cách */
     .navbar {
         flex-wrap: wrap;
     }
 
     .menu {
-        flex-wrap: wrap; /* Khi không đủ diện tích, menu sẽ xuống dòng */
-        gap: 5px; /* Giảm khoảng cách giữa các mục */
-        width: 100vw; /* Đảm bảo menu chiếm hết chiều ngang */
+        flex-wrap: wrap;
+        /* Khi không đủ diện tích, menu sẽ xuống dòng */
+        gap: 5px;
+        /* Giảm khoảng cách giữa các mục */
+        width: 100vw;
+        /* Đảm bảo menu chiếm hết chiều ngang */
     }
 
     .search {
-        margin-left: 0px; 
+        margin-left: 0px;
         max-width: 120px;
     }
 
     .user-actions {
-        gap: 5px; 
+        gap: 5px;
     }
+
     .user-actions {
         flex-wrap: wrap;
         justify-content: space-between;
     }
 }
+
 .total_quantity {
     background-color: #5E4C3E;
-    color: #F2EAD3 ;
+    color: #F2EAD3;
     border-radius: 50%;
     font-size: 12px;
     padding: 0px 5px;

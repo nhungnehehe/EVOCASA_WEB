@@ -117,13 +117,23 @@
     </ul>
 
     <!-- User Actions -->
-    <div class="user-actions">
-      <div class="search">
-        <button>
-          <img src="images/header/Search-icon.svg" alt="Search" />
-        </button>
-        <input type="text" placeholder="Search" />
-      </div>
+    <div class="search">
+      <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search for products, blogs, or collections" />
+      <button (click)="search()">
+        <img src="images/header/Search-icon.svg" alt="Search" />
+      </button>
+    </div>
+    
+    <!-- Hiển thị kết quả tìm kiếm -->
+    <div *ngIf="searchResults.length > 0" class="search-results">
+      <ul>
+        <li *ngFor="let result of searchResults">
+          <a [routerLink]="result.link">{{ result.name }}</a>
+        </li>
+      </ul>
+    </div>
+    
+
       <div class="signcart">
         <img src="images/header/Sign-in-icon.svg" />
         <a routerLink="/login-page" class="icon" *ngIf="!currentUserName" routerLinkActive="active">SIGN IN</a>
@@ -137,5 +147,4 @@
         <label class="icon" (click)="openSidebar()" routerLinkActive="active">CART</label>
       </div>
     </div>
-  </div>
 </header>
