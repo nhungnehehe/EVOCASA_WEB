@@ -11,8 +11,23 @@ export class UserService {
   private _currentUserPhone = new BehaviorSubject<string>('');
   currentUserPhone$ = this._currentUserPhone.asObservable();
 
+  constructor() {
+    // Load saved user data from localStorage on service initialization
+    const savedPhone = localStorage.getItem('currentUserPhone');
+    if (savedPhone) {
+      this._currentUserPhone.next(savedPhone);
+    }
+    
+    // Add this code to also load the name
+    const savedName = localStorage.getItem('currentUserName');
+    if (savedName) {
+      this._currentUserName.next(savedName);
+    }
+  }
+
   setCurrentUserName(name: string): void {
     this._currentUserName.next(name);
+    localStorage.setItem('currentUserName', name);
   }
 
   setCurrentUserPhone(phone: string): void {
@@ -22,7 +37,12 @@ export class UserService {
 
   clearCurrentUser(): void {
     this._currentUserName.next('');
-    this._currentUserPhone.next(''); // Xóa số điện thoại
-    localStorage.removeItem('currentUserPhone'); // Xóa khỏi localStorage
+    this._currentUserPhone.next('');
+    localStorage.removeItem('currentUserPhone');
+    localStorage.removeItem('currentUserName');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this._currentUserPhone.value;
   }
 }
