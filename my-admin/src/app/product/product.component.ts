@@ -314,7 +314,7 @@ export class ProductComponent implements OnInit {
   }
 
   editProduct(product: IProduct): void {
-    this.router.navigate(['admin-product-edit']);
+    this.router.navigate([`/admin-product-edit/${product._id}`]);
   }
 
   deleteProduct(identifier: string): void {

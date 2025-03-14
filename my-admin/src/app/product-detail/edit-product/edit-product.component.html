@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit product</title>
-    <!-- <link rel="stylesheet" href="/DoAnCK/Product/edit-product.css"> -->
+    <title>Add product</title>
+    <!-- <link rel="stylesheet" href="/DoAnCK/Product/add-product.css"> -->
 
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
@@ -16,31 +16,21 @@
 
 </head>
 <body>
-
-<!-- ADD PRODUCT -->
-<div class="all">
-    <hr class="custom-hr">
-
+    <!-- ADD PRODUCT -->
     <div class="container">
         <!-- ADD PRODUCT Title -->
         <div class="title">EDIT PRODUCT</div>
 
         <!-- Flex container for buttons -->
         <div class="flex-container">
-            <!-- First Item: Save Draft -->
-            <div class="button save-draft">
-                <img src="images/product-detail/save.png" alt="Save">
-                <span>Save draft</span>
-            </div>
-
             <!-- Second Item: Add Product -->
-            <div class="button add-product">
+            <div class="button add-product" (click)="updateProduct()">
                 <img src="images/product-detail/update.png" alt="Add">
                 <span>Update product</span>
             </div>
 
             <!-- Third Item: Cancel -->
-            <div class="button cancel">
+            <div class="button cancel" (click)="goBack()">
                 <img src="images/product-detail/cancel.png" alt="Cancel">
                 <span>Cancel</span>
             </div>
@@ -57,54 +47,49 @@
                     <!-- First Input: Product Name -->
                     <div class="input-container">
                         <div class="label">Product Name</div>
-                        <input type="text" class="input-field" placeholder="Enter Product Name">
-                    </div>
-                    <!-- Second Input: Product ID -->
-                    <div class="input-container">
-                        <div class="label">Product ID</div>
-                        <input type="text" class="input-field" placeholder="Enter Product ID">
+                        <input type="text" class="input-field" placeholder="Enter Product Name" [(ngModel)]="product.Name">
                     </div>
                 </div>
                 <!-- Description -->
                 <div class="input-container">
                     <div class="label" style="margin-top: 30px;">Description</div>
-                    <textarea class="input-field-description" placeholder="Description product"></textarea>
+                    <textarea class="input-field-description" placeholder="Description product" [(ngModel)]="product.Description"></textarea>
                 </div>
-                <!-- SKU SIZE -->
-                <div class="inputs-container">
-                    <!-- SKU -->
-                    <div class="input-container">
-                        <div class="label">SKU</div>
-                        <input type="text" class="input-field" placeholder="Enter SKU">
-                    </div>
-                    <!-- Size -->
-                    <div class="input-container3">
-                        <div class="label">Size</div>
-                        <div class="input-box1">
-                            <input type="text" class="input-field3" placeholder="Enter Size">
-                            <select class="combo-box1">
-                                <option value="usd">in</option>
-                                <option value="vnd">m</option>
-                                <option value="eur">cm</option>
-                            </select>
-                        </div>
-                    </div>
+                <!-- Dimension -->
+
+                <div class="input-container">
+                    <div class="label">Dimension</div>
+                    <input type="text" class="input-field" placeholder="Enter Dimension" [(ngModel)]="product.Dimension">
                 </div>
             </div>
         </div>
         <!-- Second Box -->
-        <div class="box">
+        <div class="box" [ngClass]="{ 'product-no-image': product.Image.length === 0, 'product-has-image': product.Image.length > 0 }">
             <div class="upload-title">Upload images</div>
-            <img src="images/Soft Goods/1a.jpg" class="main-image">
-            <div class="image-container">
-                <img src="images/Soft Goods/1a.jpg" class="small-image">
-                <img src="images/Soft Goods/1a.jpg" class="small-image">
-                <img src="images/Soft Goods/1a.jpg" class="small-image">
-                <div class="icon-container">
-                    <img src="images/product-detail/Add_ring_light.png" alt="image" class="icon-image">
+            <!-- Input chọn nhiều ảnh -->
+            <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*" id="file-upload" style="display: none;">
+            <!-- Khu vực hiển thị ảnh đã chọn -->
+            <div class="preview-container">
+                <!-- Ảnh lớn -->
+                <div class="main-image-container" *ngIf="product.Image.length > 0">
+                    <img [src]="product.Image[0]" class="main-image">
+                    <button class="remove-btn-big" (click)="removeImage(0)">✖</button>
+                </div>
+                <!-- Ảnh nhỏ -->
+                <div class="image-thumbnails">
+                    <div *ngFor="let image of product.Image.slice(1, 5); let i = index" class="thumbnail-container">
+                        <img [src]="image" class="thumbnail">
+                        <button class="remove-btn" (click)="removeImage(i)">✖</button>
+                    </div>
+
+                <!-- Nút thêm chỉ xuất hiện nếu số ảnh < 5 -->
+                    <div class="add-image" *ngIf="product.Image.length < maxImages" (click)="triggerFileInput()">
+                        <label for="file-upload">+</label>
+                    </div>      
                 </div>
             </div>
-        </div>
+    </div>
+
     </div>
 
     <div class="custom-container">
@@ -117,12 +102,8 @@
                     <div class="input-container2">
                         <div class="label">Price</div>
                         <div class="input-box">
-                            <input type="text" class="input-field2" placeholder="Enter Price">
-                            <select class="combo-box">
-                                <option value="usd">USD</option>
-                                <option value="vnd">VND</option>
-                                <option value="eur">EUR</option>
-                            </select>
+                            <input type="text" class="input-field2" placeholder="Enter Price" [(ngModel)]="product.Price">
+                            <div class="label">USD</div>
                         </div>
                     </div>
 
@@ -130,45 +111,27 @@
                     <!-- Stock -->
                     <div class="input-container">
                         <div class="label">Stock</div>
-                        <input type="text" class="input-field" placeholder="Enter Stock">
+                        <input type="text" class="input-field" placeholder="Enter Stock" [(ngModel)]="product.Quantity">
                     </div>
                 </div>
             </div>
         </div>
-        
 
-        <!-- Second Box -->
+        <!-- Fourth Box -->
         <div class="box1">
             <div class="product-info-content">
                 <div class="product-info-title">Category</div>
-                    <div class="inputs-container">
-                        <div class="input-container">
-                            <div class="label">Product category</div>
-                            <div class="combo-box-container">
-                                <select class="input-field1">
-                                    <option value="" disabled selected>Select Product Category</option>
-                                    <option value="product1">Furniture</option>
-                                    <option value="product2">Lighting</option>
-                                    <option value="product3">Soft Goods</option>
-                                    <option value="product4">Decor</option>
-                                    <option value="product5">Dining</option>
-                                    <option value="product6">Art</option>
-                                </select>
-                                <img src="images/product-detail/more.png" alt="icon" class="combo-box-icon">
-                            </div>                        
-                        </div>
+                <div class="inputs-container">
+                    <div class="input-container">
+                        <div class="label">Product category</div>
+                        <select class="input-field1" [(ngModel)]="product.category_id">
+                            <option value="" disabled hidden>Select Product Category</option>
+                            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 </body>
-    
-    
-
-
-
-
-    
-    
-    
+</html>

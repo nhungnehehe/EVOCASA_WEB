@@ -25,8 +25,8 @@ export class AddProductComponent {
     ngOnInit() {
       this.product.category_id = "";
       this.product.Image = this.product.Image || []; // Đảm bảo Images luôn là một mảng
-      this.loadMainCategories();
-  }
+      this.loadAllSubcategories();
+    }
     constructor(
       private ProductService: ProductService, 
       private CategoryService: CategoryService,
@@ -34,13 +34,28 @@ export class AddProductComponent {
       private activateRoute: ActivatedRoute) {}
   
     
-  //  Gọi API để lấy danh sách danh mục chính
-   loadMainCategories() {
-    this.CategoryService.getMainCategories().subscribe({
-      next: (data) => (this.categories = data),
-      error: () => (this.errMessage = 'Error loading main categories')
-    });
-  }
+  // Lấy tất cả danh mục cha, sau đó gọi API để lấy danh mục con của từng danh mục cha
+loadAllSubcategories() {
+  this.CategoryService.getMainCategories().subscribe({
+    next: (mainCategories) => {
+      if (mainCategories.length > 0) {
+        let allSubcategories: Category[] = [];
+
+        // Dùng forEach để lấy danh mục con của từng danh mục cha
+        mainCategories.forEach((parent) => {
+          this.CategoryService.getSubcategories(parent.id).subscribe({
+            next: (subcategories) => {
+              allSubcategories = [...allSubcategories, ...subcategories]; // Gom tất cả danh mục con
+              this.categories = allSubcategories; // Cập nhật danh mục con hiển thị
+            },
+            error: () => console.error(`Error loading subcategories for ${parent.id}`)
+          });
+        });
+      }
+    },
+    error: () => (this.errMessage = 'Error loading main categories')
+  });
+}
 
   //  Lấy ID của category dựa vào tên
   getCategoryIdByName(categoryName: string): string | null {
@@ -74,10 +89,15 @@ export class AddProductComponent {
   }
 
   
+
     postProduct() {
+      if (!this.isValidProduct()) {
+        alert('Vui lòng điền đầy đủ thông tin sản phẩm trước khi thêm!');
+        return;
+      }
+    
       this.ProductService.createProduct(this.product).subscribe({
-        next: (data) => {
-          this.product = data;
+        next: () => {
           alert('Product added successfully');
           this.goBack();
         },
@@ -85,6 +105,17 @@ export class AddProductComponent {
           this.errMessage = err.error?.message || 'Error adding product';
         }
       });
+    }
+    
+    // Kiểm tra xem các trường bắt buộc đã được điền đầy đủ chưa
+    isValidProduct(): boolean {
+      return !!(
+        this.product.Name &&
+        this.product.Price &&
+        this.product.category_id &&
+        this.product.Description &&
+        this.product.Image.length > 0
+      );
     }
   
     goBack() {
