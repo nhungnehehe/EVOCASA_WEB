@@ -33,7 +33,7 @@ export class CustomerDetailComponent {
       const customerId = params.get('id');
       if (customerId) {
         this.displayCustomerDetails(customerId);
-        this.loadCustomerOrders(customerId);
+        // this.loadCustomerOrders(customerId);
       }
     });
   }
@@ -67,20 +67,6 @@ export class CustomerDetailComponent {
     }
   }
 
-
-  loadCustomerOrders(customerId: string): void {
-    this.orderService.getOrdersByCustomer(customerId).subscribe(
-      (orders) => {
-        console.log('Orders:', orders);  // Kiểm tra dữ liệu đơn hàng trả về
-        this.orders = orders;
-      },
-      (error) => {
-        console.error('Lỗi khi lấy đơn hàng của khách hàng:', error);
-      }
-    );
-  }
-
-  
 
 
   // Pagination: change the page
