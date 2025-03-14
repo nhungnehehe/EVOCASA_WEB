@@ -32,6 +32,7 @@ export class ProductDetailComponent implements OnInit {
   hoveredPairProductIndex: number = -1;
   storyRandomImage: string = '';
 
+
   private routeSubscription!: Subscription;
 
   constructor(
@@ -180,23 +181,7 @@ export class ProductDetailComponent implements OnInit {
     this.quantity = Math.max(1, this.quantity + amount);
   }
 
-  buyNow(): void {
-    if (!this.product || !this.product._id) {
-      console.error('Cannot add to cart: Product is null or missing ID');
-      return;
-    }
-
-    this.cartService.buyNow(this.product._id, this.quantity).subscribe({
-      next: (updatedCart) => {
-        console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`);
-        console.log('Updated cart:', updatedCart);
-      },
-      error: (error) => {
-        console.error('Error adding product to cart:', error);
-      }
-    });
-    this.router.navigate(['/payment-shipping'], { queryParams: { buyNow: 'true' } });
-  }
+  
 
 
   toggleDescription(): void {
@@ -298,5 +283,30 @@ export class ProductDetailComponent implements OnInit {
         error: (error) => console.error('Error adding product to cart:', error)
       });
     }
+  }
+  buyNow(): void {
+    if (!this.product || !this.product._id) {
+      console.error('Cannot add to cart: Product is null or missing ID');
+      return;
+    }
+
+    this.cartService.buyNow(this.product._id, this.quantity).subscribe({
+      next: (updatedCart) => {
+        console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`);
+        console.log('Updated cart:', updatedCart);
+      },
+      error: (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    });
+    if (this.isUserLoggedIn) {
+      this.router.navigate(['/payment-shipping'], { queryParams: { buyNow: 'true' } });
+    } else {
+      const confirmLogin = window.confirm("You need to log in to proceed with the payment. Would you like to log in now?");
+      if (confirmLogin) {
+        this.router.navigate(['/login-page'], { queryParams: { returnUrl: '/payment-shipping' } });
+      }
+    }
+    
   }
 }
