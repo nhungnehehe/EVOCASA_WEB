@@ -136,6 +136,7 @@
     border-collapse: collapse;
     margin-top: 5px;
     background-color: #f9f6f2;  /* Màu nền của container */
+    font-size: 13px;
   }
   
   .customer-table th, .customer-table td {
@@ -164,7 +165,6 @@
 .pagination {
   text-align: center;
   margin-top: 15px;
-  margin-right: 50px;
 }
 
 .pagination button {
@@ -173,6 +173,7 @@
   color: #fff;
   border: none;
   cursor: pointer;
+  align-items: center;
 }
 
 .pagination button:hover {
@@ -180,8 +181,8 @@
 }
 
 .page-number {
-  margin: 0 10px;
-  font-size: 15px;
+  margin: 0 5px;
+  font-size: 13px;
   cursor: pointer;
 }
 

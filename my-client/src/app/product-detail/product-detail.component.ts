@@ -20,7 +20,7 @@ export class ProductDetailComponent implements OnInit {
   isDescriptionExpanded: boolean = false;
   isDimensionsExpanded: boolean = false;
   errMessage: string = '';
-  products: any[] = []; // 
+  products: any[] = [];  
 
   selectedTab: string = 'Story';
   starsArray: number[] = [];
@@ -49,8 +49,6 @@ export class ProductDetailComponent implements OnInit {
       const identifier = params.get('identifier');
       this.resetComponentState();
       this.initializeRandomStoryImage();
-
-
       if (identifier) {
         console.log('Loading product with identifier:', identifier);
         this.loadData(identifier);
@@ -58,13 +56,12 @@ export class ProductDetailComponent implements OnInit {
         console.error('Error: Product identifier is missing in route parameters.');
       }
     });
-
     this.userService.currentUserPhone$.subscribe((phone: string | null) => {
       this.currentUserPhone = phone;
-      this.isUserLoggedIn = !!phone; // true nếu có số điện thoại, false nếu không
+      this.isUserLoggedIn = !!phone; 
   
-      console.log("📢 Trạng thái đăng nhập:", this.isUserLoggedIn);
-      console.log("📢 Số điện thoại hiện tại:", this.currentUserPhone);
+      console.log("Trạng thái đăng nhập:", this.isUserLoggedIn);
+      console.log("Số điện thoại hiện tại:", this.currentUserPhone);
     });
     
   }
@@ -105,8 +102,6 @@ export class ProductDetailComponent implements OnInit {
         this.product = res;
         this.selectedImage = this.product.Image?.[0] || null;
         this.generateRandomRating();
-
-
         this.generatePairWithProducts();
         this.initializeRandomStoryImage();
       },
@@ -125,36 +120,23 @@ export class ProductDetailComponent implements OnInit {
   }
   generatePairWithProducts(): void {
     if (!this.allProducts || !this.product) return;
-
-
     const otherProducts = this.allProducts.filter(p => p._id !== this.product?._id);
-
-
     const shuffled = [...otherProducts].sort(() => 0.5 - Math.random());
-
-
     this.pairWithProducts = shuffled.slice(0, 5);
-
     console.log("Pair with products count:", this.pairWithProducts.length);
   }
-
   viewProductDetails(product: IProduct): void {
     if (product.Name) {
       const productName = encodeURIComponent(product.Name.trim());
-
-
       if (this.router.url === `/product-detail/${productName}`) {
-
         window.location.reload();
       } else {
-
         this.router.navigate(['/product-detail', productName]);
       }
     } else {
       console.error('Error: Product name is missing');
     }
   }
-
 
   generateRandomRating(): void {
     const randomRating = (Math.random() * (5 - 4) + 4).toFixed(1);
@@ -167,47 +149,23 @@ export class ProductDetailComponent implements OnInit {
     this.selectedImage = image;
   }
 
-
   nextImage(): void {
     if (!this.product?.Image || this.product.Image.length === 0) return;
     const currentIndex = this.product.Image.indexOf(this.selectedImage || '');
     const nextIndex = (currentIndex + 1) % this.product.Image.length;
     this.selectedImage = this.product.Image[nextIndex];
   }
-
-
   updateQuantity(amount: number): void {
     this.quantity = Math.max(1, this.quantity + amount);
   }
-
-  buyNow(): void {
-    if (!this.product || !this.product._id) {
-      console.error('Cannot add to cart: Product is null or missing ID');
-      return;
-    }
-
-    this.cartService.buyNow(this.product._id, this.quantity).subscribe({
-      next: (updatedCart) => {
-        console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`);
-        console.log('Updated cart:', updatedCart);
-      },
-      error: (error) => {
-        console.error('Error adding product to cart:', error);
-      }
-    });
-    this.router.navigate(['/payment-shipping'], { queryParams: { buyNow: 'true' } });
-  }
-
 
   toggleDescription(): void {
     this.isDescriptionExpanded = !this.isDescriptionExpanded;
   }
 
-
   selectTab(tab: string): void {
     this.selectedTab = tab;
   }
-
 
   getTabContent(): string {
     if (this.selectedTab === 'Story') return this.product?.Story || 'No story available.';
@@ -216,18 +174,13 @@ export class ProductDetailComponent implements OnInit {
     return '';
   }
 
-
   getDimensionLines(dimension: any): string[] {
     if (!dimension) {
       return ['No dimensions available'];
     }
-
     if (typeof dimension === 'string') {
-
       return dimension.split('\n').filter(line => line.trim() !== '');
     }
-
-
     const dimensionLines = [];
     const unit = dimension.unit || 'in';
     if (dimension.Width !== undefined) {
@@ -261,8 +214,6 @@ export class ProductDetailComponent implements OnInit {
     this.hoveredPairProductIndex = -1;
   }
 
-
-  
   isUserLoggedIn: boolean = false;
   currentUserPhone: string | null = null;
 
@@ -285,11 +236,11 @@ export class ProductDetailComponent implements OnInit {
   
         if (this.currentUserPhone) {  // Kiểm tra phone trước khi gọi API
           this.customerService.updateCustomerCart(this.currentUserPhone, cartItems).subscribe({
-            next: () => console.log(`✅ Updated cart for ${this.currentUserPhone}`),
-            error: (error) => console.error('❌ Error updating cart:', error)
+            next: () => console.log(` Updated cart for ${this.currentUserPhone}`),
+            error: (error) => console.error(' Error updating cart:', error)
           });
         } else {
-          console.error('❌ Error: currentUserPhone is null');
+          console.error(' Error: currentUserPhone is null');
         }
       });
     } else {
@@ -298,5 +249,30 @@ export class ProductDetailComponent implements OnInit {
         error: (error) => console.error('Error adding product to cart:', error)
       });
     }
+  }
+  buyNow(): void {
+    if (!this.product || !this.product._id) {
+      console.error('Cannot add to cart: Product is null or missing ID');
+      return;
+    }
+
+    this.cartService.buyNow(this.product._id, this.quantity).subscribe({
+      next: (updatedCart) => {
+        console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`);
+        console.log('Updated cart:', updatedCart);
+      },
+      error: (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    });
+    if (this.isUserLoggedIn) {
+      this.router.navigate(['/payment-shipping'], { queryParams: { buyNow: 'true' } });
+    } else {
+      const confirmLogin = window.confirm("You need to log in to proceed with the payment. Would you like to log in now?");
+      if (confirmLogin) {
+        this.router.navigate(['/login-page'], { queryParams: { returnUrl: '/payment-shipping' } });
+      }
+    }
+    
   }
 }

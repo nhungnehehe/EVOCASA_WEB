@@ -39,18 +39,23 @@ export class LoginComponent implements OnInit {
 
     const { employeeId, password } = this.loginForm.value;
     
-    this.adminService.login(employeeId, password).subscribe(
-      admin => {
-        if (admin) {
-          this.router.navigate(['/']);
-        } else {
-          this.loginError = 'Invalid employee ID or password.';
-        }
-      },
-      error => {
-        this.loginError = 'Login failed. Please try again.';
-        console.error('Login error:', error);
-      }
-    );
+    // Inside onSubmit() method in login.component.ts
+this.adminService.login(employeeId, password).subscribe({
+  next: (admin) => {
+    if (admin) {
+      // Navigate to dashboard route (not component)
+      this.router.navigate(['/dashboard-page']);
+    } else {
+      this.loginError = 'Invalid employee ID or password.';
+    }
+  },
+  // ...error handling
+});
+
   }
+  // Add this method
+logout() {
+  this.adminService.logout();
+  this.router.navigate(['/login-page']);
+}
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartpaymentService } from '../services/cartpayment.service';
+import { CheckoutDataService } from '../services/checkout-data.service';
 
 @Component({
   selector: 'app-payment-confirm',
@@ -15,9 +16,11 @@ export class PaymentConfirmComponent {
   deliveryFee: number = 0; // Biến lưu phí giao hàng
   totalOrder: number = 0; // Biến lưu tổng giá trị đơn hàng
   cartItems: any[] = [];
-  constructor(private cartpaymentService: CartpaymentService) { }
+  constructor(
+    private cartpaymentService: CartpaymentService,
+  private checkoutDataService: CheckoutDataService) { }
   ngOnInit(): void {
-    this.cartItems = this.cartpaymentService.getCartPaymentItems();
+    this.cartItems = this.checkoutDataService.getCheckoutData();
     this.totalQuantity = this.cartpaymentService.getTotalQuantity();
     this.total = this.cartpaymentService.getTotalAmount();
     // Lấy tổng giá trị giỏ hàng

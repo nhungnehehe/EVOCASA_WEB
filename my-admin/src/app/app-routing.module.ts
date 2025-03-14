@@ -12,20 +12,22 @@ import { EditProductComponent } from './product-detail/edit-product/edit-product
 import { AddCategoryComponent } from './category-detail/add-category/add-category.component';
 import { EditCategoryComponent } from './category-detail/edit-category/edit-category.component';
 import { LoginComponent } from './login/login.component';
-
+import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'admin-customer', component: CustomerComponent },
-  { path: 'admin-product', component: ProductComponent },
-  { path: 'admin-category', component: CategoryComponent },
-  { path: 'admin-order', component: OrderComponent },
-  { path: 'customer-detail/:id', component: CustomerDetailComponent },
-  { path: 'order-detail/:id', component: OrderDetailComponent },
-  { path: 'admin-product-add', component: AddProductComponent },
-  { path: 'admin-product-edit', component: EditProductComponent },
-  { path: 'admin-category-add', component: AddCategoryComponent },
-  { path: 'admin-category-edit', component: EditCategoryComponent },
+  { path: 'dashboard-page', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'customer-detail/:id', component: CustomerDetailComponent, canActivate: [AuthGuard]},
+  { path: 'order-detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
+  { path: 'admin-product-add', component: AddProductComponent, canActivate: [AuthGuard]},
+  { path: 'admin-product-edit', component: EditProductComponent, canActivate: [AuthGuard] },
+  { path: 'admin-category-add', component: AddCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'admin-category-edit', component: EditCategoryComponent, canActivate: [AuthGuard]},
+  { path: 'admin-customer', component: CustomerComponent, canActivate: [AuthGuard] },
+  { path: 'admin-product', component: ProductComponent, canActivate: [AuthGuard] },
+  { path: 'admin-category', component: CategoryComponent, canActivate: [AuthGuard] },
+  { path: 'admin-order', component: OrderComponent, canActivate: [AuthGuard]},
   { path: 'login-page', component: LoginComponent },
+  { path: '', component: LoginComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

@@ -57,9 +57,9 @@ export class ProductComponent implements OnInit {
       next: (data: any[]) => {
         console.log('Raw categories data:', data);
         console.log('First category sample:', data[0]);
-        
+
         // Transform category data with flexible property name handling
-        this.categories = data.map(cat => {
+        this.categories = data.map((cat) => {
           // Handle properties that might be capitalized differently
           const formattedCat: Category = {
             _id: cat._id || cat.id || cat._id?.$oid,
@@ -68,19 +68,26 @@ export class ProductComponent implements OnInit {
             description: cat.description || cat.Description || '',
             slug: cat.slug || cat.Slug || '',
             parentCategory: cat.parentCategory || cat.ParentCategory || null,
-            image: cat.image || cat.Image || ''
+            image: cat.image || cat.Image || '',
           };
-          
+
           // Handle ObjectId format if present
-          if (typeof formattedCat._id === 'object' && formattedCat._id && '$oid' in formattedCat._id) {
+          if (
+            typeof formattedCat._id === 'object' &&
+            formattedCat._id &&
+            '$oid' in formattedCat._id
+          ) {
             formattedCat._id = formattedCat._id.$oid;
           }
-          
+
           return formattedCat;
         });
-        
+
         console.log('Processed categories:', this.categories);
-        console.log('Category IDs:', this.categories.map(c => c._id));
+        console.log(
+          'Category IDs:',
+          this.categories.map((c) => c._id)
+        );
         this.loadProducts(); // Load products after categories
       },
       error: (err) => {
@@ -92,22 +99,22 @@ export class ProductComponent implements OnInit {
   mapCategoryNames(): void {
     console.log('🟢 Categories:', this.categories);
     console.log('🟢 Products:', this.products);
-  
+
     if (!this.products.length || !this.categories.length) {
       console.warn('No products or categories available for mapping');
       return;
     }
-  
+
     // Create a categoryMap for faster lookups by ID with more variants
     const categoryMap: { [key: string]: string } = {};
-    this.categories.forEach(category => {
+    this.categories.forEach((category) => {
       // Debug each category's structure
       console.log('Processing category:', category);
       console.log('Category ID type:', typeof category._id);
-      
+
       // Check for Name vs name (case sensitivity in property names)
       const categoryName = category.name || (category as any).Name || 'Unnamed';
-      
+
       if (category._id) {
         // Store the ID in multiple formats
         if (typeof category._id === 'string') {
@@ -121,34 +128,43 @@ export class ProductComponent implements OnInit {
             categoryMap[category._id.$oid.toLowerCase()] = categoryName;
           }
         }
-        
+
         // Always store stringified version
         categoryMap[String(category._id)] = categoryName;
         categoryMap[String(category._id).toLowerCase()] = categoryName;
       }
     });
-  
+
     console.log('📊 Category Map:', categoryMap);
-  
+
     // Check first product's category_id format for debugging
     if (this.products.length > 0) {
       const firstProduct = this.products[0];
       console.log('First product category_id:', firstProduct.category_id);
-      console.log('First product category_id type:', typeof firstProduct.category_id);
-      console.log('First product category_id stringified:', JSON.stringify(firstProduct.category_id));
+      console.log(
+        'First product category_id type:',
+        typeof firstProduct.category_id
+      );
+      console.log(
+        'First product category_id stringified:',
+        JSON.stringify(firstProduct.category_id)
+      );
     }
-  
+
     this.products.forEach((product) => {
       let categoryFound = false;
-      
+
       if (product.category_id) {
         // Try various formats
-        const categoryIdStr = typeof product.category_id === 'string' 
-          ? product.category_id 
-          : (product.category_id as any).$oid || String(product.category_id);
-        
-        console.log(`Looking for category match for product "${product.Name}" with ID: ${categoryIdStr}`);
-        
+        const categoryIdStr =
+          typeof product.category_id === 'string'
+            ? product.category_id
+            : (product.category_id as any).$oid || String(product.category_id);
+
+        console.log(
+          `Looking for category match for product "${product.Name}" with ID: ${categoryIdStr}`
+        );
+
         // Try direct match
         if (categoryMap[categoryIdStr]) {
           product.category_name = categoryMap[categoryIdStr];
@@ -159,8 +175,10 @@ export class ProductComponent implements OnInit {
         else if (categoryMap[categoryIdStr.toLowerCase()]) {
           product.category_name = categoryMap[categoryIdStr.toLowerCase()];
           categoryFound = true;
-          console.log(`✅ Case-insensitive match found: ${product.category_name}`);
-        } 
+          console.log(
+            `✅ Case-insensitive match found: ${product.category_name}`
+          );
+        }
         // Try all keys for potential partial matches
         else {
           const categoryKeys = Object.keys(categoryMap);
@@ -168,21 +186,27 @@ export class ProductComponent implements OnInit {
             if (key.includes(categoryIdStr) || categoryIdStr.includes(key)) {
               product.category_name = categoryMap[key];
               categoryFound = true;
-              console.log(`✅ Partial match found: ${key} -> ${product.category_name}`);
+              console.log(
+                `✅ Partial match found: ${key} -> ${product.category_name}`
+              );
               break;
             }
           }
         }
       }
-  
+
       if (!categoryFound) {
-        console.warn(`⚠️ No category found for product: ${product.Name} with ID: ${JSON.stringify(product.category_id)}`);
+        console.warn(
+          `⚠️ No category found for product: ${
+            product.Name
+          } with ID: ${JSON.stringify(product.category_id)}`
+        );
         // Output all category IDs for comparison
         console.log('Available category IDs:', Object.keys(categoryMap));
         product.category_name = 'Unknown';
       }
     });
-    
+
     // After mapping categories, update display
     this.processProductImages();
     this.updateFilteredProducts();
@@ -190,7 +214,7 @@ export class ProductComponent implements OnInit {
 
   // Hàm xử lý hình ảnh sản phẩm
   processProductImages(): void {
-    this.products.forEach(product => {
+    this.products.forEach((product) => {
       // Đảm bảo Image là một mảng
       if (typeof product.Image === 'string') {
         try {
@@ -210,7 +234,12 @@ export class ProductComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.filteredProducts = this.products.slice(startIndex, endIndex);
-    console.log(`Showing products ${startIndex+1} to ${Math.min(endIndex, this.totalItems)} of ${this.totalItems}`);
+    console.log(
+      `Showing products ${startIndex + 1} to ${Math.min(
+        endIndex,
+        this.totalItems
+      )} of ${this.totalItems}`
+    );
   }
 
   // Cập nhật mảng số trang
@@ -247,6 +276,35 @@ export class ProductComponent implements OnInit {
   }
 
   // Hàm xử lý các chức năng cơ bản
+  // addProduct(): void {
+  //   const newProduct: IProduct = {
+  //     Name: 'New Product',
+  //     Price: 100,
+  //     Description: 'A new product description',
+  //     Origin: 'Unknown',
+  //     Uses: 'General use',
+  //     Store: 'Default Store',
+  //     Quantity: 10,
+  //     Create_date: new Date(),
+  //     Image: [],
+  //     category_id: 'default-category-id',
+  //   };
+  //   this.productService.createProduct(newProduct).subscribe({
+  //     next: (product) => {
+  //       this.products.push(product);
+  //       this.totalItems = this.products.length;
+  //       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+  //       this.updatePageNumbers();
+  //       this.updateFilteredProducts();
+  //       alert('Product added successfully.');
+  //     },
+  //     error: (err) => {
+  //       this.errorMessage = err.message;
+  //       console.error('Error adding product:', err);
+  //     },
+  //   });
+  // }
+
   addProduct(): void {
     this.router.navigate(['/admin-product-add']);
   }
@@ -256,22 +314,7 @@ export class ProductComponent implements OnInit {
   }
 
   editProduct(product: IProduct): void {
-    alert(`Editing product: ${product.Name}`);
-    const updatedProduct = { ...product, Price: product.Price + 10 };
-    this.productService
-      .updateProduct(product._id || '', updatedProduct)
-      .subscribe({
-        next: (updated) => {
-          const index = this.products.findIndex((p) => p._id === updated._id);
-          if (index !== -1) this.products[index] = updated;
-          this.updateFilteredProducts();
-          alert('Product updated successfully.');
-        },
-        error: (err) => {
-          this.errorMessage = err.message;
-          console.error('Error updating product:', err);
-        },
-      });
+    this.router.navigate(['admin-product-edit']);
   }
 
   deleteProduct(identifier: string): void {
@@ -294,13 +337,13 @@ export class ProductComponent implements OnInit {
       });
     }
   }
-  
+
   // Thêm hàm filterProducts
   filterProducts(): void {
     alert('Filter function chưa được triển khai!');
   }
   // Add this new method to your component class
-getLastItemIndex(): number {
-  return Math.min(this.currentPage * this.itemsPerPage, this.totalItems);
-}
+  getLastItemIndex(): number {
+    return Math.min(this.currentPage * this.itemsPerPage, this.totalItems);
+  }
 }
