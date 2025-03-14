@@ -86,4 +86,14 @@ export class AdminService {
       return of(result as T);
     };
   }
+  // Optional validation method
+validateCurrentAdmin(): Observable<boolean> {
+  const admin = this.getCurrentAdmin();
+  if (!admin) return of(false);
+  
+  return this.getAdminById(admin._id).pipe(
+    map(serverAdmin => !!serverAdmin),
+    catchError(() => of(false))
+  );
+}
 }
