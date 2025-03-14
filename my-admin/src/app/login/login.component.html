@@ -1,33 +1,39 @@
-<div class="signin-container">
-    <div class="signin-box">
-      <div class="signin-content">
-        <h1>Welcome back</h1>
-        <p class="sub-text">Hey! Enter your details to get sign in to your account!</p>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div>
-            <label for="employeeId">Employee ID</label>
-            <input id="employeeId" formControlName="employeeId" type="text" />
-            <div *ngIf="loginForm.get('employeeId')?.invalid && loginForm.get('employeeId')?.touched">
-              Employee ID is required.
-            </div>
-          </div>
-        
-          <div>
-            <label for="password">Password</label>
-            <input id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'" />
-            <button type="button" (click)="togglePasswordVisibility()">
-              {{ showPassword ? 'Hide' : 'Show' }} Password
-            </button>
-            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-              Password is required and must be at least 6 characters long.
-            </div>
-          </div>
-        
-          <div *ngIf="loginError">{{ loginError }}</div>
-        
-          <button type="submit">Login</button>
-        </form>
-        <p class="or">—— or Sign in with ——</p>
-      </div>
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <img src="images/header/LogoHasName.png" alt="Logo">
+    </div>
+    <div class="nav-links">
+      <a routerLink="login-page" class="log-in-btn">SIGN IN</a>
     </div>
   </div>
+</header>
+<div class="signin-container">
+  <div class="signin-box">
+    <div class="signin-content">
+      <h1>Welcome back</h1>
+      <p class="sub-text">Hey! Enter your details to get sign in to your account!</p>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <input type="text" formControlName="employeeId" placeholder="Employee ID">
+          <div *ngIf="loginForm.get('employeeId')?.invalid && loginForm.get('employeeId')?.touched">
+          </div>
+        </div>
+        
+        <div class="input-container">
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password">
+          <span class="eye-icon" (click)="togglePasswordVisibility()">
+            <span class="material-icons">
+              {{ showPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </span>
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          </div>
+        </div>
+        
+        <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+        <button class="signin-btn" type="submit">SIGN IN</button>
+      </form>
+    </div>
+  </div>
+</div>
