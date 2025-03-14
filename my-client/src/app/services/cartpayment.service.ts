@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../interfaces/cart';
 import { Product } from '../interfaces/product';
+import { CartItem1 } from '../interfaces/customer';
 
 
 @Injectable({
@@ -58,6 +59,8 @@ export class CartpaymentService {
   getSelectedProducts(): Set<string> {
     return this.selectedProductIds; // Trả về Set các productId đã được chọn
   }
+
+  
   // Thêm một sản phẩm vào danh sách đã chọn
   addToCartPayment(productId: string,product: CartItem): void {
     this.selectedProductIds.add(productId);
@@ -93,4 +96,5 @@ export class CartpaymentService {
       totalOrder
     };
   }
+
 }

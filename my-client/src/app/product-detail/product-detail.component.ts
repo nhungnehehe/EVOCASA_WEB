@@ -4,6 +4,8 @@ import { IProduct } from '../interfaces/product';
 import { ProductService } from '../services/product.service';
 import { Subscription } from 'rxjs';
 import { CartService } from '../services/cart.service';
+import { UserService } from '../services/user.service';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -35,6 +37,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private userService: UserService,
+    private customerService: CustomerService,
     private router: Router,
     private cartService: CartService
   ) { }
@@ -54,6 +58,15 @@ export class ProductDetailComponent implements OnInit {
         console.error('Error: Product identifier is missing in route parameters.');
       }
     });
+
+    this.userService.currentUserPhone$.subscribe((phone: string | null) => {
+      this.currentUserPhone = phone;
+      this.isUserLoggedIn = !!phone; // true nếu có số điện thoại, false nếu không
+  
+      console.log("📢 Trạng thái đăng nhập:", this.isUserLoggedIn);
+      console.log("📢 Số điện thoại hiện tại:", this.currentUserPhone);
+    });
+    
   }
 
   resetComponentState(): void {
@@ -247,21 +260,43 @@ export class ProductDetailComponent implements OnInit {
   onHoverOutPairProduct(): void {
     this.hoveredPairProductIndex = -1;
   }
+
+
+  
+  isUserLoggedIn: boolean = false;
+  currentUserPhone: string | null = null;
+
+
   addToCart(): void {
     if (!this.product || !this.product._id) {
       console.error('Cannot add to cart: Product is null or missing ID');
       return;
     }
-
-    this.cartService.addToCart(this.product._id, this.quantity).subscribe({
-      next: (updatedCart) => {
-        console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`);
-        console.log('Updated cart:', updatedCart);
-      },
-      error: (error) => {
-        console.error('Error adding product to cart:', error);
-      }
-    });
-
+  
+    if (this.isUserLoggedIn && this.currentUserPhone) {
+      this.customerService.getCartByPhone(this.currentUserPhone).subscribe((cartItems) => {
+        const existingItem = cartItems.find(item => item.productId === this.product?._id);
+  
+        if (existingItem) {
+          existingItem.cartQuantity += this.quantity;
+        } else if (this.product && this.product._id) {  // Kiểm tra trước khi push
+          cartItems.push({ productId: this.product._id, cartQuantity: this.quantity });
+        }
+  
+        if (this.currentUserPhone) {  // Kiểm tra phone trước khi gọi API
+          this.customerService.updateCustomerCart(this.currentUserPhone, cartItems).subscribe({
+            next: () => console.log(`✅ Updated cart for ${this.currentUserPhone}`),
+            error: (error) => console.error('❌ Error updating cart:', error)
+          });
+        } else {
+          console.error('❌ Error: currentUserPhone is null');
+        }
+      });
+    } else {
+      this.cartService.addToCart(this.product._id, this.quantity).subscribe({
+        next: (updatedCart) => console.log(`Added ${this.quantity} of ${this.product?.Name} to cart.`, updatedCart),
+        error: (error) => console.error('Error adding product to cart:', error)
+      });
+    }
   }
 }
