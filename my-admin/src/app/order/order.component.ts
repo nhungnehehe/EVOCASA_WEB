@@ -16,11 +16,15 @@ export class OrderComponent {
 
   totalOrders: number = 0;
 
-  customerNames: { [key: string]: string } = {}; 
+  customerNames: { [key: string]: string } = {};
 
   selectedOrder: Order | null = null;
- 
-  constructor(private orderService: OrderService, private customerService: CustomerService,  private router: Router) {}
+
+  constructor(
+    private orderService: OrderService,
+    private customerService: CustomerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadOrders();
@@ -30,7 +34,7 @@ export class OrderComponent {
       (data) => {
         this.orders = data;
         this.totalOrders = data.length;
-        this.fetchCustomerNames(); 
+        this.fetchCustomerNames();
         // this.updateDisplayedCustomers();
       },
       (error) => {
@@ -65,5 +69,4 @@ export class OrderComponent {
     );
     this.router.navigate([`/order-detail/${id}`]);
   }
-  
 }

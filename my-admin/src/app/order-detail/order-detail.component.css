@@ -92,7 +92,7 @@
 
 .info-value {
   color: rgba(0, 0, 0, 0.7);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .content-wrapper {
@@ -307,14 +307,11 @@
 }
 
 .product-info {
+  /* color: rgba(0, 0, 0, 0.7); */
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-.product-image {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 4px;
+.color-body {
+  color: rgba(0, 0, 0, 0.7) !important;
 }
