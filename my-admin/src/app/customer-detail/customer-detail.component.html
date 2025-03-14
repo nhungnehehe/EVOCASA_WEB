@@ -73,3 +73,14 @@
         </table>
       </div>
       
+
+      <div class="pagination">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+          <span class="page-number">&lt;</span>
+        </button>
+        <span class="page-number">{{currentPage}} / {{totalPages}}</span>
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+          <span class="page-number">&gt;</span>
+        </button>
+      </div>
+      

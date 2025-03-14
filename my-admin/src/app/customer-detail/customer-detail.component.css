@@ -202,16 +202,20 @@
   
   /* Pagination */
   .pagination {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
+    margin-bottom: 40px;
   }
   
   .pagination button {
-    padding: 10px;
+    padding: 6px;
     background-color: #5E4C3E;
     color: #fff;
     border: none;
     cursor: pointer;
+    margin-bottom: 40px;
   }
   
   .pagination button:hover {
@@ -219,9 +223,10 @@
   }
   
   .page-number {
-    margin: 0 10px;
+    margin: 0 5px;
     font-size: 15px;
-    cursor: pointer;
+    margin-bottom: 40px;
   }
+  
   
  

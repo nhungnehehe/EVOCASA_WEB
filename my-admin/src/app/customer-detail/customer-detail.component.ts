@@ -17,14 +17,12 @@ export class CustomerDetailComponent {
   customers: Customer[] = [];
   displayedCustomers: Customer[] = [];
   selectedCustomer: Customer | null = null;
-  currentPage: number = 1;
-  itemsPerPage: number = 1;
-  totalCustomers: number = 0;
   displayedCustomer: Customer | null = null;
   orders: Order[] = []; 
   filteredOrders: any[] = [];
   customerNames: { [key: string]: string } = {};
-
+  currentPage: number = 1;
+  itemsPerPage: number = 4; 
 
 
   constructor(private customerService: CustomerService,  private router: Router, private route: ActivatedRoute, private orderService: OrderService) {}
@@ -70,11 +68,6 @@ export class CustomerDetailComponent {
   }
   
 
-
-  get totalPages(): number {
-    return Math.ceil(this.totalCustomers / this.itemsPerPage);
-  }
-
   getTotalAmount(): number {
     return this.orders.reduce((total, order) => total + order.TotalPrice, 0);
   }
@@ -83,4 +76,23 @@ export class CustomerDetailComponent {
     return order.OrderProduct.reduce((total, product) => total + product.Quantity, 0);
   }
   
+  
+  get totalPages(): number {
+    return Math.ceil(this.orders.length / this.itemsPerPage);
+  }
+
+  // Change page based on user input
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) {
+      return; // Prevent invalid page number
+    }
+    this.currentPage = page;
+    this.updateDisplayedOrders();
+  }
+
+  // Update displayed orders based on current page
+  updateDisplayedOrders(): void {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+  }
 }
