@@ -12,7 +12,7 @@ import { EditProductComponent } from './product-detail/edit-product/edit-product
 import { AddCategoryComponent } from './category-detail/add-category/add-category.component';
 import { EditCategoryComponent } from './category-detail/edit-category/edit-category.component';
 import { LoginComponent } from './login/login.component';
-
+import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'admin-customer', component: CustomerComponent },
@@ -26,6 +26,9 @@ const routes: Routes = [
   { path: 'admin-category-add', component: AddCategoryComponent },
   { path: 'admin-category-edit', component: EditCategoryComponent },
   { path: 'login-page', component: LoginComponent },
+  { path: '', component: LoginComponent },
+  // Wildcard route for 404
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

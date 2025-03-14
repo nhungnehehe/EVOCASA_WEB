@@ -235,29 +235,29 @@ input:focus {
   }
 }
 .header {
-  background-color: #ffffc3;
-}
-.header {
   width: 100%;
-  background-color: transparent;
-  padding: 20px 0;
+  background-color: #F2EAD3;
+  padding: 0;
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 100;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  height: 60px;
 }
 
 .logo {
   height: 40px;
+  padding-left: 0; /* Remove any potential padding */
+  margin-left: 0; /* Remove any potential margin */
 }
 
 .logo img {
@@ -268,6 +268,7 @@ input:focus {
 .nav-links {
   display: flex;
   align-items: center;
+  padding-right: 20px; /* Add padding to the right side only */
 }
 
 .log-in-btn {
@@ -284,8 +285,8 @@ input:focus {
 }
 
 @media (max-width: 768px) {
-  .header-container {
-    padding: 0 15px;
+  .nav-links {
+    padding-right: 15px;
   }
   
   .logo {

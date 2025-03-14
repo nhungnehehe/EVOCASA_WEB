@@ -17,6 +17,7 @@
         <span><a>HI, {{ getLastNameUppercase() }}</a></span>
         <img [src]="currentAdmin?.Image || 'images/header/avt.png'" alt="User Profile" />
       </div>
+      <button class="logout-btn" (click)="logout()">Logout</button>
      </div>
    </div>
  </header>
