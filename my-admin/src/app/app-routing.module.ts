@@ -25,17 +25,6 @@ const routes: Routes = [
   { path: 'admin-product-edit', component: EditProductComponent },
   { path: 'admin-category-add', component: AddCategoryComponent },
   { path: 'admin-category-edit', component: EditCategoryComponent },
-  { path: '', component: DashboardComponent },
-  { path: 'admin-customer', component: CustomerComponent },
-  { path: 'admin-product', component: ProductComponent },
-  { path: 'admin-category', component: CategoryComponent },
-  { path: 'admin-order', component: OrderComponent },
-  { path: 'customer-detail/:id', component: CustomerDetailComponent },
-  { path: 'order-detail/:id', component: OrderDetailComponent },
-  { path: 'admin-product-add', component: AddProductComponent },
-  { path: 'admin-product-edit', component: EditProductComponent },
-  { path: 'admin-category-add', component: AddCategoryComponent },
-  { path: 'admin-category-edit', component: EditCategoryComponent },
   { path: 'login-page', component: LoginComponent },
 ];
 

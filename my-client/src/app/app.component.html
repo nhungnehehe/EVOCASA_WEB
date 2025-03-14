@@ -12,13 +12,16 @@
 <app-footer></app-footer>
 
 <!-- Overlay sẽ nằm trên cùng -->
-<div class="overlay" 
-     [class.visible]="isOverlayVisible"
-     [class.overlay-fading]="isOverlayFading"
-     (click)="closeSidebar()">
-</div>
+<div
+  class="overlay"
+  [class.visible]="isOverlayVisible"
+  [class.overlay-fading]="isOverlayFading"
+  (click)="closeSidebar()"
+></div>
 
 <!-- Sidebar luôn tồn tại trong DOM, chỉ thay đổi class để ẩn/hiện -->
-<app-sidebar [isVisible]="isVisibleSidebar" 
-             (closeSidebarEvent)="closeSidebar()">
+<app-sidebar
+  [isVisible]="isVisibleSidebar"
+  (closeSidebarEvent)="closeSidebar()"
+>
 </app-sidebar>

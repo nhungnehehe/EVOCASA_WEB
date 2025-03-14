@@ -134,6 +134,22 @@ export class OrderDetailComponent implements OnInit {
     }).format(amount);
   }
 
+  // Calculate total price of all products
+  calculateTotalProductPrice(): number {
+    if (!this.order?.OrderProduct) return 0;
+    return this.order.OrderProduct.reduce((total, item) => {
+      const product = this.products[item._id];
+      return total + (product?.Price || 0) * item.Quantity;
+    }, 0);
+  }
+
+  // Calculate final total including delivery fee
+  calculateFinalTotal(): number {
+    const productTotal = this.calculateTotalProductPrice();
+    const deliveryFee = this.order?.DeliveryFee || 0;
+    return productTotal + deliveryFee;
+  }
+
   // Get product image safely
   getProductImage(productId: string): string | null {
     const product = this.products[productId];

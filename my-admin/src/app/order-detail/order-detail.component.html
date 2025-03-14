@@ -4,12 +4,16 @@
     <div class="order-detail-container">
       <!-- Header -->
       <div class="header">
-        <h1>Chi tiết đơn hàng #{{ orderId }}</h1>
+        <h1>ORDER DETAIL</h1>
       </div>
       <div class="button-group">
-        <button class="back-button" (click)="goBack()">
-          <img src="assets/images/arrow-left.svg" alt="Back" />
-          Quay lại
+        <button class="back-button" routerLink="/admin-order">
+          <img src="images/order/arrow.svg" />
+          Back
+        </button>
+        <button class="save-button">
+          <img src="images/order/Save.svg" />
+          Save
         </button>
       </div>
 
@@ -27,21 +31,21 @@
         <div class="left-content">
           <div class="order-info-header">
             <div>
-              <div class="info-label">Mã đơn hàng</div>
+              <div class="info-label">Order ID</div>
               <div class="info-value">{{ order?._id }}</div>
             </div>
             <div>
-              <div class="info-label">Ngày đặt hàng</div>
+              <div class="info-label">Order Date</div>
               <div class="info-value">
                 {{ formatDate(order?.OrderDate || "") }}
               </div>
             </div>
             <div>
-              <div class="info-label">Phương thức thanh toán</div>
+              <div class="info-label">Payment Shipment</div>
               <div class="info-value">{{ order?.PaymentMethod }}</div>
             </div>
             <div>
-              <div class="info-label">Trạng thái</div>
+              <div class="info-label">Status</div>
               <div class="info-value">{{ order?.Status }}</div>
             </div>
           </div>
@@ -50,32 +54,28 @@
           <table class="order-table">
             <thead>
               <tr>
-                <th>STT</th>
-                <th>Sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
+                <th>No</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let product of order?.OrderProduct; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>
+                <td class="color-body">{{ i + 1 }}</td>
+                <td class="color-body">
                   <div class="product-info">
-                    <img
-                      *ngIf="hasProductImage(product._id)"
-                      [src]="getProductImage(product._id)"
-                      [alt]="products[product._id]?.Name"
-                      class="product-image"
-                    />
                     <span>{{
                       products[product._id]?.Name || "Đang tải..."
                     }}</span>
                   </div>
                 </td>
-                <td>{{ product.Quantity }}</td>
-                <td>{{ formatCurrency(products[product._id]?.Price || 0) }}</td>
-                <td>
+                <td class="color-body">{{ product.Quantity }}</td>
+                <td class="color-body">
+                  {{ formatCurrency(products[product._id]?.Price || 0) }}
+                </td>
+                <td class="color-body">
                   {{
                     formatCurrency(
                       (products[product._id]?.Price || 0) * product.Quantity
@@ -89,17 +89,21 @@
           <!-- Price Details -->
           <div class="price-details">
             <div class="price-row">
-              <span>Tạm tính:</span>
-              <span> {{ formatCurrency(order?.PrePrice || 0) }}</span>
+              <span>PrePrice:</span>
+              <span> {{ formatCurrency(calculateTotalProductPrice()) }}</span>
             </div>
             <div class="price-row">
-              <span>Phí vận chuyển:</span>
+              <span>Delivery Fee:</span>
               <span> {{ formatCurrency(order?.DeliveryFee || 0) }}</span>
+            </div>
+            <div class="price-row">
+              <span>Discount:</span>
+              <span> $0</span>
             </div>
             <hr />
             <div class="price-row total">
-              <span>Tổng cộng:</span>
-              <span> {{ formatCurrency(order?.TotalPrice || 0) }}</span>
+              <span>Total:</span>
+              <span> {{ formatCurrency(calculateFinalTotal()) }}</span>
             </div>
           </div>
 
@@ -109,25 +113,25 @@
               [class.active]="order?.Status === 'Cancelled'"
               (click)="updateOrderStatus('Cancelled')"
             >
-              Hủy đơn
+              Cancel
             </button>
             <button
               [class.active]="order?.Status === 'In transit'"
               (click)="updateOrderStatus('In transit')"
             >
-              Đang giao
+              In transit
             </button>
             <button
               [class.active]="order?.Status === 'Delivered'"
               (click)="updateOrderStatus('Delivered')"
             >
-              Đã giao
+              Delivered
             </button>
             <button
               [class.active]="order?.Status === 'Completed'"
               (click)="updateOrderStatus('Completed')"
             >
-              Hoàn thành
+              Completed
             </button>
           </div>
         </div>
@@ -136,28 +140,25 @@
         <div class="right-content">
           <div class="info-container">
             <div class="customer-info">
-              <h3>Thông tin khách hàng</h3>
+              <h3>Customer Information</h3>
               <hr />
               <div class="info-row">
-                <span class="info-label">Tên:</span>
+                <span class="info-label">Name:</span>
                 <span class="info-value"> {{ customer?.Name || "N/A" }}</span>
               </div>
               <div class="info-row">
-                <span class="info-label">Địa chỉ:</span>
+                <span class="info-label">Address:</span>
                 <span class="info-value"> {{ order?.Address || "N/A" }}</span>
               </div>
               <div class="info-row">
-                <span class="info-label">Điện thoại:</span>
+                <span class="info-label">Phone:</span>
                 <span class="info-value"> {{ order?.Phone || "N/A" }}</span>
               </div>
-              <div class="info-row">
-                <span class="info-label">Email:</span>
-                <span class="info-value"> {{ order?.Email || "N/A" }}</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">Giới tính:</span>
-                <span class="info-value"> {{ customer?.Gender || "N/A" }}</span>
-              </div>
+            </div>
+            <div class="order-note">
+              <h3>Order note</h3>
+              <hr />
+              <div><i>There is no note</i></div>
             </div>
           </div>
         </div>
