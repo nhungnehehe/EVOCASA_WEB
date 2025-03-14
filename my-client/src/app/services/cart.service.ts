@@ -113,4 +113,10 @@ export class CartService {
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
+
+  clearCart(): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/cart`, { withCredentials: true }).pipe(
+      catchError(this.handleError)
+    );
+  }
 }

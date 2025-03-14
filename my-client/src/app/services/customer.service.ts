@@ -146,4 +146,28 @@ export class CustomerService {
     };
   }
 
+
+  // Lấy danh sách sản phẩm trong giỏ hàng dựa trên số điện thoại
+getCartByPhone(phone: string): Observable<CartItem1[]> {
+  return this.http.get<CartItem1[]>(`${this.apiUrl}/customers/phone/${phone}/cart`)
+    .pipe(
+      tap(_ => console.log(`📢 Fetched cart for phone=${phone}`)),
+      catchError(this.handleError<CartItem1[]>('getCartByPhone', []))
+    );
+}
+
+// Thêm vào CustomerService
+updateCustomerCart(phone: string, cartItems: CartItem1[]): Observable<any> {
+  // Lọc và chỉ gửi các dữ liệu cần thiết (productId và cartQuantity)
+  const cartItemsToSync = cartItems.map(item => ({
+    productId: item.productId,
+    cartQuantity: item.cartQuantity
+  }));
+
+  console.log('Sending updated cart via PUT:', cartItemsToSync); // Log để kiểm tra dữ liệu gửi đi
+
+  // Gửi yêu cầu PUT đến server để cập nhật giỏ hàng của khách hàng
+  return this.http.put(`${this.apiUrl}/customers/phone/${phone}/cart`, { cart: cartItemsToSync });
+}
+
 }

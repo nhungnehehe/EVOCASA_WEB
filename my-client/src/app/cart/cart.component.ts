@@ -6,6 +6,10 @@ import { UserService } from '../services/user.service';
 import { CustomerService } from '../services/customer.service';
 import { CartItem1 } from '../interfaces/customer';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';  // Import forkJoin từ rxjs
+import { ProductService } from '../services/product.service';
+
 
 
 @Component({
@@ -21,13 +25,15 @@ export class CartComponent implements OnInit {
   isUserLoggedIn: boolean = false;
 
   // Danh sách sản phẩm trong giỏ hàng
-  products: CartItem1[] = [];  // Danh sách sản phẩm trong giỏ hàng
+  products: CartItem[] = [];  // Danh sách sản phẩm trong giỏ hàng
+  items: CartItem1[] = [];  // Danh sách sản phẩm trong giỏ hàng customer
   selectedProductIds: Set<string> = new Set();
   constructor(
     private cartService: CartService,
     public cartpaymentService: CartpaymentService,
     private userService: UserService,
     private customerService: CustomerService,
+    private productService: ProductService,
     private router: Router
   ) {}
 
@@ -38,80 +44,87 @@ export class CartComponent implements OnInit {
   get isEmpty(): boolean {
     return this.products.length === 0;
   }
+  
 
-  getCustomerId(phone: string) {
-    this.customerService.getCustomerByPhone(phone).subscribe(
-      (customer) => {
-        this.currentUserPhone = customer.Phone;
-        this.isUserLoggedIn = true;
-        if (customer.Phone) {
-          this.loadCart(phone);
-          console.log("📢 ID khách hàng:", this.currentCustomerId);
-        }
-      },
-      (error) => {
-        this.isUserLoggedIn = false;
-        this.loadProducts(); // Nếu không tìm thấy khách hàng, load giỏ hàng từ session
-      }
-    );
-  }
+  loadCartByPhone(phone: string) {
+    console.log("📢 Gọi API lấy giỏ hàng với số điện thoại:", phone);
   
-  // // Load giỏ hàng từ Database nếu đã đăng nhập
-  loadCart(phone: string) {
-    console.log("📢 Gọi API lấy giỏ hàng với customerId:", phone);
+    // 📌 Lấy danh sách sản phẩm đã chọn từ cartpaymentService
+    const selectedCartItems = this.cartpaymentService.getCartPaymentItems().map(item => ({
+      productId: item.productId,
+      cartQuantity: item.cartQuantity
+    }));
+    console.log("🛒 Sản phẩm đã chọn từ cartpaymentService:", selectedCartItems);
   
-    this.customerService.getCartByCustomerId(phone).subscribe(
+    // 📌 Gọi API lấy giỏ hàng từ Database
+    this.customerService.getCartByPhone(phone).subscribe(
       (cartItems: CartItem1[]) => {
         console.log("✅ Giỏ hàng từ Database:", cartItems);
   
-        if (cartItems.length === 0) {
+        if (cartItems.length === 0 && selectedCartItems.length === 0) {
           console.log("🛒 Giỏ hàng trống!");
           this.products = [];
+          this.updateCartPaymentSummary();
           return;
         }
   
-    //     // Lấy danh sách productId từ giỏ hàng
-    //     const productIds = cartItems.map(item => item.productId);
+        // 🔀 Kết hợp giỏ hàng từ Database và cartpaymentService, loại bỏ sản phẩm trùng
+        const combinedCartMap = new Map();
   
-    //     // Gọi API lấy thông tin sản phẩm dựa trên productId
-    //     this.customerService.getProductsByIds(productIds).subscribe(
-    //       (productDetails: CartItem[]) => {
-    //         console.log("📦 Thông tin sản phẩm:", productDetails);
+        // Thêm sản phẩm từ Database
+        cartItems.forEach(item => {
+          combinedCartMap.set(item.productId, item);
+        });
   
-    //         // 🔄 Chuyển đổi `CartItem1` thành `CartItem`
-    //         this.products = cartItems.map(cartItem => {
-    //           const productDetail = productDetails.find(p => p.productId === cartItem.productId);
+        // Thêm sản phẩm từ cartpaymentService (nếu chưa có)
+        selectedCartItems.forEach(item => {
+          if (!combinedCartMap.has(item.productId)) {
+            combinedCartMap.set(item.productId, item);
+          }
+        });
   
-    //           return {
-    //             productId: cartItem.productId,
-    //             cartQuantity: cartItem.cartQuantity,
-    //             category_id: productDetail?.category_id || '',
-    //             Name: productDetail?.Name || 'Không có tên',
-    //             Price: productDetail?.Price || 0,
-    //             Image: productDetail?.Image || '',
-    //             Description: productDetail?.Description || '',
-    //             Origin: productDetail?.Origin || '',
-    //             Uses: productDetail?.Uses || '',
-    //             Store: productDetail?.Store || '',
-    //             Quantity: productDetail?.Quantity || 0,
-    //             Create_date: productDetail?.Create_date || '',
-    //             Dimension: productDetail?.Dimension || '',
-    //             Story: productDetail?.Story || '',
-    //             ProductCare: productDetail?.ProductCare || '',
-    //             ShippingReturn: productDetail?.ShippingReturn || '',
-    //           } as CartItem;
-    //         });
+        const combinedCartItems = Array.from(combinedCartMap.values());
+        console.log("🔀 Giỏ hàng kết hợp (loại trùng lặp):", combinedCartItems);
   
-    //         this.updateCartPaymentSummary();
-    //       },
-    //       (error: any) => {
-    //         console.error("❌ Lỗi khi lấy thông tin sản phẩm:", error);
-    //       }
-    //     );
-    //   },
-    //   (error: any) => {
-    //     console.error("❌ Lỗi khi lấy giỏ hàng từ Database:", error);
-    //     this.products = [];
+        // 📌 Cập nhật giỏ hàng mới lên server
+        this.customerService.updateCustomerCart(phone, combinedCartItems).subscribe(
+          () => console.log("✅ Giỏ hàng đã được cập nhật lên server."),
+          error => console.error("❌ Lỗi khi cập nhật giỏ hàng lên server:", error)
+        );
+  
+        // 📌 Gửi request lấy thông tin sản phẩm
+        const productRequests = combinedCartItems.map(item =>
+          this.productService.getProductDetails(item.productId).pipe(
+            map(productDetails => {
+              productDetails.cartQuantity = item.cartQuantity;
+              return productDetails;
+            })
+          )
+        );
+  
+        // 📌 Gọi API lấy chi tiết sản phẩm
+        forkJoin(productRequests).subscribe(
+          (products: CartItem[]) => {
+            this.products = products; // Cập nhật danh sách sản phẩm
+  
+            // Cập nhật selectedProductIds và cartpaymentService nếu sản phẩm chưa tồn tại
+            products.forEach(product => {
+              const productId = product.productId.toString();
+              if (!this.selectedProductIds.has(productId)) {
+                this.selectedProductIds.add(productId);
+                this.cartpaymentService.addToCartPayment(productId, product);
+              }
+            });
+  
+            this.updateCartPaymentSummary();
+          },
+          error => {
+            console.error('❌ Lỗi khi lấy thông tin sản phẩm:', error);
+          }
+        );
+      },
+      error => {
+        console.error('❌ Lỗi khi tải giỏ hàng từ database:', error);
       }
     );
   }
@@ -150,21 +163,19 @@ export class CartComponent implements OnInit {
       this.loadSelectedProducts();
       this.updateCartPaymentSummary();
 
-      // Subscribe để lấy số điện thoại của người dùng khi họ đăng nhập
       this.userService.currentUserPhone$.subscribe((phone: string | null) => {
-      this.currentUserPhone = phone;
-      this.isUserLoggedIn = !!phone; // Đặt isUserLoggedIn dựa trên việc có phone hay không
-    
-      if (phone) {
-        // Lấy ID khách hàng nếu có số điện thoại
-        this.getCustomerId(phone);
-        console.log("📢 Người dùng đã đăng nhập với số điện thoại:", phone);
-      } else {
-        // Nếu chưa đăng nhập, load giỏ hàng từ session
-        console.log("⚠ Người dùng chưa đăng nhập, tải giỏ hàng từ session.");
-        this.loadProducts();
-      }
-    });
+        this.currentUserPhone = phone;
+        this.isUserLoggedIn = !!phone;
+      
+        if (phone) {
+          this.loadCartByPhone(phone);
+  
+          console.log("📢 Người dùng đã đăng nhập với số điện thoại:", phone);
+        } else {
+          console.log("⚠ Người dùng chưa đăng nhập, tải giỏ hàng từ session.");
+          this.loadProducts();
+        }
+      });
 
   }
 
@@ -194,7 +205,34 @@ export class CartComponent implements OnInit {
         console.error('Error updating item quantity:', err);
       }
     });
+    // 🔥 Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
+  if (this.isUserLoggedIn && this.currentUserPhone) {
+    this.updateCustomerCartOnServer();
   }
+  }
+
+  // Gửi giỏ hàng của khách hàng lên server để cập nhật database
+updateCustomerCartOnServer(): void {
+  if (!this.currentUserPhone) return;
+
+  // Lấy giỏ hàng mới để gửi lên server
+  const updatedCart = this.products.map(product => ({
+    productId: product.productId,
+    cartQuantity: product.cartQuantity
+  }));
+
+  console.log("📢 Gửi giỏ hàng mới lên server:", updatedCart);
+
+  // Gọi API cập nhật giỏ hàng của khách hàng trên server
+  this.customerService.updateCustomerCart(this.currentUserPhone, updatedCart).subscribe({
+    next: () => {
+      console.log("✅ Giỏ hàng của khách hàng đã được cập nhật trên server.");
+    },
+    error: (err) => {
+      console.error("❌ Lỗi khi cập nhật giỏ hàng trên server:", err);
+    }
+  });
+}
 
   // Cập nhật số lượng sản phẩm từ input
   updateQuantity(event: any, productId: string): void {
@@ -235,6 +273,10 @@ export class CartComponent implements OnInit {
       }
     })
   }
+   // 🔥 Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
+   if (this.isUserLoggedIn && this.currentUserPhone) {
+    this.updateCustomerCartOnServer();
+  }
 }
 
 
@@ -265,5 +307,4 @@ onCheckboxChange(event: any, product: CartItem): void {
       this.router.navigate(['/login-page'], { queryParams: { returnUrl: '/payment-shipping' } });
     }
   }
-
  }
