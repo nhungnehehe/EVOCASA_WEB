@@ -17,6 +17,7 @@ import { EditProductComponent } from './product-detail/edit-product/edit-product
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     EditProductComponent,
     CustomerDetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
