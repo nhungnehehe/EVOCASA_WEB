@@ -1,12 +1,25 @@
 <div class="dashboard" *ngIf="dashboardData">
   <header>
     <h1>Dashboard</h1>
-    <div class="header-actions">
-      <button class="header-btn filter-btn">
-        <i class="fas fa-filter"></i> Filter by
+    <div class="actions">
+      <!-- button filter -->
+      <button class="filter-button">
+        <img src="images/order/Filter.svg" alt="Filter icon" />
+        <span class="filter-text">Filter by</span>
       </button>
-      <button class="header-btn exports-btn">
-        <i class="fas fa-download"></i> Exports <i class="fas fa-chevron-down"></i>
+      <!-- button export -->
+      <button class="export-button">
+        <img
+          src="images/product/export.svg"
+          alt="Export icon"
+          class="export-icon"
+        />
+        <span class="export-text">Exports</span>
+        <img
+          src="images/product/arrow.svg"
+          alt="Dropdown arrow"
+          class="dropdown-icon"
+        />
       </button>
     </div>
   </header>

@@ -28,6 +28,112 @@ header h1 {
     text-transform: uppercase;
     font-weight: bold;
 }
+/* Container chứa các nút */
+.actions {
+    margin-top: 20px;
+    margin-right: 34px;
+    margin-bottom: 20px;
+    display: flex; /* Chuyển container thành flex */
+    justify-content: flex-end; /* Căn chỉnh các phần tử con về phía bên phải */
+    gap: 10px; /* Khoảng cách giữa các nút */
+  }
+  
+  /* nút filter*/
+  .filter-button {
+    max-width: 130px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 16px;
+    color: rgba(63, 35, 5, 1);
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1px;
+    line-height: 1;
+    border-radius: 7px;
+    border: 1px solid rgba(63, 35, 5, 1);
+    display: flex;
+    padding: 6px 10px;
+    align-items: center;
+    gap: 14px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  /* .filter-icon {
+    aspect-ratio: 1.17;
+    object-fit: contain;
+    object-position: center;
+    width: 28px;
+    flex-shrink: 0;
+  } */
+  
+  .filter-text {
+    margin: auto 0;
+  }
+  
+  /* Hover state for better UX */
+  .filter-button:hover {
+    background-color: rgba(63, 35, 5, 0.05);
+  }
+  
+  /* Focus state for accessibility */
+  .filter-button:focus {
+    outline: 2px solid rgba(63, 35, 5, 0.5);
+    outline-offset: 2px;
+  }
+  /* nút export */
+  
+  .export-button {
+    max-width: 150px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 16px;
+    color: rgba(63, 35, 5, 1);
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 0.1px;
+    line-height: 1;
+    border-radius: 7px;
+    background-color: rgba(197, 182, 167, 1);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .export-icon {
+    aspect-ratio: 1.17;
+    object-fit: contain;
+    object-position: center;
+    width: 28px;
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+  
+  .export-text {
+    align-self: stretch;
+    margin: auto 0;
+  }
+  
+  .dropdown-icon {
+    aspect-ratio: 2;
+    object-fit: contain;
+    object-position: center;
+    width: 12px;
+    align-self: stretch;
+    margin: auto 0;
+    flex-shrink: 0;
+  }
+  
+  .export-button:hover {
+    background-color: rgba(187, 172, 157, 1);
+  }
+  
+  .export-button:focus {
+    outline: 2px solid rgba(63, 35, 5, 0.5);
+    outline-offset: 2px;
+  }
 
 .header-actions {
     display: flex;
@@ -76,6 +182,7 @@ header h1 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     padding: 25px;
     border: 1px solid #E0D5C5;
+    margin-bottom: 10px;
 }
 
 .stat-box {
@@ -127,6 +234,7 @@ header h1 {
     font-weight: 700;
     color: #3F2307;
 }
+
 
 .change {
     font-size: 13px;
