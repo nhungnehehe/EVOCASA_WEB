@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.uel.edu.vn/" title="Trường Đại học Kinh tế - Luật - ĐHQG HCM" >
+  <a href="https://www.uel.edu.vn/" title="University of Economics and Law - VNU HCMC">
     <img src="https://i.imgur.com/jTdznYS.jpeg" alt="UEL">
   </a>
 </p>
@@ -7,46 +7,41 @@
 
 # EVOCASA WEBSITE
 
-## ĐỒ ÁN CUỐI KỲ MÔN PHÁT TRIỂN WEB KINH DOANH
+## FINAL PROJECT OF WEB BUSINESS DEVELOPMENT COURSE
 </div>
 
-## GIỚI THIỆU MÔN HỌC
+## COURSE INTRODUCTION
 
--    **Tên môn học:** Phát triển web kinh doanh
--    **Mã lớp:** 242MI5702
--    **Năm học:** HK2 (2024 - 2025)
--    **Giảng viên:** TS.Trần Duy Thanh
+-    **Course Name:** Web Business Development
+-    **Class Code:** 242MI5702
+-    **Academic Year:** Semester 2 (2024 - 2025)
+-    **Instructor:** Dr. Trần Duy Thanh
 
-## THÀNH VIÊN NHÓM 3
+## GROUP 3 MEMBERS
 
-| STT | MSSV       | Họ và Tên                        | GitHub                                      | Email                          |
-|:---:|:---------:|:--------------------------------:|:--------------------------------------------:|:------------------------------:|
-|  1  | K224111460 | Phạm Tuyết Nhung (Nhóm trưởng)  | [nhungnehehe](https://github.com/nhungnehehe) | nhungpt22411c@st.uel.edu.vn   |
-|  2  | K224111450 | Nguyễn Trần Thanh Huyền        | [thhuyenn19](https://github.com/thhuyenn19) | huyennntt22411c@st.uel.edu.vn |
+| No. | Student ID  | Full Name                        | GitHub                                      | Email                          |
+|:---:|:----------:|:--------------------------------:|:--------------------------------------------:|:------------------------------:|
+|  1  | K224111460 | Phạm Tuyết Nhung (Group Leader)  | [nhungnehehe](https://github.com/nhungnehehe) | nhungpt22411c@st.uel.edu.vn   |
+|  2  | K224111450 | Nguyễn Trần Thanh Huyền         | [thhuyenn19](https://github.com/thhuyenn19) | huyennntt22411c@st.uel.edu.vn |
 |  3  | K224111461 | Vũ Quỳnh Như                    | [qnhu11](https://github.com/qnhu11)         | nhuvq22411c@st.uel.edu.vn     |
 |  4  | K224111462 | Lê Nguyễn Minh Thảo             | [lnmthao](https://github.com/lnmthao)       | thaolnm22411c@st.uel.edu.vn   |
 |  5  | K224111470 | Phan Thị Thùy Trang             | [ThuyTrang1604](https://github.com/ThuyTrang1604) | trangptt22411c@st.uel.edu.vn |
-## GIỚI THIỆU ĐỒ ÁN
+## PROJECT INTRODUCTION
 
--    **Đề tài:** Trang web bán nội thất
+-    **Topic:** Furniture Sales Website
 -    **Repository:** [242MI5702_WEBDEVELOPMENT](https://github.com/thhuyenn19/242MI5702_WEBDEVELOPMENT)
 
-## CÔNG NGHỆ SỬ DỤNG
+## TECHNOLOGIES USED
 
 - Server: NodeJS
 - Dependencies:
   - Frontend
-
   - Backend:
 
 - Database: MongoDB
-- Môi trường phát triển:
-- Team work:
+- Development Environment:
+- Teamwork Tools:
   - Excel
-  - Github, Github Project
-- Cloud, Hosting
-  - Hosting: 
-  -
-  - 
-
-
+  - GitHub, GitHub Project
+- Cloud, Hosting:
+  - Hosting:
