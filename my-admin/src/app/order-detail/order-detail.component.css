@@ -71,7 +71,6 @@
   width: 50%;
 }
 
-
 .order-info-header {
   display: flex;
   justify-content: space-between;
@@ -131,8 +130,9 @@
 .order-table td {
   padding: 12px;
   color: #000000;
-  background-color: #F2EAD3;
+  background-color: #f2ead3;
   border-bottom: 0.5px solid #000000;
+  vertical-align: middle;
 }
 
 .price-details {
@@ -151,8 +151,6 @@
   font-weight: 600;
 }
 
-
-
 .info-container {
   padding: 20px;
   /* height: 100%; */
@@ -161,7 +159,8 @@
   padding-bottom: 30px; /* Added padding at the bottom for better spacing */
 }
 
-.customer-info h3, .order-note h3 {
+.customer-info h3,
+.order-note h3 {
   color: #3f2305;
   font-family: Inter;
   font-size: 18px;
@@ -181,7 +180,7 @@
 .customer-info hr,
 .order-note hr {
   border: 0;
-  border-top: 2px dashed #3F2305; /* Dashed line */
+  border-top: 2px dashed #3f2305; /* Dashed line */
   margin-top: 10px;
   margin-bottom: 10px; /* Space around the dashed line */
   width: 100%;
@@ -219,7 +218,8 @@
     flex-direction: column;
   }
 
-  .left-content, .right-content {
+  .left-content,
+  .right-content {
     width: 100%;
   }
 
@@ -251,12 +251,14 @@
     margin-bottom: 10px;
   }
 
-  .order-table th, .order-table td {
+  .order-table th,
+  .order-table td {
     font-size: 14px;
     padding: 8px;
   }
 
-  .price-details, .price-row {
+  .price-details,
+  .price-row {
     font-size: 14px;
   }
 
@@ -284,12 +286,14 @@
     padding: 10px 0;
   }
 
-  .order-table th, .order-table td {
+  .order-table th,
+  .order-table td {
     font-size: 12px;
     padding: 6px;
   }
 
-  .price-details, .price-row {
+  .price-details,
+  .price-row {
     font-size: 12px;
   }
 
@@ -300,4 +304,17 @@
   .status-buttons button {
     padding: 8px 20px;
   }
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
 }

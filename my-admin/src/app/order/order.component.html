@@ -12,16 +12,12 @@
     <!-- button export -->
     <button class="export-button">
       <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0faa700bcadbaabec0c4ef0d1adc6ea09000797707c728e9cf3b8827a83045ad?placeholderIfAbsent=true&apiKey=4b1afb3277a34d60874b074cf734b4f0"
+        src="images/product/export.svg"
         alt="Export icon"
         class="export-icon"
       />
       <span class="export-text">Exports</span>
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/19b62177b0d554b91be14f426e88b1604db4a02cfe49928ee5a03e753c8c291f?placeholderIfAbsent=true&apiKey=4b1afb3277a34d60874b074cf734b4f0"
-        alt="Dropdown arrow"
-        class="dropdown-icon"
-      />
+      <img src="images/product/arrow.svg" alt="Dropdown arrow" />
     </button>
   </div>
 
@@ -42,82 +38,23 @@
       <tr *ngFor="let order of orders; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ order._id }}</td>
-        <td>{{ customerNames[order.Customer_id] || 'Loading...' }}</td>
+        <td>{{ customerNames[order.Customer_id] || "Loading..." }}</td>
         <td>{{ order.OrderDate }}</td>
         <td>{{ order.TotalPrice }}</td>
         <td>{{ order.Status }}</td>
         <td>
-          <button class="view-btn" (click)="viewOrderDetails(order._id)">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          <div class="action-buttons">
+            <button
+              class="view-btn"
+              [routerLink]="['/order-detail', order._id]"
             >
-              <path
-                d="M2.5 10C2.5 10 5.625 4.375 10 4.375C14.375 4.375 17.5 10 17.5 10C17.5 10 14.375 15.625 10 15.625C5.625 15.625 2.5 10 2.5 10Z"
-                stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M10 12.1875C11.2047 12.1875 12.1875 11.2047 12.1875 10C12.1875 8.79531 11.2047 7.8125 10 7.8125C8.79531 7.8125 7.8125 8.79531 7.8125 10C7.8125 11.2047 8.79531 12.1875 10 12.1875Z"
-                stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-          <button class="delete-btn">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.875 4.375H3.125"
-                stroke="#FF0000"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.125 8.125V13.125"
-                stroke="#FF0000"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.875 8.125V13.125"
-                stroke="#FF0000"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M15.625 4.375V16.25C15.625 16.4158 15.5592 16.5747 15.4419 16.6919C15.3247 16.8092 15.1658 16.875 15 16.875H5C4.83424 16.875 4.67527 16.8092 4.55806 16.6919C4.44085 16.5747 4.375 16.4158 4.375 16.25V4.375"
-                stroke="#FF0000"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M13.125 4.375V3.125C13.125 2.79348 12.9933 2.47554 12.7589 2.24112C12.5245 2.0067 12.2065 1.875 11.875 1.875H8.125C7.79348 1.875 7.47554 2.0067 7.24112 2.24112C7.0067 2.47554 6.875 2.79348 6.875 3.125V4.375"
-                stroke="#FF0000"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+              <img src="images/product/view.svg" alt="View icon" />
+            </button>
+            <button class="delete-btn">
+              <img src="images/product/trash.svg" alt="Delete icon" />
+            </button>
+          </div>
         </td>
-        <!-- </tr> -->
       </tr>
     </table>
   </div>
