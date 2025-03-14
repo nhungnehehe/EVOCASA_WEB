@@ -41,13 +41,13 @@
 
       <tr *ngFor="let order of orders; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ order.id }}</td>
-        <td>{{ order.name }}</td>
-        <td>{{ order.date }}</td>
-        <td>{{ order.price }}</td>
-        <td>{{ order.status }}</td>
+        <td>{{ order._id }}</td>
+        <td>{{ customerNames[order.Customer_id] || 'Loading...' }}</td>
+        <td>{{ order.OrderDate }}</td>
+        <td>{{ order.TotalPrice }}</td>
+        <td>{{ order.Status }}</td>
         <td>
-          <button class="view-btn">
+          <button class="view-btn" (click)="viewOrderDetails(order._id)">
             <svg
               width="20"
               height="20"

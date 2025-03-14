@@ -5,7 +5,7 @@
         <div class="summary-card">
           <h2>Total customers</h2>
           <div class="value-container">
-            <p class="value">5,641</p>
+            <p class="value">{{ customers.length }}</p>
             <p class="percentage">+15% <span>This month</span></p>
           </div>
         </div>
@@ -44,13 +44,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let customer of customers">
-              <td>{{ customer.id }}</td>
-              <td>{{ customer.name }}</td>
-              <td>{{ customer.gender }}</td>
-              <td>{{ customer.email }}</td>
-              <td>{{ customer.phone }}</td>
-              <td>{{ customer.amount }}</td>
+            <tr *ngFor="let customer of displayedCustomers">
+              <td>{{ customer._id }}</td>
+              <td>{{ customer.Name }}</td>
+              <td>{{ customer.Gender }}</td>
+              <td>{{ customer.Mail }}</td>
+              <td>{{ customer.Phone }}</td>
+              <td>200</td>
               <td>
                 <button class="edit-btn">
                     <img src="images/customer/edit.svg" alt="Edit">
@@ -58,10 +58,10 @@
                 <button class="delete-btn">
                     <img src="images/customer/trash.svg" alt="Delete">
                 </button>
-                <button class="view-btn">
-                  <a routerLink="/customer-detail">
+                <button class="view-btn" (click)="viewCustomerDetails(customer._id)">
+                  <!-- <a routerLink="/customer-detail"> -->
                   <img src="images/customer/view.svg" alt="View">
-                  </a>
+                  <!-- </a> -->
                 </button>
             </td>
             </tr>
@@ -70,11 +70,21 @@
       </div>
       
   
-    <div class="pagination">
-      <button class="prev-btn">&lt;</button>
-      <span class="page-number">1</span>
-      <span class="page-number">2</span>
-      <span class="page-number">3</span>
-      <button class="next-btn">&gt;</button>
-    </div>
+   <!-- Pagination Controls -->
+<div class="pagination">
+  <button class="prev-btn" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
+
+  <span *ngFor="let page of [].constructor(totalPages); let i = index">
+    <button class="page-number" (click)="changePage(i + 1)" [class.active]="currentPage === (i + 1)">
+      {{ i + 1 }}
+    </button>
+  </span>
+
+  <button class="next-btn" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
+</div>
+
+<!-- Showing results -->
+<div class="showing-results">
+  <p>Showing {{ startCustomer }} to {{ endCustomer }} of {{ totalCustomers }} results</p>
+</div>
   
