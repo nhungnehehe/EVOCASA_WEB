@@ -22,5 +22,7 @@ export class UserService {
 
   clearCurrentUser(): void {
     this._currentUserName.next('');
+    this._currentUserPhone.next(''); // ✅ Xóa số điện thoại
+    localStorage.removeItem('currentUserPhone'); // ✅ Xóa khỏi localStorage
   }
 }

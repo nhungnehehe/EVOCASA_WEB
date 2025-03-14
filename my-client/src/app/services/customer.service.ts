@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, of, retry } from 'rxjs';
+import { Observable, throwError, of, retry, Subject } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { Customer, ICustomer, CartItem1 } from '../interfaces/customer';
 
@@ -99,7 +99,7 @@ export class CustomerService {
           cart.push({ productId: productId, cartQuantity: quantity });
         }
         
-        return this.updateCart(customerId, cart);
+        return this.updateCart(customerId, cart) ;
       }),
       catchError(this.handleError<Customer>('addToCart'))
     );
@@ -167,7 +167,33 @@ updateCustomerCart(phone: string, cartItems: CartItem1[]): Observable<any> {
   console.log('Sending updated cart via PUT:', cartItemsToSync); // Log để kiểm tra dữ liệu gửi đi
 
   // Gửi yêu cầu PUT đến server để cập nhật giỏ hàng của khách hàng
-  return this.http.put(`${this.apiUrl}/customers/phone/${phone}/cart`, { cart: cartItemsToSync });
+  return this.http.put(`${this.apiUrl}/customers/phone/${phone}/cart`, { cart: cartItemsToSync })
+    .pipe(
+      tap(() => this.notifyCartUpdated()) // Notify cart updated after updating
+    );
 }
 
+
+
+// Đếm tổng số lượng sản phẩm trong giỏ hàng
+countTotalQuantity(cart: CartItem1[]): number {
+  return cart.reduce((total, item) => total + item.cartQuantity, 0);
+}
+
+// Tính tổng giá trị giỏ hàng
+calculateTotalAmount(cart: CartItem1[], products: any[]): number {
+  return cart.reduce((total, item) => {
+    const product = products.find(p => p._id === item.productId);
+    return total + (product ? product.price * item.cartQuantity : 0);
+  }, 0);
+}
+
+  private cartUpdated = new Subject<void>(); // Sự kiện khi giỏ hàng thay đổi
+  getCartUpdatedListener(): Observable<void> {
+    return this.cartUpdated.asObservable();
+  }
+  notifyCartUpdated(): void {
+    this.cartUpdated.next();
+
+}
 }
