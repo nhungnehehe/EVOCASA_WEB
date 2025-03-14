@@ -67,7 +67,14 @@ export class CustomerDetailComponent {
     }
   }
 
-
+  loadCustomerOrders(orderId: string): void {
+    this.orderService.getOrdersByCustomer(orderId).subscribe(
+      orders => {
+        this.orders = orders;  // Display orders associated with the customer
+      },
+      error => console.error('Error fetching orders:', error)
+    );
+  }
 
   // Pagination: change the page
   changePage(page: number): void {
