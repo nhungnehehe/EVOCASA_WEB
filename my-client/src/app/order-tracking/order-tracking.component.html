@@ -4,11 +4,11 @@
       <div class="your-order">YOUR ORDER</div>
       <article class="welcome-card">
         <figure class="profile-image">
-          <img src="https://placehold.co/160x160/f8f0e5/f8f0e5" alt="Profile" class="profile-pic" />
+          <img [src]="customerInfo.Image" alt="Profile" class="profile-pic" />
         </figure>
         <div class="welcome-text">
           <p class="welcome-line">Welcome to EvoCasa</p>
-          <p class="name">Andrey!</p>
+          <p class="name">{{ customerInfo.Name }}!</p>
         </div>
       </article>
       <nav class="menu-list">
@@ -38,42 +38,28 @@
     <section class="main-content"></section>
   </main>
   <div class="content">
-    <div class="track-orders-container">
+    <div class="track-orders-container" *ngIf="orders && orders.length > 0">
       <h2 class="track-orders-title">Track Orders</h2>
       <div>
-        <article class="order-card">
+        <article class="order-card" *ngFor="let order of orders">
           <div class="order-header">
             <div class="order-id-group">
               <span class="order-id-label">Order ID</span>
               <span class="separator">|</span>
-              <span class="order-id-value">2503010011</span>
+              <span class="order-id-value">{{ order._id}}</span>
             </div>
-            <button class="view-details-button">View details</button>
+            <button class="view-details-button" routerLink="/view-order-detail">View details</button>
           </div>
           <p class="order-address">
-            Address: 16 Thong Nhat, Thuan Giao, Thuan An, Binh Duong Province, Viet Nam.
+            {{ order.Address }}
             <br />
-            Phone: 0909888777
+            {{ order.Phone }}
           </p>
         </article>
       </div>
-      <div class="order-card-wrapper">
-        <article class="order-card">
-          <div class="order-header">
-            <div class="order-id-group">
-              <span class="order-id-label">Order ID</span>
-              <span class="separator">|</span>
-              <span class="order-id-value">2503010012</span>
-            </div>
-            <button class="view-details-button">View details</button>
-          </div>
-          <p class="order-address">
-            Address: 16 Thong Nhat, Thuan Giao, Thuan An, Binh Duong Province, Viet Nam.
-            <br />
-            Phone: 0909888777
-          </p>
-        </article>
-      </div>
+    </div>
+    <div *ngIf="!orders || orders.length === 0">
+      <p>No orders found.</p>
     </div>
   </div>
 </div>

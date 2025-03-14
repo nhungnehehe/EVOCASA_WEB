@@ -73,7 +73,7 @@ const routes: Routes = [
   { path: 'the-disc-collection', component:TheDiscCollectionComponent},
   { path: 'manage-account', component:ManageAccountComponent},
   { path: 'view-orders', component:OrderTrackingComponent},
-  { path: 'view-order-detail', component:OrderTrackingDetailComponent}
+  { path: 'view-order-detail/:identifier', component:OrderTrackingDetailComponent}
 ];
 
 @NgModule({

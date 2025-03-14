@@ -23,8 +23,7 @@ export class ManageAccountComponent {
     private router: Router,
     private userService: UserService,
     private customerService: CustomerService,
-    private datePipe: DatePipe,
-    private productService: ProductService
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -40,7 +39,6 @@ export class ManageAccountComponent {
 
             this.formattedDOB = this.datePipe.transform(this.customerInfo.DOB, 'dd/MM/yyyy');
 
-            this.getCartData();  
           },
           (error) => {
             console.error("Lỗi khi lấy thông tin khách hàng:", error);
@@ -49,21 +47,7 @@ export class ManageAccountComponent {
       }
     });
   }
-  getCartData() {
-    if (this.customerInfo && this.customerInfo._id) {
-      this.customerService.getCartByCustomerId(this.customerInfo._id).subscribe(
-        (cartItems: any[]) => {
-          this.cartItems = cartItems.map(item => ({
-            productId: item.ProductId,  // Đổi ProductId thành productId
-            cartQuantity: item.Quantity // Đổi Quantity thành cartQuantity
-          }));
-        },
-        (error) => {
-          console.error("Lỗi khi lấy giỏ hàng:", error);
-        }
-      );
-    }
-  }
+
    // Hàm xử lý đăng xuất
    signOut(): void {
     localStorage.removeItem('token');
