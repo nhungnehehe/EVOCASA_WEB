@@ -55,23 +55,23 @@ export class SidebarComponent implements OnInit, OnChanges {
 
   loadCartByPhone(phone: string) {
     if (!phone || !this.isUserLoggedIn) {
-      console.log("❌ Không có số điện thoại hợp lệ hoặc người dùng đã đăng xuất.");
+      console.log("Không có số điện thoại hợp lệ hoặc người dùng đã đăng xuất.");
       this.products = []; // Xóa giỏ hàng ngay khi đăng xuất
       this.updateTotal();
       return;
     }
     // if (!phone) return;
     
-    console.log("📢 Gọi API lấy giỏ hàng với số điện thoại:", phone);
+    console.log("Gọi API lấy giỏ hàng với số điện thoại:", phone);
     this.cartContentLoaded = false;
   
     // Gọi API lấy giỏ hàng từ Database
     this.customerService.getCartByPhone(phone).subscribe(
       (cartItems: CartItem1[]) => {
-        console.log("✅ Giỏ hàng từ Database:", cartItems);
+        console.log(" Giỏ hàng từ Database:", cartItems);
   
         if (cartItems.length === 0) {
-          console.log("🛒 Giỏ hàng trống!");
+          console.log("Giỏ hàng trống!");
           this.products = [];
           this.updateTotal();
           this.cartContentLoaded = true;
@@ -93,17 +93,17 @@ export class SidebarComponent implements OnInit, OnChanges {
           (products: CartItem[]) => {
             this.products = products;
             this.updateTotal();
-            console.log("✅ Đã tải", products.length, "sản phẩm từ database");
+            console.log("Đã tải", products.length, "sản phẩm từ database");
             this.cartContentLoaded = true;
           },
           error => {
-            console.error('❌ Lỗi khi lấy thông tin sản phẩm:', error);
+            console.error('Lỗi khi lấy thông tin sản phẩm:', error);
             this.cartContentLoaded = true;
           }
         );
       },
       error => {
-        console.error('❌ Lỗi khi tải giỏ hàng từ database:', error);
+        console.error('Lỗi khi tải giỏ hàng từ database:', error);
         this.cartContentLoaded = true;
       }
     );
@@ -162,13 +162,13 @@ export class SidebarComponent implements OnInit, OnChanges {
       this.isUserLoggedIn = !!phone;
     
       if (wasLoggedIn && !this.isUserLoggedIn) {
-        console.log("📢 Người dùng đã đăng xuất, xóa giỏ hàng cũ");
+        console.log("Người dùng đã đăng xuất, xóa giỏ hàng cũ");
         
         this.resetSidebar(); // Xóa giỏ hàng trên giao diện
         
         this.cartService.clearCart().subscribe({
           next: () => {
-            console.log("✅ Giỏ hàng trong session đã được xóa.");
+            console.log("Giỏ hàng trong session đã được xóa.");
             
             if (this.isVisible) {
               setTimeout(() => {
@@ -178,14 +178,14 @@ export class SidebarComponent implements OnInit, OnChanges {
             }
           },
           error: (err) => {
-            console.error("❌ Lỗi khi xóa giỏ hàng:", err);
+            console.error("Lỗi khi xóa giỏ hàng:", err);
           }
         });
       } else if (this.isVisible && phone) {
-        console.log("📢 Người dùng đã đăng nhập, tải giỏ hàng từ database:", phone);
+        console.log("Người dùng đã đăng nhập, tải giỏ hàng từ database:", phone);
         this.loadCartByPhone(phone);
       } else if (this.isVisible) {
-        console.log("⚠ Người dùng chưa đăng nhập, tải giỏ hàng từ session.");
+        console.log("Người dùng chưa đăng nhập, tải giỏ hàng từ session.");
         this.loadProducts();
       }
     });
@@ -233,7 +233,7 @@ export class SidebarComponent implements OnInit, OnChanges {
       }
     });
 
-      // 🔥 Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
+      // Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
   if (this.isUserLoggedIn && this.currentUserPhone) {
     this.updateCustomerCartOnServer();
   }
@@ -250,15 +250,15 @@ updateCustomerCartOnServer(): void {
     cartQuantity: product.cartQuantity
   }));
 
-  console.log("📢 Gửi giỏ hàng mới lên server:", updatedCart);
+  console.log("Gửi giỏ hàng mới lên server:", updatedCart);
 
   // Gọi API cập nhật giỏ hàng của khách hàng trên server
   this.customerService.updateCustomerCart(this.currentUserPhone, updatedCart).subscribe({
     next: () => {
-      console.log("✅ Giỏ hàng của khách hàng đã được cập nhật trên server.");
+      console.log("Giỏ hàng của khách hàng đã được cập nhật trên server.");
     },
     error: (err) => {
-      console.error("❌ Lỗi khi cập nhật giỏ hàng trên server:", err);
+      console.error("Lỗi khi cập nhật giỏ hàng trên server:", err);
     }
   });
 }
@@ -282,7 +282,7 @@ updateCustomerCartOnServer(): void {
         }
       });
     }
-     // 🔥 Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
+     //Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
      if (this.isUserLoggedIn && this.currentUserPhone) {
       this.updateCustomerCartOnServer();
     }
@@ -315,10 +315,10 @@ updateCustomerCartOnServer(): void {
   navigateToCart() {
     this.closeCart(); // Đóng sidebar trước
     this.cartpaymentService.clearCartPayment(); 
-    console.log("✅ Giỏ hàng thanh toán đã được xóa.");
+    console.log("Giỏ hàng thanh toán đã được xóa.");
     this.router.navigate(['/cart-page']); // Chuyển hướng sau khi xóa
   }
-  
+
   clearCart(): void {
     this.products = [];
     this.total = 0;

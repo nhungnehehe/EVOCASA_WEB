@@ -100,7 +100,7 @@ export class CartpaymentService {
   clearCartPayment(): void {
     this.paymentCart = []; // Xóa toàn bộ giỏ thanh toán
     this.selectedProductIds.clear(); // Xóa danh sách ID sản phẩm đã chọn
-    console.log("✅ Giỏ hàng thanh toán đã được xóa.");
+    console.log("Giỏ hàng thanh toán đã được xóa.");
   }
   
 }

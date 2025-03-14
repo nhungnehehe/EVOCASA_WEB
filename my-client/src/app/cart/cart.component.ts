@@ -47,22 +47,22 @@ export class CartComponent implements OnInit {
   
 
   loadCartByPhone(phone: string) {
-    console.log("📢 Gọi API lấy giỏ hàng với số điện thoại:", phone);
+    console.log("Gọi API lấy giỏ hàng với số điện thoại:", phone);
   
-    // 📌 Lấy danh sách sản phẩm đã chọn từ cartpaymentService
+    // Lấy danh sách sản phẩm đã chọn từ cartpaymentService
     const selectedCartItems = this.cartpaymentService.getCartPaymentItems().map(item => ({
       productId: item.productId,
       cartQuantity: item.cartQuantity
     }));
-    console.log("🛒 Sản phẩm đã chọn từ cartpaymentService:", selectedCartItems);
+    console.log("Sản phẩm đã chọn từ cartpaymentService:", selectedCartItems);
   
-    // 📌 Gọi API lấy giỏ hàng từ Database
+    // Gọi API lấy giỏ hàng từ Database
     this.customerService.getCartByPhone(phone).subscribe(
       (cartItems: CartItem1[]) => {
-        console.log("✅ Giỏ hàng từ Database:", cartItems);
+        console.log("Giỏ hàng từ Database:", cartItems);
   
         if (cartItems.length === 0 && selectedCartItems.length === 0) {
-          console.log("🛒 Giỏ hàng trống!");
+          console.log("Giỏ hàng trống!");
           this.products = [];
           this.updateCartPaymentSummary();
           return;
@@ -84,15 +84,15 @@ export class CartComponent implements OnInit {
         });
   
         const combinedCartItems = Array.from(combinedCartMap.values());
-        console.log("🔀 Giỏ hàng kết hợp (loại trùng lặp):", combinedCartItems);
+        console.log("Giỏ hàng kết hợp (loại trùng lặp):", combinedCartItems);
   
-        // 📌 Cập nhật giỏ hàng mới lên server
+        // Cập nhật giỏ hàng mới lên server
         this.customerService.updateCustomerCart(phone, combinedCartItems).subscribe(
-          () => console.log("✅ Giỏ hàng đã được cập nhật lên server."),
-          error => console.error("❌ Lỗi khi cập nhật giỏ hàng lên server:", error)
+          () => console.log("Giỏ hàng đã được cập nhật lên server."),
+          error => console.error("Lỗi khi cập nhật giỏ hàng lên server:", error)
         );
   
-        // 📌 Gửi request lấy thông tin sản phẩm
+        // Gửi request lấy thông tin sản phẩm
         const productRequests = combinedCartItems.map(item =>
           this.productService.getProductDetails(item.productId).pipe(
             map(productDetails => {
@@ -102,7 +102,7 @@ export class CartComponent implements OnInit {
           )
         );
   
-        // 📌 Gọi API lấy chi tiết sản phẩm
+        // Gọi API lấy chi tiết sản phẩm
         forkJoin(productRequests).subscribe(
           (products: CartItem[]) => {
             this.products = products; // Cập nhật danh sách sản phẩm
@@ -119,12 +119,12 @@ export class CartComponent implements OnInit {
             this.updateCartPaymentSummary();
           },
           error => {
-            console.error('❌ Lỗi khi lấy thông tin sản phẩm:', error);
+            console.error('Lỗi khi lấy thông tin sản phẩm:', error);
           }
         );
       },
       error => {
-        console.error('❌ Lỗi khi tải giỏ hàng từ database:', error);
+        console.error('Lỗi khi tải giỏ hàng từ database:', error);
       }
     );
   }
@@ -170,9 +170,9 @@ export class CartComponent implements OnInit {
         if (phone) {
           this.loadCartByPhone(phone);
   
-          console.log("📢 Người dùng đã đăng nhập với số điện thoại:", phone);
+          console.log("Người dùng đã đăng nhập với số điện thoại:", phone);
         } else {
-          console.log("⚠ Người dùng chưa đăng nhập, tải giỏ hàng từ session.");
+          console.log("Người dùng chưa đăng nhập, tải giỏ hàng từ session.");
           this.loadProducts();
         }
       });
@@ -205,7 +205,7 @@ export class CartComponent implements OnInit {
         console.error('Error updating item quantity:', err);
       }
     });
-    // 🔥 Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
+    // Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
   if (this.isUserLoggedIn && this.currentUserPhone) {
     this.updateCustomerCartOnServer();
   }
@@ -221,15 +221,15 @@ updateCustomerCartOnServer(): void {
     cartQuantity: product.cartQuantity
   }));
 
-  console.log("📢 Gửi giỏ hàng mới lên server:", updatedCart);
+  console.log("Gửi giỏ hàng mới lên server:", updatedCart);
 
   // Gọi API cập nhật giỏ hàng của khách hàng trên server
   this.customerService.updateCustomerCart(this.currentUserPhone, updatedCart).subscribe({
     next: () => {
-      console.log("✅ Giỏ hàng của khách hàng đã được cập nhật trên server.");
+      console.log("Giỏ hàng của khách hàng đã được cập nhật trên server.");
     },
     error: (err) => {
-      console.error("❌ Lỗi khi cập nhật giỏ hàng trên server:", err);
+      console.error("Lỗi khi cập nhật giỏ hàng trên server:", err);
     }
   });
 }
@@ -273,7 +273,7 @@ updateCustomerCartOnServer(): void {
       }
     })
   }
-   // 🔥 Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
+   // Nếu khách hàng đã đăng nhập, cập nhật giỏ hàng lên server
    if (this.isUserLoggedIn && this.currentUserPhone) {
     this.updateCustomerCartOnServer();
   }
