@@ -262,35 +262,56 @@ body {
     font-size: 16px;
 }
 
-.search-results {
-    position: absolute;
-    top: 100%;
-    background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-height: 200px;
+/* Khung kết quả tìm kiếm */
+.search-suggestions {
+    border: 1px solid #ddd;
+    background-color: white;
+    max-height: 250px;
     overflow-y: auto;
+    position: absolute;
+    width: 400px;
+    top: 50px;
+    left: 75%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-.search-results ul {
+/* List items trong kết quả tìm kiếm */
+.search-suggestions ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
-.search-results li {
-    padding: 8px 12px;
-}
-
-.search-results li a {
-    text-decoration: none;
+.search-suggestions li {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
     color: #333;
-    font-size: 16px;
-    display: block;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 
-.search-results li:hover {
-    background-color: #f1f1f1;
+/* Hiệu ứng hover */
+.search-suggestions li:hover {
+    background-color: #f8f8f8;
+    /* Màu nền khi hover */
+    padding-left: 20px;
+    /* Thêm hiệu ứng thụt vào khi hover */
+}
+
+/* Thêm một chút margin ở dưới mỗi item để dễ phân biệt */
+.search-suggestions li+li {
+    margin-top: 5px;
+}
+
+/* Các mục không có kết quả */
+.search-suggestions li.no-results {
+    font-style: italic;
+    color: #888;
+    text-align: center;
 }
 
 /* User actions */

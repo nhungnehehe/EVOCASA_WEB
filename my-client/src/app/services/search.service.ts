@@ -8,11 +8,11 @@ import { map, Observable, switchMap } from 'rxjs';
 export class SearchService {
   private apiUrl = 'http://localhost:3002'; // Địa chỉ của backend API
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  // Tìm kiếm toàn cục cho sản phẩm, blog và bộ sưu tập
+  // Tìm kiếm sản phẩm
   search(query: string): Observable<any[]> {
     const searchUrl = `${this.apiUrl}/search?q=${query}`;
-    return this.http.get<any[]>(searchUrl);
+    return this.http.get<any[]>(searchUrl); // Gọi API backend
   }
 }

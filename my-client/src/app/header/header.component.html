@@ -118,20 +118,19 @@
 
     <!-- User Actions -->
     <div class="search">
-      <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search for products, blogs, or collections" />
+      <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search for products" />
       <button (click)="search()">
         <img src="images/header/Search-icon.svg" alt="Search" />
       </button>
     </div>
-    
-    <!-- Hiển thị kết quả tìm kiếm -->
-    <div *ngIf="searchResults.length > 0" class="search-results">
+    <div *ngIf="searchResults.length > 0" class="search-suggestions">
       <ul>
-        <li *ngFor="let result of searchResults">
-          <a [routerLink]="result.link">{{ result.name }}</a>
+        <li *ngFor="let result of searchResults" (click)="selectProduct(result)">
+          {{ result.name }} - {{ result.price | currency }}
         </li>
       </ul>
     </div>
+    
     
 
       <div class="signcart">

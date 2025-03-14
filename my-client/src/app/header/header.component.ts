@@ -56,15 +56,36 @@ export class HeaderComponent implements OnInit {
       this.currentUserName = name.toUpperCase();
     });
   }
-  search(): void {
+   // Hàm tìm kiếm
+   search(): void {
     if (this.searchTerm.trim()) {
       this.searchService.search(this.searchTerm).subscribe((results) => {
         this.searchResults = results;  // Lưu kết quả vào searchResults
+        console.log("Kết quả tìm kiếm:", results); 
+
+        if (results.length > 0) {
+          const product = results[0]; // Lấy sản phẩm đầu tiên từ kết quả
+          // Hiển thị thông tin sản phẩm bằng alert()
+          // alert(`Sản phẩm tìm thấy:\nTên: ${product.name}\nGiá: ${product.price}\nLink: ${product.link}`);
+        } else {
+          // alert("Không tìm thấy sản phẩm khớp với từ khóa.");
+        }
+      }, error => {
+        console.error("Lỗi khi tìm kiếm:", error);
+        this.searchResults = [];  // Xử lý lỗi khi không có kết quả
+        this.searchTerm = '';  // Xóa nội dung trong ô input
       });
     } else {
       this.searchResults = [];  // Nếu không có từ khóa, không có kết quả
+      this.searchTerm = '';  // Xóa nội dung trong ô input
     }
   }
+  
+  selectProduct(product: any): void {
+    // Ví dụ: Chuyển hướng đến trang chi tiết sản phẩm
+    window.location.href = product.link;
+  }
+
   updateCartQuantity(): void {
     if (this.isUserLoggedIn && this.currentUserPhone) {
       // Nếu đã đăng nhập, lấy số lượng từ giỏ hàng trong database

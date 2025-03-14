@@ -927,36 +927,38 @@ app.put("/customers/phone/:phone/cart", async (req, res) => {
   }
 });
 
-// API tìm kiếm toàn cục cho sản phẩm, blog và bộ sưu tập
+// API tìm kiếm sản phẩm
 app.get("/search", async (req, res) => {
-  const query = req.query.q; // Lấy từ khóa tìm kiếm
+  const query = req.query.q; // Lấy từ khóa tìm kiếm từ query parameter
+
+  if (!query) {
+    return res.status(400).send({ error: "Từ khóa tìm kiếm không hợp lệ." });
+  }
 
   try {
-    // Lấy sản phẩm khớp với từ khóa tìm kiếm
-    const products = await productCollection.find({ 
+    // Tìm kiếm sản phẩm trong productCollection với tên sản phẩm khớp với từ khóa
+    const products = await productCollection.find({
       Name: { $regex: query, $options: 'i' } // Tìm kiếm không phân biệt chữ hoa chữ thường
     }).toArray();
 
-    // Lấy blog khớp với từ khóa tìm kiếm
-    const blogs = await blogCollection.find({
-      title: { $regex: query, $options: 'i' }
-    }).toArray();
+    // Nếu không tìm thấy sản phẩm nào
+    if (products.length === 0) {
+      return res.status(404).send({ message: "Không có sản phẩm nào khớp với từ khóa." });
+    }
 
-    // Lấy bộ sưu tập khớp với từ khóa tìm kiếm
-    const collections = await collectionCollection.find({
-      name: { $regex: query, $options: 'i' }
-    }).toArray();
+    // Chuyển kết quả thành mảng các sản phẩm với thông tin cần thiết
+    const results = products.map((product) => ({
+      type: 'product',
+      name: product.Name,
+      price: product.Price,
+      link: `/product/${product._id}`,
+      image: product.Image[0] // Giả sử mỗi sản phẩm có ít nhất một hình ảnh
+    }));
 
-    // Kết hợp kết quả từ tất cả các nguồn
-    const results = [
-      ...products.map((product) => ({ type: 'product', name: product.Name, link: `/product/${product._id}` })),
-      ...blogs.map((blog) => ({ type: 'blog', name: blog.title, link: `/blog/${blog._id}` })),
-      ...collections.map((collection) => ({ type: 'collection', name: collection.name, link: `/collection/${collection._id}` }))
-    ];
-
+    // Trả về kết quả tìm kiếm
     res.status(200).send(results);
   } catch (error) {
-    console.error("Lỗi khi lấy kết quả tìm kiếm:", error);
+    console.error("Lỗi khi tìm kiếm sản phẩm:", error);
     res.status(500).send({ error: "Lỗi khi lấy kết quả tìm kiếm" });
   }
 });
