@@ -1,5 +1,5 @@
 export interface Order {
-    _id?: string;
+    _id: string;
     Customer_id: string;
     TrackingNumber: string;
     OrderDate: string;

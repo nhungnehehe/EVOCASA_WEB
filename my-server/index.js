@@ -690,6 +690,38 @@ app.get("/orders/:id", cors(), async (req, res) => {
   const result = await orderCollection.find({ _id: o_id }).toArray();
   res.send(result[0]);
 });
+// Lấy đơn hàng của khách hàng theo customerId
+app.get("/orders/customer/:customerId", cors(), async (req, res) => {
+  try {
+    const customerId = req.params["customerId"];
+
+    // Tìm tất cả đơn hàng có customerId khớp
+    const orders = await orderCollection.find({ Customer_id: new ObjectId(customerId) }).toArray();
+
+    if (!orders || orders.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "Không tìm thấy đơn hàng cho khách hàng này."
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      data: orders
+    });
+
+  } catch (error) {
+    console.error("Lỗi khi lấy đơn hàng:", error);
+    res.status(500).send({
+      success: false,
+      message: "Đã xảy ra lỗi khi lấy đơn hàng.",
+      error: error.message
+    });
+  }
+});
+
+
+
 app.post("/orders", cors(), async (req, res) => {
   //put json Order into database 
   await orderCollection.insertOne(req.body)

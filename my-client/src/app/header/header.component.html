@@ -1,18 +1,18 @@
 <div class="brown-banner">
-   Wishing you a joyous 2025 - Beautify your home with great deals!
+  Wishing you a joyous 2025 - Beautify your home with great deals!
 </div>
 <header>
   <div class="navbar">
     <!-- Logo -->
-    <div class="logo">
+    <div class="logo" [routerLink]="'/'">
       <img src="images/header/LogoHasName.png" alt="EVOCASA" />
     </div>
 
     <!-- Menu Chính -->
     <ul class="menu">
-      <li><a routerLink="/">HOMEPAGE</a></li>
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">HOMEPAGE</a></li>
       <li class="dropdown">
-        <a routerLink="/product">PRODUCTS</a>
+        <a routerLink="/product" routerLinkActive="active">PRODUCTS</a>
         <div class="dropdown-menu">
           <ul>
             <li>
@@ -66,20 +66,54 @@
         </div>
       </li>
       <li class="dropdown">
-        <a routerLink="/collections">COLLECTIONS</a>
+        <a routerLink="/collections" routerLinkActive="active">COLLECTIONS</a>
         <div class="dropdown-menu">
-          <ul>
-            <li><a routerLink="/the-anniversary-collection">The Anniversary Collection</a></li>
-            <li><a routerLink="/sabi-collection">Sabi Collection</a></li>
-            <li><a routerLink="/the-pavilion-collection">The Pavilion Collection</a></li>
-            <li><a routerLink="/the-disc-collection">The Disc Collection</a></li>
-          </ul>
+          <!-- Bên trái: Danh sách bộ sưu tập -->
+          <div class="collections-list">
+            <ul>
+              <li><a routerLink="/the-anniversary-collection">The Anniversary Collection</a></li>
+              <li><a routerLink="/sabi-collection">Sabi Collection</a></li>
+              <li><a routerLink="/the-pavilion-collection">Pavilion Collection</a></li>
+              <li><a routerLink="/the-disc-collection">Disc Collection</a></li>
+            </ul>
+          </div>
+
+          <!-- Bên phải: Lưới ảnh bộ sưu tập -->
+          <div class="collections-grid">
+            <div class="collection-item">
+              <a routerLink="/the-anniversary-collection">
+                <img src="images/collection/The Anniversary Collection/The Anniversary Collection.jpg"
+                  alt="The Anniversary Collection">
+                <span>The Anniversary Collection</span>
+              </a>
+            </div>
+            <div class="collection-item">
+              <a routerLink="/sabi-collection">
+                <img src="images/collection/Sabi Collection/Sabi collection 1.jpg" alt="Sabi Collection">
+                <span>Sabi Collection</span>
+              </a>
+            </div>
+            <div class="collection-item">
+              <a routerLink="/the-pavilion-collection">
+                <img src="images/collection/The Pavilion Collection/The Pavilion Collection 1.jpg"
+                  alt="The Pavilion Collection">
+                <span>The Pavilion Collection</span>
+              </a>
+            </div>
+            <div class="collection-item">
+              <a routerLink="/the-disc-collection">
+                <img src="images/collection/The Disc Collection/The Disc Collection 1.jpg" alt="The Disc Collection">
+                <span>The Disc Collection</span>
+              </a>
+            </div>
+          </div>
         </div>
       </li>
-      <li><a routerLink="/insitu-page">IN SITU</a></li>
-      <li><a routerLink="/blog">BLOG</a></li>
-      <li><a routerLink="/about-page">ABOUT US</a></li>
-      <li><a routerLink="/contact-page">CONTACT</a></li>
+
+      <li><a routerLink="/insitu-page" routerLinkActive="active">IN SITU</a></li>
+      <li><a routerLink="/blog" routerLinkActive="active">BLOG</a></li>
+      <li><a routerLink="/about-page" routerLinkActive="active">ABOUT US</a></li>
+      <li><a routerLink="/contact-page" routerLinkActive="active">CONTACT</a></li>
     </ul>
 
     <!-- User Actions -->
@@ -92,15 +126,15 @@
       </div>
       <div class="signcart">
         <img src="images/header/Sign-in-icon.svg" />
-        <a routerLink="/login-page" class="icon" *ngIf="!currentUserName">SIGN IN</a>
-        <span class="icon" *ngIf="currentUserName"><a routerLink="/manage-account" class="icon">HI, {{ currentUserName }}</a></span>
+        <a routerLink="/login-page" class="icon" *ngIf="!currentUserName" routerLinkActive="active">SIGN IN</a>
+        <span class="icon" *ngIf="currentUserName"><a routerLink="/manage-account" class="icon" routerLinkActive="active">HI, {{ currentUserName }}</a></span>
       </div>
       <div class="signcart">
         <button (click)="openSidebar()">
-            <img src="images/header/Cart-icon.svg" />
+          <img src="images/header/Cart-icon.svg" />
         </button>
         <span class="total_quantity">{{ displayedQuantity }}</span>
-        <label class="icon" (click)="openSidebar()">CART</label>
+        <label class="icon" (click)="openSidebar()" routerLinkActive="active">CART</label>
       </div>
     </div>
   </div>

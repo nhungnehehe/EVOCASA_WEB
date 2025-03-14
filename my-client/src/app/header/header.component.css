@@ -37,6 +37,7 @@ body {
 /* Logo */
 .logo img {
     height: 35px;
+    cursor: pointer;
 }
 
 /* Menu chính */
@@ -83,28 +84,26 @@ body {
 
 /* Giữ lại font-weight bold khi hover hoặc active */
 
-.menu li a.active {
-    font-weight: bold;
-}
 
-/* Dropdown menu */
 .dropdown-menu {
-    display: none;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #FFFCF3;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 850px; /* Điều chỉnh độ rộng cho phù hợp */
+    max-width: 100vw; /* Giới hạn tối đa để không bị tràn */
+    justify-content: space-between;
     position: absolute;
     left: 0;
     top: 100%;
-    background-color: #FFFCF3;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    white-space: nowrap;
-    flex-direction: row;
-    gap: 20px; /* Giảm khoảng cách giữa các danh mục con */
+    z-index: 2000;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 2000;
 }
 
+/* Hiển thị dropdown khi hover */
 .dropdown:hover .dropdown-menu {
     display: flex;
     visibility: visible;
@@ -136,7 +135,75 @@ body {
     display: block;
     padding: 5px 0;
 }
+/* Bên trái: Danh sách bộ sưu tập */
+.collections-list {
+    width: 35%; /* Chiếm 35% menu */
+    padding-right: 20px;
+    border-right: 1px solid #ddd;
+}
 
+.collections-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.collections-list ul li {
+    margin-bottom: 10px;
+}
+
+.collections-list ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+}
+
+/* Bên phải: Grid ảnh bộ sưu tập */
+.collections-grid {
+    width: 60%; /* Chiếm 60% menu */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cột */
+    grid-template-rows: repeat(2, auto); /* 2 hàng */
+    gap: 15px;
+    padding-left: 20px;
+}
+
+/* Mỗi item bộ sưu tập */
+.collection-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Hình ảnh trong bộ sưu tập */
+.collection-item img {
+    width: 200px;  /* Kích thước ảnh */
+    height: 120px;
+    object-fit: cover;
+    /* border-radius: 8px; */
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng hover ảnh */
+.collection-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Chữ bên dưới ảnh */
+.collection-item span {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    display: block;
+    max-width: 130px; /* Giới hạn chiều rộng chữ để không bị tràn */
+    white-space: nowrap; /* Giữ chữ trên một dòng */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Cắt chữ nếu quá dài */
+}
 /* Search box */
 .search {
     display: flex;
@@ -175,6 +242,12 @@ body {
     align-items: center;
     gap: 15px; /* Tăng khoảng cách giữa các mục */
     white-space: nowrap;
+}
+
+/* Sign In và Cart khi active */
+.user-actions .icon.active {
+    font-weight: bold; /* Hoặc bất kỳ hiệu ứng nào bạn muốn */
+    text-decoration: underline; /* Giả sử bạn muốn gạch dưới khi active */
 }
 
 /* Biểu tượng */

@@ -23,16 +23,16 @@
     <!-- Các sản phẩm trong giỏ hàng -->
     <div *ngFor="let product of products" class="cart-item">
       <div class="checkbox-container">
-        <input type="checkbox" id="checkbox-{{product.productId}}" (change)="onCheckboxChange($event, product)" [checked]="isProductSelected(product.productId)"/>
+        <!-- <input type="checkbox" id="checkbox-{{product.productId}}" (change)="onCheckboxChange($event, product)" [checked]="isProductSelected(product.productId)"/> -->
         <label for="checkbox-{{product.productId}}"></label>
         
      </div>
       <div class="product-image">
-        <img [src]="product.Image" alt="404">
+        <!-- <img [src]="product.Image" alt="404"> -->
       </div>
       <div class="product-details">
-        <p class="product-name">{{ product.Name }}</p>
-        <p class="product-price">${{ product.Price | number: '1.0-0' }}</p>
+        <!-- <p class="product-name">{{ product.Name }}</p> -->
+        <!-- <p class="product-price">${{ product.Price | number: '1.0-0' }}</p> -->
       </div>
       <div class="quantity-selector">
         <button type="button" (click)="changeQuantity('decrease', product.productId)">-</button>
@@ -40,7 +40,7 @@
         <button type="button" (click)="changeQuantity('increase', product.productId)">+</button>
       </div>
       <div class="product-total">
-        <p>${{ product.Price * product.cartQuantity | number: '1.0-0' }}</p>
+        <!-- <p>${{ product.Price * product.cartQuantity | number: '1.0-0' }}</p> -->
       </div>
     </div>
   </div>
@@ -55,15 +55,15 @@
       <hr/>
 
       <div class="summary-details">
-        <p class="total_quantity">{{ totalQuantity }} items</p>
-        <p class="total_cart">${{ total | number: '1.0-0' }}</p>
+        <!-- <p class="total_quantity">{{ totalQuantity }} items</p> -->
+        <!-- <p class="total_cart">${{ total | number: '1.0-0' }}</p> -->
       </div>
 
       <hr/>
 
       <div class="checkout-info">
         <p class="shipping-info">Shipping & taxes calculated at checkout</p>
-        <button (click)="onCheckout()" class="checkout-btn">CHECK OUT</button>
+        <!-- <button (click)="onCheckout()" class="checkout-btn">CHECK OUT</button> -->
       </div>
     </div>
   </div>

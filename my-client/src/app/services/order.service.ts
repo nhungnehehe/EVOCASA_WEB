@@ -7,36 +7,38 @@ import { Order } from '../interfaces/order';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:3002/orders';
+  private apiUrl = 'http://localhost:3002';
 
   // HTTP options mặc định
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /** 🔹 Lấy tất cả đơn hàng (Admin) */
   getAllOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}`)
+    return this.http.get<Order[]>(`${this.apiUrl}/orders`)
       .pipe(
         tap(() => console.log('Fetched all orders')),
         catchError(this.handleError<Order[]>('getAllOrders', []))
       );
   }
 
-  /** 🔹 Lấy danh sách đơn hàng của một khách hàng */
+
   getOrdersByCustomer(customerId: string): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}?Customer_id=${customerId}`)
+    // Thay vì chuyển thành ObjectId, chỉ cần sử dụng customerId trực tiếp
+    return this.http.get<Order[]>(`${this.apiUrl}/orders/customer/${customerId}`)
       .pipe(
         tap(() => console.log(`Fetched orders for customer ID=${customerId}`)),
         catchError(this.handleError<Order[]>('getOrdersByCustomer', []))
       );
   }
 
+
   /** 🔹 Lấy chi tiết một đơn hàng */
   getOrderById(orderId: string): Observable<Order> {
-    return this.http.get<Order>(`${this.apiUrl}/${orderId}`)
+    return this.http.get<Order>(`${this.apiUrl}/orders/${orderId}`)
       .pipe(
         tap(() => console.log(`Fetched order ID=${orderId}`)),
         catchError(this.handleError<Order>('getOrderById'))
@@ -71,7 +73,7 @@ export class OrderService {
   }
 
   /** 🔹 Cập nhật trạng thái đơn hàng */
-  updateOrderStatus(orderId: string, status: 'Pending' | 'Shipped' | 'Delivered' | 'Cancelled'): Observable<Order> {
+  updateOrderStatus(orderId: string, status: 'Cancelled' | 'In transit' | 'Delivered' | 'Completed'): Observable<Order> {
     return this.updateOrder(orderId, { Status: status })
       .pipe(
         tap(() => console.log(`Updated status of order ID=${orderId} to ${status}`)),
