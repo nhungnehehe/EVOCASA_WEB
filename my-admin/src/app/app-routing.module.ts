@@ -27,7 +27,6 @@ const routes: Routes = [
   { path: 'admin-order', component: OrderComponent, canActivate: [AuthGuard]},
   { path: 'login-page', component: LoginComponent },
   { path: '', component: LoginComponent },
-  // Wildcard route for 404
   { path: '**', redirectTo: '' }
 ];
 

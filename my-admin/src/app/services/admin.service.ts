@@ -76,8 +76,7 @@ export class AdminService {
 
   // Check if user is logged in
   isLoggedIn(): boolean {
-    const admin = this.getCurrentAdmin();
-    return !!admin && !!admin._id; // Make sure we have a valid admin object with ID
+    return !!this.currentAdminSubject.value;
   }
 
   // Error handling
@@ -87,4 +86,14 @@ export class AdminService {
       return of(result as T);
     };
   }
+  // Optional validation method
+validateCurrentAdmin(): Observable<boolean> {
+  const admin = this.getCurrentAdmin();
+  if (!admin) return of(false);
+  
+  return this.getAdminById(admin._id).pipe(
+    map(serverAdmin => !!serverAdmin),
+    catchError(() => of(false))
+  );
+}
 }
