@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartpaymentService } from '../services/cartpayment.service';
 import { CheckoutDataService } from '../services/checkout-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-method',
@@ -19,7 +20,8 @@ export class PaymentMethodComponent {
   cartItems: any[] = [];
   constructor(
     private cartpaymentService: CartpaymentService,
-    private checkoutDataService: CheckoutDataService) { }
+    private checkoutDataService: CheckoutDataService,
+    private router: Router) { }
   ngOnInit(): void {
     this.cartItems = this.checkoutDataService.getCheckoutData();
 
@@ -37,6 +39,9 @@ export class PaymentMethodComponent {
   // Hàm xử lý sự kiện khi chọn phương thức thanh toán
   selectPaymentMethod(method: string) {
     this.selectedPaymentMethod = method;
+  }
+  goBack(): void {
+    this.router.navigate(['/payment-shipping'], { queryParams: { buyNow: 'true' } })
   }
 
 }
