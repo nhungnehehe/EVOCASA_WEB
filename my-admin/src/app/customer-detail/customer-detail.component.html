@@ -55,7 +55,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let order of orders">
-              <td>{{ customerNames[order.Customer_id] || 'Loading...' }}</td>
+              <td>{{ order._id}}</td>
               <td>{{ order.TotalPrice }}</td>
               <td>{{ order.OrderProduct }}</td>
               <td>{{ order.Date }}</td>
