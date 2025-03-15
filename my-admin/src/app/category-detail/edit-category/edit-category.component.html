@@ -20,11 +20,11 @@
 <!-- ADD CATEGORY -->
     <div class="container">
         <!-- ADD CATEGORY Title -->
-        <div class="title">ADD CATEGORY</div>
+        <div class="title">EDIT CATEGORY</div>
 
         <!-- Flex container for buttons -->
         <div class="flex-container">
-            <div class="button add-product" (click)="postCategory()">
+            <div class="button add-product" (click)="putCategory()">
                 <img src="images/category-detail/add.png" alt="Add">
                 <span>Add category</span>
             </div>
@@ -79,14 +79,11 @@
                     <div class="input-container">
                         <div class="label">Parent Category</div>
                         <div class="combo-box-container">
-                            <select class="input-field1" [(ngModel)]="category.parentCategory" >
-                                <option value="" disabled hidden>Select Product Category</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Lighting">Lighting</option>
-                                <option value="Soft Goods">Soft Goods</option>
-                                <option value="Decor">Decor</option>
-                                <option value="Dining">Dining</option>
-                                <option value="Art">Art</option>
+                            <select class="input-field" [(ngModel)]="category.parentCategory">
+                                <option value="" disabled>Select Parent Category</option>
+                                <option *ngFor="let cat of categories" [value]="cat._id">
+                                    {{ cat.name }}
+                                </option>
                             </select>
                             <img src="images/category-detail/more.png" alt="icon" class="combo-box-icon">
                         </div>      
