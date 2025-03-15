@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Subscribe to changes in the currentAdmin
     this.adminService.currentAdmin$.subscribe(admin => {
       this.currentAdmin = admin;
     });
