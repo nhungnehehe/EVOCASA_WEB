@@ -99,6 +99,7 @@ app.get("/", (req, res) => {
 
 // API to get all products
 app.get("/products", async (req, res) => {
+  console.log("Fetching products...");
   try {
     const result = await productCollection.find({}).toArray();
     res.status(200).send(result);
