@@ -5,9 +5,9 @@ export interface IProduct {
   Name: string; 
   Price: number; 
   Image: string[]; 
-  Description: string; // Product description
-  Origin: string; // Country of origin
-  Uses: string; // Product uses/purpose
+  Description: string;
+  Origin: string; 
+  Uses: string; 
   Store: string; 
   Quantity: number; 
   Create_date: Date; 
