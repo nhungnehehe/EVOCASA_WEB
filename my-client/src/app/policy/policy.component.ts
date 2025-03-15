@@ -102,16 +102,13 @@ export class PolicyComponent {
 
   tabChange(ids: string, event?: Event) {
     this.id = ids;
+    this.router.navigate([], { 
+      fragment: ids, // Cập nhật URL fragment 
+      queryParamsHandling: 'preserve' // Giữ nguyên các query parameters khác (nếu có)
+    });
   
-    // Nếu có event (click trực tiếp) thì thêm class
     if (event) {
       this.addSelectedClass(event.target as HTMLElement);
-    } else {
-      // Nếu không có event (chuyển tab từ fragment) thì tự tìm phần tử navbar
-      const navItem = document.querySelector(`[data-id="${ids}"]`);
-      if (navItem) {
-        this.addSelectedClass(navItem as HTMLElement);
-      }
     }
   }
 
