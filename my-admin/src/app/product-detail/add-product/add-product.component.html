@@ -132,7 +132,7 @@
                 <div class="product-info-title">Category</div>
                 <div class="input-container">
                     <div class="input-container">
-                        <div class="label1">Product category</div>
+                        <div class="label">Product category</div>
                             <select class="input-field" [(ngModel)]="product.category_id">
                                 <option value="" disabled hidden>Select Product Category</option>
                                 <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>

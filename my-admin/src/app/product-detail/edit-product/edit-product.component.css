@@ -8,7 +8,11 @@
 
 /* Ẩn thanh cuộn nhưng vẫn có thể cuộn được */
 html, body {
-    overflow: scroll; /* Cho phép cuộn nhưng không hiển thị thanh cuộn */
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Đảm bảo có thể cuộn được */
+    margin: 0;
+    padding: 0;
 }
 
 ::-webkit-scrollbar {
