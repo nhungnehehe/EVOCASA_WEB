@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,22 +5,20 @@
   font-family: "Zen Old Mincho", serif;
 }
 
-
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
   padding: 20px;
   min-height: 150px;
-  background-color: #FFFCF3;
+  background-color: #fffcf3;
   color: #000000;
 }
-
 
 .title {
   flex: 0 0 auto;
   margin-right: 20px;
-  color: #5E4C3E;
+  color: #5e4c3e;
   margin-left: 30px;
   width: 30%;
 }
@@ -46,8 +43,8 @@
   display: none; /* Ẩn mặc định */
   position: absolute;
   top: 100%; /* Hiển thị bên dưới menu */
-  left: 0;   /* Căn trái với cạnh bên trái của menu */
-  background-color: #FFFCF3; /* Giữ cùng màu nền */
+  left: 0; /* Căn trái với cạnh bên trái của menu */
+  background-color: #fffcf3; /* Giữ cùng màu nền */
   margin-left: 30px;
   gap: 15px;
   z-index: 1000;
@@ -57,11 +54,10 @@
   content: "";
   position: absolute;
   top: 0;
- 
-  width: 650px; 
-  border-top: 1px solid #3F2305;
-}
 
+  width: 650px;
+  border-top: 1px solid #3f2305;
+}
 
 .level2.flex {
   display: flex;
@@ -69,8 +65,8 @@
 
 .category,
 .subcategory {
-  font-weight: 300; 
-  color: #5E4C3E;
+  font-weight: 300;
+  color: #5e4c3e;
   cursor: pointer; /* Hiển thị con trỏ dạng mũi tên */
   /* Loại bỏ transition để chữ không động */
 }
@@ -92,7 +88,7 @@
 /* Các phần tử không active giữ màu nhạt */
 .category:not(.active),
 .subcategory:not(.active) {
-  color: #5E4C3E;
+  color: #5e4c3e;
 }
 /* Product card styling */
 .row {
@@ -121,7 +117,7 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 1.4;
-  color: #5E4C3E;
+  color: #5e4c3e;
   transition: opacity 0.3s ease;
 }
 
@@ -132,9 +128,6 @@
 #category-description.hide {
   opacity: 0;
 }
-
-
-
 /* Image container & images */
 .image-container {
   position: relative;
@@ -194,28 +187,27 @@
 .pagination-controls button {
   margin: 0 5px;
   padding: 10px 15px;
-  background-color: #F2EAD3; /* Màu nền cho nút bình thường */
-  border: 1px solid #5E4C3E; /* Border 1px khi bình thường */
+  background-color: #f2ead3; /* Màu nền cho nút bình thường */
+  border: 1px solid #5e4c3e; /* Border 1px khi bình thường */
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease, border-width 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    border-width 0.3s ease;
   font-weight: normal; /* Đảm bảo font chữ bình thường */
   opacity: 1; /* Đảm bảo không có hiệu ứng làm mờ */
 }
 
 .pagination-controls button:hover {
-  background-color: #5E4C3E;
+  background-color: #5e4c3e;
 }
 
 .pagination-controls button.active {
-
-  border-color: #5E4C3E; /* Viền khi được click */
+  border-color: #5e4c3e; /* Viền khi được click */
   border-width: 2px; /* Border 2px khi được click */
   font-weight: bold; /* Làm đậm chữ khi nút được chọn */
   opacity: 1; /* Đảm bảo không bị mờ khi được chọn */
 }
-
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
