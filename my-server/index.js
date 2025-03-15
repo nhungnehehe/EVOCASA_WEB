@@ -720,6 +720,49 @@ app.get("/orders/customer/:customerId", cors(), async (req, res) => {
   }
 });
 
+// API to update an order
+app.put("/orders/:id", cors(), async (req, res) => {
+  try {
+    const { id } = req.params;  // Get order ID from request params
+    const {
+      Customer_id,
+      Order_date,
+      Shipping_address,
+      Status,
+      Total_price,
+      Items
+    } = req.body;
+
+    // Create updated order object
+    const updatedOrder = {
+      Customer_id: new ObjectId(Customer_id),
+      Order_date: new Date(Order_date),
+      Shipping_address,
+      Status,
+      Total_price: parseFloat(Total_price),
+      Items: Array.isArray(Items) ? Items : [], // Ensure Items is an array
+    };
+
+    // Update the order in the database
+    const result = await orderCollection.updateOne(
+      { _id: new ObjectId(id) },  // Find order by ID
+      { $set: updatedOrder }  // Set the new values for the order
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).send({ error: "Order not found" });
+    }
+
+    // Return the updated order details
+    res.status(200).send({
+      _id: id,
+      ...updatedOrder
+    });
+  } catch (error) {
+    console.error("Error updating order:", error);
+    res.status(500).send({ error: "Error updating order" });
+  }
+});
 
 
 app.post("/orders", cors(), async (req, res) => {
