@@ -40,6 +40,8 @@ import { PopupComponent } from './popup/popup.component';
 import { PaymentNoticeComponent } from './payment-notice/payment-notice.component';
 import { ManageAccountComponent } from './manage-account/manage-account.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     OrderTrackingComponent,
     PopupComponent,
     PaymentNoticeComponent,
-    HomepageComponent
+    HomepageComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
+    OverlayModule
     
   ],
   providers: [DatePipe],

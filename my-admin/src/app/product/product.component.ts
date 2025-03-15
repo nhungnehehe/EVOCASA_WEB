@@ -40,19 +40,24 @@ export class ProductComponent implements OnInit {
       minPrice: [''],
       maxPrice: [''],
       minInventory: [''],
-      maxInventory: ['']
+      maxInventory: [''],
     });
   }
 
   ngOnInit(): void {
     this.loadCategories(); // Đảm bảo danh mục được tải trước
     // Subscribe to all form control changes
-    this.filterForm.valueChanges.subscribe(values => {
-      if (values.category || values.minPrice || values.maxPrice || 
-          values.minInventory || values.maxInventory) {
+    this.filterForm.valueChanges.subscribe((values) => {
+      if (
+        values.category ||
+        values.minPrice ||
+        values.maxPrice ||
+        values.minInventory ||
+        values.maxInventory
+      ) {
         this.applyFilterChanges();
-    }
-  });
+      }
+    });
   }
 
   // Load danh sách sản phẩm
@@ -204,7 +209,7 @@ export class ProductComponent implements OnInit {
             }
           }
         }
-  }
+      }
 
       if (!categoryFound) {
         console.warn(
@@ -237,26 +242,26 @@ export class ProductComponent implements OnInit {
     });
   }
 
- // Cập nhật danh sách sản phẩm hiển thị theo trang
+  // Cập nhật danh sách sản phẩm hiển thị theo trang
   updateFilteredProducts(): void {
     // Calculate pagination based on displayProducts (filtered or all products)
     this.totalItems = this.displayProducts.length;
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-    
+
     // Ensure current page is valid
     if (this.currentPage > this.totalPages && this.totalPages > 0) {
       this.currentPage = 1;
     }
-    
+
     // Update page numbers
     this.updatePageNumbers();
 
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    
+
     // Here's the fix - use displayProducts instead of products
     this.filteredProducts = this.displayProducts.slice(startIndex, endIndex);
-    
+
     console.log(
       `Showing products ${startIndex + 1} to ${Math.min(
         endIndex,
@@ -268,8 +273,25 @@ export class ProductComponent implements OnInit {
   // Cập nhật mảng số trang
   updatePageNumbers(): void {
     this.pageNumbers = [];
-    for (let i = 1; i <= this.totalPages; i++) {
-      this.pageNumbers.push(i);
+    // Show only 2 pages at a time
+    if (this.totalPages <= 2) {
+      // If total pages is 2 or less, show all pages
+      for (let i = 1; i <= this.totalPages; i++) {
+        this.pageNumbers.push(i);
+      }
+    } else {
+      // If current page is 1, show pages 1 and 2
+      if (this.currentPage === 1) {
+        this.pageNumbers = [1, 2];
+      }
+      // If current page is the last page, show last two pages
+      else if (this.currentPage === this.totalPages) {
+        this.pageNumbers = [this.totalPages - 1, this.totalPages];
+      }
+      // Otherwise show current page and next page
+      else {
+        this.pageNumbers = [this.currentPage, this.currentPage + 1];
+      }
     }
     console.log('Page numbers updated:', this.pageNumbers);
   }
@@ -332,111 +354,130 @@ export class ProductComponent implements OnInit {
   }
 
   // Toggle the filter panel
-    applyFilter(): void {
-      this.showFilter = !this.showFilter;
-    }
+  applyFilter(): void {
+    this.showFilter = !this.showFilter;
+  }
 
   // Add this new method to handle immediate category filtering
   onCategoryChange(): void {
     // Get the selected category value
     const selectedCategory = this.filterForm.get('category')?.value;
     console.log('Category changed to:', selectedCategory);
-    
+
     // Apply the filter immediately when category changes
     this.applyFilterChanges();
   }
 
-   // Apply the filter criteria
+  // Apply the filter criteria
   applyFilterChanges(): void {
-  const { category, minPrice, maxPrice, minInventory, maxInventory } = this.filterForm.value;
-  
-  console.log('Filter values:', { category, minPrice, maxPrice, minInventory, maxInventory });
-  
-  // Filter the products based on criteria
-  this.displayProducts = this.products.filter(product => {
-    let matchesCategory = true;
-    let matchesPrice = true;
-    let matchesInventory = true;
-    
-    // Category filter - enhanced to handle parent categories
-    if (category && category !== '') {
-      // Get all child categories of the selected category
-      const selectedCategory = this.categories.find(cat => cat.name === category);
-      
-      if (selectedCategory) {
-        // Find all subcategories that have this category as parent
-        const childCategories = this.categories.filter(cat => {
-          // Get the parent category ID regardless of its format
-          let parentCategoryId: string | null = null;
-          
-          if (typeof cat.parentCategory === 'string') {
-            parentCategoryId = cat.parentCategory;
-          } else if (cat.parentCategory && typeof cat.parentCategory === 'object') {
-            // Handle MongoDB ObjectId format
-            const parentObj = cat.parentCategory as any;
-            if (parentObj.$oid) {
-              parentCategoryId = parentObj.$oid;
-            } else if (parentObj._id) {
-              parentCategoryId = parentObj._id;
-            } else {
-              parentCategoryId = String(parentObj);
+    const { category, minPrice, maxPrice, minInventory, maxInventory } =
+      this.filterForm.value;
+
+    console.log('Filter values:', {
+      category,
+      minPrice,
+      maxPrice,
+      minInventory,
+      maxInventory,
+    });
+
+    // Filter the products based on criteria
+    this.displayProducts = this.products.filter((product) => {
+      let matchesCategory = true;
+      let matchesPrice = true;
+      let matchesInventory = true;
+
+      // Category filter - enhanced to handle parent categories
+      if (category && category !== '') {
+        // Get all child categories of the selected category
+        const selectedCategory = this.categories.find(
+          (cat) => cat.name === category
+        );
+
+        if (selectedCategory) {
+          // Find all subcategories that have this category as parent
+          const childCategories = this.categories.filter((cat) => {
+            // Get the parent category ID regardless of its format
+            let parentCategoryId: string | null = null;
+
+            if (typeof cat.parentCategory === 'string') {
+              parentCategoryId = cat.parentCategory;
+            } else if (
+              cat.parentCategory &&
+              typeof cat.parentCategory === 'object'
+            ) {
+              // Handle MongoDB ObjectId format
+              const parentObj = cat.parentCategory as any;
+              if (parentObj.$oid) {
+                parentCategoryId = parentObj.$oid;
+              } else if (parentObj._id) {
+                parentCategoryId = parentObj._id;
+              } else {
+                parentCategoryId = String(parentObj);
+              }
             }
-          }
-          // Compare with the selected category ID (ensure both are strings)
-          return parentCategoryId === String(selectedCategory._id);
-        });
-        
-        // Collect all relevant category IDs and names
-        const categoryIds = [
-          String(selectedCategory._id), 
-          ...childCategories.map(cat => String(cat._id))
-        ];
-        
-        const categoryNames = [
-          selectedCategory.name, 
-          ...childCategories.map(cat => cat.name)
-        ];
-        
-        console.log('Matching product against categories:', categoryNames);
-        
-        // Check if product's category matches the selected category or any child category
-        matchesCategory = categoryIds.includes(String(product.category_id)) || 
-                          categoryNames.includes(product.category_name ?? '');
-      } else {
-        // Fallback to exact match if category not found
-        matchesCategory = product.category_name === category;
+            // Compare with the selected category ID (ensure both are strings)
+            return parentCategoryId === String(selectedCategory._id);
+          });
+
+          // Collect all relevant category IDs and names
+          const categoryIds = [
+            String(selectedCategory._id),
+            ...childCategories.map((cat) => String(cat._id)),
+          ];
+
+          const categoryNames = [
+            selectedCategory.name,
+            ...childCategories.map((cat) => cat.name),
+          ];
+
+          console.log('Matching product against categories:', categoryNames);
+
+          // Check if product's category matches the selected category or any child category
+          matchesCategory =
+            categoryIds.includes(String(product.category_id)) ||
+            categoryNames.includes(product.category_name ?? '');
+        } else {
+          // Fallback to exact match if category not found
+          matchesCategory = product.category_name === category;
+        }
       }
-  }
-    
+
       // Price range filter - Fix the comparison
       const productPrice = Number(product.Price); // Ensure conversion to number
-      
+
       if (minPrice !== null && minPrice !== '') {
         const minPriceValue = Number(minPrice);
-        console.log(`Comparing product ${product.Name} price: ${productPrice} >= ${minPriceValue}`);
+        console.log(
+          `Comparing product ${product.Name} price: ${productPrice} >= ${minPriceValue}`
+        );
         matchesPrice = matchesPrice && productPrice >= minPriceValue;
       }
-      
+
       if (maxPrice !== null && maxPrice !== '') {
         const maxPriceValue = Number(maxPrice);
-        console.log(`Comparing product ${product.Name} price: ${productPrice} <= ${maxPriceValue}`);
+        console.log(
+          `Comparing product ${product.Name} price: ${productPrice} <= ${maxPriceValue}`
+        );
         matchesPrice = matchesPrice && productPrice <= maxPriceValue;
       }
-      
+
       // Inventory range filter
       if (minInventory !== null && minInventory !== '') {
-        matchesInventory = matchesInventory && Number(product.Quantity) >= Number(minInventory);
+        matchesInventory =
+          matchesInventory && Number(product.Quantity) >= Number(minInventory);
       }
-      
+
       if (maxInventory !== null && maxInventory !== '') {
-        matchesInventory = matchesInventory && Number(product.Quantity) <= Number(maxInventory);
+        matchesInventory =
+          matchesInventory && Number(product.Quantity) <= Number(maxInventory);
       }
-      
+
       return matchesCategory && matchesPrice && matchesInventory;
     });
-    
+
     console.log('Filtered products count:', this.displayProducts.length);
-    
+
     // Reset to first page and update display
     this.currentPage = 1;
     this.updateFilteredProducts();
@@ -457,33 +498,33 @@ export class ProductComponent implements OnInit {
 
   exportProducts() {
     // Use displayProducts (filtered products) instead of all products
-    const productsToExport = this.displayProducts.length > 0 ? this.displayProducts : this.products;
-    
+    const productsToExport =
+      this.displayProducts.length > 0 ? this.displayProducts : this.products;
+
     if (!productsToExport || productsToExport.length === 0) {
       alert('No data available for export!');
       return;
     }
-  
-    const headers = ["No", "Product Name", "Price", "Category", "Inventory"];
+
+    const headers = ['No', 'Product Name', 'Price', 'Category', 'Inventory'];
     const csvRows = productsToExport.map((product, index) => [
       index + 1,
       `"${product.Name}"`,
       product.Price,
-      `"${product.category_name || "N/A"}"`,
+      `"${product.category_name || 'N/A'}"`,
       product.Quantity,
     ]);
-  
-    const csvContent = [headers, ...csvRows].map(e => e.join(",")).join("\n");
-  
-    const blob = new Blob([csvContent], { type: "text/csv" });
+
+    const csvContent = [headers, ...csvRows].map((e) => e.join(',')).join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = "product_list.csv";
+    a.download = 'product_list.csv';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
   }
-
 }

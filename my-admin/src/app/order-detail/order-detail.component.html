@@ -67,18 +67,18 @@
                 <td class="color-body">
                   <div class="product-info">
                     <span>{{
-                      products[product._id]?.Name || "Đang tải..."
+                      products[product._id].Name || "Đang tải..."
                     }}</span>
                   </div>
                 </td>
                 <td class="color-body">{{ product.Quantity }}</td>
                 <td class="color-body">
-                  {{ formatCurrency(products[product._id]?.Price || 0) }}
+                  {{ formatCurrency(products[product._id].Price || 0) }}
                 </td>
                 <td class="color-body">
                   {{
                     formatCurrency(
-                      (products[product._id]?.Price || 0) * product.Quantity
+                      (products[product._id].Price || 0) * product.Quantity
                     )
                   }}
                 </td>

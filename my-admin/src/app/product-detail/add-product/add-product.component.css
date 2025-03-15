@@ -8,22 +8,27 @@
 
 
 
-/* .main-image {
-    width: 100%;
-    max-height: 300px;
+.main-image-x {
+    width: 200px;
+    max-height: 250px;
     object-fit: cover;
     border-radius: 5px;
-} */
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .image-thumbnails {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .thumbnail-container {
     position: relative;
+    margin-left: auto; 
+    margin-right: auto;
 }
 
 .thumbnail {
@@ -66,8 +71,6 @@
     height: 300px;
     font-size: 36px;
 }
-
-
 
 /* ADD PRODUCT */
 .custom-hr {
@@ -177,7 +180,6 @@
     display: flex;
     gap: 30px;
     margin-top: 10px;
-    width: 100%;
 }
 
 .input-container {
@@ -188,10 +190,34 @@
 .label {
     color: rgba(0, 0, 0, 0.7);
     font-size: 14px;
+    margin-top: 30px;
+}
+
+.label1 {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
     margin-top: 20px;
 }
 
+.label2 {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 .input-field {
+    height: 30px;
+    padding-left: 15px;
+    border-radius: 7px;
+    margin-top: 5px;
+    border: 1px solid #F2EAD3;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    background: #F2EAD3;
+}
+
+.input-field-x {
+    width: 280px;
     height: 30px;
     padding-left: 15px;
     border-radius: 7px;
@@ -249,15 +275,15 @@
 }
 
 /* Main image */
-.main-image {
+/* .main-image {
     width: 200px;
     height: 240px;;
     margin-top: 20px;
     border-radius: 5px;
     object-fit: cover;
-    margin-left: 55px;
-    margin-right: 55px;
-}
+    margin-left: auto; 
+    margin-right: auto;
+} */
 
 /* Container for small images */
 .image-container {
@@ -370,12 +396,14 @@
 }
 
 .input-box {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 10px; /* Giảm khoảng cách giữa input và combo box */
 }
 
 .input-field2 {
+    width: 100%;
     height: 30px;
     padding-left: 10px;
     border-radius: 7px;
@@ -383,8 +411,8 @@
     font-size: 14px;
     font-family: 'Inter', sans-serif;
     background: #F2EAD3;
-    margin-top: 5px;
     padding-right: 30px;
+    margin-top: 5px;
 }
 
 .combo-box {
@@ -421,7 +449,6 @@
     display: flex;
     align-items: center;
     gap: 10px; /* Giảm khoảng cách giữa input và combo box */
-    display: flex;
 }
 
 .combo-box1 {
@@ -447,6 +474,7 @@
 }
 
 .input-field3 {
+    width: 88%;
     height: 30px;
     padding-left: 10px;
     border-radius: 7px;
