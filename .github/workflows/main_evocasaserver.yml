@@ -64,5 +64,5 @@ jobs:
         with:
           app-name: 'EvoCasaServer'
           slot-name: 'Production'
-          package: .
+          package: my-server
           
