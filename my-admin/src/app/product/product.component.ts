@@ -310,7 +310,7 @@ export class ProductComponent implements OnInit {
   }
 
   viewProduct(product: IProduct): void {
-    alert(`Viewing product: ${product.Name}`);
+    this.router.navigate([`/admin-product-view/${product._id}`]);
   }
 
   editProduct(product: IProduct): void {

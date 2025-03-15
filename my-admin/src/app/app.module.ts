@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ViewProductComponent } from './product-detail/view-product/view-product.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     EditProductComponent,
     CustomerDetailComponent,
-    LoginComponent
+    LoginComponent,
+    ViewProductComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, CommonModule],
   providers: [],

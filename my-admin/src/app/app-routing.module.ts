@@ -13,12 +13,14 @@ import { AddCategoryComponent } from './category-detail/add-category/add-categor
 import { EditCategoryComponent } from './category-detail/edit-category/edit-category.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ViewProductComponent } from './product-detail/view-product/view-product.component';
 const routes: Routes = [
   { path: 'dashboard-page', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'customer-detail/:id', component: CustomerDetailComponent, canActivate: [AuthGuard]},
   { path: 'order-detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'admin-product-add', component: AddProductComponent, canActivate: [AuthGuard]},
   { path: 'admin-product-edit/:id', component: EditProductComponent, canActivate: [AuthGuard] },
+  { path: 'admin-product-view/:id', component: ViewProductComponent, canActivate: [AuthGuard] },
   { path: 'admin-category-add', component: AddCategoryComponent, canActivate: [AuthGuard] },
   { path: 'admin-category-edit', component: EditCategoryComponent, canActivate: [AuthGuard]},
   { path: 'admin-customer', component: CustomerComponent, canActivate: [AuthGuard] },
