@@ -44,14 +44,22 @@ h4 {
   display: flex;
   justify-content: center;
   align-self: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 15px;
 }
 
 .box-left {
-  width: 21%;
+  width: 270px;
   margin-top: -22px;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
 }
 
 .navbar {
+  /* position: fixed; Giữ sidebar cố định mà không đè lên nội dung */
   padding: 15px 15px;
   height: 100%;
   background-color: #5e4c3e;
@@ -79,10 +87,10 @@ h4 {
 }
 
 .sub-header-2 {
-  font-size: 18px;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
   font-weight: bold;
-  color: black;
-  line-height: 1.6;
 }
 
 .content--item {
@@ -97,15 +105,20 @@ ol {
 }
 
 ul {
-  font-size: 15px;
-  font-weight: bold;
-  color: #2d982a;
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 15px 0;
 }
 
 li {
-  font-size: 15px;
-  font-weight: lighter;
-  text-align: justify;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+p {
+  line-height: 1.6;
+  margin: 15px 0;
+  color: #444;
 }
 
 table {
@@ -119,13 +132,15 @@ a {
   color: white;
 }
 
-/*Beaurity*/
-
 .box_right {
-  display: flex;
-  width: 75%;
-  padding-left: -105px;
+  flex: 1;
+  min-width: 300px;
   margin-top: -27px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 0px 20px;
+  justify-content: center;
 }
 
 .active {
@@ -142,6 +157,8 @@ a {
 
 .right_content {
   margin: 20px 20px -70px;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .tiltle-sub-content {
@@ -209,8 +226,9 @@ thead td {
   background-color: #e8fae7;
   text-align: center;
   border-radius: 10px;
-  padding: 25px 25px;
-  width: 1000px;
+  padding: 25px;
+  max-width: 100%;
+  height: auto;
 }
 
 /* FAQ container styling */
@@ -221,7 +239,7 @@ thead td {
 .faq-item {
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
-  width: 1050px;
+  max-width: 100%;
 }
 
 .faq-question {
@@ -274,4 +292,83 @@ thead td {
 /* Đảm bảo tất cả các đoạn văn có khoảng cách dòng đồng nhất */
 ul {
   line-height: 1.6;
+}
+
+.policy-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.thank-you-message {
+  text-align: center;
+  font-style: italic;
+  font-size: 18px;
+  margin-top: 40px;
+  color: #666;
+}
+
+.delivery-time {
+  clear: both;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+  .container {
+    margin-top: 20px;
+  }
+
+  .box_right {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box-left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .navbar {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .box_right {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .content-posts {
+    margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+
+  .right_content {
+    margin: 10px;
+  }
+
+  .sub-header-2 {
+    font-size: 20px;
+  }
+
+  .content--item {
+    font-size: 14px;
+  }
 }

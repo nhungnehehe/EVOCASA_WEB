@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 3002;
+const port = process.env.port || 8080;
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -17,7 +17,7 @@ app.use(morgan("combined"));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true 
@@ -45,8 +45,24 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // MongoDB connection
-const client = new MongoClient(process.env.MONGODB_URI);
-client.connect();
+const client = new MongoClient(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Thời gian chờ kết nối (5 giây)
+  socketTimeoutMS: 45000, // Thời gian chờ socket
+});
+
+// Kết nối lại nếu gặp lỗi
+const connectToDatabase = async () => {
+  try {
+    await client.connect();
+    console.log("MongoDB connected successfully!");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    setTimeout(connectToDatabase, 5000); // Cố gắng kết nối lại sau 5 giây
+  }
+};
+connectToDatabase();
 const database = client.db("EvoCasa");
 const productCollection = database.collection("Product");
 const categoryCollection = database.collection("Category");
@@ -93,12 +109,13 @@ app.get("/", (req, res) => {
 
 // API to get all products
 app.get("/products", async (req, res) => {
+  console.log("Fetching products...");
   try {
     const result = await productCollection.find({}).toArray();
     res.status(200).send(result);
   } catch (error) {
     console.error("Error fetching products:", error);
-    res.status(500).send({ error: "Error fetching products" });
+    res.status(500).send({ error: "Error fetching products",details: error.message  });
   }
 });
 
