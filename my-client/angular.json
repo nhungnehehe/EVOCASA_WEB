@@ -52,7 +52,7 @@
                   "maximumError": "2MB"
                 },
                 {
-                  "type": "css",
+                  "type": "bundle",
                   "maximumError": "500KB",
                   "maximumWarning": "400KB"
                 },
