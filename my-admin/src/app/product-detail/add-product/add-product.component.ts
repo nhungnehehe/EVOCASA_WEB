@@ -35,27 +35,27 @@ export class AddProductComponent {
   
     
   // Lấy tất cả danh mục cha, sau đó gọi API để lấy danh mục con của từng danh mục cha
-loadAllSubcategories() {
-  this.CategoryService.getMainCategories().subscribe({
-    next: (mainCategories) => {
-      if (mainCategories.length > 0) {
-        let allSubcategories: Category[] = [];
+  loadAllSubcategories() {
+    this.CategoryService.getMainCategories().subscribe({
+      next: (mainCategories) => {
+        if (mainCategories.length > 0) {
+          let allSubcategories: Category[] = [];
 
-        // Dùng forEach để lấy danh mục con của từng danh mục cha
-        mainCategories.forEach((parent) => {
-          this.CategoryService.getSubcategories(parent.id).subscribe({
-            next: (subcategories) => {
-              allSubcategories = [...allSubcategories, ...subcategories]; // Gom tất cả danh mục con
-              this.categories = allSubcategories; // Cập nhật danh mục con hiển thị
-            },
-            error: () => console.error(`Error loading subcategories for ${parent.id}`)
+          // Dùng forEach để lấy danh mục con của từng danh mục cha
+          mainCategories.forEach((parent) => {
+            this.CategoryService.getSubcategories(parent.id).subscribe({
+              next: (subcategories) => {
+                allSubcategories = [...allSubcategories, ...subcategories]; // Gom tất cả danh mục con
+                this.categories = allSubcategories; // Cập nhật danh mục con hiển thị
+              },
+              error: () => console.error(`Error loading subcategories for ${parent.id}`)
+            });
           });
-        });
-      }
-    },
-    error: () => (this.errMessage = 'Error loading main categories')
-  });
-}
+        }
+      },
+      error: () => (this.errMessage = 'Error loading main categories')
+    });
+  }
 
   //  Lấy ID của category dựa vào tên
   getCategoryIdByName(categoryName: string): string | null {

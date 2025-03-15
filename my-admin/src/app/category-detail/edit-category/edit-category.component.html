@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit category</title>
-    <link rel="stylesheet" href="/DoAnCK/Category/edit-category.css">
+    <title>Add category</title>
+    <link rel="stylesheet" href="/DoAnCK/Category/add-category.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
@@ -17,34 +17,18 @@
 </head>
 <body>
     
-
-
-
-
 <!-- ADD CATEGORY -->
-<div class="all">
-    <hr class="custom-hr">
-
     <div class="container">
-        <!-- EDIT CATEGORY Title -->
-        <div class="title">EDIT CATEGORY</div>
+        <!-- ADD CATEGORY Title -->
+        <div class="title">ADD CATEGORY</div>
 
         <!-- Flex container for buttons -->
         <div class="flex-container">
-            <!-- First Item: Save Draft -->
-            <div class="button save-draft">
-                <img src="images/category-detail/save.png" alt="Save">
-                <span>Save draft</span>
-            </div>
-
-            <!-- Second Item: Update Category -->
-            <div class="button add-product">
+            <div class="button add-product" (click)="postCategory()">
                 <img src="images/category-detail/add.png" alt="Add">
-                <span>Update category</span>
+                <span>Add category</span>
             </div>
-
-            <!-- Third Item: Cancel -->
-            <div class="button cancel">
+            <div class="button cancel" (click)="goBack()">
                 <img src="images/category-detail/cancel.png" alt="Cancel">
                 <span>Cancel</span>
             </div>
@@ -52,15 +36,24 @@
     </div>
 
     <div class="custom-container">
-        <!-- First Box -->
-        <div class="box">
-            <div class="upload-title">Upload images</div>
-            <img src="images/Soft Goods/10a.jpg" class="main-image">
-            <div style="width: 193px; height: 37px; position: relative;  margin-left: 20px; margin-right: 20px; margin-top: 20px;">
-                <div style="width: 193px; height: 37px; left: 35px; top: 0px; position: absolute; background: rgba(94, 76, 62, 0.30); border-radius: 7px;"></div>
-                <div style="left: 55px; top: 6px; position: absolute; color: rgba(0, 0, 0, 0.50); font-size: 18px; font-family: Inter; font-weight: 400; word-wrap: break-word">Change image</div>
-                <img src="images/category-detail/Add_ring_light.png" alt="image" class="icon-image">
-            </div>           
+        <!-- Upload Image Box -->
+        <div class="box" [ngClass]="{ 'category-no-image': !previewImage, 'category-has-image': previewImage }">
+            <div class="upload-title">Upload image</div>
+            <!-- Input chọn 1 ảnh -->
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" id="file-upload" style="display: none;">
+            
+            <!-- Khu vực hiển thị ảnh đã chọn -->
+            <div>
+                <img *ngIf="previewImage" [src]="previewImage" class="main-image-x">
+    
+                <!-- Nút thêm chỉ xuất hiện nếu chưa có ảnh -->
+                <div class="add-image" *ngIf="!previewImage" (click)="triggerFileInput()">
+                    <label for="file-upload">+</label>
+                </div>    
+    
+                <!-- Nút xóa ảnh -->
+                <button *ngIf="previewImage" class="remove-btn" (click)="removeImage()">✖</button>
+            </div>
         </div>
 
         <!-- Second Box -->
@@ -71,22 +64,14 @@
                     <!-- Category Name -->
                     <div class="input-container">
                         <div class="label">Category Name</div>
-                        <input type="text" class="input-field" placeholder="Enter Category Name">
-                    </div>
-                </div>
-
-                <div class="inputs-container">
-                    <!-- Category ID -->
-                    <div class="input-container">
-                        <div class="label">Category ID</div>
-                        <input type="text" class="input-field" placeholder="Enter Category ID">
+                        <input type="text" class="input-field" [(ngModel)]="category.name" placeholder="Enter Category Name">
                     </div>
                 </div>
 
                 <!-- Description -->
                 <div class="input-container">
                     <div class="label" style="margin-top: 30px;">Description</div>
-                    <textarea class="input-field-description" placeholder="Description category"></textarea>
+                    <textarea class="input-field-description"  [(ngModel)]="category.description" placeholder="Description category"></textarea>
                 </div>
 
                 <!-- Parent category -->
@@ -94,14 +79,14 @@
                     <div class="input-container">
                         <div class="label">Parent Category</div>
                         <div class="combo-box-container">
-                            <select class="input-field1">
-                                <option value="" disabled selected>Select Product Category</option>
-                                <option value="product1">Furniture</option>
-                                <option value="product2">Lighting</option>
-                                <option value="product3">Soft Goods</option>
-                                <option value="product4">Decor</option>
-                                <option value="product5">Dining</option>
-                                <option value="product6">Art</option>
+                            <select class="input-field1" [(ngModel)]="category.parentCategory" >
+                                <option value="" disabled hidden>Select Product Category</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Lighting">Lighting</option>
+                                <option value="Soft Goods">Soft Goods</option>
+                                <option value="Decor">Decor</option>
+                                <option value="Dining">Dining</option>
+                                <option value="Art">Art</option>
                             </select>
                             <img src="images/category-detail/more.png" alt="icon" class="combo-box-icon">
                         </div>      
@@ -111,7 +96,6 @@
         </div>
     </div>
 
-</div>
 </body>
 
 
