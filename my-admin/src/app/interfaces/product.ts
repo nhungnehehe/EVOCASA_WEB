@@ -1,10 +1,10 @@
 export interface IProduct {
-  _id?: string; // MongoDB ObjectId as string
-  category_id?: string; // Category ObjectId reference
+  _id?: string; 
+  category_id?: string; 
   category_name?: string;
-  Name: string; // Product name
-  Price: number; // Product price (Int32)
-  Image: string[]; // Array of image URLs
+  Name: string; 
+  Price: number; 
+  Image: string[]; 
   Description: string; // Product description
   Origin: string; // Country of origin
   Uses: string; // Product uses/purpose
