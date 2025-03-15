@@ -37,20 +37,20 @@ const routes: Routes = [
   { path: 'cart-page', component: CartComponent },
   { path: 'about-page', component: AboutUsComponent },
   { path: 'blog', component: BlogComponent },
-  { 
-    path: 'product', 
+  {
+    path: 'product',
     component: ProductComponent,
-    resolve: { products: ProductResolver }
+    resolve: { products: ProductResolver },
   },
-  { 
-    path: 'product/:mainCategory', 
+  {
+    path: 'product/:mainCategory',
     component: ProductComponent,
-    resolve: { products: ProductResolver }
+    resolve: { products: ProductResolver },
   },
-  { 
-    path: 'product/:mainCategory/:subCategory', 
+  {
+    path: 'product/:mainCategory/:subCategory',
     component: ProductComponent,
-    resolve: { products: ProductResolver }
+    resolve: { products: ProductResolver },
   },
   { path: 'login-page', component: LoginComponent },
   { path: 'forgot-page', component: ForgotComponent },
@@ -58,7 +58,7 @@ const routes: Routes = [
   { path: 'payment-shipping', component: PaymentShippingComponent },
   { path: 'payment-method', component: PaymentMethodComponent },
   { path: 'payment-confirm', component: PaymentConfirmComponent },
-  { path: 'payment-notice', component: PaymentNoticeComponent},
+  { path: 'payment-notice', component: PaymentNoticeComponent },
   { path: 'blog-2024-sofa-trend', component: Blog1Component },
   { path: 'blog-minimalist-style', component: Blog2Component },
   { path: 'blog-mix-and-match-wood', component: Blog3Component },
@@ -66,16 +66,25 @@ const routes: Routes = [
   { path: 'blog-redefining-comfort', component: Blog5Component },
   { path: 'blog-creating-cozy-haven', component: Blog6Component },
   { path: 'product-detail/:identifier', component: ProductDetailComponent },
-  { path: 'insitu-page', component: InsituComponent},
-  { path: 'collections', component:CollectionComponent},
-  { path: 'the-anniversary-collection', component:TheAnniversaryCollectionComponent},
-  { path: 'sabi-collection', component:SabiCollectionComponent},
-  { path: 'the-pavilion-collection', component:ThePavilionCollectionComponent},
-  { path: 'the-disc-collection', component:TheDiscCollectionComponent},
-  { path: 'manage-account', component:ManageAccountComponent},
-  { path: 'view-orders', component:OrderTrackingComponent},
-  { path: 'view-order-detail/:identifier', component:OrderTrackingDetailComponent},
-  { path: "policy-page", component: PolicyComponent},
+  { path: 'insitu-page', component: InsituComponent },
+  { path: 'collections', component: CollectionComponent },
+  {
+    path: 'the-anniversary-collection',
+    component: TheAnniversaryCollectionComponent,
+  },
+  { path: 'sabi-collection', component: SabiCollectionComponent },
+  {
+    path: 'the-pavilion-collection',
+    component: ThePavilionCollectionComponent,
+  },
+  { path: 'the-disc-collection', component: TheDiscCollectionComponent },
+  { path: 'manage-account', component: ManageAccountComponent },
+  { path: 'view-orders', component: OrderTrackingComponent },
+  {
+    path: 'view-order-detail/:identifier',
+    component: OrderTrackingDetailComponent,
+  },
+  { path: 'policy-page', component: PolicyComponent },
 ];
 
 @NgModule({
