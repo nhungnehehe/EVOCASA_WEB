@@ -207,6 +207,9 @@ html, body {
     display: flex;
     gap: 30px;
     margin-top: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .input-container {
@@ -217,7 +220,7 @@ html, body {
 .label {
     color: rgba(0, 0, 0, 0.7);
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 26px;
 }
 
 .label1 {
