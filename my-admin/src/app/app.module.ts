@@ -22,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ViewProductComponent } from './product-detail/view-product/view-product.component';
+import { ViewCategoryComponent } from './category-detail/view-category/view-category.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ViewProductComponent } from './product-detail/view-product/view-product
     EditProductComponent,
     CustomerDetailComponent,
     LoginComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    ViewCategoryComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, CommonModule],
   providers: [],

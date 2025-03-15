@@ -82,7 +82,7 @@
             <!-- Khu vực hiển thị ảnh đã chọn -->
             <div>
                 <!-- Ảnh lớn -->
-                <img *ngIf="product.Image.length > 0" [src]="product.Image[0]" class="main-image-x">
+                <img *ngIf="product.Image.length > 0" [src]="product.Image[0]" class="main-image">
 
                 <!-- Ảnh nhỏ -->
                 <div class="image-thumbnails">
@@ -133,12 +133,10 @@
                 <div class="inputs-container">
                     <div class="input-container">
                         <div class="label1">Product category</div>
-                        <div class="combo-box-container">
-                            <select class="input-field" [(ngModel)]="product.category_id">
+                            <select class="input-field-x" [(ngModel)]="product.category_id">
                                 <option value="" disabled hidden>Select Product Category</option>
                                 <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                             </select>
-                        </div>
                     </div>
                 </div>
             </div>
