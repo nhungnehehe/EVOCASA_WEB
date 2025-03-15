@@ -49,13 +49,17 @@ const client = new MongoClient(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true, // Đảm bảo bật useUnifiedTopology
 });
-client.connect()
-.then(() => {
-  console.log("MongoDB connected successfully");
-})
-.catch((error) => {
-  console.error("MongoDB connection error: ", error);
-});
+// Kết nối lại nếu gặp lỗi
+const connectToDatabase = async () => {
+  try {
+    await client.connect();
+    console.log("MongoDB connected successfully!");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    setTimeout(connectToDatabase, 5000); // Cố gắng kết nối lại sau 5 giây
+  }
+};
+connectToDatabase();
 const database = client.db("EvoCasa");
 const productCollection = database.collection("Product");
 const categoryCollection = database.collection("Category");
