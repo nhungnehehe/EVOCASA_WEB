@@ -1,121 +1,105 @@
 const express = require('express');
-const app = express();
-const port = process.env.port || 8080;
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const session = require('express-session');
-const { MongoClient, ObjectId } = require('mongodb');
-const fileUpload = require("express-fileupload");
-const path = require("path");
-const fs = require("fs");
-require('dotenv').config()
-
-// Middleware setup
-app.use(morgan("combined"));
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true 
-}));
-app.use(cookieParser());
-app.use(session({
-  secret: "Shh, its a secret!",
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // Session timeout: 2 days
-}));
-app.use(fileUpload());
-
-// Static file serving
-app.use(
-  "/images",
-  cors(),
-  express.static(path.join(__dirname, "public", "images"))
-);
-
-// Tạo thư mục upload nếu chưa tồn tại
-const uploadDir = path.join(__dirname, "upload");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
-
-// MongoDB connection
-const client = new MongoClient(process.env.MONGODB_URI, {
-  serverSelectionTimeoutMS: 5000, // Thời gian chờ kết nối (5 giây)
-  socketTimeoutMS: 45000, // Thời gian chờ socket
-});
-
-// Kết nối lại nếu gặp lỗi
-const connectToDatabase = async () => {
-  try {
-    await client.connect();
-    console.log("MongoDB connected successfully!");
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-    setTimeout(connectToDatabase, 5000); // Cố gắng kết nối lại sau 5 giây
-  }
-};
-connectToDatabase();
-const database = client.db("EvoCasa");
-const productCollection = database.collection("Product");
-const categoryCollection = database.collection("Category");
-const customerCollection = database.collection("Customer");
-const orderCollection = database.collection("Order");
-const accountCollection = database.collection("Account");
-const adminCollection = database.collection("Admin");
-
-const decodeHtmlEntities = (text) => {
-  return text
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">");
-};
-
-const stripHtml = (html) => {
-  if (!html) return "";
-  const textWithoutHtml = html.replace(/<[^>]*>?/gm, ""); 
-  return decodeHtmlEntities(textWithoutHtml); 
-};
-
-// Middleware to initialize cart in session
-app.use((req, res, next) => {
-  if (!req.session.cart) {
-    req.session.cart = []; 
-  }
-  next();
-});
-
-// Server startup
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
-
-// Default route
-app.get("/", (req, res) => {
-  res.send("Welcome to the EvoCasa API!");
-});
-
-// ===== PRODUCT APIS =====
-
-// API to get all products
-app.get("/products", async (req, res) => {
-  console.log("Fetching products...");
-  try {
-    const result = await productCollection.find({}).toArray();
-    res.status(200).send(result);
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    res.status(500).send({ error: "Error fetching products",details: error.message  });
-  }
-});
+ const app = express();
+ const port = 3002;
+ const morgan = require("morgan");
+ const bodyParser = require("body-parser");
+ const cors = require("cors");
+ const cookieParser = require("cookie-parser");
+ const session = require('express-session');
+ const { MongoClient, ObjectId } = require('mongodb');
+ const fileUpload = require("express-fileupload");
+ const path = require("path");
+ const fs = require("fs");
+ 
+ // Middleware setup
+ app.use(morgan("combined"));
+ app.use(bodyParser.json({ limit: '10mb' }));
+ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+ app.use(cors({
+   origin: 'http://localhost:4200',
+   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+   allowedHeaders: ['Content-Type', 'Authorization'],
+   credentials: true 
+ }));
+ app.use(cookieParser());
+ app.use(session({
+   secret: "Shh, its a secret!",
+   resave: false,
+   saveUninitialized: true,
+   cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // Session timeout: 2 days
+ }));
+ app.use(fileUpload());
+ 
+ // Static file serving
+ app.use(
+   "/images",
+   cors(),
+   express.static(path.join(__dirname, "public", "images"))
+ );
+ 
+ // Tạo thư mục upload nếu chưa tồn tại
+ const uploadDir = path.join(__dirname, "upload");
+ if (!fs.existsSync(uploadDir)) {
+   fs.mkdirSync(uploadDir);
+ }
+ 
+ // MongoDB connection
+ const client = new MongoClient("mongodb://127.0.0.1:27017");
+ client.connect();
+ const database = client.db("EvoCasa");
+ const productCollection = database.collection("Product");
+ const categoryCollection = database.collection("Category");
+ const customerCollection = database.collection("Customer");
+ const orderCollection = database.collection("Order");
+ const accountCollection = database.collection("Account");
+ const adminCollection = database.collection("Admin");
+ 
+ const decodeHtmlEntities = (text) => {
+   return text
+     .replace(/&nbsp;/g, " ")
+     .replace(/&amp;/g, "&")
+     .replace(/&quot;/g, '"')
+     .replace(/&apos;/g, "'")
+     .replace(/&lt;/g, "<")
+     .replace(/&gt;/g, ">");
+ };
+ 
+ const stripHtml = (html) => {
+   if (!html) return "";
+   const textWithoutHtml = html.replace(/<[^>]*>?/gm, ""); 
+   return decodeHtmlEntities(textWithoutHtml); 
+ };
+ 
+ // Middleware to initialize cart in session
+ app.use((req, res, next) => {
+   if (!req.session.cart) {
+     req.session.cart = []; 
+   }
+   next();
+ });
+ 
+ // Server startup
+ app.listen(port, () => {
+   console.log(`Server running on http://localhost:${port}`);
+ });
+ 
+ // Default route
+ app.get("/", (req, res) => {
+   res.send("Welcome to the EvoCasa API!");
+ });
+ 
+ // ===== PRODUCT APIS =====
+ 
+ // API to get all products
+ app.get("/products", async (req, res) => {
+   try {
+     const result = await productCollection.find({}).toArray();
+     res.status(200).send(result);
+   } catch (error) {
+     console.error("Error fetching products:", error);
+     res.status(500).send({ error: "Error fetching products" });
+   }
+ });
 
 // API to get products by category
 app.get("/products/category/:categoryId", async (req, res) => {
