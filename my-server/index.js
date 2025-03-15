@@ -45,7 +45,10 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // MongoDB connection
-const client = new MongoClient(process.env.MONGODB_URI);
+const client = new MongoClient(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true, // Đảm bảo bật useUnifiedTopology
+});
 client.connect()
 .then(() => {
   console.log("MongoDB connected successfully");
