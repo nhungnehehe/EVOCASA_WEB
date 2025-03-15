@@ -93,19 +93,23 @@ export class OrderDetailComponent implements OnInit {
     });
   }
 
-  // Xử lý cập nhật trạng thái đơn hàng
+  // Xử lý cập nhật trạng thái đơn hàng MỚI THÊM
   updateOrderStatus(
     newStatus: 'Cancelled' | 'In transit' | 'Delivered' | 'Completed'
   ) {
     if (!this.order) return;
 
+    // Cập nhật trạng thái ngay trên giao diện
+    this.order.Status = newStatus;
+
+    // Gọi API để cập nhật trạng thái trên server
     this.orderService.updateOrderStatus(this.orderId, newStatus).subscribe({
       next: (updatedOrder) => {
-        this.order = updatedOrder;
+        console.log('Order status updated successfully:', updatedOrder);
       },
       error: (err) => {
         console.error('Error updating order status:', err);
-        // Hiển thị thông báo lỗi nếu cần
+        alert('Cập nhật trạng thái thất bại! Vui lòng thử lại.');
       },
     });
   }
