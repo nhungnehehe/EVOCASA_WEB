@@ -108,10 +108,10 @@
                 <div class="product-info-title">Pricing and Stock</div>
                 <div class="inputs-container">
                     <!-- Price -->
-                    <div class="input-container2">
+                    <div class="input-container">
                         <div class="label1">Price</div>
                         <div class="input-box">
-                            <input type="text" class="input-field2" placeholder="Enter Price" [(ngModel)]="product.Price">
+                            <input type="text" class="input-field" placeholder="Enter Price" [(ngModel)]="product.Price">
                             <div class="label2">USD</div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                     <!-- Stock -->
                     <div class="input-container">
                         <div class="label1">Stock</div>
-                        <input type="text" class="input-field3" placeholder="Enter Stock" [(ngModel)]="product.Quantity">
+                        <input type="text" class="input-field" placeholder="Enter Stock" [(ngModel)]="product.Quantity">
                     </div>
                 </div>
             </div>
@@ -130,10 +130,10 @@
         <div class="box1">
             <div class="product-info-content">
                 <div class="product-info-title">Category</div>
-                <div class="inputs-container">
+                <div class="input-container">
                     <div class="input-container">
                         <div class="label1">Product category</div>
-                            <select class="input-field-x" [(ngModel)]="product.category_id">
+                            <select class="input-field" [(ngModel)]="product.category_id">
                                 <option value="" disabled hidden>Select Product Category</option>
                                 <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                             </select>
