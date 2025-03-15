@@ -4,6 +4,7 @@ import { IProduct } from '../interfaces/product';
 import { Category } from '../interfaces/category';
 import { CategoryService } from '../services/category.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +15,10 @@ import { Router } from '@angular/router';
 export class ProductComponent implements OnInit {
   products: IProduct[] = [];
   categories: Category[] = [];
+  filterForm: FormGroup;
   filteredProducts: IProduct[] = []; // Danh sách sản phẩm hiển thị trên trang
+  displayProducts: IProduct[] = []; // Sản phẩm đã được lọc theo các tiêu chí
+  showFilter: boolean = false; // Toggle filter panel
   errorMessage: string = '';
   Math = Math;
 
@@ -28,11 +32,27 @@ export class ProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.filterForm = this.fb.group({
+      category: [''],
+      minPrice: [''],
+      maxPrice: [''],
+      minInventory: [''],
+      maxInventory: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.loadCategories(); // Đảm bảo danh mục được tải trước
+    // Subscribe to all form control changes
+    this.filterForm.valueChanges.subscribe(values => {
+      if (values.category || values.minPrice || values.maxPrice || 
+          values.minInventory || values.maxInventory) {
+        this.applyFilterChanges();
+    }
+  });
   }
 
   // Load danh sách sản phẩm
@@ -40,6 +60,7 @@ export class ProductComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: (data: IProduct[]) => {
         this.products = data;
+        this.displayProducts = [...this.products]; // Initialize display products with all products
         this.totalItems = this.products.length;
         this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
         this.updatePageNumbers();
@@ -96,15 +117,12 @@ export class ProductComponent implements OnInit {
       },
     });
   }
-  mapCategoryNames(): void {
-    console.log('🟢 Categories:', this.categories);
-    console.log('🟢 Products:', this.products);
 
+  mapCategoryNames(): void {
     if (!this.products.length || !this.categories.length) {
       console.warn('No products or categories available for mapping');
       return;
     }
-
     // Create a categoryMap for faster lookups by ID with more variants
     const categoryMap: { [key: string]: string } = {};
     this.categories.forEach((category) => {
@@ -135,7 +153,7 @@ export class ProductComponent implements OnInit {
       }
     });
 
-    console.log('📊 Category Map:', categoryMap);
+    console.log('Category Map:', categoryMap);
 
     // Check first product's category_id format for debugging
     if (this.products.length > 0) {
@@ -169,15 +187,11 @@ export class ProductComponent implements OnInit {
         if (categoryMap[categoryIdStr]) {
           product.category_name = categoryMap[categoryIdStr];
           categoryFound = true;
-          console.log(`✅ Direct match found: ${product.category_name}`);
         }
         // Try lowercase match
         else if (categoryMap[categoryIdStr.toLowerCase()]) {
           product.category_name = categoryMap[categoryIdStr.toLowerCase()];
           categoryFound = true;
-          console.log(
-            `✅ Case-insensitive match found: ${product.category_name}`
-          );
         }
         // Try all keys for potential partial matches
         else {
@@ -186,29 +200,23 @@ export class ProductComponent implements OnInit {
             if (key.includes(categoryIdStr) || categoryIdStr.includes(key)) {
               product.category_name = categoryMap[key];
               categoryFound = true;
-              console.log(
-                `✅ Partial match found: ${key} -> ${product.category_name}`
-              );
               break;
             }
           }
         }
-      }
+  }
 
       if (!categoryFound) {
         console.warn(
-          `⚠️ No category found for product: ${
-            product.Name
-          } with ID: ${JSON.stringify(product.category_id)}`
+          `Category not found for product "${product.Name}" with ID: ${product.category_id}`
         );
-        // Output all category IDs for comparison
-        console.log('Available category IDs:', Object.keys(categoryMap));
         product.category_name = 'Unknown';
       }
     });
 
     // After mapping categories, update display
     this.processProductImages();
+    this.displayProducts = [...this.products]; // Initialize display products
     this.updateFilteredProducts();
   }
 
@@ -229,11 +237,26 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  // Cập nhật danh sách sản phẩm hiển thị theo trang
+ // Cập nhật danh sách sản phẩm hiển thị theo trang
   updateFilteredProducts(): void {
+    // Calculate pagination based on displayProducts (filtered or all products)
+    this.totalItems = this.displayProducts.length;
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    
+    // Ensure current page is valid
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+      this.currentPage = 1;
+    }
+    
+    // Update page numbers
+    this.updatePageNumbers();
+
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    this.filteredProducts = this.products.slice(startIndex, endIndex);
+    
+    // Here's the fix - use displayProducts instead of products
+    this.filteredProducts = this.displayProducts.slice(startIndex, endIndex);
+    
     console.log(
       `Showing products ${startIndex + 1} to ${Math.min(
         endIndex,
@@ -275,36 +298,6 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  // Hàm xử lý các chức năng cơ bản
-  // addProduct(): void {
-  //   const newProduct: IProduct = {
-  //     Name: 'New Product',
-  //     Price: 100,
-  //     Description: 'A new product description',
-  //     Origin: 'Unknown',
-  //     Uses: 'General use',
-  //     Store: 'Default Store',
-  //     Quantity: 10,
-  //     Create_date: new Date(),
-  //     Image: [],
-  //     category_id: 'default-category-id',
-  //   };
-  //   this.productService.createProduct(newProduct).subscribe({
-  //     next: (product) => {
-  //       this.products.push(product);
-  //       this.totalItems = this.products.length;
-  //       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-  //       this.updatePageNumbers();
-  //       this.updateFilteredProducts();
-  //       alert('Product added successfully.');
-  //     },
-  //     error: (err) => {
-  //       this.errorMessage = err.message;
-  //       console.error('Error adding product:', err);
-  //     },
-  //   });
-  // }
-
   addProduct(): void {
     this.router.navigate(['/admin-product-add']);
   }
@@ -338,12 +331,156 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  // Thêm hàm filterProducts
-  filterProducts(): void {
-    alert('Filter function chưa được triển khai!');
+  // Toggle the filter panel
+    applyFilter(): void {
+      this.showFilter = !this.showFilter;
+    }
+
+  // Add this new method to handle immediate category filtering
+  onCategoryChange(): void {
+    // Get the selected category value
+    const selectedCategory = this.filterForm.get('category')?.value;
+    console.log('Category changed to:', selectedCategory);
+    
+    // Apply the filter immediately when category changes
+    this.applyFilterChanges();
   }
-  // Add this new method to your component class
+
+   // Apply the filter criteria
+  applyFilterChanges(): void {
+  const { category, minPrice, maxPrice, minInventory, maxInventory } = this.filterForm.value;
+  
+  console.log('Filter values:', { category, minPrice, maxPrice, minInventory, maxInventory });
+  
+  // Filter the products based on criteria
+  this.displayProducts = this.products.filter(product => {
+    let matchesCategory = true;
+    let matchesPrice = true;
+    let matchesInventory = true;
+    
+    // Category filter - enhanced to handle parent categories
+    if (category && category !== '') {
+      // Get all child categories of the selected category
+      const selectedCategory = this.categories.find(cat => cat.name === category);
+      
+      if (selectedCategory) {
+        // Find all subcategories that have this category as parent
+        const childCategories = this.categories.filter(cat => {
+          // Get the parent category ID regardless of its format
+          let parentCategoryId: string | null = null;
+          
+          if (typeof cat.parentCategory === 'string') {
+            parentCategoryId = cat.parentCategory;
+          } else if (cat.parentCategory && typeof cat.parentCategory === 'object') {
+            // Handle MongoDB ObjectId format
+            const parentObj = cat.parentCategory as any;
+            if (parentObj.$oid) {
+              parentCategoryId = parentObj.$oid;
+            } else if (parentObj._id) {
+              parentCategoryId = parentObj._id;
+            } else {
+              parentCategoryId = String(parentObj);
+            }
+          }
+          // Compare with the selected category ID (ensure both are strings)
+          return parentCategoryId === String(selectedCategory._id);
+        });
+        
+        // Collect all relevant category IDs and names
+        const categoryIds = [
+          String(selectedCategory._id), 
+          ...childCategories.map(cat => String(cat._id))
+        ];
+        
+        const categoryNames = [
+          selectedCategory.name, 
+          ...childCategories.map(cat => cat.name)
+        ];
+        
+        console.log('Matching product against categories:', categoryNames);
+        
+        // Check if product's category matches the selected category or any child category
+        matchesCategory = categoryIds.includes(String(product.category_id)) || 
+                          categoryNames.includes(product.category_name ?? '');
+      } else {
+        // Fallback to exact match if category not found
+        matchesCategory = product.category_name === category;
+      }
+  }
+    
+      // Price range filter - Fix the comparison
+      const productPrice = Number(product.Price); // Ensure conversion to number
+      
+      if (minPrice !== null && minPrice !== '') {
+        const minPriceValue = Number(minPrice);
+        console.log(`Comparing product ${product.Name} price: ${productPrice} >= ${minPriceValue}`);
+        matchesPrice = matchesPrice && productPrice >= minPriceValue;
+      }
+      
+      if (maxPrice !== null && maxPrice !== '') {
+        const maxPriceValue = Number(maxPrice);
+        console.log(`Comparing product ${product.Name} price: ${productPrice} <= ${maxPriceValue}`);
+        matchesPrice = matchesPrice && productPrice <= maxPriceValue;
+      }
+      
+      // Inventory range filter
+      if (minInventory !== null && minInventory !== '') {
+        matchesInventory = matchesInventory && Number(product.Quantity) >= Number(minInventory);
+      }
+      
+      if (maxInventory !== null && maxInventory !== '') {
+        matchesInventory = matchesInventory && Number(product.Quantity) <= Number(maxInventory);
+      }
+      
+      return matchesCategory && matchesPrice && matchesInventory;
+    });
+    
+    console.log('Filtered products count:', this.displayProducts.length);
+    
+    // Reset to first page and update display
+    this.currentPage = 1;
+    this.updateFilteredProducts();
+  }
+
+  // Reset all filters
+  resetFilter(): void {
+    this.filterForm.reset();
+    this.displayProducts = [...this.products];
+    this.currentPage = 1;
+    this.updateFilteredProducts();
+  }
+
+  // Get the last item index for pagination display
   getLastItemIndex(): number {
     return Math.min(this.currentPage * this.itemsPerPage, this.totalItems);
   }
+
+  exportProducts() {
+    if (!this.products || this.products.length === 0) {
+      alert('No data available for export!');
+      return;
+    }
+  
+    const headers = ["No", "Product Name", "Price", "Category", "Inventory"];
+    const csvRows = this.products.map((product, index) => [
+      index + 1,
+      `"${product.Name}"`,  // Đưa tên sản phẩm vào trong dấu ""
+      product.Price,
+      `"${product.category_name || "N/A"}"`, // Đưa category vào trong dấu ""
+      product.Quantity,
+    ]);
+  
+    const csvContent = [headers, ...csvRows].map(e => e.join(",")).join("\n");
+  
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "product_list.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  } 
+
 }

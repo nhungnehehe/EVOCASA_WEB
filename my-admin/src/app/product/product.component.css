@@ -3,6 +3,100 @@
   margin: 0;
   padding: 0;
 }
+/* Filter container styles */
+.filter-container {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filter-container h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 16px;
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.filter-select, .filter-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.range-inputs input {
+  flex: 1;
+}
+
+.range-inputs span {
+  color: #666;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.apply-filter-btn, .reset-filter-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.apply-filter-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.apply-filter-btn:hover {
+  background-color: #3e9142;
+}
+
+.reset-filter-btn {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.reset-filter-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Active state for filter button */
+.filter-button.active {
+  background-color: #e8f5e9;
+  border: 1px solid #4CAF50;
+}
+
+
+
+
 /* Main Content */
 .main-content {
   padding: 10px 10px;
