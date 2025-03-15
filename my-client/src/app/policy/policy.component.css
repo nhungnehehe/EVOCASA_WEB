@@ -44,13 +44,18 @@ h4 {
   display: flex;
   justify-content: center;
   align-self: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 15px;
 }
 
 .box-left {
-  width: 21%;
+  width: 270px;
   margin-top: -22px;
   position: relative;
-  z-index: 10; /* Đảm bảo nằm dưới nội dung chính */
+  z-index: 10;
+  flex-shrink: 0;
 }
 
 .navbar {
@@ -128,13 +133,14 @@ a {
 }
 
 .box_right {
-  width: 75%;
-  padding-left: -105px;
+  flex: 1;
+  min-width: 300px;
   margin-top: -27px;
-  flex-direction: column;
   display: flex;
-
+  flex-direction: column;
   position: relative;
+  padding: 0px 20px;
+  justify-content: center;
 }
 
 .active {
@@ -151,8 +157,8 @@ a {
 
 .right_content {
   margin: 20px 20px -70px;
-  /* width: 100%; Đảm bảo nội dung không bị tràn */
-  overflow: hidden; /* Ngăn chặn tràn nội dung */
+  width: 100%;
+  overflow-x: auto;
 }
 
 .tiltle-sub-content {
@@ -220,8 +226,9 @@ thead td {
   background-color: #e8fae7;
   text-align: center;
   border-radius: 10px;
-  padding: 25px 25px;
-  width: 1000px;
+  padding: 25px;
+  max-width: 100%;
+  height: auto;
 }
 
 /* FAQ container styling */
@@ -232,7 +239,7 @@ thead td {
 .faq-item {
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
-  width: 1050px;
+  max-width: 100%;
 }
 
 .faq-question {
@@ -308,4 +315,60 @@ ul {
   clear: both;
   width: 100%;
   margin-top: 20px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+  .container {
+    margin-top: 20px;
+  }
+
+  .box_right {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box-left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .navbar {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .box_right {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .content-posts {
+    margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+
+  .right_content {
+    margin: 10px;
+  }
+
+  .sub-header-2 {
+    font-size: 20px;
+  }
+
+  .content--item {
+    font-size: 14px;
+  }
 }
