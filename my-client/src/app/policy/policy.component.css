@@ -49,9 +49,12 @@ h4 {
 .box-left {
   width: 21%;
   margin-top: -22px;
+  position: relative;
+  z-index: 10; /* Đảm bảo nằm dưới nội dung chính */
 }
 
 .navbar {
+  /* position: fixed; Giữ sidebar cố định mà không đè lên nội dung */
   padding: 15px 15px;
   height: 100%;
   background-color: #5e4c3e;
@@ -79,10 +82,10 @@ h4 {
 }
 
 .sub-header-2 {
-  font-size: 18px;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
   font-weight: bold;
-  color: black;
-  line-height: 1.6;
 }
 
 .content--item {
@@ -97,15 +100,20 @@ ol {
 }
 
 ul {
-  font-size: 15px;
-  font-weight: bold;
-  color: #2d982a;
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 15px 0;
 }
 
 li {
-  font-size: 15px;
-  font-weight: lighter;
-  text-align: justify;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+p {
+  line-height: 1.6;
+  margin: 15px 0;
+  color: #444;
 }
 
 table {
@@ -119,13 +127,14 @@ a {
   color: white;
 }
 
-/*Beaurity*/
-
 .box_right {
-  display: flex;
   width: 75%;
   padding-left: -105px;
   margin-top: -27px;
+  flex-direction: column;
+  display: flex;
+
+  position: relative;
 }
 
 .active {
@@ -142,6 +151,8 @@ a {
 
 .right_content {
   margin: 20px 20px -70px;
+  /* width: 100%; Đảm bảo nội dung không bị tràn */
+  overflow: hidden; /* Ngăn chặn tràn nội dung */
 }
 
 .tiltle-sub-content {
@@ -274,4 +285,27 @@ thead td {
 /* Đảm bảo tất cả các đoạn văn có khoảng cách dòng đồng nhất */
 ul {
   line-height: 1.6;
+}
+
+.policy-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.thank-you-message {
+  text-align: center;
+  font-style: italic;
+  font-size: 18px;
+  margin-top: 40px;
+  color: #666;
+}
+
+.delivery-time {
+  clear: both;
+  width: 100%;
+  margin-top: 20px;
 }
