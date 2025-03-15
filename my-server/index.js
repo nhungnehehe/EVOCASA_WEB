@@ -788,54 +788,9 @@ app.get("/buynow", (req, res) => {
 });
 
 
-
-// // POST giỏ hàng từ CartPayment vào giỏ hàng của Customer
-// app.post("/customers/:id/cart", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const o_id = new ObjectId(id);
-//     const cartPaymentItems = req.body.Cart || [];
-
-//     console.log(`📢 Nhận yêu cầu thêm giỏ hàng vào khách hàng ID: ${id}`);
-//     console.log("🛍️ Giỏ hàng từ CartPayment:", cartPaymentItems);
-
-//     // Lấy giỏ hàng hiện tại của khách hàng
-//     const customer = await customerCollection.findOne({ _id: o_id });
-//     if (!customer) {
-//       return res.status(404).send({ message: "Không tìm thấy khách hàng." });
-//     }
-
-//     // Gộp giỏ hàng cũ với giỏ hàng mới (nếu sản phẩm trùng thì cộng số lượng)
-//     const mergedCart = [...customer.Cart];
-
-//     cartPaymentItems.forEach((newItem) => {
-//       const existingItem = mergedCart.find((item) => item.ProductId === newItem.ProductId);
-//       if (existingItem) {
-//         existingItem.Quantity += newItem.Quantity;
-//       } else {
-//         mergedCart.push(newItem);
-//       }
-//     });
-
-//     // Cập nhật giỏ hàng vào Database
-//     await customerCollection.updateOne(
-//       { _id: o_id },
-//       { $set: { Cart: mergedCart } }
-//     );
-
-//     res.send({ message: "✅ Giỏ hàng đã được cập nhật!", Cart: mergedCart });
-//   } catch (error) {
-//     console.error("❌ Lỗi khi cập nhật giỏ hàng:", error);
-//     res.status(500).send({ message: error.message });
-//   }
-// });
-
-
 app.get("/customers/phone/:phone/cart", async (req, res) => {
   try {
     const phone = req.params.phone;
-    console.log(`📢 Đang lấy giỏ hàng cho số điện thoại: ${phone}`);
-
     // Tìm khách hàng theo số điện thoại
     const customer = await customerCollection.findOne({ Phone: phone });
 
@@ -843,58 +798,12 @@ app.get("/customers/phone/:phone/cart", async (req, res) => {
       return res.status(404).send({ message: "Không tìm thấy khách hàng với số điện thoại này." });
     }
 
-    console.log(`✅ Đã tìm thấy khách hàng: ${customer.Name} (ID: ${customer._id})`);
     res.send(customer.Cart || []); // Nếu không có giỏ hàng, trả về mảng rỗng
   } catch (error) {
-    console.error("❌ Lỗi khi lấy giỏ hàng theo số điện thoại:", error);
     res.status(500).send({ message: error.message });
   }
 });
 
-// app.post("/customers/phone/:phone/cart", async (req, res) => {
-//   try {
-//     const phone = req.params.phone;
-//     const updatedCart = req.body.Cart || []; // Giỏ hàng mới từ client
-
-//     console.log("📢 Dữ liệu nhận được từ client:", updatedCart); // Log dữ liệu nhận từ client
-
-//     // Kiểm tra xem dữ liệu có phải là mảng không
-//     if (!Array.isArray(updatedCart)) {
-//       console.log("❌ Giỏ hàng phải là một mảng.");
-//       return res.status(400).send({ message: "Giỏ hàng phải là một mảng." });
-//     }
-
-//     // Tìm khách hàng theo số điện thoại
-//     const updatedCustomer = await customerCollection.findOne({ hone: phone });
-
-//     if (!updatedCustomer) {
-//       console.log("❌ Không tìm thấy khách hàng với số điện thoại:", phone);
-//       return res.status(404).send({ message: "Customer with this phone number not found." });
-//     }
-
-//     console.log("📢 Đã tìm thấy khách hàng:", updatedCustomer.Name);
-
-//     // Thêm hoặc cập nhật giỏ hàng của khách hàng
-//     updatedCustomer.Cart = updatedCart;
-
-//     // Lưu lại giỏ hàng đã được cập nhật
-//     const result = await customerCollection.updateOne(
-//       { phone: phone },
-//       { $set: { Cart: updatedCart } }
-//     );
-
-//     if (result.modifiedCount === 0) {
-//       console.log("❌ Không thay đổi giỏ hàng.");
-//       return res.status(400).send({ message: "Failed to update cart." });
-//     }
-
-//     console.log("✅ Giỏ hàng đã được cập nhật.");
-//     res.send(updatedCustomer); // Trả về khách hàng đã được cập nhật
-//   } catch (error) {
-//     console.error("❌ Lỗi khi cập nhật giỏ hàng:", error);
-//     res.status(500).send({ message: "Internal server error", details: error.message });
-//   }
-// });
 
 
 app.put("/customers/phone/:phone/cart", async (req, res) => {
@@ -906,8 +815,6 @@ app.put("/customers/phone/:phone/cart", async (req, res) => {
       return res.status(400).send({ message: "Dữ liệu giỏ hàng không hợp lệ. Phải là một mảng." });
     }
 
-    console.log(`📢 Đang cập nhật giỏ hàng cho số điện thoại: ${phone}`);
-
     // Tìm và cập nhật giỏ hàng của khách hàng
     const updatedCustomer = await customerCollection.findOneAndUpdate(
       { Phone: phone },
@@ -918,11 +825,8 @@ app.put("/customers/phone/:phone/cart", async (req, res) => {
     if (!updatedCustomer) {
       return res.status(404).send({ message: "Không tìm thấy khách hàng với số điện thoại này." });
     }
-
-    console.log(`✅ Đã cập nhật giỏ hàng cho khách hàng: ${updatedCustomer.Name} (ID: ${updatedCustomer._id})`);
     res.send(updatedCustomer.Cart);
   } catch (error) {
-    console.error("❌ Lỗi khi cập nhật giỏ hàng:", error);
     res.status(500).send({ message: error.message });
   }
 });
