@@ -60,11 +60,11 @@
         <div class="product-info-box">
             <div class="product-info-content">
                 <div class="product-info-title">Category Information</div>
-                <div class="inputs-container">
+                <div class="input-container">
                     <!-- Category Name -->
                     <div class="input-container">
                         <div class="label">Category Name</div>
-                        <input type="text" class="input-field" [(ngModel)]="category.name" placeholder="Enter Category Name">
+                        <input type="text" class="input-field1" [(ngModel)]="category.name" placeholder="Enter Category Name">
                     </div>
                 </div>
 
@@ -75,12 +75,12 @@
                 </div>
 
                 <!-- Parent category -->
-                <div class="inputs-container">
+                <div class="input-container">
                     <div class="input-container">
                         <div class="label">Parent Category</div>
                         <div class="combo-box-container">
-                            <select class="input-field1" [(ngModel)]="category.parentCategory" >
-                                <option value="" disabled hidden>Select Product Category</option>
+                            <select class="input-field" [(ngModel)]="category.parentCategory" >
+                                <option value="" disabled hidden>Select Parent Category</option>
                                 <option value="Furniture">Furniture</option>
                                 <option value="Lighting">Lighting</option>
                                 <option value="Soft Goods">Soft Goods</option>
