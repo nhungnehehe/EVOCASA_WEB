@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../interfaces/category';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-category',
@@ -19,8 +22,21 @@ export class CategoryComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 6;
   totalPages: number = 0;
+  filterForm: FormGroup; // Form lọc danh mục
+  showFilter: boolean = false;
 
-  constructor(private categoryService: CategoryService) {}
+  filteredCategories: Category[] = []; // Sửa lại kiểu dữ liệu
+  parentCategories: string[] = []; // Danh mục cha
+
+  constructor(
+    private categoryService: CategoryService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.filterForm = this.fb.group({
+      category: [''], // Chỉ lọc theo danh mục cha
+    });
+  }
 
   ngOnInit(): void {
     this.fetchCategories();
@@ -106,48 +122,33 @@ export class CategoryComponent implements OnInit {
     return this.subCategories[parentIdStr] || [];
   }
 
-  /**
-   * Add a new category
-   */
-  addCategory(): void {
-    const newCategory: Category = {
-      id: '',
-      _id: '',
-      name: 'New Category',
-      description: 'Description for new category',
-      slug: 'new-category',
-      parentCategory: null,
-      image: ''
-    };
-    
-    this.categoryService.createCategory(newCategory).subscribe({
-      next: (result) => {
-        console.log('Category created:', result);
-        this.categories.push(result);
-        this.organizeCategories();
-        alert('Category created successfully!');
-      },
-      error: (err) => {
-        console.error('Error creating category:', err);
-        alert('Failed to create category: ' + (err.message || 'Unknown error'));
-      }
-    });
-  }
+  viewCategory(category: Category): void {
+      this.router.navigate([`/admin-category-view/${category.id}`]);
+    }
+
+  editCategory(category: Category): void {
+      this.router.navigate([`/admin-category-edit/${category.id}`]);
+    }
 
   /**
    * Delete a category
    */
   deleteCategory(category: Category): void {
     if (confirm(`Are you sure you want to delete the category "${category.name}"?`)) {
-      const categoryId = this.getCategoryIdAsString(category._id);
+      const categoryId = this.getCategoryIdAsString(category.id);
+      
       this.categoryService.deleteCategory(categoryId).subscribe({
         next: () => {
           console.log('Category deleted:', category);
-          const deletedId = this.getCategoryIdAsString(category._id);
-          this.categories = this.categories.filter(c => 
-            this.getCategoryIdAsString(c._id) !== deletedId
-          );
-          this.organizeCategories();
+  
+          // Cập nhật danh sách ngay lập tức mà không cần reload trang
+          this.categories = this.categories.filter(c => this.getCategoryIdAsString(c.id) !== categoryId);
+          
+          // Cập nhật lại danh sách phân trang
+          this.totalPages = Math.ceil(this.categories.length / this.pageSize);
+          this.updatePaginatedCategories(); // Cập nhật danh sách hiển thị
+  
+          this.organizeCategories(); // Cập nhật danh mục cha - con
           alert('Category deleted successfully!');
         },
         error: (err) => {
@@ -158,14 +159,6 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  /**
-   * Edit a category
-   */
-  editCategory(category: Category): void {
-    // Could open a dialog or navigate to edit page
-    console.log('Editing category:', category);
-    alert(`Edit functionality for "${category.name}" will be implemented soon.`);
-  }
 
   /**
    * Organize categories into main categories and subcategories
@@ -195,5 +188,88 @@ export class CategoryComponent implements OnInit {
     }
     return 'assets/images/category-placeholder.png'; // Fallback image
   }
+
   
+  // Toggle the filter panel
+  applyFilter(): void {
+    this.showFilter = !this.showFilter;
+  }
+
+  // Add this new method to handle immediate category filtering
+  onCategoryChange(): void {
+    // Get the selected category value
+    const selectedCategory = this.filterForm.get('category')?.value;
+    console.log('Category changed to:', selectedCategory);
+
+    // Apply the filter immediately when category changes
+    this.applyFilterChanges();
+  }
+
+   /** Lọc danh mục theo danh mục cha */
+   applyFilterChanges(): void {
+    const selectedParentCategory = this.filterForm.get('category')?.value;
+
+    console.log('Selected Parent Category:', selectedParentCategory);
+
+    if (!selectedParentCategory) {
+      this.paginatedCategories = [...this.categories]; // Hiển thị tất cả
+    } else {
+      // Lọc danh mục con theo danh mục cha
+      this.paginatedCategories = this.categories.filter(category => 
+        category.parentCategory === selectedParentCategory
+      );
+    }
+
+    this.currentPage = 1;
+    this.totalPages = Math.ceil(this.paginatedCategories.length / this.pageSize);
+    this.updatePaginatedCategories();
+  }
+
+  // Reset all filters
+  resetFilters(): void {
+    this.filterForm.reset(); // Reset toàn bộ form
+    this.paginatedCategories = [...this.categories]; // Hiển thị lại tất cả danh mục
+    this.currentPage = 1;
+    this.totalPages = Math.ceil(this.paginatedCategories.length / this.pageSize);
+    this.updatePaginatedCategories();
+  }
+
+  /**
+   * Get the name of the parent category by its ID
+   */
+  getParentCategoryName(parentCategoryId: string | { $oid: string }): string {
+    const parentIdStr = this.getCategoryIdAsString(parentCategoryId);
+    const parentCategory = this.categories.find(category => this.getCategoryIdAsString(category.id) === parentIdStr);
+    return parentCategory ? parentCategory.name : 'Unknown';
+  }
+
+  exportCategories(): void {
+    // Xuất tất cả danh mục thay vì chỉ hiển thị trong trang hiện tại
+    const categoriesToExport = this.categories;
+  
+    if (!categoriesToExport || categoriesToExport.length === 0) {
+      alert('No data available for export!');
+      return;
+    }
+  
+    const headers = ['No', 'Category Name', 'Parent Category', 'Description'];
+    const csvRows = categoriesToExport.map((category, index) => [
+      index + 1,
+      `"${category.name}"`,
+      category.parentCategory ? `"${this.getParentCategoryName(category.parentCategory)}"` : 'Root Category',
+      `"${category.description}"`,
+    ]);
+  
+    const csvContent = [headers, ...csvRows].map((e) => e.join(',')).join('\n');
+  
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'category_list.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
 }
