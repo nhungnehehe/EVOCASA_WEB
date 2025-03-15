@@ -6,6 +6,14 @@
     padding: 0;
 }
 
+/* Ẩn thanh cuộn nhưng vẫn có thể cuộn được */
+html, body {
+    overflow: scroll; /* Cho phép cuộn nhưng không hiển thị thanh cuộn */
+}
+
+::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên các trình duyệt hỗ trợ Webkit */
+}
 
 
 .main-image-x {
