@@ -8,25 +8,25 @@ export interface IProduct {
   Description: string; // Product description
   Origin: string; // Country of origin
   Uses: string; // Product uses/purpose
-  Store: string; // Store name
-  Quantity: number; // Available quantity (Int32)
-  Create_date: Date; // Creation date
+  Store: string; 
+  Quantity: number; 
+  Create_date: Date; 
   Dimension?:
     | string
     | {
-        // Product dimensions
+
         Width?: number;
         Length?: number;
         Height?: number;
         Depth?: number;
-        unit?: string; // e.g., "in" for inches
+        unit?: string; 
       };
-  Story?: string; // Product story/background
-  ProductCare?: string; // Care instructions
-  ShippingReturn?: string; // Shipping and return policies
+  Story?: string; 
+  ProductCare?: string; 
+  ShippingReturn?: string; 
 }
 
-// Implementing class with constructor
+
 export class Product implements IProduct {
   _id?: string;
   category_id?: string;
@@ -58,7 +58,6 @@ export class Product implements IProduct {
     this.Name = product?.Name || '';
     this.Price = product?.Price || 0;
 
-    // Parse Image if it's a string
     if (product?.Image) {
       if (typeof product.Image === 'string') {
         try {
@@ -82,10 +81,8 @@ export class Product implements IProduct {
 
     if (product?.Dimension) {
       if (typeof product.Dimension === 'string') {
-        // Keep it as a string
         this.Dimension = product.Dimension;
       } else {
-        // Handle as object with optional properties
         this.Dimension = {
           Width: product.Dimension.Width,
           Length: product.Dimension.Length,
