@@ -49,7 +49,7 @@
         <div class="product-info-box">
             <div class="product-info-content">
                 <div class="product-info-title">Product Information</div>
-                <div class="inputs-container">
+                <div class="input-container">
                     <!-- First Input: Product Name -->
                     <div class="input-container">
                         <div class="label">Product Name</div>
@@ -80,7 +80,7 @@
             <!-- Input chọn nhiều ảnh -->
             <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*" id="file-upload" style="display: none;">
             <!-- Khu vực hiển thị ảnh đã chọn -->
-            <div class="preview-container">
+            <div>
                 <!-- Ảnh lớn -->
                 <img *ngIf="product.Image.length > 0" [src]="product.Image[0]" class="main-image">
 
