@@ -42,6 +42,8 @@ import { ManageAccountComponent } from './manage-account/manage-account.componen
 import { HomepageComponent } from './homepage/homepage.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { RouterModule } from '@angular/router';
+import { PolicyComponent } from './policy/policy.component';
 
 @NgModule({
   declarations: [
@@ -78,18 +80,19 @@ import { OverlayModule } from '@angular/cdk/overlay';
     PopupComponent,
     PaymentNoticeComponent,
     HomepageComponent,
-    DialogComponent
+    DialogComponent,
+    FooterComponent,
+    PolicyComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FooterComponent,
     FormsModule,
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
-    OverlayModule
-    
+    OverlayModule,
+    RouterModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
