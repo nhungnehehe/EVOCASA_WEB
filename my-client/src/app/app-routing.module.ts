@@ -30,6 +30,7 @@ import { ManageAccountComponent } from './manage-account/manage-account.componen
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 import { OrderTrackingDetailComponent } from './order-tracking-detail/order-tracking-detail.component';
 import { ProductResolver } from './product.resolever';
+import { PolicyComponent } from './policy/policy.component';
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'contact-page', component: ContactComponent },
@@ -73,7 +74,8 @@ const routes: Routes = [
   { path: 'the-disc-collection', component:TheDiscCollectionComponent},
   { path: 'manage-account', component:ManageAccountComponent},
   { path: 'view-orders', component:OrderTrackingComponent},
-  { path: 'view-order-detail/:identifier', component:OrderTrackingDetailComponent}
+  { path: 'view-order-detail/:identifier', component:OrderTrackingDetailComponent},
+  { path: "policy-page", component: PolicyComponent},
 ];
 
 @NgModule({

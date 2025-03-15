@@ -33,9 +33,11 @@
       <div class="footer-section">
         <h3>POLICY</h3>
         <ul class="bullet-list">
-          <li><a [routerLink]="['/policy/return']">Return Policy</a></li>
-          <li><a [routerLink]="['/policy/warranty']">Warranty Policy</a></li>
-          <li><a [routerLink]="['/policy/shipping']">Shipping Policy</a></li>
+          <li><a [routerLink]="['/policy-page']" fragment="return">Return Policy</a></li>
+          <li><a [routerLink]="['/policy-page']" fragment="warranty">Warranty Policy</a></li>
+          <li><a [routerLink]="['/policy-page']" fragment="shipping">Shipping Policy</a></li>
+          <li><a [routerLink]="['/policy-page']" fragment="privacy">Privacy Policy</a></li>
+          <li><a [routerLink]="['/policy-page']" fragment="FAQs">FAQs</a></li>
         </ul>
       </div>
       
