@@ -1,4 +1,8 @@
 {
     "appService.defaultWebAppToDeploy": "undefined/subscriptions/b893f06b-75a5-4581-8c53-341a5c55e876/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/EvoCasa",
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
 }
