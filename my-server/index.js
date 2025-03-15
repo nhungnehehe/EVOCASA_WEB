@@ -46,8 +46,6 @@ if (!fs.existsSync(uploadDir)) {
 
 // MongoDB connection
 const client = new MongoClient(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000, // Thời gian chờ kết nối (5 giây)
   socketTimeoutMS: 45000, // Thời gian chờ socket
 });
