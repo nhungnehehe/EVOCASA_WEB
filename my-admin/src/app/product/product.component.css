@@ -11,7 +11,7 @@
   padding: 15px;
   margin-left: 34px;
   margin-right: 34px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .filter-container h4 {
@@ -31,7 +31,6 @@
 .filter-group {
   margin-top: 5px;
   margin-bottom: 5px;
-
 }
 
 .filter-group label {
@@ -42,7 +41,8 @@
   font-size: 14px;
 }
 
-.filter-select, .filter-input {
+.filter-select,
+.filter-input {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid #ddd;
@@ -51,7 +51,8 @@
   background-color: #fafafa;
 }
 
-.filter-select:focus, .filter-input:focus {
+.filter-select:focus,
+.filter-input:focus {
   outline: none;
   border-color: #5e4c3e;
   box-shadow: 0 0 0 2px rgba(94, 76, 62, 0.1);
@@ -99,7 +100,6 @@
   background-color: #e8f5e9;
   border: 1px solid #5e4c3e;
 }
-
 
 /* Main Content */
 .main-content {
@@ -313,12 +313,25 @@ h4 {
 }
 
 .page-number {
-  margin: 0 10px;
-  font-size: 18px;
+  margin: 0 5px;
+  padding: 8.5px;
+  color: #e0e0e0;
+  background-color: #5e4c3e;
+  font-size: 15px;
   cursor: pointer;
-  font-weight: 200;
-  font-family: "Inter", sans-serif;
+  font-weight: 100;
+  justify-content: center;
 }
+.page-number:hover {
+  background-color: #c5b6a7;
+}
+
+.page-number.active {
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: #86654b;
+}
+
 .show {
   justify-content: flex-end;
   margin-top: 20px;
@@ -342,9 +355,4 @@ h4 {
 .icon-btn img {
   padding: auto;
   display: flex;
-}
-
-.icon-btn:hover {
-  color: rgb(189, 97, 97);
-  text-decoration: wavy;
 }

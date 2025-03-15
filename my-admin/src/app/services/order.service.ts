@@ -30,7 +30,8 @@ export class OrderService {
 
   getOrdersByCustomer(customerId: string): Observable<Order[]> {
     // Thay vì chuyển thành ObjectId, chỉ cần sử dụng customerId trực tiếp
-    return this.http.get<Order[]>(`${this.apiUrl}/orders/customer/${customerId}`)
+    return this.http
+      .get<Order[]>(`${this.apiUrl}/orders/customer/${customerId}`)
       .pipe(
         tap(() => console.log(`Fetched orders for customer ID=${customerId}`)),
         catchError(this.handleError<Order[]>('getOrdersByCustomer', []))
