@@ -17,7 +17,7 @@
     <!-- ADD PRODUCT -->
     <div class="container">
         <!-- ADD PRODUCT Title -->
-        <div class="title">EDIT PRODUCT</div>
+        <div class="title">VIEW PRODUCT</div>
         <!-- Flex container for buttons -->
         <div class="flex-container">
             <!-- Third Item: Cancel -->
@@ -34,11 +34,11 @@
         <div class="product-info-box">
             <div class="product-info-content">
                 <div class="product-info-title">Product Information</div>
-                <div class="inputs-container">
+                <div class="input-container">
                     <!-- First Input: Product Name -->
                     <div class="input-container">
                         <div class="label">Product Name</div>
-                        <input type="text" class="input-field" placeholder="Enter Product Name" [(ngModel)]="product.Name" readonly>
+                        <input type="text" class="input-field" placeholder="Enter Product Name" [(ngModel)]="product.Name">
                     </div>
                 </div>
                 <!-- Description -->
@@ -87,15 +87,15 @@
                         <div class="label">Price</div>
                         <div class="input-box">
                             <input type="text" class="input-field2" placeholder="Enter Price" [(ngModel)]="product.Price" readonly>
-                            <div class="label">USD</div>
+                            <div class="label2">USD</div>
                         </div>
                     </div>
 
 
                     <!-- Stock -->
                     <div class="input-container">
-                        <div class="label">Stock</div>
-                        <input type="text" class="input-field" placeholder="Enter Stock" [(ngModel)]="product.Quantity" readonly>
+                        <div class="label1">Stock</div>
+                        <input type="text" class="input-field3" placeholder="Enter Stock" [(ngModel)]="product.Quantity">
                     </div>
                 </div>
             </div>
@@ -107,8 +107,8 @@
                 <div class="product-info-title">Category</div>
                 <div class="inputs-container">
                     <div class="input-container">
-                        <div class="label">Product category</div>
-                        <select class="input-field1" [(ngModel)]="product.category_id" disabled>
+                        <div class="label1">Product category</div>
+                        <select class="input-field-x" [(ngModel)]="product.category_id">
                             <option value="" disabled hidden>Select Product Category</option>
                             <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                         </select>
@@ -116,6 +116,6 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </body>
 </html>
