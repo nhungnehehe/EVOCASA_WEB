@@ -8,6 +8,7 @@
     <div class="navbar">
       <h4>ALL POLICIES</h4>
       <div class="list">
+        <!-- SO 1 -->
         <a
           id="FAQs"
           [class.active]="id === 'FAQs'"
@@ -16,22 +17,25 @@
         >
           <p class="list-item">FAQs</p>
         </a>
+        <!-- SO 2 -->
         <a
-          id="shipping"
-          [class.active]="id === 'shipping'"
-          (click)="tabChange('shipping', $event)"
+          id="return"
+          [class.active]="id === 'return'"
+          (click)="tabChange('return', $event)"
           style="cursor: pointer"
         >
           <p class="list-item">Return Policy</p>
         </a>
+        <!-- SO 3 -->
         <a
-          id="guarantee"
-          [class.active]="id === 'guarantee'"
-          (click)="tabChange('guarantee', $event)"
+          id="warranty"
+          [class.active]="id === 'warranty'"
+          (click)="tabChange('warranty', $event)"
           style="cursor: pointer"
         >
-          <p class="list-item">30-day Guarantee</p>
+          <p class="list-item">Warranty Policy</p>
         </a>
+        <!-- SO 4 -->
         <a
           id="privacy"
           [class.active]="id === 'privacy'"
@@ -40,26 +44,18 @@
         >
           <p class="list-item">Privacy Policy</p>
         </a>
+        <!-- SO 5 -->
         <a
-          id="termuse"
-          [class.active]="id === 'termuse'"
-          (click)="tabChange('termuse', $event)"
+          id="shipping"
+          [class.active]="id === 'shipping'"
+          (click)="tabChange('shipping', $event)"
           style="cursor: pointer"
         >
-          <p class="list-item">Terms of Use</p>
-        </a>
-        <a
-          id="access"
-          [class.active]="id === 'access'"
-          (click)="tabChange('access', $event)"
-          style="cursor: pointer"
-        >
-          <p class="list-item">Accessibility Statement</p>
+          <p class="list-item">Shipping Policy</p>
         </a>
       </div>
     </div>
   </div>
-
   <div class="box_right">
     <div class="right_content" *ngIf="id === 'FAQs'">
       <a class="sub-header">FAQs</a>
@@ -75,9 +71,8 @@
         </div>
       </div>
     </div>
-
-    <div class="right_content" id="shipping" *ngIf="id === 'shipping'">
-      <!-- RETURN POLICY -->
+    <!-- RETURN POLICY -->
+    <div class="right_content" id="return" *ngIf="id === 'return'">
       <p class="sub-header">RETURN POLICY</p>
       <p class="content--item" style="line-height: 1.6">
         At Evocasa, we take pride in the quality of our products and strive to
@@ -151,268 +146,205 @@
         customers are advised to check the product condition before initiating a
         return request.
       </p>
-      <p class="sub-header-2">II. Delivery Time</p>
+      <p class="sub-header-2">II. Contact Information</p>
       <ul>
         <li>
-          Ho Chi Minh City: Orders are typically delivered within 1-2 working
-          days. Note that deliveries are not made on Sundays or public holidays.
+          <b>Hotline:</b> 19008386 (or 0961 961 961) (Operating hours: 9:00 AM -
+          9:00 PM, Monday to Sunday, excluding holidays and Tet).
         </li>
-        <li>
-          Other Locations: For deliveries to other provinces and cities, the
-          estimated delivery time is 2-4 working days, excluding Sundays and
-          public holidays. Certain remote areas may experience slightly longer
-          delivery times.
-        </li>
+        <li><b>Email:</b> support.evocasa.com</li>
       </ul>
-      <p class="content--item">
-        If you are unavailable to receive your package, our delivery partner
-        will arrange a convenient time for redelivery at no additional cost. Our
-        aim is to make the delivery process as seamless as possible for our
-        customers.
-      </p>
-
-      <hr style="margin: 50px 0" />
-
-      <p class="sub-header">RETURNS & REPLACEMENTS</p>
-      <p class="content--item">
-        At ClayCo, we take pride in the quality of our products and strive to
-        maintain the highest standards in service. We aim to minimize any errors
-        that might affect your shopping experience. However, should an issue
-        arise, we offer an efficient returns and replacements process.
-      </p>
-
-      <p class="sub-header-2">I. Return and Exchange Conditions</p>
-      <p class="content--item">
-        Customers may request a return or exchange under the following
-        conditions:
-      </p>
-      <ul>
-        <li>
-          The product received does not match the quality, description, or
-          specifications as shown on the website.
-        </li>
-        <li>
-          The item delivered is of a different model, color, or variation than
-          what was ordered.
-        </li>
-        <li>
-          The product exhibits clear technical defects originating from the
-          manufacturing process, impacting its function or appearance.
-        </li>
-      </ul>
-      <p class="content--item">
-        <strong>Important Note:</strong> Customers must notify us within 7 days
-        of receiving the product if they wish to initiate a return or exchange.
-        Requests submitted after this period may not be eligible for processing.
-      </p>
-
-      <p class="sub-header-2">II. Return and Exchange Procedure</p>
-      <p class="content--item">To initiate a return or exchange:</p>
-      <ul>
-        <li>
-          Contact our Hotline: Please call our customer service hotline at
-          <strong>19001052</strong>. Have your order details ready to help us
-          address your concern quickly.
-        </li>
-        <li>
-          Issue Verification: Our customer service team will verify the issue
-          and confirm the return or exchange eligibility.
-        </li>
-        <li>
-          Free Return or Exchange: Upon verification, we will arrange a free
-          pickup of the item for return or replacement, and promptly process the
-          exchange or refund, depending on your preference.
-        </li>
-      </ul>
-      <p class="content--item">
-        We value your satisfaction and will do our utmost to resolve any
-        concerns in a timely and professional manner. Thank you for choosing
-        ClayCo!
-      </p>
     </div>
 
-    <div class="right_content" *ngIf="id === 'guarantee'">
-      <p class="sub-header">30-DAY GUARANTEE</p>
+    <div class="right_content" *ngIf="id === 'warranty'">
+      <p class="sub-header">WARRANTY POLICY</p>
       <p class="content--item">
-        We guarantee your plants will arrive in happy, healthy condition. If
-        not, we replace them for free as part of our30-Day Customer Happiness
-        Guarantee. It’s natural for live plants to show minor signs of stress
-        after transit but if the damage is beyond minor blemishes*, reach out to
-        us within 30 days of receipt to receive a free replacement.
+        This warranty policy applies to customers shopping and making payments
+        directly at EvoCasa store systems or via the EvoCasa website.
       </p>
+      <h3>Warranty Period:</h3>
       <p class="content--item">
-        The guarantee applies to all online and in-store purchases within the
-        first 30 days. We require photos as proof of damage and to help us
-        improve our packaging process. You can also bring an online order into
-        any of our shops for a replacement. Inventory online and in-store
-        differs, so we recommend calling your closest shop in advance to ensure
-        availability.
+        The warranty period is calculated from the purchase date (based on the
+        purchase receipt).
       </p>
-      <p class="content--item">
-        *Remember, it’s natural for live plants to show minor signs of stress
-        after transit. You can help your plant perk up from its journey by
-        gently pruning any foliage damaged during the shipping process, such as
-        bent stems or yellow leaves. Removing damaged foliage gives your plant
-        back energy for new, healthy growth.
+      <ul>
+        <li><b>Home decor items:</b> 12 months</li>
+        <li><b>Furniture: </b>24 months</li>
+      </ul>
+      <h3>Warranty Conditions:</h3>
+      <ul>
+        <li>The product must still be within the warranty period.</li>
+        <li>
+          A valid purchase receipt must be presented, containing complete
+          information and without being torn, damaged, or tampered with.
+        </li>
+      </ul>
+      <h3>Cases Where Warranty Is Denied:</h3>
+      <ul>
+        <li>The product does not have a valid purchase receipt.</li>
+        <li>The warranty period has expired.</li>
+        <li>Discounted products according to EvoCasa’s sales policies.</li>
+        <li>
+          Products with scratches, damages caused by the customer during usage.
+        </li>
+        <li>
+          Damages resulting from improper use not following EvoCasa’s usage
+          instructions.
+        </li>
+        <li>Products altered or repaired by non-EvoCasa personnel.</li>
+        <li>Damages caused by insects or animals.</li>
+        <li>
+          Damages due to force majeure events such as natural disasters, fires,
+          earthquakes, etc.
+        </li>
+      </ul>
+      <h3>Warranty Scope</h3>
+      <ul>
+        <li>
+          <b>EvoCasa</b> only provides warranties for products damaged due to
+          manufacturing defects or material faults.
+        </li>
+        <li>
+          <b>Home decor items:</b> Warranty covers visible defects such as
+          misaligned joints, discoloration, accessory oxidation, or detachment
+          of lacquered accessories due to insufficient technical handling.
+        </li>
+      </ul>
+      <p>
+        <b>Note:</b> If the product does not meet the conditions outlined in the
+        Warranty Policy, the warranty request will be denied, and the product
+        will be returned to the customer at their expense. For convenience,
+        please check the product’s condition before submitting a warranty
+        request.
       </p>
     </div>
-  </div>
+    <!-- privacy -->
+    <div class="right_content" id="privacy" *ngIf="id === 'privacy'">
+      <p class="sub-header">PRIVACY POLICY</p>
+      <p class="sub-header-2" style="margin-left: -275px">Personal Statement</p>
+      <p class="content--item" style="margin-left: -275px">
+        We are committed to creating a secure and user-friendly experience for
+        every customer. To achieve this, we aim to be as clear as possible about
+        all our policies, as is evident by our transparent Terms and
+        Conditions.When you visit our site, some of your personal information
+        supplied during your order or by means of our cookies policy may be
+        stored for future use.
+      </p>
+      <p class="sub-header-2" style="margin-left: -275px">
+        What are "Cookies"?
+      </p>
+      <p class="content--item" style="margin-left: -275px">
+        Cookies are little text files that are stored within your browser's
+        cache. First and third-party cookies are used on this site for
+        functionality, statistics, and advertising.
+      </p>
+      <p class="sub-header-2" style="margin-left: -275px">
+        Why do we use cookies?
+      </p>
+      <p class="content--item" style="margin-left: -275px">
+        Cookies is what keep track of settings, thus allowing your shopping
+        experience to be tailored to you (remembering your preferences or
+        settings).Cookies also gather data, for example, the time of a session,
+        viewed pages, or just internal demographic information, like age and
+        gender. The information that is gathered can then be used on-site for
+        advertising purposes, which helps us create customized shopping
+        experiences for our users. We do not use cookies that will track or
+        identify you.
+      </p>
+      <p class="sub-header-2" style="margin-left: -275px">
+        What information do we gather specifically?
+      </p>
+      <p class="content--item" style="margin-left: -275px">
+        The information we gather is what you supply us with when signing up for
+        a newsletter or making a purchase. This is usually demographic
+        information like name, address, and email, or general contact
+        information. Cookies will also gather session information like the pages
+        you visited, the amount of time spent on each, location, transactions,
+        and any other general browsing behavior.
+      </p>
 
-  <div class="right_content" id="privacy" *ngIf="id === 'privacy'">
-    <p class="sub-header" style="margin-left: -200px">PRIVACY POLICY</p>
+      <p class="sub-header-2" style="margin-left: -275px">
+        What third-parties do we share your information with?
+      </p>
+      <p class="content--item" style="margin-left: -275px">
+        Any information collected and stored will only be shared with our
+        affiliate partners for analytical reasons. We will not share your
+        personal information past our brand and trusted brand partners.
+      </p>
 
-    <p class="sub-header-2" style="margin-left: -275px">Personal Statement</p>
-    <p class="content--item" style="margin-left: -275px">
-      We are committed to creating a secure and user-friendly experience for
-      every customer. To achieve this, we aim to be as clear as possible about
-      all our policies, as is evident by our transparent Terms and
-      Conditions.When you visit our site, some of your personal information
-      supplied during your order or by means of our cookies policy may be stored
-      for future use.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -275px">What are "Cookies"?</p>
-    <p class="content--item" style="margin-left: -275px">
-      Cookies are little text files that are stored within your browser's cache.
-      First and third-party cookies are used on this site for functionality,
-      statistics, and advertising.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -275px">
-      Why do we use cookies?
-    </p>
-    <p class="content--item" style="margin-left: -275px">
-      Cookies is what keep track of settings, thus allowing your shopping
-      experience to be tailored to you (remembering your preferences or
-      settings).Cookies also gather data, for example, the time of a session,
-      viewed pages, or just internal demographic information, like age and
-      gender. The information that is gathered can then be used on-site for
-      advertising purposes, which helps us create customized shopping
-      experiences for our users. We do not use cookies that will track or
-      identify you.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -275px">
-      What information do we gather specifically?
-    </p>
-    <p class="content--item" style="margin-left: -275px">
-      The information we gather is what you supply us with when signing up for a
-      newsletter or making a purchase. This is usually demographic information
-      like name, address, and email, or general contact information. Cookies
-      will also gather session information like the pages you visited, the
-      amount of time spent on each, location, transactions, and any other
-      general browsing behavior.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -275px">
-      What third-parties do we share your information with?
-    </p>
-    <p class="content--item" style="margin-left: -275px">
-      Any information collected and stored will only be shared with our
-      affiliate partners for analytical reasons. We will not share your personal
-      information past our brand and trusted brand partners.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -275px">Update</p>
-    <p class="content--item" style="margin-left: -275px">
-      Our privacy policies are subject to change. All updates will appear on
-      this page.
-    </p>
-  </div>
-
-  <div class="right_content" *ngIf="id === 'termuse'">
-    <p class="sub-header" style="margin-left: -250px">TERM OF USE</p>
-    <p class="sub-header-2" style="margin-left: -350px">Acceptance of Terms</p>
-    <p class="content--item" style="margin-left: -350px">
-      By using our website, you confirm that you are at least 18 years of age or
-      have received permission from a parent or guardian to use the site. By
-      accessing any part of our website, you agree to abide by these Terms of
-      Use, as well as our Privacy Policy.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -350px">Changes of Terms</p>
-    <p class="content--item" style="margin-left: -350px">
-      ClayCo reserves the right to update or modify these Terms of Use at any
-      time without prior notice. Any changes will take effect immediately upon
-      posting. We encourage you to review this page periodically to stay
-      informed about any updates.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -350px">
-      Intellectual Property
-    </p>
-    <p class="content--item" style="margin-left: -350px">
-      All content on the ClayCo website, including but not limited to text,
-      images, designs, logos, product descriptions, and multimedia, is the
-      property of ClayCo or its content suppliers and is protected by copyright,
-      trademark, and other intellectual property laws. You may not use,
-      reproduce, distribute, or modify any part of our website without prior
-      written permission from ClayCo.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -350px">
-      Product Information and Availability
-    </p>
-    <p class="content--item" style="margin-left: -350px">
-      ClayCo does not guarantee that product images, descriptions, prices, or
-      availability on the website are always current or error-free. We reserve
-      the right to correct any errors, inaccuracies, or omissions, and to update
-      product information at any time without prior notice.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -350px">Orders and Payments</p>
-    <p class="content--item" style="margin-left: -350px">
-      By placing an order through our website, you agree to provide accurate and
-      complete payment information. ClayCo reserves the right to cancel or
-      refuse any order for reasons including but not limited to fraudulent
-      transactions, errors in pricing, or product availability.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -350px">
-      User-Generated Content
-    </p>
-    <p class="content--item" style="margin-left: -350px">
-      By submitting content (such as reviews, comments, or images) to our
-      website or social media platforms, you grant ClayCo a non-exclusive,
-      royalty-free, perpetual license to use, reproduce, and distribute the
-      content in any media.
-    </p>
-  </div>
-
-  <div class="right_content" *ngIf="id === 'access'">
-    <a class="sub-header" style="margin-left: -350px"
-      >ACCESSIBILITY STATEMENT</a
-    >
-    <p class="sub-header-2" style="margin-left: -430px">Our Commitment</p>
-    <p class="content--item" style="margin-left: -430px">
-      We understand the importance of ensuring that our website is accessible to
-      everyone, including individuals with disabilities. ClayCo is dedicated to
-      providing a website that conforms to the Web Content Accessibility
-      Guidelines (WCAG) 2.1 Level AA, ensuring a user-friendly experience for
-      all visitors.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -430px">Ongoing Efforts</p>
-    <p class="content--item" style="margin-left: -430px">
-      ClayCo is committed to continually improving the accessibility of our
-      website. We conduct regular audits and tests to ensure that new content
-      and features meet accessibility standards. Our team works with experts and
-      consultants to stay up-to-date with best practices and evolving
-      accessibility standards.
-    </p>
-
-    <p class="sub-header-2" style="margin-left: -430px">Third-Party Content</p>
-    <p class="content--item" style="margin-left: -430px">
-      Our website may contain links to third-party websites that are not under
-      our control. While we strive to ensure our content meets accessibility
-      standards, we cannot guarantee the accessibility of third-party content.
-      We encourage you to review the accessibility policies of these external
-      sites.
-    </p>
-
-    <p style="text-align: center; font-style: italic; font-size: 18px">
-      Thank you for visiting ClayCo and helping us in our mission to provide an
-      inclusive experience for all.
-    </p>
+      <p class="sub-header-2" style="margin-left: -275px">Update</p>
+      <p class="content--item" style="margin-left: -275px">
+        Our privacy policies are subject to change. All updates will appear on
+        this page.
+      </p>
+    </div>
+    <!-- shipping -->
+    <div class="right_content" *ngIf="id === 'shipping'">
+      <p class="sub-header" style="margin-left: -250px">SHIPPING POLICY</p>
+      <p class="sub-header-2">General Provisions:</p>
+      <ul>
+        <li>
+          Shipping carriers will not resolve compensation claims if you accept
+          the package and sign the delivery receipt. Therefore, please carefully
+          inspect the product's packaging before confirming receipt. If the
+          packaging shows signs of damage (tears, dents, holes, or water damage)
+          and you suspect that the goods inside are damaged, kindly refuse to
+          accept the delivery and inform us immediately.
+        </li>
+        <li>
+          Orders will be delivered to your doorstep, except in cases such as
+          restricted access to office areas or high-rise apartments (delivery
+          will only be made to the building's main entrance).
+        </li>
+        <li>
+          We encourage customers to record a video of the unboxing process to
+          document the condition of the packaging and its contents. This will
+          serve as evidence for handling complaints (if necessary).
+        </li>
+        <li>
+          For any complaints related to your order, please provide feedback to
+          Hanoia with complete order details, including images of the package's
+          current state and product photos, so we can promptly resolve the
+          issue.
+        </li>
+      </ul>
+      <h3>Delivery Coverage</h3>
+      <ul>
+        <li>
+          EvoCasa offers nationwide shipping within Vietnam. For international
+          shipping outside of Vietnam, please contact EvoCasa's Customer Support
+          Department before placing your order.
+        </li>
+        <li>
+          In case of pandemics or unforeseen circumstances at the time of
+          delivery, the shipping areas may be adjusted according to government
+          regulations.
+        </li>
+      </ul>
+    </div>
+    <!-- delivery -->
+    <div>
+      <p class="sub-header-2">Delivery Time:</p>
+      <!-- <h3>Delivery Time</h3> -->
+      <p>
+        Shipping services operate during business hours from Monday to Saturday
+        (excluding Sundays and public holidays as per state regulations).
+      </p>
+      <ul>
+        <li><b>Express Delivery:</b> 2–5 business days.</li>
+        <li><b>Store Pickup: </b> Within 24–72 hours.</li>
+      </ul>
+      <p>
+        <b>Note: </b>The delivery times mentioned above are estimated and may
+        change due to unforeseen circumstances. Customers will be informed of
+        any changes. Delivery times for remote areas, island districts, or
+        special administrative zones may require additional 1–3 days compared to
+        standard delivery times.
+      </p>
+      <p style="text-align: center; font-style: italic; font-size: 18px">
+        Thank you for visiting ClayCo and helping us in our mission to provide
+        an inclusive experience for all.
+      </p>
+    </div>
   </div>
 </div>
