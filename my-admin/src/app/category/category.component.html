@@ -1,13 +1,12 @@
 <div class="main-content">
   <h3>CATEGORY MANAGEMENT</h3>
   <br />
-  <!-- <h4>Total Category (6) | Showing 4/6</h4> -->
   <h4>Total Category ({{ categories.length }}) | Showing 6/{{ categories.length }}</h4>
 
 
   <div class="actions">
     <!-- button filter -->
-    <button class="filter-button">
+    <button class="filter-button" [class.active]="showFilter" (click)="applyFilter()">
       <img src="images/order/Filter.svg" alt="Filter icon" />
       <span class="filter-text">Filter by</span>
     </button>
@@ -18,7 +17,7 @@
         <span>Add category</span>
       </button>
       <!-- button export -->
-      <button class="export-button">
+      <button class="export-button" (click)="exportCategories()">
         <img
           src="images/product/export.svg"
           alt="Export icon"
@@ -31,6 +30,24 @@
           class="dropdown-icon"
         />
       </button>
+    </div>
+  </div>
+
+  <div *ngIf="showFilter" class="filter-panel">
+    <h4>Filter by Parent Category</h4>
+  
+    <!-- Lọc theo Parent Category -->
+    <div class="filter-group">
+      <label for="parentCategory">Parent Category:</label>
+      <select id="parentCategory" formControlName="category">
+        <option value="">All</option>
+        <option *ngFor="let parent of parentCategories" [value]="parent">{{ parent }}</option>
+      </select>
+    </div>
+  
+    <!-- Nút áp dụng và reset -->
+    <div class="filter-actions">
+      <button class="reset-btn" (click)="resetFilters()">Reset</button>
     </div>
   </div>
 
@@ -65,18 +82,18 @@
           <!-- Hiển thị mô tả -->
           <td>{{ category.description }}</td>
           <td>
-            <button class="icon-btn">
+            <button class="icon-btn" (click)="viewCategory(category)">
               <img
                 src="images/product/view.svg"
                 alt="viewicon"
                 style="border: black"
               />
             </button>
-            <button class="icon-btn">
+            <button class="icon-btn" (click)="editCategory(category)">
               <img src="images/product/edit.svg" alt="editicon" />
             </button>
-            <button class="icon-btn">
-              <img src="images/product/trash.svg" alt="trashicon" />
+            <button class="icon-btn" (click)="deleteCategory(category)">
+              <img src="images/product/trash.svg" alt="trash icon" />
             </button>
           </td>
         </tr>
