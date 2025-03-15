@@ -50,8 +50,6 @@ const client = new MongoClient(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000, // Thời gian chờ kết nối (5 giây)
   socketTimeoutMS: 45000, // Thời gian chờ socket
-  ssl: true, // Bật SSL
-  sslValidate: false, // Tắt kiểm tra chứng chỉ (nếu cần)
 });
 
 // Kết nối lại nếu gặp lỗi
