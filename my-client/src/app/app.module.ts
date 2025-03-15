@@ -43,6 +43,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { RouterModule } from '@angular/router';
+import { PolicyComponent } from './policy/policy.component';
 
 @NgModule({
   declarations: [
@@ -79,8 +80,9 @@ import { RouterModule } from '@angular/router';
     PopupComponent,
     PaymentNoticeComponent,
     HomepageComponent,
-    DialogComponent, 
-    FooterComponent
+    DialogComponent,
+    FooterComponent,
+    PolicyComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,8 +92,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     ReactiveFormsModule,
     OverlayModule,
-    RouterModule
-    
+    RouterModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
