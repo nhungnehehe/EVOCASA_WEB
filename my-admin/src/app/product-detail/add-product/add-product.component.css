@@ -449,7 +449,6 @@
     display: flex;
     align-items: center;
     gap: 10px; /* Giảm khoảng cách giữa input và combo box */
-    display: flex;
 }
 
 .combo-box1 {
