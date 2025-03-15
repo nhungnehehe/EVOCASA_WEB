@@ -12,7 +12,8 @@ interface CategoryHierarchy extends Category {
 })
 export class CategoryService {
   private apiUrl = 'http://localhost:3002/categories';
-  
+  private baseUrl = 'http://localhost:3002';
+
   constructor(private _http: HttpClient) {}
 
   /**
@@ -35,11 +36,12 @@ export class CategoryService {
   /**
    * Get a single category by ID
    */
-  getCategory(categoryId: string): Observable<Category> {
-    console.log(`Fetching category with ID: ${categoryId}`);
-    return this._http.get<any>(`${this.apiUrl}/${categoryId}`).pipe(
+   getCategory(id: string): Observable<Category> {
+    console.log(`Fetching category with ID: ${id}`);
+    return this._http.get<Category>(`${this.apiUrl}/${id}`).pipe(
       tap(response => console.log('Raw category response:', response)),
       map(response => this.normalizeCategoryData(response)),
+      map(category => this.processCategoryImage(category)),
       retry(3),
       catchError(this.handleError)
     );
@@ -54,6 +56,7 @@ export class CategoryService {
     return this._http.put<any[]>(this.apiUrl, category, { headers }).pipe(
       tap(response => console.log('Category update response:', response)),
       map(response => response.map(item => this.normalizeCategoryData(item))),
+      map(categories => this.processCategoryImages(categories)),
       retry(3),
       catchError(this.handleError)
     );
@@ -68,6 +71,7 @@ export class CategoryService {
     return this._http.post<any>(this.apiUrl, category, { headers }).pipe(
       tap(response => console.log('Category creation response:', response)),
       map(response => this.normalizeCategoryData(response)),
+      map(category => this.processCategoryImage(category)),
       retry(3),
       catchError(this.handleError)
     );
@@ -216,4 +220,73 @@ export class CategoryService {
     
     return throwError(() => new Error(errorMessage));
   }
+
+  // Process multiple categories' images
+  private processCategoryImages(categories: Category[]): Category[] {
+    return categories.map(category => this.processCategoryImage(category));
+  }
+private processCategoryImage(category: Category): Category {
+  const processedCategory = { ...category };
+
+  // Nếu không có ảnh, sử dụng ảnh mặc định
+  if (!processedCategory.image) {
+    processedCategory.image = 'assets/images/category-placeholder.png';
+    return processedCategory;
+  }
+
+  console.log('Processing image for category:', processedCategory.name);
+  console.log('Raw image value:', processedCategory.image);
+
+  try {
+    let imagePath = processedCategory.image.trim();
+
+    // 🔹 Trường hợp 1: Ảnh là base64 (data:image/png;base64,....)
+    if (imagePath.startsWith('data:image')) {
+      console.log('Image is a base64 encoded string.');
+      return processedCategory; // Trả về ngay, không cần xử lý tiếp
+    }
+
+    // 🔹 Trường hợp 2: Ảnh là một URL đầy đủ
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      console.log('Image is a full URL.');
+      return processedCategory;
+    }
+
+    // 🔹 Trường hợp 3: Ảnh được lưu dưới dạng JSON (mảng hoặc object)
+    if (imagePath.startsWith('[') || imagePath.startsWith('{')) {
+      console.log('Attempting to parse JSON image string.');
+      const imageData = JSON.parse(imagePath);
+
+      if (Array.isArray(imageData) && imageData.length > 0) {
+        // Lấy ảnh đầu tiên trong mảng nếu tồn tại
+        imagePath = imageData.find(img => typeof img === 'string' && img.trim().length > 0) || '';
+      } else if (typeof imageData === 'object' && imageData !== null) {
+        // Nếu là object, tìm thuộc tính có chứa đường dẫn ảnh
+        const possibleKeys = ['path', 'url', 'src', 'file'];
+        for (const key of possibleKeys) {
+          if (imageData[key] && typeof imageData[key] === 'string') {
+            imagePath = imageData[key].trim();
+            break;
+          }
+        }
+      }
+    }
+
+    // 🔹 Trường hợp 4: Ảnh là một đường dẫn tương đối
+    if (imagePath.startsWith('/')) {
+      processedCategory.image = `${this.baseUrl}${imagePath}`;
+    } else if (!imagePath.startsWith('http')) {
+      processedCategory.image = `${this.baseUrl}/${imagePath}`;
+    } else {
+      processedCategory.image = imagePath;
+    }
+
+    console.log('Final processed image:', processedCategory.image);
+  } catch (error) {
+    console.error('Error processing category image:', error);
+    processedCategory.image = 'assets/images/category-placeholder.png';
+  }
+
+  return processedCategory;
+}
 }

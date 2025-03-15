@@ -14,6 +14,7 @@ import { EditCategoryComponent } from './category-detail/edit-category/edit-cate
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ViewProductComponent } from './product-detail/view-product/view-product.component';
+import { ViewCategoryComponent } from './category-detail/view-category/view-category.component';
 
 const routes: Routes = [
   { path: 'dashboard-page', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'admin-product-view/:id', component: ViewProductComponent, canActivate: [AuthGuard] },
   { path: 'admin-category-add', component: AddCategoryComponent, canActivate: [AuthGuard] },
   { path: 'admin-category-edit/:id', component: EditCategoryComponent, canActivate: [AuthGuard]},
-  { path: 'admin-category-view/:id', component: EditCategoryComponent, canActivate: [AuthGuard]},
+  { path: 'admin-category-view/:id', component: ViewCategoryComponent, canActivate: [AuthGuard]},
   { path: 'admin-customer', component: CustomerComponent, canActivate: [AuthGuard] },
   { path: 'admin-product', component: ProductComponent, canActivate: [AuthGuard] },
   { path: 'admin-category', component: CategoryComponent, canActivate: [AuthGuard] },
