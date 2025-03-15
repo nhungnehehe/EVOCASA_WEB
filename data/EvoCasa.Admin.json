@@ -15,7 +15,7 @@
   "LastLogin": "2025-02-06 17:29:52",
   "CreatedAt": "2024-05-21 17:29:52",
   "UpdatedAt": "2025-02-28 17:29:52",
-  "Image": "huyen_avatar.jpg"
+  "Image": "/images/admin/huyen_avatar.jpg"
 },
 {
   "_id": {
@@ -34,7 +34,7 @@
   "LastLogin": "2025-02-15 17:29:52",
   "CreatedAt": "2024-04-17 17:29:52",
   "UpdatedAt": "2025-02-28 17:29:52",
-  "Image": "nhung_avatar.jpg"
+  "Image": "/images/admin/nhung_avatar.jpg"
 },
 {
   "_id": {
@@ -53,7 +53,7 @@
   "LastLogin": "2025-02-12 17:29:52",
   "CreatedAt": "2024-10-18 17:29:52",
   "UpdatedAt": "2025-02-28 17:29:52",
-  "Image": "nhu_avatar.jpg"
+  "Image": "/images/admin/nhu_avatar.jpg"
 },
 {
   "_id": {
@@ -72,7 +72,7 @@
   "LastLogin": "2025-01-29 17:29:52",
   "CreatedAt": "2024-08-14 17:29:52",
   "UpdatedAt": "2025-02-28 17:29:52",
-  "Image": "thao_avatar.jpg"
+  "Image": "/images/admin/thao_avatar.jpg"
 },
 {
   "_id": {
@@ -91,5 +91,5 @@
   "LastLogin": "2025-02-21 17:29:52",
   "CreatedAt": "2024-03-20 17:29:52",
   "UpdatedAt": "2025-02-28 17:29:52",
-  "Image": "trang_avatar.jpg"
+  "Image": "/images/admin/trang_avatar.jpg"
 }]
