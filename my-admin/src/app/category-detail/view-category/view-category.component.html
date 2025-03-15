@@ -68,7 +68,9 @@
                  <!-- Parent category -->
                  <div class="input-container">
                     <div class="label">Parent Category</div>
-                    <input type="text" class="input-field1" [value]="parentCategoryName || 'None'" readonly>
+                    <div class="combo-box-container">
+                        <input type="text" class="input-field" [value]="parentCategoryName || 'None'" readonly>
+                    </div>
                 </div>
             </div>
         </div>
