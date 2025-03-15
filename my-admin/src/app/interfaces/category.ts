@@ -1,6 +1,6 @@
 export interface Category {
   id: string;
-  _id: string | { $oid: string };  // Allow both string and MongoDB ObjectId format
+  _id: string | { $oid: string };  
   name: string;
   description: string;
   slug: string;
