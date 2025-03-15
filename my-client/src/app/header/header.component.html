@@ -125,10 +125,9 @@
     </div>
     <div *ngIf="searchResults.length > 0" class="search-suggestions">
       <ul>
-        <li *ngFor="let result of searchResults" 
-            (click)="!result.isPlaceholder && selectProduct(result)" 
-            class="search-item">
-          <img [src]="result.image[0]" alt="Product Image" class="search-image">
+        <li *ngFor="let result of searchResults" (click)="!result.isPlaceholder && selectProduct(result)"
+          class="search-item">
+          <img [src]="result.image" alt="Product Image" class="search-image" *ngIf="result.image">
           <div class="search-info">
             <span>{{ result.name }}</span>
             <span *ngIf="result.price"> - {{ result.price | currency }}</span>
