@@ -8,13 +8,17 @@
   </h4>
   <div class="actions">
     <!-- button filter -->
-    <button class="filter-button" [class.active]="showFilter" (click)="applyFilter()">
+    <button
+      class="filter-button"
+      [class.active]="showFilter"
+      (click)="applyFilter()"
+    >
       <img src="images/order/Filter.svg" alt="Filter icon" />
       <span class="filter-text">Filter by</span>
     </button>
     <div class="right-button">
       <!--button Add Product -->
-      <div class="addproduct-button"(click)="addProduct()">
+      <div class="addproduct-button" (click)="addProduct()">
         <img src="images/product/add.png" alt="Add" />
         <span>Add product</span>
       </div>
@@ -39,44 +43,71 @@
   <div class="filter-container" *ngIf="showFilter">
     <form [formGroup]="filterForm" (ngSubmit)="applyFilterChanges()">
       <h4>Filter Products</h4>
-      
+
       <div class="filter-grid">
         <!-- Category filter -->
         <div class="filter-group">
           <label for="category">Category</label>
-          <select id="category" formControlName="category" class="filter-select">
+          <select
+            id="category"
+            formControlName="category"
+            class="filter-select"
+          >
             <option value="">All Categories</option>
-            <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+            <option *ngFor="let category of categories" [value]="category.name">
+              {{ category.name }}
+            </option>
           </select>
         </div>
-        
+
         <!-- Price range filter -->
         <div class="filter-group">
           <label>Price Range ($)</label>
           <div class="range-inputs">
-            <input type="number" formControlName="minPrice" placeholder="Min" class="filter-input">
+            <input
+              type="number"
+              formControlName="minPrice"
+              placeholder="Min"
+              class="filter-input"
+            />
             <span>-</span>
-            <input type="number" formControlName="maxPrice" placeholder="Max" class="filter-input">
+            <input
+              type="number"
+              formControlName="maxPrice"
+              placeholder="Max"
+              class="filter-input"
+            />
           </div>
         </div>
-        
+
         <!-- Inventory range filter -->
         <div class="filter-group">
           <label>Inventory</label>
           <div class="range-inputs">
-            <input type="number" formControlName="minInventory" placeholder="Min" class="filter-input">
+            <input
+              type="number"
+              formControlName="minInventory"
+              placeholder="Min"
+              class="filter-input"
+            />
             <span>-</span>
-            <input type="number" formControlName="maxInventory" placeholder="Max" class="filter-input">
+            <input
+              type="number"
+              formControlName="maxInventory"
+              placeholder="Max"
+              class="filter-input"
+            />
           </div>
         </div>
       </div>
-      
+
       <div class="filter-actions">
-        <button type="button" class="reset-filter-btn" (click)="resetFilter()">Clear Filters</button>
+        <button type="button" class="reset-filter-btn" (click)="resetFilter()">
+          Clear Filters
+        </button>
       </div>
     </form>
   </div>
-
 
   <!-- Hiển thị lỗi nếu có -->
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
@@ -116,7 +147,8 @@
           <td>
             <button class="icon-btn" (click)="viewProduct(product)">
               <img
-                src="images/product/view.svg" (click)="viewProduct(product)"
+                src="images/product/view.svg"
+                (click)="viewProduct(product)"
                 alt="viewicon"
                 style="border: black"
               />
@@ -136,6 +168,7 @@
   <div class="show">
     Showing {{ filteredProducts.length }}/{{ totalItems }} of all results
   </div>
+  <!-- Pagination Controls -->
   <div class="pagination">
     <button class="prev-btn" (click)="prevPage()"><</button>
     <span
