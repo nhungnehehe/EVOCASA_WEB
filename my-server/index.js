@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3002;
+const port = process.env.port || 3002;
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -10,6 +10,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const fileUpload = require("express-fileupload");
 const path = require("path");
 const fs = require("fs");
+require('dotenv').config()
 
 // Middleware setup
 app.use(morgan("combined"));
@@ -44,7 +45,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // MongoDB connection
-const client = new MongoClient("mongodb://127.0.0.1:27017");
+const client = new MongoClient(process.env.MONGODB_URI);
 client.connect();
 const database = client.db("EvoCasa");
 const productCollection = database.collection("Product");

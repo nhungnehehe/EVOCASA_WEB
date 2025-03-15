@@ -216,6 +216,9 @@ input:disabled, select:disabled {
     display: flex;
     gap: 30px;
     margin-top: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .input-container {

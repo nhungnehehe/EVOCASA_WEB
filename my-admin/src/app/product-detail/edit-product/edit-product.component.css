@@ -8,7 +8,11 @@
 
 /* Ẩn thanh cuộn nhưng vẫn có thể cuộn được */
 html, body {
-    overflow: scroll; /* Cho phép cuộn nhưng không hiển thị thanh cuộn */
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Đảm bảo có thể cuộn được */
+    margin: 0;
+    padding: 0;
 }
 
 ::-webkit-scrollbar {
@@ -203,6 +207,9 @@ html, body {
     display: flex;
     gap: 30px;
     margin-top: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .input-container {
@@ -213,7 +220,7 @@ html, body {
 .label {
     color: rgba(0, 0, 0, 0.7);
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 26px;
 }
 
 .label1 {
