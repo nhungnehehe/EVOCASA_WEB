@@ -40,32 +40,34 @@
     <form [formGroup]="filterForm" (ngSubmit)="applyFilterChanges()">
       <h4>Filter Products</h4>
       
-      <!-- Category filter -->
-      <div class="filter-group">
-        <label for="category">Category</label>
-        <select id="category" formControlName="category" class="filter-select">
-          <option value="">All Categories</option>
-          <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
-        </select>
-      </div>
-      
-      <!-- Price range filter -->
-      <div class="filter-group">
-        <label>Price Range ($)</label>
-        <div class="range-inputs">
-          <input type="number" formControlName="minPrice" placeholder="Min" class="filter-input">
-          <span>-</span>
-          <input type="number" formControlName="maxPrice" placeholder="Max" class="filter-input">
+      <div class="filter-grid">
+        <!-- Category filter -->
+        <div class="filter-group">
+          <label for="category">Category</label>
+          <select id="category" formControlName="category" class="filter-select">
+            <option value="">All Categories</option>
+            <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+          </select>
         </div>
-      </div>
-      
-      <!-- Inventory range filter -->
-      <div class="filter-group">
-        <label>Inventory</label>
-        <div class="range-inputs">
-          <input type="number" formControlName="minInventory" placeholder="Min" class="filter-input">
-          <span>-</span>
-          <input type="number" formControlName="maxInventory" placeholder="Max" class="filter-input">
+        
+        <!-- Price range filter -->
+        <div class="filter-group">
+          <label>Price Range ($)</label>
+          <div class="range-inputs">
+            <input type="number" formControlName="minPrice" placeholder="Min" class="filter-input">
+            <span>-</span>
+            <input type="number" formControlName="maxPrice" placeholder="Max" class="filter-input">
+          </div>
+        </div>
+        
+        <!-- Inventory range filter -->
+        <div class="filter-group">
+          <label>Inventory</label>
+          <div class="range-inputs">
+            <input type="number" formControlName="minInventory" placeholder="Min" class="filter-input">
+            <span>-</span>
+            <input type="number" formControlName="maxInventory" placeholder="Max" class="filter-input">
+          </div>
         </div>
       </div>
       

@@ -456,17 +456,20 @@ export class ProductComponent implements OnInit {
   }
 
   exportProducts() {
-    if (!this.products || this.products.length === 0) {
+    // Use displayProducts (filtered products) instead of all products
+    const productsToExport = this.displayProducts.length > 0 ? this.displayProducts : this.products;
+    
+    if (!productsToExport || productsToExport.length === 0) {
       alert('No data available for export!');
       return;
     }
   
     const headers = ["No", "Product Name", "Price", "Category", "Inventory"];
-    const csvRows = this.products.map((product, index) => [
+    const csvRows = productsToExport.map((product, index) => [
       index + 1,
-      `"${product.Name}"`,  // Đưa tên sản phẩm vào trong dấu ""
+      `"${product.Name}"`,
       product.Price,
-      `"${product.category_name || "N/A"}"`, // Đưa category vào trong dấu ""
+      `"${product.category_name || "N/A"}"`,
       product.Quantity,
     ]);
   
@@ -481,6 +484,6 @@ export class ProductComponent implements OnInit {
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
-  } 
+  }
 
 }
