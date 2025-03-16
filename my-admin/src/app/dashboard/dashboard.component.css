@@ -4,7 +4,7 @@ body {
   padding: 0;
   background-color: #FFFCF3;
   color: #3F2307;
-  overflow-x: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .dashboard {
@@ -15,6 +15,7 @@ body {
   position: relative;
   transition: all 0.3s ease;
   box-sizing: border-box; /* Ensure padding is included in width calculation */
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 header {
@@ -461,7 +462,6 @@ header h1 {
   .dashboard {
     max-width: 100%;
     padding: 0 15px;
-    margin-left: 50px;
   }
 }
 
@@ -480,7 +480,6 @@ header h1 {
 /* Tablet and small desktop */
 @media (max-width: 992px) {
   .dashboard {
-    margin-left: 100px 0; /* Remove left margin that was causing overlap */
     width: 100%;
     padding: 0 15px;
   }
@@ -493,7 +492,6 @@ header h1 {
     grid-template-columns: 1fr;
   }
   
-  
   .card {
     padding: 20px 15px;
   }
@@ -504,7 +502,6 @@ header h1 {
   .dashboard {
     width: 100%;
     padding: 0 10px;
-    margin-left: 120px;/* Remove left margin that was causing overlap */
     box-sizing: border-box;
   }
   
@@ -539,19 +536,17 @@ header h1 {
   
   .chart-container {
     height: 250px;
+    overflow-x: auto; /* Allow horizontal scroll for charts */
   }
   
   .stats-container {
     width: 100%;
-    overflow-x: hidden;
     box-sizing: border-box;
   }
   
-  /* Ensure elements don't overflow their containers */
   .card, .stat-box {
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
   }
 }
 
@@ -559,7 +554,6 @@ header h1 {
 @media (max-width: 576px) {
   .dashboard {
     padding: 0 8px;
-    margin-left: 150px; /* Further reduce margin */
   }
   
   .card-header {
@@ -595,16 +589,16 @@ header h1 {
   
   .chart-container {
     height: 200px;
+    overflow-x: auto; /* Allow horizontal scroll for charts */
   }
   
-  /* Force horizontal scrolling for tables instead of overflow */
   .activity-table-container {
     width: 100%;
     overflow-x: auto;
   }
   
   .activity-table {
-    min-width: 450px; /* Ensure minimum width for readability */
+    min-width: 450px;
   }
 }
 
@@ -636,6 +630,7 @@ header h1 {
     padding: 15px 10px;
   }
 }
+
 @media (max-width: 992px) {
   .products-layout {
     flex-direction: column;
@@ -647,6 +642,7 @@ header h1 {
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
+    overflow-x: auto; /* Allow horizontal scroll for charts */
   }
   
   .product-legend {
