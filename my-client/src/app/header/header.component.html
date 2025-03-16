@@ -3,12 +3,9 @@
 </div>
 <header>
   <div class="navbar">
-    <!-- Logo -->
     <div class="logo" [routerLink]="'/'">
       <img src="images/header/LogoHasName.png" alt="EVOCASA" />
     </div>
-
-    <!-- Menu Chính -->
     <ul class="menu">
       <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">HOMEPAGE</a></li>
       <li class="dropdown">
@@ -111,7 +108,35 @@
       </li>
 
       <li><a routerLink="/insitu-page" routerLinkActive="active">IN SITU</a></li>
-      <li><a routerLink="/blog" routerLinkActive="active">BLOG</a></li>
+      <li class="dropdown">
+        <a routerLink="/blog" routerLinkActive="active">BLOG</a>
+        <div class="dropdown-menu">
+          <!-- Bên trái: Danh sách bộ sưu tập -->
+          <div class="blog-list">
+            <ul>
+              <li><a routerLink="/blog-2024-sofa-trend">2024 Sofa Trend</a></li>
+              <li><a routerLink="/blog-minimalist-style">Minimalist Style In Interior Design</a></li>
+              <li><a routerLink="/blog-mix-and-match-wood"> How To Mix And Match Wood Tones?</a></li>
+              <li><a routerLink="/blog-elevating-spaces"> The Art Of Home Decor</a></li>
+            </ul>
+          </div>
+
+          <div class="blog-grid">
+            <div class="blog-item">
+              <a routerLink="/blog-redefining-comfort">
+                <img src="/images/Blog/bai5/img1.jpg">
+                <span>REDEFINING COMFORT THROUGH NATURAL DESIGN</span>
+              </a>
+            </div>
+            <div class="blog-item">
+              <a routerLink="/blog-creating-cozy-haven">
+                <img src="/images/Blog/bai6/img2.jpg">
+                <span>CREATING A COZY HAVEN</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
       <li><a routerLink="/about-page" routerLinkActive="active">ABOUT US</a></li>
       <li><a routerLink="/contact-page" routerLinkActive="active">CONTACT</a></li>
     </ul>
@@ -135,8 +160,6 @@
         </li>
       </ul>
     </div>
-
-
     <div class="signcart">
       <img src="images/header/Sign-in-icon.svg" />
       <a routerLink="/login-page" class="icon" *ngIf="!currentUserName" routerLinkActive="active">SIGN IN</a>

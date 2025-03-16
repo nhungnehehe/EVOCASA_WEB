@@ -225,6 +225,81 @@ body {
     text-overflow: ellipsis;
     /* Cắt chữ nếu quá dài */
 }
+/* Bên trái: Danh sách bộ sưu tập */
+.blog-list {
+    width: 50%;
+    padding-right: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.blog-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-list ul li {
+    margin-bottom: 10px;
+}
+
+.blog-list ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+}
+
+/* Bên phải: Grid ảnh bộ sưu tập */
+.blog-grid {
+    width: 60%;
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* 2 cột */
+    grid-template-rows: repeat(2, auto);
+    /* 2 hàng */
+    gap: 15px;
+    padding-left: 20px;
+}
+
+/* Mỗi item bộ sưu tập */
+.blog-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Hình ảnh trong bộ sưu tập */
+.blog-item img {
+    width: 200px;
+    /* Kích thước ảnh */
+    height: 120px;
+    object-fit: cover;
+    /* border-radius: 8px; */
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng hover ảnh */
+.blog-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Chữ bên dưới ảnh */
+.blog-item span {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    display: block;
+    max-width: 130px;
+    /* Giới hạn chiều rộng chữ để không bị tràn */
+    white-space: nowrap;
+    /* Giữ chữ trên một dòng */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Cắt chữ nếu quá dài */
+}
 
 /* Search box */
 .search {
