@@ -58,7 +58,6 @@ h4 {
 }
 
 .navbar {
-  /* position: fixed; Giữ sidebar cố định mà không đè lên nội dung */
   padding: 15px 15px;
   height: 100%;
   background-color: #5e4c3e;
@@ -230,7 +229,6 @@ thead td {
   height: auto;
 }
 
-/* FAQ container styling */
 .faq-container {
   margin-top: 20px;
 }
@@ -263,7 +261,7 @@ thead td {
 }
 
 .faq-toggle.expanded {
-  transform: rotate(45deg); /* Đổi dấu cộng thành dấu nhân khi mở rộng */
+  transform: rotate(45deg); 
   color: #856211;
 }
 
@@ -274,7 +272,6 @@ thead td {
   line-height: 1.6;
 }
 
-/* Thiết lập line-height cho tất cả các đoạn văn dài */
 .container p,
 .container .content--item,
 .container .sub-header,
@@ -283,7 +280,6 @@ thead td {
   line-height: 1.6;
 }
 
-/* Đảm bảo tất cả các đoạn văn có khoảng cách dòng đồng nhất */
 ul {
   line-height: 1.6;
 }
@@ -311,7 +307,7 @@ ul {
   margin-top: 20px;
 }
 
-/* Media Queries */
+
 @media screen and (max-width: 1024px) {
   .container {
     margin-top: 20px;
