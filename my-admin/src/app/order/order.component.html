@@ -35,7 +35,7 @@
         </tr>
       </thead>
 
-      <tr *ngFor="let order of orders; let i = index">
+      <tr *ngFor="let order of displayedOrders; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ order._id }}</td>
         <td>{{ customerNames[order.Customer_id] || "Loading..." }}</td>
@@ -58,13 +58,21 @@
       </tr>
     </table>
   </div>
-  <!-- Showing -->
-  <p>Showing 5/18 of all results</p>
-  <div class="pagination">
-    <button class="prev-btn">&lt;</button>
-    <span class="page-number">1</span>
-    <span class="page-number">2</span>
-    <span class="page-number">3</span>
-    <button class="next-btn">&gt;</button>
-  </div>
 </div>
+  <!-- Showing -->
+  <div class="pagination">
+    <button class="prev-btn" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
+  
+    <span *ngFor="let page of [].constructor(totalPages); let i = index">
+      <button class="page-number" (click)="changePage(i + 1)" [class.active]="currentPage === (i + 1)">
+        {{ i + 1 }}
+      </button>
+    </span>
+  
+    <button class="next-btn" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
+  </div>
+  <div class="showing-results">
+    <p>Showing {{ startOrder }} to {{ endOrder }} of {{ totalOrders }} results</p>
+  </div>
+    
+

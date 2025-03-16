@@ -13,12 +13,15 @@ import { Customer } from '../interfaces/customer';
 })
 export class OrderComponent {
   orders: Order[] = [];
-
+  displayedOrders: Order[] = [];
   totalOrders: number = 0;
 
   customerNames: { [key: string]: string } = {};
 
   selectedOrder: Order | null = null;
+
+  currentPage: number = 1;
+  itemsPerPage: number = 4;
 
   constructor(
     private orderService: OrderService,
@@ -35,13 +38,38 @@ export class OrderComponent {
         this.orders = data;
         this.totalOrders = data.length;
         this.fetchCustomerNames();
-        // this.updateDisplayedCustomers();
+        this.updateDisplayedOrders();
       },
       (error) => {
         console.error('Error fetching orders:', error);
       }
     );
   }
+  updateDisplayedOrders(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.displayedOrders = this.orders.slice(startIndex, endIndex);
+  }
+   // Pagination: change the page
+   changePage(page: number): void {
+    this.currentPage = page;
+    this.updateDisplayedOrders();
+  }
+
+  // Calculate the range of customers to display
+  get startOrder(): number {
+    return (this.currentPage - 1) * this.itemsPerPage + 1;
+  }
+
+  get endOrder(): number {
+    const end = this.currentPage * this.itemsPerPage;
+    return end > this.totalOrders ? this.totalOrders : end;
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalOrders / this.itemsPerPage);
+  }
+
   // Fetch customer names based on customer_id and store them temporarily
   fetchCustomerNames(): void {
     this.orders.forEach((order) => {

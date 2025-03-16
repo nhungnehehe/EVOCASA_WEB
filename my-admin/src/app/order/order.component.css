@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
 }
+
 /* Main Content */
 .main-content {
   padding: 10px 10px;
@@ -14,26 +15,32 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
 h3 {
   text-align: left;
   margin-left: 32px;
   margin-top: 30px;
   font-size: 30px;
   color: #5e4c3e;
-  font-family: "Zen Old Mincho", serif; /* Áp dụng font Zen Old Mincho */
+  font-family: "Zen Old Mincho", serif;
+  /* Áp dụng font Zen Old Mincho */
 }
+
 h4 {
   margin-left: 32px;
   color: rgba(0, 0, 0, 0.7);
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 300;
 }
 
 .value-container {
-  display: flex; /* Căn chỉnh các phần tử con (value và percentage) trên cùng 1 hàng */
-  justify-content: space-between; /* Căn giữa khoảng cách giữa các phần tử */
-  align-items: center; /* Đảm bảo rằng các phần tử con nằm giữa theo chiều dọc */
+  display: flex;
+  /* Căn chỉnh các phần tử con (value và percentage) trên cùng 1 hàng */
+  justify-content: space-between;
+  /* Căn giữa khoảng cách giữa các phần tử */
+  align-items: center;
+  /* Đảm bảo rằng các phần tử con nằm giữa theo chiều dọc */
   margin-right: 20px;
 }
 
@@ -42,9 +49,12 @@ h4 {
   margin-top: 20px;
   margin-right: 34px;
   margin-bottom: 20px;
-  display: flex; /* Chuyển container thành flex */
-  justify-content: flex-end; /* Căn chỉnh các phần tử con về phía bên phải */
-  gap: 10px; /* Khoảng cách giữa các nút */
+  display: flex;
+  /* Chuyển container thành flex */
+  justify-content: flex-end;
+  /* Căn chỉnh các phần tử con về phía bên phải */
+  gap: 10px;
+  /* Khoảng cách giữa các nút */
 }
 
 /* nút filter*/
@@ -89,6 +99,7 @@ h4 {
   outline: 2px solid rgba(63, 35, 5, 0.5);
   outline-offset: 2px;
 }
+
 /* nút export */
 
 .export-button {
@@ -143,14 +154,17 @@ h4 {
   outline: 2px solid rgba(63, 35, 5, 0.5);
   outline-offset: 2px;
 }
+
 /* Container chứa bảng */
 .table-container {
   padding: 20px;
   border-radius: 20px;
   margin-left: 34px;
   margin-right: 34px;
-  overflow-x: auto; /* Giúp cuộn ngang khi bảng quá rộng */
-  border: 1px solid #3f2305; /* Thêm viền */
+  overflow-x: auto;
+  /* Giúp cuộn ngang khi bảng quá rộng */
+  border: 1px solid #3f2305;
+  /* Thêm viền */
 }
 
 /* Bảng */
@@ -175,6 +189,7 @@ h4 {
   border-bottom: 1px solid #ddd;
   color: rgb(0, 0, 0, 0.5);
 }
+
 /* Pagination */
 .pagination {
   text-align: center;
@@ -195,18 +210,19 @@ h4 {
 
 .page-number {
   margin: 0 10px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   font-weight: 200;
   font-family: "Inter", sans-serif;
 }
+
 p {
   justify-content: center;
   align-items: center;
-  margin-left: 950px;
+  /* margin-left: 950px; */
   margin-top: 20px;
   color: rgba(0, 0, 0, 0.7);
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 300;
 }
@@ -233,4 +249,45 @@ p {
 .view-btn:hover,
 .delete-btn:hover {
   opacity: 1;
+}
+
+/* Pagination styling */
+.pagination {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.pagination button {
+  padding: 10px;
+  background-color: #5E4C3E;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+}
+
+.pagination button:hover {
+  background-color: #C5B6A7;
+}
+
+.page-number {
+  margin: 0 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.page-number.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Showing results */
+.showing-results {
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  width: 100%;
 }
