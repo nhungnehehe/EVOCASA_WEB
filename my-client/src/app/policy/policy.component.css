@@ -1,12 +1,11 @@
 * {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #000000;
+  font-family: sans-serif;
+  color: rgb(0, 0, 0, 0.7);
+  font-family: "Inter", sans-serif;
 }
 
 h4 {
   font-weight: bold;
-  /* color: #2D982A; */
   padding-left: 10px;
   font-size: 20px;
   color: white;
@@ -33,7 +32,7 @@ h4 {
 }
 
 .list-item.active {
-  color: black;
+  color: #5e4c3e;
 }
 
 .container {
@@ -79,7 +78,7 @@ h4 {
 .sub-header {
   font-size: 20px;
   font-weight: bold;
-  color: black;
+  color: #5e4c3e;
 
   display: flex;
   justify-content: center;
@@ -88,7 +87,7 @@ h4 {
 
 .sub-header-2 {
   font-size: 24px;
-  color: #333;
+  color: #5e4c3e;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -273,11 +272,6 @@ thead td {
   font-size: 16px;
   color: #555;
   line-height: 1.6;
-}
-
-/* Đặt font Montserrat cho tất cả các phần tử trong .container */
-.container {
-  font-family: "Montserrat", sans-serif;
 }
 
 /* Thiết lập line-height cho tất cả các đoạn văn dài */
