@@ -61,5 +61,10 @@ export class AppComponent {
         this.isOverlayFading = false;
       }, 50); 
     }, 250); 
+
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      sidebar.classList.remove('open');
+    }
   }
 }
