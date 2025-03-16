@@ -22,12 +22,12 @@ h4 {
 }
 
 .list p:hover {
-  background-color: #2c291f;
-  border-radius: 7px;
+  background-color: #c7b474;
+  border-radius: 3px;
 }
 
 .list-item.selected {
-  border-radius: 7px;
+  border-radius: 3px;
   font-weight: bold;
 }
 
@@ -63,14 +63,14 @@ h4 {
   height: 100%;
   background-color: #5e4c3e;
   margin-top: 20px;
-  border-radius: 10px;
+  border-radius: 3px;
   width: 270px;
 }
 
 .content-posts {
   flex: 70%;
   margin: 10px 25px 0px;
-  border-radius: 10px;
+  border-radius: 3px;
   padding: 10px;
   height: 2000px;
 }
@@ -100,7 +100,7 @@ h4 {
 ol {
   font-size: 15px;
   font-weight: bold;
-  color: #2d982a;
+  color: #360c08;
 }
 
 ul {
@@ -123,7 +123,7 @@ p {
 table {
   border-collapse: collapse;
   border: 2px solid;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 a {
@@ -216,7 +216,7 @@ thead td {
 }
 
 .custom-table {
-  border: 2px solid #2d982a;
+  border: 2px solid #785117;
   border-radius: 10px;
   background-color: #e8fae7;
 }
@@ -253,7 +253,7 @@ thead td {
 }
 
 .faq-question:hover {
-  color: #4caf50;
+  color: #523e12;
 }
 
 .faq-toggle {
@@ -264,7 +264,7 @@ thead td {
 
 .faq-toggle.expanded {
   transform: rotate(45deg); /* Đổi dấu cộng thành dấu nhân khi mở rộng */
-  color: #4caf50;
+  color: #856211;
 }
 
 .faq-answer {
