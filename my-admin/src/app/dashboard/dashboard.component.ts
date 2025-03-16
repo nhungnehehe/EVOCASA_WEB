@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart, registerables } from 'chart.js';
+import html2canvas from 'html2canvas'; 
 
 Chart.register(...registerables);
 
@@ -381,11 +382,26 @@ export class DashboardComponent implements OnInit {
     return { name: 'Unknown', phone: '', email: '' };
   }
 
-  // Get customer initials
+
   getCustomerInitials(name: string): string {
     if (!name) return 'UN';
     const parts = name.split(' ');
     if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
     return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+  }
+
+  exportCharts(): void {
+    const exportElem = document.querySelector('.main-content') as HTMLElement;
+    if (!exportElem) {
+        return;
+    }
+    html2canvas(exportElem).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'dashboard.png';
+        link.click();
+    }).catch(error => {
+        console.error('Lỗi khi export dashboard:', error);
+    });
   }
 }
