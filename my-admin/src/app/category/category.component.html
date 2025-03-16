@@ -6,7 +6,7 @@
 
   <div class="actions">
     <!-- button filter -->
-    <button class="filter-button" [class.active]="showFilter" (click)="applyFilter()">
+    <button class="filter-button">
       <img src="images/order/Filter.svg" alt="Filter icon" />
       <span class="filter-text">Filter by</span>
     </button>
@@ -32,25 +32,6 @@
       </button>
     </div>
   </div>
-
-  <div *ngIf="showFilter" class="filter-panel">
-    <h4>Filter by Parent Category</h4>
-  
-    <!-- Lọc theo Parent Category -->
-    <div class="filter-group">
-      <label for="parentCategory">Parent Category:</label>
-      <select id="parentCategory" formControlName="category">
-        <option value="">All</option>
-        <option *ngFor="let parent of parentCategories" [value]="parent">{{ parent }}</option>
-      </select>
-    </div>
-  
-    <!-- Nút áp dụng và reset -->
-    <div class="filter-actions">
-      <button class="reset-btn" (click)="resetFilters()">Reset</button>
-    </div>
-  </div>
-
 
   <div class="table-container">
     <table class="category-table">

@@ -77,13 +77,6 @@ h4 {
   cursor: pointer;
 }
 
-/* .filter-icon {
-  aspect-ratio: 1.17;
-  object-fit: contain;
-  object-position: center;
-  width: 28px;
-  flex-shrink: 0;
-} */
 
 .filter-text {
   margin: auto 0;
@@ -193,7 +186,6 @@ h4 {
 /* Pagination */
 .pagination {
   text-align: center;
-  margin-top: 20px;
 }
 
 .pagination button {

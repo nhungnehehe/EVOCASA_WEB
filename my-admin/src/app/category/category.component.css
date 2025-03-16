@@ -4,53 +4,6 @@
   padding: 0;
 }
 
-.filter-panel {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.filter-group {
-  margin-bottom: 10px;
-}
-
-.filter-group label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.filter-group select {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.filter-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.apply-btn, .reset-btn {
-  padding: 8px 15px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.apply-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-.reset-btn {
-  background-color: #dc3545;
-  color: white;
-}
 
 /* Main Content */
 .main-content {
@@ -132,6 +85,7 @@ h4 {
   padding: 6px 5px;
   align-items: center;
   gap: 5px;
+  font-size: 13px;
   margin-right: 20px;
 }
 .addproduct-button:hover {
@@ -334,7 +288,6 @@ h4 {
 /* Pagination */
 .pagination {
   text-align: center;
-  margin-top: 20px;
 }
 
 .pagination button {
@@ -358,7 +311,6 @@ h4 {
 }
 .show {
   justify-content: flex-end;
-  margin-top: 20px;
   color: rgba(0, 0, 0, 0.7);
   font-size: 16px;
   font-style: normal;

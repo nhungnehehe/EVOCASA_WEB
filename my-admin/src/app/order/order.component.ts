@@ -97,4 +97,32 @@ export class OrderComponent {
     );
     this.router.navigate([`/order-detail/${id}`]);
   }
+  exportOrders(): void {
+    if (!this.orders || this.orders.length === 0) {
+      alert('No data available for export!');
+      return;
+    }
+  
+    const headers = ['No', 'Order ID', 'Customer Name', 'Order Date', 'Total Price', 'Status'];
+    const csvRows = this.orders.map((order, index) => [
+      index + 1,
+      `"${order._id}"`,
+      `"${this.customerNames[order.Customer_id] || 'Unknown'}"`,
+      `"${order.OrderDate}"`,
+      `"${order.TotalPrice}"`,
+      `"${order.Status}"`
+    ]);
+  
+    const csvContent = [headers, ...csvRows].map(row => row.join(',')).join('\n');
+  
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'order_list.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
 }

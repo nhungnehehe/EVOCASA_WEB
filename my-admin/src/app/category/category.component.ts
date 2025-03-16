@@ -236,49 +236,6 @@ getFullImagePath(imagePath: string): string {
   return `assets/images/${cleanPath}`;
 }
 
-  // Toggle the filter panel
-  applyFilter(): void {
-    this.showFilter = !this.showFilter;
-  }
-
-  // Add this new method to handle immediate category filtering
-  onCategoryChange(): void {
-    // Get the selected category value
-    const selectedCategory = this.filterForm.get('category')?.value;
-    console.log('Category changed to:', selectedCategory);
-
-    // Apply the filter immediately when category changes
-    this.applyFilterChanges();
-  }
-
-   /** Lọc danh mục theo danh mục cha */
-   applyFilterChanges(): void {
-    const selectedParentCategory = this.filterForm.get('category')?.value;
-
-    console.log('Selected Parent Category:', selectedParentCategory);
-
-    if (!selectedParentCategory) {
-      this.paginatedCategories = [...this.categories]; // Hiển thị tất cả
-    } else {
-      // Lọc danh mục con theo danh mục cha
-      this.paginatedCategories = this.categories.filter(category => 
-        category.parentCategory === selectedParentCategory
-      );
-    }
-
-    this.currentPage = 1;
-    this.totalPages = Math.ceil(this.paginatedCategories.length / this.pageSize);
-    this.updatePaginatedCategories();
-  }
-
-  // Reset all filters
-  resetFilters(): void {
-    this.filterForm.reset(); // Reset toàn bộ form
-    this.paginatedCategories = [...this.categories]; // Hiển thị lại tất cả danh mục
-    this.currentPage = 1;
-    this.totalPages = Math.ceil(this.paginatedCategories.length / this.pageSize);
-    this.updatePaginatedCategories();
-  }
 
   /**
    * Get the name of the parent category by its ID
