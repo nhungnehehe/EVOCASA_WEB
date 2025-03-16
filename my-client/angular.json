@@ -25,7 +25,7 @@
           "options": {
             "outputPath": "dist/my-client",
             "baseHref": "/",
-            "index": "src/index.html",
+            "index": "index.html",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
