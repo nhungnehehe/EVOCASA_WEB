@@ -30,11 +30,20 @@ export class SignupComponent {
   @ViewChild('passwordInput') passwordInput: any;
   @ViewChild('confirmPasswordInput') confirmPasswordInput: any;
 
+  randomAvatars: string[] = Array.from({ length: 17 }, (_, i) => `${i + 1}.jpg`);
+
+
   constructor(
     private _service: AccountService,
     private router: Router,
     private _customerService: CustomerService
-  ) { }
+  ) {}
+
+  getRandomAvatar(): string {
+    const randomIndex = Math.floor(Math.random() * this.randomAvatars.length);
+    return `images/profile/RandomAvt/${this.randomAvatars[randomIndex]}`;
+  }
+  
 
   // Kiểm tra số điện thoại hợp lệ theo regex
   checkPhoneNumber(): void {
@@ -49,13 +58,13 @@ export class SignupComponent {
   // Đăng ký tài khoản (Account) và sau đó đăng ký thông tin Customer
   postAccount(): void {
     this.submitted = true;
-    
+
     // Kiểm tra nếu checkbox chưa được tick
     if (!this.agree) {
       alert("Please tick the checkbox to agree with Term & Condition");
       return;
     }
-    
+
     if (!this.isPhoneNumberValid) {
       alert('Please enter a valid phone number!');
       return;
@@ -79,7 +88,7 @@ export class SignupComponent {
           this.account.Name = data.Name;
           this.account.phonenumber = data.phonenumber;
           alert('Sign up successfully');
-          
+
           // Map các trường từ Account sang Customer
           this.customer.Name = this.account.Name;
           this.customer.Phone = this.account.phonenumber;
@@ -87,10 +96,10 @@ export class SignupComponent {
           this.customer.DOB = "";
           this.customer.Address = "";
           this.customer.Gender = "";
-          this.customer.Image = "";
+          this.customer.Image = this.getRandomAvatar();;
           this.customer.CreatedAt = "";
           this.customer.Cart = [];
-          
+
           // Gọi đăng ký thông tin customer
           this._customerService.postCustomer(this.customer).subscribe({
             next: (custData) => {
@@ -150,7 +159,7 @@ export class SignupComponent {
   togglePasswordVisibility1(): void {
     this.showPassword1 = !this.showPassword1;
   }
-  
+
   togglePasswordVisibility2(): void {
     this.showPassword2 = !this.showPassword2;
   }
