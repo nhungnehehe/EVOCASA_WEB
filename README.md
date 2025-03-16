@@ -1,4 +1,4 @@
-<p align="center">
+![image](https://github.com/user-attachments/assets/0bb494ef-46b0-430d-89e8-a505418dc970)<p align="center">
   <a href="https://www.uel.edu.vn/" title="University of Economics and Law - VNU HCMC">
     <img src="https://i.imgur.com/jTdznYS.jpeg" alt="UEL">
   </a>
@@ -81,7 +81,7 @@
 - **Topic:** Furniture Sales Website
 - **Repository:** [242MI5702_WEBDEVELOPMENT](https://github.com/nhungnehehe/242MI5702_WEBDEVELOPMENT)
 - **Project Overview - Local:** EvoCasa
--<div align="center"> **Live Demo: EVOCASA**  </div>
+-<div align="center"> [**LIVE DEMO: EVOCASA**](https://evo-casa.onrender.com/)  </div>
 
 
 
