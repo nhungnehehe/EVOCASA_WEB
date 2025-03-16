@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0bb494ef-46b0-430d-89e8-a505418dc970)<p align="center">
+<p align="center">
   <a href="https://www.uel.edu.vn/" title="University of Economics and Law - VNU HCMC">
     <img src="https://i.imgur.com/jTdznYS.jpeg" alt="UEL">
   </a>
