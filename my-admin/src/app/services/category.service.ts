@@ -16,15 +16,11 @@ export class CategoryService {
 
   constructor(private _http: HttpClient) {}
 
-  /**
-   * Get all categories
-   */
   getCategories(): Observable<Category[]> {
     console.log('Fetching categories from:', this.apiUrl);
     return this._http.get<any[]>(this.apiUrl).pipe(
       tap(response => console.log('Raw categories response:', response)),
       map(response => {
-        // Transform to ensure all required fields are present
         return response.map(item => this.normalizeCategoryData(item));
       }),
       tap(categories => console.log('Processed categories:', categories)),
@@ -33,9 +29,6 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Get a single category by ID
-   */
    getCategory(id: string): Observable<Category> {
     console.log(`Fetching category with ID: ${id}`);
     return this._http.get<Category>(`${this.apiUrl}/${id}`).pipe(
@@ -47,9 +40,6 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Update an existing category
-   */
   putCategory(category: Category): Observable<Category[]> {
     console.log('Updating category:', category);
     const headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -62,9 +52,6 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Create a new category
-   */
   createCategory(category: Category): Observable<Category> {
     console.log('Creating new category:', category);
     const headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -77,9 +64,6 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Delete a category
-   */
   deleteCategory(categoryId: string): Observable<any> {
     console.log(`Deleting category with ID: ${categoryId}`);
     const headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -90,9 +74,6 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Get all main categories (with no parent)
-   */
   getMainCategories(): Observable<Category[]> {
     console.log('Fetching main categories');
     return this.getCategories().pipe(
@@ -104,9 +85,6 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Get subcategories for a given parent category
-   */
   getSubcategories(parentCategoryId: string): Observable<Category[]> {
     console.log(`Fetching subcategories for parent ID: ${parentCategoryId}`);
     return this.getCategories().pipe(
@@ -120,9 +98,7 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Get full path (breadcrumb) for a category
-   */
+
   getCategoryPath(categoryId: string): Observable<Category[]> {
     console.log(`Building category path for ID: ${categoryId}`);
     return this.getCategories().pipe(
@@ -153,9 +129,6 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Get complete category hierarchy
-   */
   getCategoryHierarchy(): Observable<CategoryHierarchy[]> {
     console.log('Building category hierarchy');
     return this.getCategories().pipe(
@@ -180,11 +153,9 @@ export class CategoryService {
     );
   }
 
-  /**
-   * Normalize category data to ensure all fields are present
-   */
+
   private normalizeCategoryData(item: any): Category {
-    // Handle MongoDB ObjectId format if needed
+
     let id = item._id;
     if (typeof id === 'object' && id && '$oid' in id) {
       id = id.$oid;
@@ -201,17 +172,13 @@ export class CategoryService {
     };
   }
 
-  /**
-   * Error handler for HTTP requests
-   */
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
       errorMessage = `Client Error: ${error.error.message}`;
     } else {
-      // Server-side error
       errorMessage = `Server Error: ${error.status} - ${error.statusText || ''}\nMessage: ${error.message}`;
     }
     
@@ -221,14 +188,12 @@ export class CategoryService {
     return throwError(() => new Error(errorMessage));
   }
 
-  // Process multiple categories' images
+
   private processCategoryImages(categories: Category[]): Category[] {
     return categories.map(category => this.processCategoryImage(category));
   }
 private processCategoryImage(category: Category): Category {
   const processedCategory = { ...category };
-
-  // Nếu không có ảnh, sử dụng ảnh mặc định
   if (!processedCategory.image) {
     processedCategory.image = 'assets/images/category-placeholder.png';
     return processedCategory;
@@ -239,29 +204,22 @@ private processCategoryImage(category: Category): Category {
 
   try {
     let imagePath = processedCategory.image.trim();
-
-    // 🔹 Trường hợp 1: Ảnh là base64 (data:image/png;base64,....)
     if (imagePath.startsWith('data:image')) {
       console.log('Image is a base64 encoded string.');
-      return processedCategory; // Trả về ngay, không cần xử lý tiếp
+      return processedCategory;
     }
-
-    // 🔹 Trường hợp 2: Ảnh là một URL đầy đủ
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
       console.log('Image is a full URL.');
       return processedCategory;
     }
 
-    // 🔹 Trường hợp 3: Ảnh được lưu dưới dạng JSON (mảng hoặc object)
     if (imagePath.startsWith('[') || imagePath.startsWith('{')) {
       console.log('Attempting to parse JSON image string.');
       const imageData = JSON.parse(imagePath);
 
       if (Array.isArray(imageData) && imageData.length > 0) {
-        // Lấy ảnh đầu tiên trong mảng nếu tồn tại
         imagePath = imageData.find(img => typeof img === 'string' && img.trim().length > 0) || '';
       } else if (typeof imageData === 'object' && imageData !== null) {
-        // Nếu là object, tìm thuộc tính có chứa đường dẫn ảnh
         const possibleKeys = ['path', 'url', 'src', 'file'];
         for (const key of possibleKeys) {
           if (imageData[key] && typeof imageData[key] === 'string') {
@@ -272,7 +230,6 @@ private processCategoryImage(category: Category): Category {
       }
     }
 
-    // 🔹 Trường hợp 4: Ảnh là một đường dẫn tương đối
     if (imagePath.startsWith('/')) {
       processedCategory.image = `${this.baseUrl}${imagePath}`;
     } else if (!imagePath.startsWith('http')) {

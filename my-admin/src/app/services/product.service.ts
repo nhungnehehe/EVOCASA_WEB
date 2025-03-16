@@ -27,7 +27,6 @@ export class ProductService {
       );
   }
 
-  // Thêm sản phẩm mới
   createProduct(product: IProduct): Observable<IProduct> {
     return this.http.post<IProduct>(this.apiUrl, product).pipe(
       map((product) => this.processProductImage(product)),
@@ -35,7 +34,6 @@ export class ProductService {
     );
   }
 
-  // Cập nhật sản phẩm
   updateProduct(identifier: string, product: IProduct): Observable<IProduct> {
     return this.http
       .put<IProduct>(
@@ -47,20 +45,18 @@ export class ProductService {
         catchError(this.handleError)
       );
   }
-
-  // Xóa sản phẩm
   deleteProduct(identifier: string): Observable<any> {
     return this.http
       .delete<any>(`${this.apiUrl}/${encodeURIComponent(identifier)}`)
       .pipe(catchError(this.handleError));
   }
 
-  // Process product images for collections
+
   private processProductImages(products: IProduct[]): IProduct[] {
     return products.map((product) => this.processProductImage(product));
   }
 
-  // Process single product image
+
   private processProductImage(product: IProduct): IProduct {
     if (product.Image && typeof product.Image === 'string') {
       try {
@@ -72,15 +68,13 @@ export class ProductService {
     return product;
   }
 
-  // Error handling
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred';
 
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
 

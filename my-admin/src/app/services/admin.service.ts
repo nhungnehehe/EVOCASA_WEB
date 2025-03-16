@@ -8,22 +8,21 @@ import { Admin } from '../interfaces/admin';
   providedIn: 'root'
 })
 export class AdminService {
-  // API base URL - adjust this as needed
-  private apiUrl = 'http://localhost:3002'; // Change to your actual server URL
+
+  private apiUrl = 'http://localhost:3002'; 
   
-  // Current admin subject to track logged-in admin
+
   private currentAdminSubject = new BehaviorSubject<Admin | null>(null);
   public currentAdmin$ = this.currentAdminSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    // Check localStorage for existing admin session
+
     const storedAdmin = localStorage.getItem('currentAdmin');
     if (storedAdmin) {
       this.currentAdminSubject.next(JSON.parse(storedAdmin));
     }
   }
 
-  // Get all admins
   getAllAdmins(): Observable<Admin[]> {
     return this.http.get<Admin[]>(`${this.apiUrl}/admins`)
       .pipe(
@@ -31,7 +30,7 @@ export class AdminService {
       );
   }
 
-  // Get admin by ID
+
   getAdminById(id: string): Observable<Admin> {
     return this.http.get<Admin>(`${this.apiUrl}/admins/${id}`)
       .pipe(
@@ -39,19 +38,16 @@ export class AdminService {
       );
   }
 
-  // Login with employee ID and password
+
   login(employeeId: string, password: string): Observable<Admin | null> {
-    // First get all admins to find the matching employee
     return this.getAllAdmins().pipe(
       map(admins => {
-        // Find admin with matching employeeId and password
         const admin = admins.find(a => 
           a.employeeid.toLowerCase() === employeeId.toLowerCase() && 
           a.Password === password
         );
         
         if (admin) {
-          // Store admin in localStorage and update the subject
           localStorage.setItem('currentAdmin', JSON.stringify(admin));
           this.currentAdminSubject.next(admin);
           return admin;
@@ -63,30 +59,26 @@ export class AdminService {
     );
   }
 
-  // Logout method
   logout(): void {
     localStorage.removeItem('currentAdmin');
     this.currentAdminSubject.next(null);
   }
 
-  // Get current admin
   getCurrentAdmin(): Admin | null {
     return this.currentAdminSubject.value;
   }
 
-  // Check if user is logged in
   isLoggedIn(): boolean {
     return !!this.currentAdminSubject.value;
   }
 
-  // Error handling
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }
-  // Optional validation method
+
 validateCurrentAdmin(): Observable<boolean> {
   const admin = this.getCurrentAdmin();
   if (!admin) return of(false);

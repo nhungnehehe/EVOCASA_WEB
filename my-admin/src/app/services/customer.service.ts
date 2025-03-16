@@ -8,17 +8,15 @@ import { Customer, ICustomer, CartItem1 } from '../interfaces/customer';
   providedIn: 'root',
 })
 export class CustomerService {
-  // API base URL
   private apiUrl = 'http://localhost:3002';
 
-  // Default HTTP options
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
   constructor(private http: HttpClient) {}
 
-  // Get all customers
+
   getAllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.apiUrl}/customers`).pipe(
       tap((_) => console.log('Fetched all customers')),
@@ -26,7 +24,6 @@ export class CustomerService {
     );
   }
 
-  // Get customer by ID
   getCustomerById(id: string): Observable<Customer> {
     return this.http.get<Customer>(`${this.apiUrl}/customer/${id}`).pipe(
       tap((_) => console.log(`Fetched customer id=${id}`)),
@@ -34,7 +31,6 @@ export class CustomerService {
     );
   }
 
-  // Get customer by phone number
   getCustomerByPhone(phone: string): Observable<Customer> {
     return this.http.get<Customer>(`${this.apiUrl}/customers/${phone}`).pipe(
       tap((_) => console.log(`Fetched customer with phone=${phone}`)),
@@ -42,10 +38,7 @@ export class CustomerService {
     );
   }
 
-  // Get customer by email (used for login)
   getCustomerByEmail(email: string): Observable<Customer> {
-    // Since API may not have an endpoint to search by email, we fetch all and filter
-    // Note: In production, this should be handled server-side
     return this.http.get<Customer[]>(`${this.apiUrl}/customers`).pipe(
       map((customers) => {
         const foundCustomer = customers.find(
@@ -61,7 +54,7 @@ export class CustomerService {
     );
   }
 
-  // Update customer information
+
   updateCustomer(customer: Customer): Observable<Customer> {
     return this.http
       .put<Customer>(
@@ -75,7 +68,7 @@ export class CustomerService {
       );
   }
 
-  // Update customer's cart
+
   updateCart(customerId: string, cart: CartItem1[]): Observable<Customer> {
     return this.http
       .put<Customer>(
@@ -89,7 +82,7 @@ export class CustomerService {
       );
   }
 
-  // Add product to cart
+
   addToCart(
     customerId: string,
     productId: string,
@@ -112,7 +105,6 @@ export class CustomerService {
     );
   }
 
-  // Delete customer
   deleteCustomer(customerId: string): Observable<any> {
     return this.http
       .delete(`${this.apiUrl}/customers/${customerId}`, this.httpOptions)
@@ -139,7 +131,7 @@ export class CustomerService {
       );
   }
 
-  // Error handling
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);

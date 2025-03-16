@@ -256,8 +256,8 @@ input:focus {
 
 .logo {
   height: 40px;
-  padding-left: 0; /* Remove any potential padding */
-  margin-left: 0; /* Remove any potential margin */
+  padding-left: 0; 
+  margin-left: 0; 
 }
 
 .logo img {
@@ -268,7 +268,7 @@ input:focus {
 .nav-links {
   display: flex;
   align-items: center;
-  padding-right: 20px; /* Add padding to the right side only */
+  padding-right: 20px; 
 }
 
 .log-in-btn {
