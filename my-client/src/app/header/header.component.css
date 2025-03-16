@@ -500,3 +500,7 @@ body {
     top: 6px;
     right: 50px;
 }
+
+.cart-label {
+  cursor: pointer;
+}
