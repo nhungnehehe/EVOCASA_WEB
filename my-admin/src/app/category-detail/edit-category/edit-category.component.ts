@@ -39,19 +39,30 @@ export class EditCategoryComponent {
     }
     
  // Lấy danh mục cha hợp lệ
- this.categoryService.getCategories().subscribe({
+this.categoryService.getMainCategories().subscribe({
   next: (data) => {
     // Lọc danh mục cha: Không cho phép danh mục hiện tại là danh mục cha của chính nó
     this.categories = data.filter(cat => cat._id !== categoryId);
     
+    // Thêm option "None" để người dùng có thể chọn không có danh mục cha
+    this.categories.unshift({
+      _id: null,
+      name: 'None',
+      description: '',
+      image: null,
+      parentCategory: null
+    } as unknown as Category);
+    
     // Nếu danh mục hiện tại có parentCategory, đảm bảo dropdown hiển thị đúng giá trị
+    // Nếu không có parentCategory, set giá trị mặc định là null (None)
     if (this.category.parentCategory) {
       this.category.parentCategory = this.category.parentCategory;
+    } else {
+      this.category.parentCategory = null; // Set to null to select "None" option
     }
   },
   error: () => (this.errMessage = 'Error loading categories'),
-});
-}
+})}
 
   /**
    * Lấy thông tin danh mục từ API theo ID
@@ -62,7 +73,7 @@ export class EditCategoryComponent {
         this.category = data;
 
         // Xử lý ảnh xem trước
-        this.previewImage = this.category.image;
+        this.previewImage = Array.isArray(this.category.image) ? this.category.image[0] : this.category.image;
 
         console.log('Loaded category:', this.category);
       },

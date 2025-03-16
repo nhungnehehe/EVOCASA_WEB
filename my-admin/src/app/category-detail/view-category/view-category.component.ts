@@ -16,7 +16,7 @@ export class ViewCategoryComponent implements OnInit {
     description: '',
     slug: '',
     parentCategory: null,
-    image: '',
+    image: [],
     id: ''
   };
   
@@ -55,7 +55,7 @@ export class ViewCategoryComponent implements OnInit {
         console.log('Loaded category details:', this.category);
         
         // Set the preview image from the processed category data
-        this.previewImage = this.category.image || null;
+        this.previewImage = Array.isArray(this.category.image) ? this.category.image[0] : this.category.image;
         this.isImageLoading = false;
         
         if (this.category.parentCategory) {

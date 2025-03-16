@@ -5,5 +5,5 @@ export interface Category {
   description: string;
   slug: string;
   parentCategory: string | null;
-  image: string;
+  image: string | string[];
 }

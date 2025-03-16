@@ -6,7 +6,7 @@
   "Description": "All kinds of furniture products.",
   "Slug": "furniture",
   "ParentCategory": null,
-  "Image": "[\n\"/images/Furniture/Alfred Christensen Chair - Floral12.jpg\"\n]"
+  "Image": "/images/Furniture/Alfred Christensen Chair - Floral12.jpg"
 },
 {
   "_id": {
@@ -18,7 +18,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860eb"
   },
-  "Image": "[ \n\"/images/Furniture/Ambiance Coffee Table1.jpg\"\n]"
+  "Image": "/images/Furniture/Ambiance Coffee Table1.jpg"
 },
 {
   "_id": {
@@ -30,7 +30,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860eb"
   },
-  "Image": "[ \n\"/images/Furniture/1950s Kooky Metal Chair1.jpg\"\n]"
+  "Image": "/images/Furniture/1950s Kooky Metal Chair1.jpg"
 },
 {
   "_id": {
@@ -42,7 +42,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860eb"
   },
-  "Image": "[ \n\"/images/Furniture/Brazilian Jangada Armchair2.jpg\"\n]"
+  "Image": "/images/Furniture/Brazilian Jangada Armchair2.jpg"
 },
 {
   "_id": {
@@ -52,7 +52,7 @@
   "Description": "Decorative items for homes and offices.",
   "Slug": "decor",
   "ParentCategory": null,
-  "Image": "[\n\"/images/Decor/Magazine Book Rack1.jpg\"\n]"
+  "Image": "/images/Decor/Magazine Book Rack1.jpg"
 },
 {
   "_id": {
@@ -64,7 +64,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f0"
   },
-  "Image": "[\n\"/images/Decor/Devon Vase1.jpg\"\n]"
+  "Image": "/images/Decor/Devon Vase1.jpg"
 },
 {
   "_id": {
@@ -76,7 +76,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f0"
   },
-  "Image": "[\n\"/images/Dining & Entertaining/Thrown Salad Bowl1.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Thrown Salad Bowl1.jpg"
 },
 {
   "_id": {
@@ -88,7 +88,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f0"
   },
-  "Image": "[\n\"/images/Decor/Ornate Barcelona Mirror1.jpg\"\n]"
+  "Image": "/images/Decor/Ornate Barcelona Mirror1.jpg"
 },
 {
   "_id": {
@@ -100,7 +100,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f0"
   },
-  "Image": "[\n\"/images/Dining & Entertaining/Frigast Silver Tongs2.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Frigast Silver Tongs2.jpg"
 },
 {
   "_id": {
@@ -112,7 +112,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f0"
   },
-  "Image": "[\n\"/images/Decor/Antique Jade Jewelry Box1.jpg\"\n]"
+  "Image": "/images/Decor/Antique Jade Jewelry Box1.jpg"
 },
 {
   "_id": {
@@ -122,7 +122,7 @@
   "Description": "Furniture and accessories for dining and entertaining.",
   "Slug": "dining-entertaining",
   "ParentCategory": null,
-  "Image": "[\n\"/images/Dining & Entertaining/Swedish Kitchen Rack2.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Swedish Kitchen Rack2.jpg"
 },
 {
   "_id": {
@@ -134,7 +134,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f7"
   },
-  "Image": "[\n\"/images/Dining & Entertaining/Lignum Vitae Mortar & Pestle2.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Lignum Vitae Mortar & Pestle2.jpg"
 },
 {
   "_id": {
@@ -146,7 +146,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f7"
   },
-  "Image": "[\n\"/images/Dining & Entertaining/Belgian Dining Platter3.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Belgian Dining Platter3.jpg"
 },
 {
   "_id": {
@@ -158,7 +158,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f7"
   },
-  "Image": "[\n\"/images/Dining & Entertaining/Vintage Gold Rimmed Coupes1.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Vintage Gold Rimmed Coupes1.jpg"
 },
 {
   "_id": {
@@ -170,7 +170,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f7"
   },
-  "Image": "[\n\"/images/Dining & Entertaining/Canadian Railway Creamer3.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Canadian Railway Creamer3.jpg"
 },
 {
   "_id": {
@@ -182,7 +182,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860f7"
   },
-  "Image": "[\n\"/images/Dining & Entertaining/Gold Accented Juice Glasses1.jpg\"\n]"
+  "Image": "/images/Dining & Entertaining/Gold Accented Juice Glasses1.jpg"
 },
 {
   "_id": {
@@ -192,7 +192,7 @@
   "Description": "Soft products like cushions, rugs, bedding, etc.",
   "Slug": "soft-goods",
   "ParentCategory": null,
-  "Image": "[\n\"/images/Soft Goods/Autumn Harvest Pillow2.jpg\"\n]"
+  "Image": "/images/Soft Goods/Autumn Harvest Pillow2.jpg"
 },
 {
   "_id": {
@@ -204,7 +204,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de860fe"
   },
-  "Image": "[\n\"/images/Soft Goods/River Leaf Pillow1.jpg\"\n]"
+  "Image": "/images/Soft Goods/River Leaf Pillow1.jpg"
 },
 {
   "_id": {
@@ -214,7 +214,7 @@
   "Description": "Lighting solutions for home and office.",
   "Slug": "lighting",
   "ParentCategory": null,
-  "Image": "[\n\"/images/Lighting/Copper Lamp4.jpg\"\n]"
+  "Image": "/images/Lighting/Copper Lamp4.jpg"
 },
 {
   "_id": {
@@ -226,7 +226,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de86100"
   },
-  "Image": "[\n\"/images/Lighting/Grapevine Leaf Table Lamp2.jpg\"\n]"
+  "Image": "/images/Lighting/Grapevine Leaf Table Lamp2.jpg"
 },
 {
   "_id": {
@@ -236,7 +236,7 @@
   "Description": "Artworks and decorative pieces.",
   "Slug": "art",
   "ParentCategory": null,
-  "Image": "[\n\"/images/Art/Lighthouse Oil Painting2.jpg\"\n]"
+  "Image": "/images/Art/Lighthouse Oil Painting2.jpg"
 },
 {
   "_id": {
@@ -248,7 +248,7 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de86102"
   },
-  "Image": "[\n\"/images/Art/Waterside Oil Painting1.jpg\"\n]"
+  "Image": "/images/Art/Waterside Oil Painting1.jpg"
 },
 {
   "_id": {
@@ -260,5 +260,5 @@
   "ParentCategory": {
     "$oid": "507f191e810c19729de86102"
   },
-  "Image": "[\n\"/images/Art/Lighthouse Oil Painting2.jpg\"\n]"
+  "Image": "/images/Art/Lighthouse Oil Painting2.jpg"
 }]

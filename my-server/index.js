@@ -377,8 +377,9 @@ app.put("/categories", cors(), async (req, res) => {
     { _id: new ObjectId(req.body._id) },
     {
       $set: { 
-        Name: req.body.Name,
-        Description: req.body.Description,
+        name: req.body.name,
+        description: req.body.description,
+        image: req.body.image  // Add this line to update the image
       },
     }
   );

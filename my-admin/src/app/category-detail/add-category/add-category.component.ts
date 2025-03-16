@@ -16,7 +16,7 @@ export class AddCategoryComponent {
     description: '',
     slug: '',
     parentCategory: null,
-    image: '',
+    image: [],
     id: ''
   }; // Đối tượng category mới
   selectedFile: File | null = null; // Chỉ chọn 1 ảnh duy nhất
@@ -83,7 +83,7 @@ export class AddCategoryComponent {
     }
   
     if (this.previewImage) {
-      this.category.image = this.previewImage;
+      this.category.image = [this.previewImage];
     }
   
     // Tạo một bản sao hợp lệ của category và loại bỏ `_id`, `id`
