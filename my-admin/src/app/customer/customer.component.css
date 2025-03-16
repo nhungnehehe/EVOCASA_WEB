@@ -6,9 +6,9 @@
     h1{
     text-align: left;
     margin-left: 32px;
-    margin-top: 10px;
+    margin-top: 25px;
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     color: #5E4C3E;
     font-family: 'Zen Old Mincho', serif; /* Áp dụng font Zen Old Mincho */
   }
@@ -74,51 +74,95 @@
         justify-content: flex-end;  /* Căn chỉnh các phần tử con về phía bên phải */
         gap: 10px;  /* Khoảng cách giữa các nút */
   }
-  
-  /* Các nút */
-  .filter-btn {
-    max-width: 130px;
-    font-size: 16px;
-    color: rgba(63, 35, 5, 1);
-    font-weight: 500;
-    text-align: center;
-    letter-spacing: 0.1px;
-    line-height: 1;
-    border-radius: 7px;
-    border: 1px solid rgba(63, 35, 5, 1);
-    display: flex;
-    padding: 6px 10px;
-    align-items: center;
-    gap: 14px;
-    background-color: transparent;
-    cursor: pointer;
-  }
-  
-  .export-btn {
-    background-color: #C5B6A7;
-    color:  rgba(63, 35, 5, 1);
-    font-size: 16px;
-    cursor: pointer;
-    max-width: 150px;
-    font-size: 16px;
-    font-weight: 500;
-    white-space: nowrap;
-    text-align: center;
-    letter-spacing: 0.1px;
-    line-height: 1;
-    border-radius: 7px;
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 15px;
-    border: none;
-    cursor: pointer;
-  }
 
-  .filter-btn:hover, .export-btn:hover {
-    background-color: #5E4C3E;
-    color: #F2EAD3;
-  }
+/* nút filter*/
+.filter-button {
+  max-width: 130px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: rgba(63, 35, 5, 1);
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.1px;
+  line-height: 1;
+  border-radius: 7px;
+  border: 1px solid rgba(63, 35, 5, 1);
+  display: flex;
+  padding: 6px 10px;
+  align-items: center;
+  gap: 14px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+.filter-text {
+  margin: auto 0;
+  font-weight: 500;
+
+}
+
+/* Hover state for better UX */
+.filter-button:hover {
+  background-color: rgba(63, 35, 5, 0.05);
+}
+
+/* Focus state for accessibility */
+.filter-button:focus {
+  outline: 2px solid rgba(63, 35, 5, 0.5);
+  outline-offset: 2px;
+}
+
+/* nút export */
+.export-button {
+  max-width: 150px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: rgba(63, 35, 5, 1);
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 0.1px;
+  line-height: 1;
+  border-radius: 7px;
+  background-color: rgba(197, 182, 167, 1);
+  display: flex;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.export-icon {
+  aspect-ratio: 1.17;
+  object-fit: contain;
+  object-position: center;
+  width: 28px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.export-text {
+  align-self: stretch;
+  margin: auto 0;
+  font-weight: 500;
+}
+.dropdown-icon {
+  aspect-ratio: 2;
+  object-fit: contain;
+  object-position: center;
+  width: 12px;
+  align-self: stretch;
+  margin: auto 0;
+  flex-shrink: 0;
+}
+.export-button:hover {
+  background-color: rgba(187, 172, 157, 1);
+}
+.export-button:focus {
+  outline: 2px solid rgba(63, 35, 5, 0.5);
+  outline-offset: 2px;
+}
  
  /* Container chứa bảng */
     .table-container {
@@ -133,10 +177,9 @@
   /* Bảng */
   .customer-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 5px;
-    background-color: #f9f6f2;  /* Màu nền của container */
-    font-size: 13px;
+  border-collapse: collapse;
+  margin-top: 5px;
+  table-layout: auto;
   }
   
   .customer-table th, .customer-table td {
@@ -147,10 +190,10 @@
   .customer-table th {
     background-color: #5E4C3E;
     color:  #F2EAD3;
+    font-weight: 500;
   }
   
   .customer-table td {
-    border-bottom: 1px solid #ddd;
     color: rgb(0, 0, 0,0.5);
   }
   

@@ -73,6 +73,38 @@ export class CustomerComponent implements OnInit {
   get totalPages(): number {
     return Math.ceil(this.totalCustomers / this.itemsPerPage);
   }
+
+  exportCustomers(): void {
+    const customersToExport = this.customers;
+  
+    if (!customersToExport || customersToExport.length === 0) {
+      alert('No data available for export!');
+      return;
+    }
+  
+    const headers = ['No', 'Customer ID', 'Name', 'Gender', 'Email', 'Phone'];
+    const csvRows = customersToExport.map((customer, index) => [
+      index + 1,
+      `"${customer._id}"`,
+      `"${customer.Name}"`,
+      `"${customer.Gender}"`,
+      `"${customer.Mail}"`,
+      `"${customer.Phone}"`
+    ]);
+  
+    const csvContent = [headers, ...csvRows].map(row => row.join(',')).join('\n');
+  
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'customer_list.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
+
 }
   // Thực hiện các thao tác như xóa hoặc chỉnh sửa khách hàng
   // editCustomer(id: string) {
