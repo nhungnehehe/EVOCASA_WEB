@@ -268,7 +268,7 @@ input:focus {
 .nav-links {
   display: flex;
   align-items: center;
-  padding-right: 20px; /* Add padding to the right side only */
+  padding-right: 20px; 
 }
 
 .log-in-btn {
