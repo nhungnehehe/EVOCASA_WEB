@@ -79,7 +79,7 @@
 ## 🚀 PROJECT INTRODUCTION
 
 - **Topic:** Furniture Sales Website
-- **Repository:** [242MI5702_WEBDEVELOPMENT](https://github.com/thhuyenn19/242MI5702_WEBDEVELOPMENT)
+- **Repository:** [242MI5702_WEBDEVELOPMENT](https://github.com/nhungnehehe/242MI5702_WEBDEVELOPMENT)
 
 <p align="center">
   <img src="https://i.imgur.com/placeholder.png" alt="Project Preview" width="700">
