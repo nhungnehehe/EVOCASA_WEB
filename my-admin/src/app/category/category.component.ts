@@ -42,6 +42,8 @@ export class CategoryComponent implements OnInit {
     this.fetchCategories();
   }
 
+  
+
   fetchCategories(): void {
     this.isLoading = true;
     this.categoryService.getCategories().subscribe({
@@ -102,16 +104,6 @@ export class CategoryComponent implements OnInit {
     if (typeof id === 'string') return id;
     if (typeof id === 'object' && '$oid' in id) return id.$oid;
     return '';
-  }
-
-  /**
-   * Get image URL with fallback
-   */
-  getCategoryImageUrl(category: Category): string {
-    if (category.image && category.image.trim() !== '') {
-      return category.image;
-    }
-    return 'assets/images/category-placeholder.png'; // Fallback image
   }
 
   /**
@@ -180,16 +172,70 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  getCategoryImageForTable(category: Category): string {
-    if (category.image && category.image.trim() !== '') {
-      // Parse the JSON string and get the first image URL
-      const imageArray = JSON.parse(category.image);
-      return imageArray[0]; // Return the first image in the array
+  /**
+ * Process image paths for categories 
+ */
+processCategoryImages(): void {
+  this.categories.forEach(category => {
+    // Handle the uppercase Image property from API
+    const imageData = category.image || (category as any).Image;
+    
+    // Store the processed image data back in the category object
+    if (typeof imageData === 'string') {
+      category.image = imageData; // Store as is for string paths
+    } else if (Array.isArray(imageData)) {
+      category.image = imageData; // Keep array format
+    } else if (!imageData) {
+      category.image = ''; // Empty string if no image
     }
-    return 'assets/images/category-placeholder.png'; // Fallback image
-  }
+    
+    console.log(`Processed image for category ${category.name}:`, category.image);
+  });
+}
 
+/**
+ * Get image URL for display in tables or lists
+ */
+getCategoryImageForTable(category: Category): string {
+  if (!category) return 'assets/images/category-placeholder.jpg';
   
+  // Get image from either lowercase or uppercase property
+  const imageData = category.image || (category as any).Image;
+  
+  if (!imageData) {
+    return 'assets/images/category-placeholder.jpg';
+  }
+  
+  // Handle string path (like "/images/Furniture/Ambiance Coffee Table1.jpg")
+  if (typeof imageData === 'string') {
+    return this.getFullImagePath(imageData);
+  }
+  
+  // Handle array of images
+  if (Array.isArray(imageData) && imageData.length > 0) {
+    return this.getFullImagePath(imageData[0]);
+  }
+  
+  return 'assets/images/category-placeholder.jpg';
+}
+
+/**
+ * Get full image path with base URL
+ */
+getFullImagePath(imagePath: string): string {
+  if (!imagePath) return 'assets/images/category-placeholder.jpg';
+  
+  // If it's already a data URL or absolute path, return as is
+  if (imagePath.startsWith('data:')) {
+    return imagePath;
+  }
+  
+  // Use relative paths to access local images in your project
+  // Remove any server-specific path components
+  const cleanPath = imagePath.replace(/^\//, ''); // Remove leading slash if present
+  return `assets/images/${cleanPath}`;
+}
+
   // Toggle the filter panel
   applyFilter(): void {
     this.showFilter = !this.showFilter;

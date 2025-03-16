@@ -45,8 +45,6 @@ export class CategoryService {
     const headers = new HttpHeaders().set("Content-Type", "application/json");
     return this._http.put<any[]>(this.apiUrl, category, { headers }).pipe(
       tap(response => console.log('Category update response:', response)),
-      map(response => response.map(item => this.normalizeCategoryData(item))),
-      map(categories => this.processCategoryImages(categories)),
       retry(3),
       catchError(this.handleError)
     );
@@ -192,58 +190,15 @@ export class CategoryService {
   private processCategoryImages(categories: Category[]): Category[] {
     return categories.map(category => this.processCategoryImage(category));
   }
-private processCategoryImage(category: Category): Category {
-  const processedCategory = { ...category };
-  if (!processedCategory.image) {
-    processedCategory.image = 'assets/images/category-placeholder.png';
-    return processedCategory;
-  }
-
-  console.log('Processing image for category:', processedCategory.name);
-  console.log('Raw image value:', processedCategory.image);
-
-  try {
-    let imagePath = processedCategory.image.trim();
-    if (imagePath.startsWith('data:image')) {
-      console.log('Image is a base64 encoded string.');
-      return processedCategory;
-    }
-    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-      console.log('Image is a full URL.');
-      return processedCategory;
-    }
-
-    if (imagePath.startsWith('[') || imagePath.startsWith('{')) {
-      console.log('Attempting to parse JSON image string.');
-      const imageData = JSON.parse(imagePath);
-
-      if (Array.isArray(imageData) && imageData.length > 0) {
-        imagePath = imageData.find(img => typeof img === 'string' && img.trim().length > 0) || '';
-      } else if (typeof imageData === 'object' && imageData !== null) {
-        const possibleKeys = ['path', 'url', 'src', 'file'];
-        for (const key of possibleKeys) {
-          if (imageData[key] && typeof imageData[key] === 'string') {
-            imagePath = imageData[key].trim();
-            break;
-          }
-        }
+  processCategoryImage(category: Category): Category {
+    if (category.image && typeof category.image === 'string') {
+      try {
+        category.image = JSON.parse(category.image as unknown as string);
+      } catch (e) {
+        category.image = [category.image as unknown as string];
       }
     }
-
-    if (imagePath.startsWith('/')) {
-      processedCategory.image = `${this.baseUrl}${imagePath}`;
-    } else if (!imagePath.startsWith('http')) {
-      processedCategory.image = `${this.baseUrl}/${imagePath}`;
-    } else {
-      processedCategory.image = imagePath;
-    }
-
-    console.log('Final processed image:', processedCategory.image);
-  } catch (error) {
-    console.error('Error processing category image:', error);
-    processedCategory.image = 'assets/images/category-placeholder.png';
+    return category;
   }
 
-  return processedCategory;
-}
 }
