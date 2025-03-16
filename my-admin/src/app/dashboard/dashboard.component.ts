@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart, registerables } from 'chart.js';
 
@@ -33,6 +33,14 @@ export class DashboardComponent implements OnInit {
   ];
   
   constructor(private http: HttpClient) { }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    // Redraw charts when window is resized
+    if (this.dashboardData) {
+      this.initializeCharts();
+    }
+  }
 
   ngOnInit(): void {
     this.loadDashboardData();
@@ -209,6 +217,12 @@ export class DashboardComponent implements OnInit {
     const productsCtx = document.getElementById('top-products-chart') as HTMLCanvasElement;
     if (!productsCtx) return;
 
+    // Ensure the canvas has correct dimensions before creating the chart
+    if (window.innerWidth <= 992) {
+      productsCtx.style.height = '220px';
+      productsCtx.style.width = '100%';
+    }
+
     // Get top products data based on selected period
     const topProducts = this.dashboardData.top_products;
     let productData: any[] = [];
@@ -327,12 +341,12 @@ export class DashboardComponent implements OnInit {
     return { current: 0, growth_percentage: 0, growth_amount: 0 };
   }
 
-getRecentActivity(): any[] {
-  if (this.dashboardData && this.dashboardData.recent_activity) {
-    return this.dashboardData.recent_activity;
+  getRecentActivity(): any[] {
+    if (this.dashboardData && this.dashboardData.recent_activity) {
+      return this.dashboardData.recent_activity;
+    }
+    return [];
   }
-  return [];
-}
 
   // Get top products based on selected period
   getTopProducts(): any[] {
