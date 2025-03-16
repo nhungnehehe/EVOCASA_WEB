@@ -2,11 +2,11 @@
   "name": "my-client",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "ng": "npx ng",
+    "start": "npx ng serve",
      "build":"npx ng build --configuration=production",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "watch": "npx ng build --watch --configuration=development",
+    "test": "npx ng test",
     "postinstall": "npx ng version"
   },
   "private": true,
