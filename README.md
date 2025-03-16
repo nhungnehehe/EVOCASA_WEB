@@ -1,9 +1,8 @@
 <p align="center">
   <a href="https://www.uel.edu.vn/" title="University of Economics and Law - VNU HCMC">
-    <img src="https://i.imgur.com/jTdznYS.jpeg" alt="UEL" width="500">
+    <img src="https://i.imgur.com/jTdznYS.jpeg" alt="UEL">
   </a>
 </p>
-
 <div align="center">
 
 # 🏡 EVOCASA WEBSITE
@@ -102,7 +101,7 @@
 
 ### Database
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat-square&logo=mongodb&logoColor=white)
-![MongoDB Atlas](https://img.shields.io/badge/MongoDB_Atlas-4EA94B?style=flat-square&logo=mongodb&logoColor=white)
+
 
 ### Development Environment
 ![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white)
@@ -115,6 +114,7 @@
 
 ### Cloud & Hosting
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=white)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB_Atlas-4EA94B?style=flat-square&logo=mongodb&logoColor=white)
 
 </div>
 
