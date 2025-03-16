@@ -4,14 +4,16 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-     "build": "ng build --configuration=production",
+     "build":"npx ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "npx ng version"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.1.0",
     "@angular/cdk": "^19.2.3",
+    "@angular/cli": "^19.1.6",
     "@angular/common": "^19.1.0",
     "@angular/compiler": "^19.1.0",
     "@angular/core": "^19.1.0",
