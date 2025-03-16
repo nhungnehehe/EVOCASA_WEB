@@ -167,11 +167,11 @@
           routerLinkActive="active">HI, {{ currentUserName }}</a></span>
     </div>
     <div class="signcart">
-      <button (click)="openSidebar()">
+      <button (click)="toggleSidebar()">
         <img src="images/header/Cart-icon.svg" />
       </button>
       <span class="total_quantity">{{ displayedQuantity }}</span>
-      <label class="icon" (click)="openSidebar()" routerLinkActive="active">CART</label>
+      <label class="icon cart-label" (click)="toggleSidebar()" routerLinkActive="active">CART</label>
     </div>
   </div>
 </header>

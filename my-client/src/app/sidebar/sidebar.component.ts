@@ -338,6 +338,7 @@ updateCustomerCartOnServer(): void {
         this.isClosing = false;
         this.renderer.addClass(document.body, 'no-scroll');
         document.body.style.overflow = 'hidden';
+        this.updateSidebarTop(); // Cập nhật giá trị top khi mở sidebar
         if (this.isUserLoggedIn && this.currentUserPhone) {
           this.loadCartByPhone(this.currentUserPhone);
         } else {
@@ -358,4 +359,29 @@ updateCustomerCartOnServer(): void {
     }
   }
   
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    console.log('Window scrolled'); // Debug log
+    this.updateSidebarTop();
+  }
+
+  private updateSidebarTop() {
+    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+    console.log('Scroll Y:', scrollY); // Debug log
+    const navbarHeight = 94; // Chiều cao cố định của navbar
+    const newTopValue = Math.max(0, navbarHeight - scrollY); // Đảm bảo không bao giờ âm
+    
+    console.log('New top value:', newTopValue); // Debug log
+    
+    // Trực tiếp thiết lập thuộc tính top
+    this.renderer.setStyle(this.elementRef.nativeElement, 'top', `${newTopValue}px`);
+  }
+
+  toggleSidebar() {
+    if (this.isVisible) {
+      this.closeCart();
+    } else {
+      this.isVisible = true;
+    }
+  }
 }

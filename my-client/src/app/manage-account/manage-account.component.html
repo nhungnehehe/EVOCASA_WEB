@@ -40,16 +40,21 @@
   <div class="content">
     <div class="account-section">
       <!-- PERSONAL INFORMATION -->
-      <div class="info-box" >
+      <div class="info-box">
         <h3>PERSONAL INFORMATION</h3>
         <div class="personal-in4" *ngIf="customerInfo">
           <div class="info-row">
             <span class="title">Full name:</span>
             <span class="value">{{ customerInfo.Name }}</span>
           </div>
-          <div class="info-row" >
+          <div class="info-row">
             <span class="title">Gender:</span>
-            <span class="value">{{ customerInfo.Gender }}</span>
+            <span *ngIf="!isEditing" class="value">{{ customerInfo?.Gender || 'N/A' }}</span>
+            <select *ngIf="isEditing" [(ngModel)]="editableUser.Gender" placeholder="Select Gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div class="info-row">
             <span class="title">Phone number:</span>
@@ -57,21 +62,29 @@
           </div>
           <div class="info-row">
             <span class="title">Email:</span>
-            <span class="value">{{ customerInfo.Mail }}</span>
+            <span *ngIf="!isEditing" class="value">{{ customerInfo?.Mail || 'N/A' }}</span>
+            <input *ngIf="isEditing" [(ngModel)]="editableUser.Mail" type="email" placeholder="Enter your email">
+            <p *ngIf="emailError" class="error-text">Invalid email format</p>
+
           </div>
           <div class="info-row">
             <span class="title">D.O.B: </span>
-            <span class="value">{{ formattedDOB || 'N/A' }}</span>
+            <span *ngIf="!isEditing" class="value">{{ formattedDOB || 'N/A' }}</span>
+            <input *ngIf="isEditing" [(ngModel)]="editableUser.DOB" type="date">
           </div>
         </div>
-        <div class="edit-btn">Edit</div>
+        <div class="edit-btn">
+          <button *ngIf="!isEditing" (click)="editProfile()">Edit</button>
+          <button *ngIf="isEditing" (click)="saveProfile()">Save</button>
+          <button *ngIf="isEditing" (click)="cancelEdit()">Cancel</button>
+        </div>
       </div>
-      
+
       <!-- SHIPPING INFORMATION -->
       <div class="info-box">
         <h3>SHIPPING INFORMATION</h3>
-        <input  type="radio" id="shipping1" name="shipping" class="radio-btn">
-        <label for ="shipping1" class="shipping-card">
+        <input type="radio" id="shipping1" name="shipping" class="radio-btn">
+        <label for="shipping1" class="shipping-card">
           <div class="shipping-details">
             <p><strong>Andrey</strong></p>
             <p>(+84) 909888777</p>
@@ -81,9 +94,9 @@
             <span class="edit-ship">Edit</span>
             <span class="delete">Delete</span>
           </div>
-        </label>        
-        <input  type="radio" id="shipping2" name="shipping" class="radio-btn">
-        <label for ="shipping2" class="shipping-card">
+        </label>
+        <input type="radio" id="shipping2" name="shipping" class="radio-btn">
+        <label for="shipping2" class="shipping-card">
           <div class="shipping-details">
             <p><strong>Andree Right Hand</strong></p>
             <p>(+84) 909888777</p>
@@ -93,7 +106,7 @@
             <span class="edit-ship">Edit</span>
             <span class="delete">Delete</span>
           </div>
-        </label>       
+        </label>
         <div class="add-address">
           <button class="add-btn">Add More Address</button>
         </div>

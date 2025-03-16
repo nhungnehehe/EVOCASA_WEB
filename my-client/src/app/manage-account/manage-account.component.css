@@ -28,7 +28,7 @@
     /* Tạo khoảng cách giữa icon và chữ */
     font-size: 16px;
     font-weight: normal;
-    position: relative; 
+    position: relative;
 }
 
 .menu-item.active .menu-text {
@@ -49,11 +49,14 @@
     /* Đảm bảo ảnh không bị ảnh hưởng bởi inline spacing */
     margin-top: 8px;
 }
+
 .menu-icon-text img.rotated-image {
-    margin-left: auto; /* Đẩy mũi tên ra bìa phải */
+    margin-left: auto;
+    /* Đẩy mũi tên ra bìa phải */
     width: 24px;
     height: 24px;
 }
+
 .menu-arrow {
     margin-left: auto;
     font-size: 18px;
@@ -288,12 +291,14 @@ h3 {
     border-radius: 7px;
     border: 1px solid rgba(94, 76, 62, 0.7);
     padding-left: 15px;
-    margin: 0 15px 10px 20px ;
+    margin: 0 15px 10px 20px;
     transition: background-color 0.3s ease, border 0.3s ease;
 }
+
 .shipping-card:hover {
     background-color: rgba(242, 234, 211, 1);
-    border: 2px solid rgba(94, 76, 62, 1); /* Tăng độ dày viền khi hover */
+    border: 2px solid rgba(94, 76, 62, 1);
+    /* Tăng độ dày viền khi hover */
 }
 
 .radio-btn {
@@ -313,7 +318,8 @@ h3 {
     gap: 10px;
 }
 
-.edit-ship, .delete {
+.edit-ship,
+.delete {
     color: #3F2305;
     font-size: 16px;
     text-decoration: underline;
@@ -340,12 +346,14 @@ h3 {
 .add-btn:hover {
     background: #3f4a3d;
 }
+
 input[type="radio"] {
     display: none;
     /* Hides the default radio button */
 }
+
 /* Khi radio button được checked, đổi viền của shipping-card */
-input[type="radio"]:checked + .shipping-card {
+input[type="radio"]:checked+.shipping-card {
     border: 2px solid rgba(94, 76, 62, 1);
 }
 
@@ -364,8 +372,75 @@ label.shipping-card {
 }
 
 label.shipping-card:hover,
-input[type="radio"]:checked + label.shipping-card {
+input[type="radio"]:checked+label.shipping-card {
     background-color: rgba(242, 234, 211, 1);
     border: 2px solid rgba(94, 76, 62, 1);
 }
 
+/* 🔹 Làm đẹp input và select */
+input,
+select {
+    width: 60%;
+    /* Điều chỉnh kích thước */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus,
+select:focus {
+    border-color: #4CAF50;
+    /* Màu xanh lá khi focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* 🔹 Nút chỉnh sửa */
+.edit-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    /* Tạo khoảng cách giữa các nút */
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* 🔹 Màu sắc cho các nút */
+button:nth-child(1) {
+    /* Nút Edit */
+    background-color: #525B4A; 
+    color: white; 
+}
+button:nth-child(1):hover {
+    /* Nút Edit */
+    background-color: #5E4C3E; 
+}
+
+button:nth-child(2) {
+    /* Nút Save */
+    background-color: #e74c3c;
+    color: white;
+}
+
+
+/* 🔹 Căn chỉnh ô chọn giới tính */
+.info-row select {
+    width: auto;
+    padding: 5px 10px;
+}
