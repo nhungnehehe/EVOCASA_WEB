@@ -4,6 +4,9 @@ import { UserService } from '../services/user.service';
 import { CustomerService } from '../services/customer.service';
 import { OrderService } from '../services/order.service';
 import { Order } from '../interfaces/order';
+import { Overlay } from '@angular/cdk/overlay';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-order-tracking-detail',
@@ -22,7 +25,8 @@ export class OrderTrackingDetailComponent {
       private router: Router,
       private userService: UserService,
       private customerService: CustomerService,
-      private orderService: OrderService
+      private dialog: MatDialog,
+      private overlay: Overlay
     ) {}
 
     ngOnInit() {
@@ -43,12 +47,25 @@ export class OrderTrackingDetailComponent {
     }
    // Hàm xử lý đăng xuất
    signOut(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    
-    this.userService.clearCurrentUser(); 
-    
-    this.router.navigate(['/']);
-    alert('You have been signed out successfully');
+    const dialogRef = this.dialog.open(DialogComponent, {
+          width: '350px',
+          maxWidth: '90vw',
+          panelClass: 'custom-dialog-container',
+          hasBackdrop: true,
+          backdropClass: 'custom-backdrop',
+          disableClose: false,
+          autoFocus: true,
+          // Prevent scroll strategy from blocking/unblocking scroll
+          scrollStrategy: this.overlay.scrollStrategies.noop()
+        });
+      
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            this.userService.clearCurrentUser(); 
+            this.router.navigate(['/']);
+          }
+        });
   }
 }

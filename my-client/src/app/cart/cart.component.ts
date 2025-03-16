@@ -304,7 +304,10 @@ onCheckboxChange(event: any, product: CartItem): void {
     if (this.isUserLoggedIn) {
       this.router.navigate(['/payment-shipping']);
     } else {
-      this.router.navigate(['/login-page'], { queryParams: { returnUrl: '/payment-shipping' } });
+      const confirmLogin = window.confirm("You need to log in to proceed with the payment. Would you like to log in now?");
+      if (confirmLogin) {
+        this.router.navigate(['/login-page'], { queryParams: { returnUrl: '/payment-shipping' } });
+      }
     }
   }
  }
