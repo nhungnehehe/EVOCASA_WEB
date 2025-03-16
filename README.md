@@ -80,10 +80,9 @@
 
 - **Topic:** Furniture Sales Website
 - **Repository:** [242MI5702_WEBDEVELOPMENT](https://github.com/nhungnehehe/242MI5702_WEBDEVELOPMENT)
+- - **Project Overview:** EvoCasa
 
-<p align="center">
-  <img src="https://i.imgur.com/placeholder.png" alt="Project Preview" width="700">
-</p>
+
 
 ## 💻 TECH STACK
 
