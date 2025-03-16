@@ -26,8 +26,15 @@
     </div>
 
     <div class="actions">
-        <button class="filter-btn" routerLink="/admin-product-add">Filter by</button>
-        <button class="export-btn" routerLink="/admin-category-add">Exports</button>
+        <button class="filter-button" >
+          <img src="images/order/Filter.svg" alt="Filter icon" />
+          <span class="filter-text">Filter by</span>
+        </button>
+        <button class="export-button" (click)=exportCustomers()>
+          <img src="images/product/export.svg" alt="Export icon" class="export-icon"/>
+          <span class="export-text">Exports</span>
+          <img src="images/product/arrow.svg" alt="Dropdown arrow" class="dropdown-icon"/>
+        </button>
     </div>
 
     <div class="table-container">

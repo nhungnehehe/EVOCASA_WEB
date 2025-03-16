@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   currentUserName: string = '';
   isUserLoggedIn: boolean = false;
   currentUserPhone: string | null = null;
-
+  sidebarOpen = false;
 
   searchTerm: string = '';  // Từ khóa tìm kiếm
   searchResults: any[] = [];  // Kết quả tìm kiếm
@@ -147,8 +147,21 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+    if (this.sidebarOpen) {
+      this.openSidebar();
+    } else {
+      this.closeSidebar();
+    }
+  }
 
   openSidebar(): void {
     this.appComponent.openSidebar();
   }
+
+  closeSidebar(): void {
+    this.appComponent.closeSidebar();
+  }
+  
 }
