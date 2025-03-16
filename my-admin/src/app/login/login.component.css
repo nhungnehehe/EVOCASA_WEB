@@ -256,8 +256,8 @@ input:focus {
 
 .logo {
   height: 40px;
-  padding-left: 0; /* Remove any potential padding */
-  margin-left: 0; /* Remove any potential margin */
+  padding-left: 0; 
+  margin-left: 0; 
 }
 
 .logo img {
