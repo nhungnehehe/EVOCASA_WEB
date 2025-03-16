@@ -248,7 +248,7 @@ h4 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 13px;
+  font-size: 16px;
 }
 .category-table td {
   border-bottom: 0.5px solid #482d2d;
@@ -260,7 +260,7 @@ h4 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 /* Cho phép description hiển thị nhiều dòng */
