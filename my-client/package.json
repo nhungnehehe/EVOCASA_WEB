@@ -2,18 +2,16 @@
   "name": "my-client",
   "version": "0.0.0",
   "scripts": {
-    "ng": "npx ng",
-    "start": "npx ng serve",
-     "build":"npx ng build --configuration=production",
-    "watch": "npx ng build --watch --configuration=development",
-    "test": "npx ng test",
-    "postinstall": "npx ng version"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.1.0",
     "@angular/cdk": "^19.2.3",
-    "@angular/cli": "^19.1.6",
     "@angular/common": "^19.1.0",
     "@angular/compiler": "^19.1.0",
     "@angular/core": "^19.1.0",
