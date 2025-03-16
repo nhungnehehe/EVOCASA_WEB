@@ -12,8 +12,8 @@
 
 ## COURSE INTRODUCTION
 
--    **Course Name:** Web Business Development
--    **Class Code:** 242MI5702
+  -    **Course Name:** Web Business Development
+-    **Course ID:** 242MI5702
 -    **Academic Year:** Semester 2 (2024 - 2025)
 -    **Instructor:** Dr. Trần Duy Thanh
 
