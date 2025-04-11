@@ -71,7 +71,7 @@
 ## 🚀 PROJECT INTRODUCTION
 
 - **Topic:** Furniture Sales Website
-- **Repository:** [242MI5702_WEBDEVELOPMENT](https://github.com/nhungnehehe/242MI5702_WEBDEVELOPMENT)
+- **Repository:** [EVOCASA_WEB](https://github.com/nhungnehehe/242MI5702_WEBDEVELOPMENT)
 - **Project Overview - Local:** EvoCasa
 -<div align="center"> [**LIVE DEMO: EVOCASA**](https://evo-casa.onrender.com/)  </div>
 
@@ -116,10 +116,10 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/thhuyenn19/242MI5702_WEBDEVELOPMENT.git
+git clone https://github.com/nhungnehehe/EVOCASA_WEB.git
 
 # Navigate to the project directory
-cd 242MI5702_WEBDEVELOPMENT
+cd EVOCASA_WEB
 
 # Install dependencies
 npm install
